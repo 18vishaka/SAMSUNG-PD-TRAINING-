@@ -114,7 +114,7 @@ NOTE:
 </details>	
 
 <details>
-<summary>Lab-1: Introduction to using iverilog and gtkwave</summary>
+<summary>Lab-1: Introduction to using iverilog and gtkwave (Part-1)</summary>
 (All the lab examples will be performed on the Linux operating system.)<br><br>
 
  **Iverilog**: Icarus Verilog (Iverilog) is a versatile tool for digital design engineers, enabling them to both simulate and, to some extent, synthesize digital circuits described in Verilog. It aids in the development and testing of digital hardware designs, ensuring their correctness and functionality before they are physically implemented.
@@ -140,13 +140,17 @@ From the above waveforms it is clear that when the select line is 0 (sel=0) the 
 
 
 This is how we load the design and check for its functionality.
-
-RTL design code of the 2:1 MUX
-<img width="1085" alt="good_mux_design_code" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/fa2af7bbb534461466344e6a065345318906e4c5/design%20_of_the_mux.png">
-Testbench for 2:1 MUX
-<img width="1085" alt="testbench" src="https://github.com/AbhishekChinchani/Samsung_pd/blob/16a2cefdc8b86645cce423a1fe983085cd3f6197/testbench_good_mux.png">
-
 </details>
+
+<details>
+<summary>Lab-2: Introduction to using iverilog and gtkwave (Part-2)</summary>
+A look into what exactly is written inside a verilog design file and a testbench file.
+RTL design code of the 2:1 MUX-<br><br>
+<img width="1085" alt="design" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/design.png"><br><br>
+Testbench for 2:1 MUX-<br><br>
+<img width="1085" alt="TestBench" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/TestBench.png"><br><br>
+</details>
+
 <details>
  <summary>Introduction to Yosys</summary>
 
