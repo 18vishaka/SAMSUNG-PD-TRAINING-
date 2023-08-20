@@ -14,8 +14,8 @@ Quick links:
 <summary>dc_shell </summary>
 dc_shell (Design Compiler Shell) is a command-line-based EDA tool used for logic synthesis provided by Synopsys, Inc.	
 It is typically used through scripts written in languages like TCL (Tool Command Language). Designers create scripts to specify the synthesis process and provide input files, and then dc_shell executes these scripts to perform the synthesis.
-The tool can be invoked by using the command "dc_shell" in a UNIX shell. <br>
-Here is the snapshot of successful launch of dc_shell: <br>
+The tool can be invoked by using the command "dc_shell" in a UNIX shell.<br><br>
+Here is the snapshot of successful launch of dc_shell:<br><br>
 <img width="1085" alt="dc_shell" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/dc_shell.png">
 </details>
 
