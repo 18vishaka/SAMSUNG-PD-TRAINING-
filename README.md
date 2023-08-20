@@ -114,8 +114,8 @@ NOTE:
 </details>	
 
 <details>
-<summary>Lab-1: Introduction to using iverilog and gtkwave</summary><br><br>
-(All the lab examples will be performed on the Linux operating system.)
+<summary>Lab-1: Introduction to using iverilog and gtkwave</summary>
+(All the lab examples will be performed on the Linux operating system.)<br><br>
 
  **Iverilog**: Icarus Verilog (Iverilog) is a versatile tool for digital design engineers, enabling them to both simulate and, to some extent, synthesize digital circuits described in Verilog. It aids in the development and testing of digital hardware designs, ensuring their correctness and functionality before they are physically implemented.
 
