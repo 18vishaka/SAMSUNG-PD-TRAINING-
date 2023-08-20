@@ -173,7 +173,7 @@ Testbench for 2:1 MUX:<br><br>
 </details>
 
 <details>
-<summary>Lab-3 Introduction to using Yosys and sky 130 PDks (Part-1)</summary>
+<summary>Lab-3: Introduction to using Yosys and sky 130 PDks (Part-1)</summary>
 (An overview of this tool and the basic files required to perform the experiment on 2:1 MUX were explained.)<br><br>
  
  **Procedure** : 
