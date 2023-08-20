@@ -174,40 +174,36 @@ Testbench for 2:1 MUX:<br><br>
 
 <details>
 <summary>Lab-3 Introduction to using Yosys and sky 130 PDks (Part-1)</summary>
-An overview of this tool and the basic files required to perform the experiment on 2:1 MUX were explained. 
+(An overview of this tool and the basic files required to perform the experiment on 2:1 MUX were explained.)<br><br>
  
  **Procedure** : 
  First we need to read the liberty file using the code
- 
  **read_liberty -lib <path of the .lib>**
  
  Then we need read the RTL Design code
-
  **read_verilog <RTL_Design_file>**
 
 
- <img width="1085" alt="yosys_lab" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/yosys_lab.png">
+ <img width="1085" alt="yosys_lab" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/yosys_lab.png"><br><br>
 
 
 
  After this we need to perform synthesis 
-
  **synth -top <instance_name>**
 
- <img width="1085" alt="yosys_lab_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/yosys_lab_1.png">
+ <img width="1085" alt="yosys_lab_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/yosys_lab_1.png"><br><br>
 
  
  Then Generating netlist
-
  **abc -liberty <.lib path>**
 
  
- <img width="1085" alt="yosys_lab_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/yosys_lab_2.png">
+<img width="1085" alt="yosys_lab_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/yosys_lab_2.png"><br><br>
  
 This Netlist can be viewed in the synthesized circuit form using the **show** command    
 
 
-<img width="1085" alt="yosys_lab_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/yosys_lab_3.png">
+<img width="1085" alt="yosys_lab_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/yosys_lab_3.png"><br><br>
 
 
 The Nestlist code:
@@ -216,3 +212,9 @@ The Nestlist code:
 
 </details>
  
+<details>
+<summary> Summary </summary>
+	
+Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and their working with an example of mux. 
+
+</details>
