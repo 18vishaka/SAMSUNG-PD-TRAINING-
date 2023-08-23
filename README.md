@@ -254,7 +254,7 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
  <img width="1085" alt="lib_intro" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/lib_intro.png">
 
 
- libraray ("sky130_fd_sc_hd__tt_025C_1v80") gives the name of the liberty file being used. "sky130_fd_sc_hd__tt_025C_1v80" is a  130nm technology library file where 'tt' stands for typical library; '025C' is the temperature value and '1v80' is the voltage value  of this libarary file.
+ library ("sky130_fd_sc_hd__tt_025C_1v80") gives the name of the liberty file being used. "sky130_fd_sc_hd__tt_025C_1v80" is a  130nm technology library file where 'tt' stands for typical library; '025C' is the temperature value and '1v80' is the voltage value  of this libarary file.
 <ul>		
 	<li>Typically a library file consists of cell timing information, library variations, operating conditions, timing models, constraints and timing arcs.</li>
 	<li>These liberty files are crucial in the design flow to ensure that the designed integrated circuits meet their timing requirements and can operate reliably under various conditions.</li>
@@ -287,15 +287,14 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
 
 
    Understanding many different variations of the same gate cells:
-   <img width="1085" alt="lib_area" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/lib_area.png">
-
-<ul>
+   <img width="1085" alt="lib_area" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/lib_area.png"><br>
+   <ul>
 	<li>"and2_0", "and2_2", "and2_4" are different flavors of the same AND cell.</li>
 	<li>As we go from cell "and2_0" to "and2_4" the area increases from 6.256 to 8.7584, what we infer from this is that "and2_4" is larger cell than "and2_2" and from "and2_0". Larger cell meaning it is employing wider transistor.</li>
  	<li>Wider cells will be faster, area is more therefore power is more.</li>
   	<li>Smaller cells delay will be more, area is less hence the power.</li>
    	<li>Intermediate cells which are not wider nor small have intermediate characteristic.</li>
- </ul>
+   </ul>
 </details>
 
 <details>
