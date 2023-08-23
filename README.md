@@ -249,7 +249,7 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
 
 	
 <details>
-<summary>Introduction to timing dot libs </summary>
+<summary>Introduction to timing .libs </summary>
 
 
 
@@ -257,12 +257,16 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
  <img width="1085" alt="lib_intro" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/lib_intro.png">
 
 
- 
+ libraray ("sky130_fd_sc_hd__tt_025C_1v80") gives the name of the liberty file being used. "sky130_fd_sc_hd__tt_025C_1v80" is a  130nm technology library file where 'tt' stands for typical library; '025C' is the temperature value and '1v80' is the voltage value  of this libarary file.
 <ul>
-	<li>libraray ("sky130_fd_sc_hd__tt_025C_1v80") gives the name of the liberty file being used. "sky130_fd_sc_hd__tt_025C_1v80" is a  130nm technology library file where 'tt' stands for typical library; '025C' is the temperature value and '1v80' is the voltage value  of this libarary file.</li>		
+	<li></li>		
 	<li>Typically a library file consists of cell timing information, library variations, operating conditions, timing models, constraints and timing arcs.</li>
 	<li>These liberty files are crucial in the design flow to ensure that the designed integrated circuits meet their timing requirements and can operate reliably under various conditions.</li>
+	
 </ul>
+
+**Operating Conditions:**
+.lib files often include data for different operating conditions, such as variations in voltage and temperature (PVT corners). This data helps designers assess how the library cells will perform under different conditions, considering the Process Voltage Temperature (PVT) variations 
 
 
 **Proccess Voltage Temperature (PVT):**
@@ -272,6 +276,15 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
 	<li>Temperature Variation: Temperature variation refers to changes in the operating temperature of the IC. Integrated circuits are sensitive to temperature, and their performance can vary with temperature changes. Higher temperatures can lead to increased leakage current and power consumption. Additionally, the speed of transistors can be affected by temperature; they may operate faster at lower temperatures and slower at higher temperatures.</li>
 	<li>In summary, Process Voltage Temperature (PVT) variations are an essential aspect of VLSI design and manufacturing, encompassing the inherent variability in the manufacturing process, voltage supply fluctuations, and temperature changes that can affect the performance and reliability of integrated circuits.</li>
 </ul>
+
+**Know .lib well:**
+<ul>
+	<li>The technology("cmos") line is typically a command or directive that specifies the technology or process to be used for characterizing the library cells. 
+	<img width="1085" alt="intro_lib_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/into_lib_1.png"></li>
+ 	<li></li>
+ 
+
+ </ul>
 </details>
 
 <details>
