@@ -249,7 +249,7 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
 
 	
 <details>
-<summary>Introduction to timing .libs </summary>
+<summary>Introduction to timing .libs </summary><br><br>
 
 
 
