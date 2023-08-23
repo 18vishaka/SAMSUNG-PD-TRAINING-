@@ -284,11 +284,21 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
  	<li>Specifying units of time and other physical parameters is crucial for accurately characterizing and describing the behavior of library cells. These units help ensure consistency and compatibility when designing integrated circuits.
 	<img width="1085" alt="intro_lib_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/intro_lib_2.png"></li>
  	<li>There are going to be many cells in the library file, "cell" is the keyword that marks the beginning of cell definition, they contain different features of the particular cell; the cells that are described and characterized represent the fundamental building blocks used in designing digital integrated circuits. These cells serve various logical and sequential functions and are essential for constructing complex digital circuits.</li>
-  	<li>let us consider a AND gate with two inputs
+  	<li>let us consider a AND gate with two inputs:
 	<img width="1085" alt="intro_lib_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/intro_lib_3.png">
-	</li>
- 
+		Here this AND gate is having two inputs, each of these two inputs potentially can take low or high any of the two values; that is 2 to the power 2 which is 4 possible input combinations that exists. For each of these 4 posiible input combinations we need to know what is the delay, power; all of those information are present in each cell definitions.</li>
+  	<li>The "area" parameter in a .lib file specifies the physical size or footprint of a library cell on the silicon wafer. It plays a crucial role in various stages of VLSI chip design. Accurate and well-characterized area values are essential for designing efficient and cost-effective integrated circuits.</li>
 
+
+   Understanding many different variations of the same gate cells:
+   <img width="1085" alt="lib_area" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/lib_area.png">
+
+<ul>
+	<li>"and2_0", "and2_2", "and2_4" are different flavors of the same AND cell.</li>
+	<li>As we go from cell "and2_0" to "and2_4" the area increases from 6.256 to 8.7584, what we infer from this is that "and2_4" is larger cell than "and2_2" and from "and2_0". Larger cell meaning it is employing wider transistor.</li>
+ 	<li>Wider cells will be faster, area is more therefore power is more.</li>
+  	<li>Smaller cells delay will be more, area is less hence the power.</li>
+   	<li>Intermediate cells which are not wider nor small have intermediate characteristic.</li>
  </ul>
 </details>
 
