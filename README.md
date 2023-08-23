@@ -298,74 +298,65 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
 </details>
 
 <details>
-<summary>icc2_shell</summary>
-<ul>	
-	<li>icc2_shell (Integrated Circuit Compiler 2 Shell) is a command-line-based EDA tool primarily used for the physical design stages of integrated circuits, which includes tasks like placement, routing, and physical verification; provided by Synopsys, Inc.</li>
-	<li>It is typically used through scripts written in languages like TCL (Tool Command Language). Designers create scripts to specify the physical design flow, provide input files, and set various design constraints. The tool then executes these scripts to perform the physical design tasks.</li>  
-	<li>The tool can be invoked by using the command "icc2_shell" in a UNIX shell.</li>
-</ul>
-Here is the snapshot of successful launch of icc2_shell:<br><br>    
-<img width="1085" alt="icc2_shell" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/icc2_shell.png">
-</details>
+<summary>Hierarchical vs flat synthesis</summary>
 
-<details>
-<summary>lc_shell</summary>
-<ul>
-	<li>lc_shell (Library Compiler Shell) is a command-line based EDA tool provided by Synopsys, Inc.</li>
-	<li>The core of any ASIC design is the technology library containing a set oflogic cells. The library may contain functional description, timing, area andother pertinent information of each cell. Library Compiler (LC) parses thistextual information for completeness and correctness, before converting it toa format, used globally by all Synopsys applications.</li>
-<li>The tool can be invoked by using the command "lc_shell" in a UNIX shell.</li>
-</ul>
-Here is the snapshot of successful launch of lc_shell:<br><br>   
-<img width="1085" alt="lc_shell" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/lc_shell.png">
-</details>
-
-<details>
-<summary>pt_shell</summary>
-<ul>
-	<li>pt_shell (Prime Time Shell) is a command-line based EDA tool provided by Synopsys, Inc.</li>
-	<li>It is primarily used for static timing analysis.</li>	
-	<li>It verifies the timing of a design by considering factors such as gate delays, interconnect delays, clock constraints, and setup/hold times and also calculates the best-case and worst-case timing paths in the design to ensure that all signals meet their timing requirements under various conditions.</li>
-	<li>The tool can be invoked by using the command "pt_shell" in a UNIX shell.</li>	
-</ul>
-Here is the snapshot of successful launch of pt_shell:<br><br>  
-<img width="1085" alt="pt_shell" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/pt_shell.png">
-</details>
-
-<details>
-<summary>iverilog</summary>
-<ul>
-	<li>iverilog (Icarus verilog) is an open-source Verilog simulation and synthesis tool used for the development of digital circuits and systems.</li> 
-	<li>One of the primary purposes of Icarus Verilog is to simulate digital designs. Designers can write Verilog code to describe the behavior of digital circuits, and Icarus Verilog can simulate the operation of these circuits over time, helping to verify their functionality.</li>
-<li>The tool can be invoked by using the command "iverilog [options] [input_files]" in a UNIX shell.</li>
-</ul>
-Here is the snapshot of successful launch of iverilog:<br><br>
-<img width="1085" alt="iverilog" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/iverilog.png">
-</details>
-
-<details>
-<summary>gtkwave</summary>
-<ul>
-	<li>gtkwave is an open-source waveform viewer tool used primarily for analyzing and displaying simulation results from digital circuit simulations. It is a popular choice for visualizing and debugging digital designs described in hardware description languages (HDLs) such as Verilog or VHDL.</li>
-	<li>It is primarily used as a waveform viewer. It allows you to load and display simulation waveforms, which represent signals' behavior over time during a digital simulation.</li>
-<li>The tool can be invoked by using the command "gtkwave" in a UNIX shell.</li>
-</ul>
-Here is the snapshot of successful launch of gtkwave:<br><br>
-<img width="1085" alt="gtkwave" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/gtkwave.png">
-</details>
-
-<details>
-<summary>yosys</summary>
-<ul>
-	<li>yosys is an open-source framework for RTL (Register-Transfer Level) synthesis and formal verification of digital circuits. RTL synthesis is a crucial step in the design flow of digital integrated circuits, where high-level descriptions of a circuit (usually written in a hardware description language like Verilog or VHDL) are converted into gate-level representations that can be used for physical design and manufacturing. It provides a suite of tools and algorithms to perform this transformation efficiently.</li>
-	<li>The tool can be invoked by using the command "yosys" in a UNIX shell.</li>
-</ul>	
-Here is the snapshot of successful launch of yosys:<br><br>
-<img width="1085" alt="yosys" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/yosys.png">
-</details>
-
-<details>
-<summary> Summary </summary>
 	
-Day 0 concludes with understanding of various essential tools and their invocation within a UNIX shell environment. 
+ **Hierarchical Synthesis:**
+Hierarchical synthesis in Verilog is a design practice that involves breaking down complex digital designs into modular blocks or modules and organizing them in a hierarchical structure. This approach offers advantages such as modularity, reusability, easier debugging, parallel development, and efficient synthesis. It is a common and recommended practice for designing large and complex digital systems.
+
+**Flat Synthesis:**
+Flat synthesis in Verilog involves describing an entire digital design within a single module, without any hierarchical organization or modular separation. While it may be suitable for simple designs, it is not recommended for complex projects, as it can lead to challenges in readability, reusability, and efficient resource utilization. Hierarchical synthesis is the more common and recommended approach for managing complex digital designs.
+
+Consider a 1 bit full adder it can either be described using gates or by considering a half adder as a module too.
+<img width="1085" alt="hier_vs_flat" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/hier_vs_flat.jpeg"><br><br>
+<img width="1085" alt="hier_vs_flat_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/hier_vs_flat_1.jpeg"><br><br>
+
+
+Consider a multimodule combinational circuit which consists of two sub_modules one that of a AND gate and other of a OR gate:
+<img width="1085" alt="mul_module" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/mul_module.png"><br><br>
+
+After performing synthesis using yosys it generates the following schematic:
+<img width="1085" alt="mul_module_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/mul_module_1.png"><br><br>
+
+The netlist code for hierarchical implementation of the multiple_modules
+
+```ruby
+module multiple_modules(a, b, c, y);
+	  input a;
+	 input b;
+	 input c;
+	  wire net1;
+	 output y;
+  sub_module1 u1 (.a(a),.b(b),.y(net1) );
+  sub_module2 u2 (.a(net1),.b(c),.y(y));
+endmodule
+
+module sub_module1(a, b, y);
+ wire _0_;
+ wire _1_;
+ wire _2_;
+ input a;
+ input b;
+ output y;
+ sky130_fd_sc_hd__and2_0 _3_ (.A(_1_),.B(_0_),.X(_2_));
+ assign _1_ = b;
+ assign _0_ = a;
+ assign y = _2_;
+endmodule
+
+module sub_module2(a, b, y);
+wire _0_;
+ wire _1_;
+ wire _2_;
+input a;
+input b;
+ output y;
+ sky130_fd_sc_hd__lpflow_inputiso1p_1 _3_ (.A(_1_),.SLEEP(_0_),.X(_2_) );
+ assign _1_ = b;
+ assign _0_ = a;
+ assign y = _2_;
+endmodule
+```
+In the netlist we can observe that separate modules namely sub_module1 sub_module2 are getting instanstiated not the gate cells.
 
 </details>	
