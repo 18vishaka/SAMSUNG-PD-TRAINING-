@@ -249,7 +249,10 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
 
 	
 <details>
-<summary>dc_shell </summary>
+<summary>Introduction to timing dot libs </summary>
+
+ Let us have a look at how exactly a .lib file looks like and what it consists of:
+ <img width="1085" alt="" src="">
 <ul>
 	<li>dc_shell (Design Compiler Shell) is a command-line-based EDA tool used for logic synthesis provided by Synopsys, Inc.</li>		
 	<li>It is typically used through scripts written in languages like TCL (Tool Command Language). Designers create scripts to specify the synthesis process and provide input files, and then dc_shell executes these scripts to perform the synthesis.</li>
