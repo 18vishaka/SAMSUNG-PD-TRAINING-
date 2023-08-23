@@ -443,7 +443,7 @@ Performing synthesis at the sub-module level is considered a best practice, espe
 
 
 The synthesized circuit and netlist image of sub_module1 as an example of this approach:
-<img  width="1085" alt="" src="">
+<img  width="1085" alt="sub_module" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/sub_module.png">
 <img  width="1085" alt="" src="">
 
 </details>	
