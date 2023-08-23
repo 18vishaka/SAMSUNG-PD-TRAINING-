@@ -449,7 +449,7 @@ The synthesized circuit and netlist image of sub_module1 as an example of this a
 
 <details>
 	<summary>Flop coding styles</summary>
-(Will be looking into how to code a flop, what are the different types of flops available, how to use them and what are the different coding styles possible.)
+(Will be looking into how to code a flop, what are the different types of flops available, how to use them and what are the different coding styles possible.)<br><br>
 	
  **Flip Flop:**
  A flip-flop is a fundamental building block in digital circuits and is used to store a single binary digit (either a 0 or a 1) of data. Flip-flops are used extensively in sequential logic circuits and play a critical role in the storage and transfer of data within a digital system.
