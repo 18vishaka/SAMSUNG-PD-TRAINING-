@@ -250,9 +250,6 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
 	
 <details>
 <summary>Introduction to timing .libs </summary><br><br>
-
-
-
  A look at how exactly a .lib file looks like and what it consists of:
  <img width="1085" alt="lib_intro" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/lib_intro.png">
 
