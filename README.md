@@ -6,6 +6,8 @@ Quick links:
 
 - [Day-1-Introduction to Verilog RTL design and Synthesis](#Day-1--Introduction-to-Verilog-RTL-design-and-Synthesis)
 
+- [Day-2-Timing libs, Hierarchical vs flat synthesis and efficient flop coding styles](#Day-2--Timing-libs,-Hierarchical-vs-flat-synthesis-and-efficient-flop-coding-styles)
+
 
 ## Day-0-Installation
 
@@ -241,3 +243,5 @@ The Nestlist code:
 Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and their working with an example of mux. 
 
 </details>
+
+
