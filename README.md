@@ -589,3 +589,10 @@ Netlist:
 <img  width="1085" alt="mul_9_net" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/mul_9_net.png">
   
 </details>
+
+<details>
+<summary> Summary </summary>
+	
+Day 2 concludes with understanding of timing libs, hierarchical vs flat synthesis and efficient coding styles.
+
+</details>
