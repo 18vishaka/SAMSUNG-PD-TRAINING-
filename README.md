@@ -258,8 +258,6 @@ Day 1 concludes with understanding of iverilog, gtkwave and yosys tools and thei
 	<li>Typically a library file consists of cell timing information, library variations, operating conditions, timing models, constraints and timing arcs.</li>
 	<li>These liberty files are crucial in the design flow to ensure that the designed integrated circuits meet their timing requirements and can operate reliably under various conditions.</li>
 </ul>	
-Here is the snapshot of successful launch of dc_shell:<br><br>
-<img width="1085" alt="dc_shell" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day0/dc_shell.png">
 </details>
 
 <details>
