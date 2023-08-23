@@ -390,11 +390,51 @@ In the netlist we can observe that separate modules namely sub_module1 sub_modul
 **write_verilog -noattr <File_name>**
 
 The synthesized circuit for a flattened netlist: (submodules u1 and u2 are flattened)
-<img  width="1085" alt="" src="">
+<img  width="1085" alt="flat" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/flat.png">
 
 The netlist code of the flattened synthesis is as follows
 ```ruby
-
+module multiple_modules(a, b, c, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire _4_;
+  wire _5_;
+  input a;
+  input b;
+  input c;
+  wire net1;
+  wire \u1.a ;
+  wire \u1.b ;
+  wire \u1.y ;
+  wire \u2.a ;
+  wire \u2.b ;
+  wire \u2.y ;
+  output y;
+  sky130_fd_sc_hd__and2_0 _6_ (
+    .A(_1_),
+    .B(_0_),
+    .X(_2_)
+  );
+  sky130_fd_sc_hd__or2_0 _7_ (
+    .A(_4_),
+    .B(_3_),
+    .X(_5_)
+  );
+  assign _4_ = \u2.b ;
+  assign _3_ = \u2.a ;
+  assign \u2.y  = _5_;
+  assign \u2.a  = net1;
+  assign \u2.b  = c;
+  assign y = \u2.y ;
+  assign _1_ = \u1.b ;
+  assign _0_ = \u1.a ;
+  assign \u1.y  = _2_;
+  assign \u1.a  = a;
+  assign \u1.b  = b;
+  assign net1 = \u1.y ;
+endmodule
 ```
 There is only a single module seen which consist of the gate level instantion of the two submodules .
 
