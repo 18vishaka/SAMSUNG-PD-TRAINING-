@@ -495,7 +495,7 @@ endmodule
 
 Simulation:
 
-<img  width="1085" alt="asyn_re" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/asyn_re.png">
+<img  width="1085" alt="async_re" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day2/async_re.png">
 
 Synthesized circuit:
 
