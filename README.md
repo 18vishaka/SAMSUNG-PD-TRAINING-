@@ -695,4 +695,15 @@ endmodule
 
 The synthesized circuit is:
 <img  width="1085" alt="const_prop_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/const_prop_1.png"><br><br>
+
+**Example-3:**
+
+The behavioral code is:
+```ruby
+
+```
+
+The synthesized circuit is:
+<img  width="1085" alt="lab_1" src=""><br><br>
+
 </details>
