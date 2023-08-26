@@ -1055,6 +1055,7 @@ The Synthesized Circuit:
 <details>
 	<summary>Sequential Optimisation for Unused Outputs</summary>
 	Sequential circuits with unutilized outputs can be streamlined for better efficiency and resource utilization.
+ 
 
  **An example of 3-bit up counter:**
  
@@ -1081,5 +1082,35 @@ In the provided code, the output q is influenced by count[0], count[1], and coun
 The synthesized circuit:
 <img  width="1085" alt="seq_un1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/seq_un1.png"><br><br>
 
+**Another example:**
 
+The behavioral code:
+```ruby
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = (count[2:0] == 3'b100);
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+```
+
+Here, the q is being assigned to a 3 bit value 100, which can be obtained using NOR gate as follows:
+<img  width="1085" alt="seq_un2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/seq_un2.jpeg"><br><br>
+
+In this scenario, all three flip-flops are necessary because the output consists of a 3-bit data, and each flip-flop retains a significant part of this data. The combinational logic defines the adder's behavior, ensuring that the counter increments with each clock cycle as required.
+
+The synthesized circuit:
+<img  width="1085" alt="seq_un3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/seq_un3.png"><br><br>
+</details>
+
+<details>
+	<summary>Summary</summary>
+	Day 3 
 </details>
