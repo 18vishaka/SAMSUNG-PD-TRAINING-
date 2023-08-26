@@ -635,4 +635,25 @@ Here's a table of basic identities of Boolean algebra-
 
 These identities are fundamental in Boolean algebra and are used for simplifying and manipulating logical expressions. The "AND Form" represents how the identity looks in terms of multiplication (logical AND), and the "OR Form" represents how it looks in terms of addition (logical OR).
 
+
+**Combinational Optimisation:**
+Combinational optimization deals with optimizing the combinational logic portion of a digital circuit. Combinational logic is a type of logic where the output depends only on the current input values, without any consideration for past input values or internal state.
+
+Techniques used for combinational logic optimisation:
+<ul>
+	<li>Constant Propagation
+	<ul>
+		<li>Direct optimisation</li>
+	</ul></li>
+	<li>Boolean Logic Optimisation
+	<ul>
+		<li>K-map</li>
+		<li>Quine Mckluskey</li>
+	</ul></li>
+</ul>
+
+**Sequential Optimization:**
+Sequential optimization focuses on optimizing the sequential logic portion of a digital circuit. Sequential logic includes elements like flip-flops, registers, and state machines, where the output depends not only on the current inputs but also on the previous state of the circuit.
+
+
 </details>
