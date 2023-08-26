@@ -616,8 +616,8 @@ Day 2 concludes with understanding of timing libs, hierarchical vs flat synthesi
  </ul>
 
 
-
 **Basic Identities of boolean algebra:**
+
 Here's a table of basic identities of Boolean algebra-
 | Identity Name              | AND Form                 | OR Form                |
 | -------------------------- | ------------------------ | ----------------------- |
