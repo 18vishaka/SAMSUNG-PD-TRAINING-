@@ -655,5 +655,11 @@ Techniques used for combinational logic optimisation:
 **Sequential Optimization:**
 Sequential optimization focuses on optimizing the sequential logic portion of a digital circuit. Sequential logic includes elements like flip-flops, registers, and state machines, where the output depends not only on the current inputs but also on the previous state of the circuit.
 
-
+Techniques used for sequential logic optimisation:
+<ul>
+	<li>Sequential constant propagation</li>
+	<li>State optimisation</li>
+	<li>Retiming</li>
+	<li>Sequential Logic Cloning (Floor Plan aware synthesis)</li>
+</ul>
 </details>
