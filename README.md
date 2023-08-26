@@ -700,10 +700,12 @@ The synthesized circuit is:
 
 The behavioral code is:
 ```ruby
-
+module opt_check3 (input a , input b, input c , output y);
+	assign y = a?(c?b:0):0;
+endmodule
 ```
 
 The synthesized circuit is:
-<img  width="1085" alt="lab_1" src=""><br><br>
+<img  width="1085" alt="lab_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_1.png"><br><br>
 
 </details>
