@@ -1079,7 +1079,7 @@ In the provided code, the output q is influenced by count[0], count[1], and coun
 <img  width="1085" alt="seq_un" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/seq_un.jpeg"><br><br>
 
 The synthesized circuit:
-<img  width="1085" alt="seq_un1" src=""><br><br>
+<img  width="1085" alt="seq_un1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/seq_un1.png"><br><br>
 
 
 </details>
