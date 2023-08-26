@@ -668,4 +668,11 @@ Techniques used for sequential logic optimisation:
 
 <details>
 <summary>Combinational Logic Optimisation Lab</summary>
+	The command to do optimizations is opt_clean -purge, which is executed after synth -top command.
+	The behavioral code is:
+	```ruby
+	module opt_check (input a , input b , output y);
+		assign y = a?b:0;
+	endmodule
+	```
 </details>
