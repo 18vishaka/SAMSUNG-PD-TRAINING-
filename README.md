@@ -1,4 +1,4 @@
- n# SAMSUNG-PD-TRAINING-
+# SAMSUNG-PD-TRAINING-
 This github repository summarizes the progress made throughout the training duration.
 
 Quick links:
