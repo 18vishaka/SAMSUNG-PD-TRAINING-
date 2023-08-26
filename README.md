@@ -751,6 +751,50 @@ endmodule
 The synthesized circuit is:
 <img  width="1085" alt="lab_3" src=""><br><br>
 
+The netlist code:
+```ruby
+module multiple_module_opt(a, b, c, d, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire _4_;
+  wire _5_;
+  wire _6_;
+  wire _7_;
+  wire \U1.a ;
+  wire \U1.b ;
+  wire \U1.y ;
+  input a;
+  input b;
+  input c;
+  input d;
+  wire n1;
+  output y;
+  sky130_fd_sc_hd__a21o_1 _8_ (
+    .A1(_3_),
+    .A2(_1_),
+    .B1(_2_),
+    .X(_4_)
+  );
+  sky130_fd_sc_hd__and2_0 _9_ (
+    .A(_6_),
+    .B(_5_),
+    .X(_7_)
+  );
+  assign _3_ = n1;
+  assign _1_ = b;
+  assign _2_ = c;
+  assign y = _4_;
+  assign _6_ = \U1.b ;
+  assign _5_ = \U1.a ;
+  assign \U1.y  = _7_;
+  assign \U1.a  = a;
+  assign \U1.b  = 1'h1;
+  assign n1 = \U1.y ;
+endmodule
+```
+
 **Example-6:**
 
 The behavioral code is:
