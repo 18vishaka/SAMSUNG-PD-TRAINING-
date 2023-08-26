@@ -605,7 +605,7 @@ Day 2 concludes with understanding of timing libs, hierarchical vs flat synthesi
  **Optimisation Methodology:**
  <ul>
 	<li>The synthesis tool performs optimisation by minimizing cost functions- one for design rule costs and the other for optimisation costs.</li> 
-	 <li>The cost functions come in various flavors depending on the EDA tool vendor.<li>
+	 <li>The cost functions come in various flavors depending on the EDA tool vendor.</li>
   	<li>Since synthesis results are dependent to a large extent on several factors such as constraints, libraries and coding styles, optimisation of a design is an iterative process.</li>
    <li>The optimisation cost function consists of your parts in the following order of importance:
    <ul><li>Max delay cost</li>
