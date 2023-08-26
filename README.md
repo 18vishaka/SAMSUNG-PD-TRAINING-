@@ -719,7 +719,7 @@ endmodule
 ```
 
 The synthesized circuit is:
-<img  width="1085" alt="lab_2" src=""><br><br>
+<img  width="1085" alt="lab_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_2.png"><br><br>
 
 **Example-5:**
 
@@ -749,7 +749,7 @@ endmodule
 ```
 
 The synthesized circuit is:
-<img  width="1085" alt="lab_3" src=""><br><br>
+<img  width="1085" alt="lab_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_3.png"><br><br>
 
 The netlist code:
 ```ruby
@@ -799,10 +799,106 @@ endmodule
 
 The behavioral code is:
 ```ruby
+module sub_module(input a , input b , output y);
+ assign y = a & b;
+endmodule
 
+
+
+module multiple_module_opt2(input a , input b , input c , input d , output y);
+wire n1,n2,n3;
+
+sub_module U1 (.a(a) , .b(1'b0) , .y(n1));
+sub_module U2 (.a(b), .b(c) , .y(n2));
+sub_module U3 (.a(n2), .b(d) , .y(n3));
+sub_module U4 (.a(n3), .b(n1) , .y(y));
+
+
+endmodule
 ```
 
 The synthesized circuit is:
-<img  width="1085" alt="lab_4" src=""><br><br>
+<img  width="1085" alt="lab_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_4.png"><br><br>
 
+The netlist code:
+```ruby
+module multiple_module_opt2(a, b, c, d, y);
+  wire _00_;
+  wire _01_;
+  wire _02_;
+  wire _03_;
+  wire _04_;
+  wire _05_;
+  wire _06_;
+  wire _07_;
+  wire _08_;
+  wire _09_;
+  wire _10_;
+  wire _11_;
+  wire \U1.a ;
+  wire \U1.b ;
+  wire \U1.y ;
+  wire \U2.a ;
+  wire \U2.b ;
+  wire \U2.y ;
+  wire \U3.a ;
+  wire \U3.b ;
+  wire \U3.y ;
+  wire \U4.a ;
+  wire \U4.b ;
+  wire \U4.y ;
+  input a;
+  input b;
+  input c;
+  input d;
+  wire n1;
+  wire n2;
+  wire n3;
+  output y;
+  sky130_fd_sc_hd__and2_0 _12_ (
+    .A(_01_),
+    .B(_00_),
+    .X(_02_)
+  );
+  sky130_fd_sc_hd__and2_0 _13_ (
+    .A(_04_),
+    .B(_03_),
+    .X(_05_)
+  );
+  sky130_fd_sc_hd__and2_0 _14_ (
+    .A(_07_),
+    .B(_06_),
+    .X(_08_)
+  );
+  sky130_fd_sc_hd__and2_0 _15_ (
+    .A(_10_),
+    .B(_09_),
+    .X(_11_)
+  );
+  assign _10_ = \U4.b ;
+  assign _09_ = \U4.a ;
+  assign \U4.y  = _11_;
+  assign \U4.a  = n3;
+  assign \U4.b  = n1;
+  assign y = \U4.y ;
+  assign _07_ = \U3.b ;
+  assign _06_ = \U3.a ;
+  assign \U3.y  = _08_;
+  assign \U3.a  = n2;
+  assign \U3.b  = d;
+  assign n3 = \U3.y ;
+  assign _04_ = \U2.b ;
+  assign _03_ = \U2.a ;
+  assign \U2.y  = _05_;
+  assign \U2.a  = b;
+  assign \U2.b  = c;
+  assign n2 = \U2.y ;
+  assign _01_ = \U1.b ;
+  assign _00_ = \U1.a ;
+  assign \U1.y  = _02_;
+  assign \U1.a  = a;
+  assign \U1.b  = 1'h0;
+  assign n1 = \U1.y ;
+endmodule
+```
 </details>
