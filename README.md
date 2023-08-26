@@ -664,4 +664,7 @@ Techniques used for sequential logic optimisation:
 	<li>Retiming</li>
 	<li>Sequential Logic Cloning (Floor Plan aware synthesis)</li>
 </ul>
+
+<summary>Combinational Logic Optimisation Lab</summary>
+
 </details>
