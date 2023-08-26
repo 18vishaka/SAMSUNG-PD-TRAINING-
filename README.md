@@ -928,7 +928,9 @@ Synthesized Circuit:
 
 
  **Example-2:**
+ 
 The behavioral code:
+
 ```ruby
 module dff_const2(input clk, input reset, output reg q);
 always @(posedge clk, posedge reset)
@@ -942,8 +944,10 @@ end
 endmodule
 ```
 Simulation:
+
 <img  width="1085" alt="lab_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_7.png"><br><br>
 
 Synthesized Circuit:
+
 <img  width="1085" alt="lab_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_8.png"><br><br>
 </details>
