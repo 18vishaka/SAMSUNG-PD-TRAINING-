@@ -605,7 +605,7 @@ Day 2 concludes with understanding of timing libs, hierarchical vs flat synthesi
  **Optimisation Methodology:**
  <ul>
 	<li>The synthesis tool performs optimisation by minimizing cost functions- one for design rule costs and the other for optimisation costs.</li> 
-	 <li>The cost functions come in various flavors depending on the EDA tool vendor./li>
+	 <li>The cost functions come in various flavors depending on the EDA tool vendor.<li>
   	<li>Since synthesis results are dependent to a large extent on several factors such as constraints, libraries and coding styles, optimisation of a design is an iterative process.</li>
    <li>The optimisation cost function consists of your parts in the following order of importance:
    <ul><li>Max delay cost</li>
@@ -614,4 +614,34 @@ Day 2 concludes with understanding of timing libs, hierarchical vs flat synthesi
  <li>max area cost</li></ul></li>
 		 
  </ul>
+
+
+
+**Basic Identities of boolean algebra:**
+Here's a table of basic identities of Boolean algebra-
+| Identity Name              | AND Form                 | OR Form                |
+| -------------------------- | ------------------------ | ----------------------- |
+| Identity Law (1)           | A · 1 = A                | A + 0 = A               |
+| Identity Law (2)           | A + 0 = A                | A · 1 = A               |
+| Domination Law (1)         | A · 1 = A                | A + 1 = 1               |
+| Domination Law (2)         | A + 0 = A                | A · 0 = 0               |
+| Idempotent Law (1)         | A · A = A                | A + A = A               |
+| Idempotent Law (2)         | A + A = A                | A · A = A               |
+| Complement Law (1)         | A + A' = 1               | A · A' = 0              |
+| Complement Law (2)         | A · A' = 0               | A + A' = 1              |
+| Double Negation Law        | A = A''                  | A = A''                 |
+| Commutative Law (1)        | A · B = B · A            | A + B = B + A           |
+| Commutative Law (2)        | A + B = B + A            | A · B = B · A           |
+| Associative Law (1)        | (A · B) · C = A · (B · C) | (A + B) + C = A + (B + C)|
+| Associative Law (2)        | (A + B) + C = A + (B + C)| (A · B) · C = A · (B · C)|
+| Distributive Law (1)       | A + (B · C) = (A + B) · (A + C) | A · (B + C) = (A · B) + (A · C) |
+| Distributive Law (2)       | A · (B + C) = (A · B) + (A · C) | A + (B · C) = (A + B) · (A + C) |
+| Absorption Law (1)         | A + (A · B) = A          | A · (A + B) = A         |
+| Absorption Law (2)         | A · (A + B) = A          | A + (A · B) = A         |
+| De Morgan's Law (1)        | (A + B)' = A' · B'       | (A · B)' = A' + B'      |
+| De Morgan's Law (2)        | (A · B)' = A' + B'       | (A + B)' = A' · B'      |
+| Consensus Theorem          | (A + B) · (A' + C) · (B + C) = (A + B) · (A' + C) | (A · B) + (A' · C) + (B · C) = (A · B) + (A' · C) |
+
+These identities are fundamental in Boolean algebra and are used for simplifying and manipulating logical expressions. The "AND Form" represents how the identity looks in terms of multiplication (logical AND), and the "OR Form" represents how it looks in terms of addition (logical OR).
+
 </details>
