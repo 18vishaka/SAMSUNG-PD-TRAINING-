@@ -674,10 +674,10 @@ The command to do optimizations is opt_clean -purge, which is executed after syn
  
 The behavioral code is:
  
-	```ruby
-	module opt_check (input a , input b , output y);
-		assign y = a?b:0;
-	endmodule
-	```
+```ruby
+module opt_check (input a , input b , output y);
+	assign y = a?b:0;
+endmodule
+```
  
 </details>
