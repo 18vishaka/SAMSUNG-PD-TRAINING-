@@ -902,3 +902,29 @@ module multiple_module_opt2(a, b, c, d, y);
 endmodule
 ```
 </details>
+
+<details>
+	<summary>Sequential Logic Optimisation Lab</summary>
+
+**Example-1:**
+The behavioral code:
+```ruby
+module dff_const1(input clk, input reset, output reg q);
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b0;
+	else
+		q <= 1'b1;
+end
+
+endmodule
+```
+Simulation:
+<img  width="1085" alt="lab_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_5.png"><br><br>
+
+Synthesized Circuit:
+<img  width="1085" alt="lab_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_6.png"><br><br>
+
+ 
+</details>
