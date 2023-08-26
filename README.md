@@ -674,56 +674,56 @@ The command to do optimizations is opt_clean -purge, which is executed after syn
 
 **Example-1:**
 
-The behavioral code is: 
+The behavioral code: 
 ```ruby
 module opt_check (input a , input b , output y);
 	assign y = a?b:0;
 endmodule
 ```
 
-The synthesized circuit is:
+The synthesized circuit:
 <img  width="1085" alt="const_prop" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/const_prop.png"><br><br>
 
 **Example-2:**
 
-The behavioral code is:
+The behavioral code:
 ```ruby
 module opt_check2 (input a , input b , output y);
 	assign y = a?1:b;
 endmodule
 ```
 
-The synthesized circuit is:
+The synthesized circuit:
 <img  width="1085" alt="const_prop_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/const_prop_1.png"><br><br>
 
 **Example-3:**
 
-The behavioral code is:
+The behavioral code:
 ```ruby
 module opt_check3 (input a , input b, input c , output y);
 	assign y = a?(c?b:0):0;
 endmodule
 ```
 
-The synthesized circuit is:
+The synthesized circuit:
 <img  width="1085" alt="lab_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_1.png"><br><br>
 
 
 **Example-4:**
 
-The behavioral code is:
+The behavioral code:
 ```ruby
 module opt_check4 (input a , input b , input c , output y);
 	assign y = a?(b?(a & c ):c):(!c);
 endmodule
 ```
 
-The synthesized circuit is:
+The synthesized circuit:
 <img  width="1085" alt="lab_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_2.png"><br><br>
 
 **Example-5:**
 
-The behavioral code is:
+The behavioral code:
 ```ruby
 module sub_module1(input a , input b , output y);
 	assign y = a & b;
@@ -748,7 +748,7 @@ assign y = c | (b & n1);
 endmodule
 ```
 
-The synthesized circuit is:
+The synthesized circuit:
 <img  width="1085" alt="lab_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_3.png"><br><br>
 
 The netlist code:
@@ -797,7 +797,7 @@ endmodule
 
 **Example-6:**
 
-The behavioral code is:
+The behavioral code:
 ```ruby
 module sub_module(input a , input b , output y);
  assign y = a & b;
@@ -817,7 +817,7 @@ sub_module U4 (.a(n3), .b(n1) , .y(y));
 endmodule
 ```
 
-The synthesized circuit is:
+The synthesized circuit:
 <img  width="1085" alt="lab_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_4.png"><br><br>
 
 The netlist code:
