@@ -1112,5 +1112,5 @@ The synthesized circuit:
 
 <details>
 	<summary>Summary</summary>
-	Day 3 
+	Day 3 involves discussions of topics related to digital circuit optimization, Boolean algebra identities, and the difference between combinational and sequential logic, emphasizing efficient design and resource utilization.
 </details>
