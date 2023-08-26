@@ -907,6 +907,7 @@ endmodule
 	<summary>Sequential Logic Optimisation Lab</summary>
 
 **Example-1:**
+
 The behavioral code:
 ```ruby
 module dff_const1(input clk, input reset, output reg q);
@@ -923,7 +924,7 @@ endmodule
 Simulation:
 <img  width="1085" alt="lab_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_5.png"><br><br>
 
-Synthesized Circuit:
+The Synthesized Circuit:
 <img  width="1085" alt="lab_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_6.png"><br><br>
 
 
@@ -947,7 +948,39 @@ Simulation:
 
 <img  width="1085" alt="lab_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_7.png"><br><br>
 
-Synthesized Circuit:
+The Synthesized Circuit:
 
 <img  width="1085" alt="lab_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_8.png"><br><br>
+
+**Example-3:**
+ 
+The behavioral code:
+
+```ruby
+module dff_const3(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+
+endmodule
+```
+Simulation:
+
+<img  width="1085" alt="lab_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_9.png"><br><br>
+
+The Synthesized Circuit:
+
+<img  width="1085" alt="lab_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_10.png"><br><br>
 </details>
