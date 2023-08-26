@@ -608,10 +608,10 @@ Day 2 concludes with understanding of timing libs, hierarchical vs flat synthesi
 	 <li>The cost functions come in various flavors depending on the EDA tool vendor./li>
   	<li>Since synthesis results are dependent to a large extent on several factors such as constraints, libraries and coding styles, optimisation of a design is an iterative process.</li>
    <li>The optimisation cost function consists of your parts in the following order of importance:
-   <li>Max delay cost</li>
+   <ul><li>Max delay cost</li>
  <li>Min delay cost</li>
  <li>Max power cost</li>
- <li>max area cost</li></li>
+ <li>max area cost</li></ul></li>
 		 
  </ul>
 </details>
