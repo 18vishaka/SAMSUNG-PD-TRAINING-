@@ -591,9 +591,11 @@ Netlist:
   
 </details>
 
+<details>
 <summary> Summary </summary>
 	
 Day 2 concludes with understanding of timing libs, hierarchical vs flat synthesis and efficient coding styles.
+</details>
 
 # Day-3-Combinational and sequential optimisations
 <details>
