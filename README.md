@@ -642,12 +642,16 @@ Techniques used for combinational logic optimisation:
 <ul>
 	<li>Constant Propagation
 	<ul>
-		<li>Direct optimisation</li>
+		<li>Direct optimisation
+		<img  width="1085" alt="combi_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/combi_1.jpeg"><br><br></li>
 	</ul></li>
 	<li>Boolean Logic Optimisation
 	<ul>
 		<li>K-map</li>
-		<li>Quine Mckluskey</li>
+		<li>Quine Mckluskey
+		<img  width="1085" alt="combi_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/combi_2.jpeg"><br><br>
+		<img  width="1085" alt="combi_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/combi_3.jpeg"><br><br>
+		<img  width="1085" alt="combi_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/combi_4.jpeg"><br><br></li>
 	</ul></li>
 </ul>
 
