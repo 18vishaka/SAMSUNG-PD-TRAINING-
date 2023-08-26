@@ -7,6 +7,7 @@ Quick links:
 - [Day-1-Introduction to Verilog RTL design and Synthesis](#Day-1--Introduction-to-Verilog-RTL-design-and-Synthesis)
 
 - [Day-2-Timing libs, Hierarchical vs flat synthesis and efficient flop coding styles](#Day-2--Timing-libs,-Hierarchical-vs-flat-synthesis-and-efficient-flop-coding-styles)
+- [Day-3-Combinational and Sequential optimisations](#Day-3--Combinational-and-Sequential-optimisations)
 
 
 ## Day-0-Installation
@@ -590,6 +591,24 @@ Netlist:
   
 </details>
 
+# Day-3-Combinational and sequential optimisations
+<details>
+	<summary>Introduction</summary>
+	
+	
+ **Optimisation Methodology:**
+ <ul>
+	<li>The synthesis tool performs optimisation by minimizing cost functions- one for design rule costs and the other for optimisation costs.</li> 
+	 <li>The cost functions come in various flavors depending on the EDA tool vendor./li>
+  	<li>Since synthesis results are dependent to a large extent on several factors such as constraints, libraries and coding styles, optimisation of a design is an iterative process.</li>
+   <li>The optimisation cost function consists of your parts in the following order of importance:
+   <li>Max delay cost</li>
+ <li>Min delay cost</li>
+ <li>Max power cost</li>
+ <li>max area cost</li></li>
+		 
+ </ul>
+</details>
 <details>
 <summary> Summary </summary>
 	
