@@ -671,9 +671,10 @@ Techniques used for sequential logic optimisation:
 
  
 The command to do optimizations is opt_clean -purge, which is executed after synth -top command.
+
 **Example-1:**
-The behavioral code is:
- 
+
+The behavioral code is: 
 ```ruby
 module opt_check (input a , input b , output y);
 	assign y = a?b:0;
@@ -686,7 +687,6 @@ The synthesized circuit is:
 **Example-2:**
 
 The behavioral code is:
-
 ```ruby
 module opt_check2 (input a , input b , output y);
 	assign y = a?1:b;
@@ -694,6 +694,5 @@ endmodule
 ```
 
 The synthesized circuit is:
-
 <img  width="1085" alt="const_prop_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/const_prop_1.png"><br><br>
 </details>
