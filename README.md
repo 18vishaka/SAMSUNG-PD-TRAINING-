@@ -1011,11 +1011,11 @@ endmodule
 ```
 Simulation:
 
-<img  width="1085" alt="lab_11" src=""><br><br>
+<img  width="1085" alt="lab_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_11.png"><br><br>
 
 The Synthesized Circuit:
 
-<img  width="1085" alt="lab_12" src=""><br><br>
+<img  width="1085" alt="lab_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_12.png"><br><br>
 
 **Example-5:**
  
@@ -1043,9 +1043,9 @@ endmodule
 ```
 Simulation:
 
-<img  width="1085" alt="lab_13" src=""><br><br>
+<img  width="1085" alt="lab_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_13.png"><br><br>
 
 The Synthesized Circuit:
 
-<img  width="1085" alt="lab_14" src=""><br><br>
+<img  width="1085" alt="lab_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_14.png"><br><br>
 </details>
