@@ -621,17 +621,17 @@ Day 2 concludes with understanding of timing libs, hierarchical vs flat synthesi
 Here's a table of basic identities of Boolean algebra-
 | Identity Name              | AND Form                 | OR Form                |
 | -------------------------- | ------------------------ | ----------------------- |
-| Identity Law (1)           | A · 1 = A                | A + 0 = A               |
-| Domination Law (1)         | A · 1 = A                | A + 1 = 1               |
-| Idempotent Law (1)         | A · A = A                | A + A = A               |
-| Complement Law (1)         | A + A' = 1               | A · A' = 0              |
-| Double Negation Law        | A = A''                  | A = A''                 |
-| Commutative Law (1)        | A · B = B · A            | A + B = B + A           |
-| Associative Law (1)        | (A · B) · C = A · (B · C) | (A + B) + C = A + (B + C)|
-| Distributive Law (1)       | A + (B · C) = (A + B) · (A + C) | A · (B + C) = (A · B) + (A · C) |
-| Absorption Law (1)         | A + (A · B) = A          | A · (A + B) = A         |
-| De Morgan's Law (1)        | (A + B)' = A' · B'       | (A · B)' = A' + B'      |
-| Consensus Theorem          | (A + B) · (A' + C) · (B + C) = (A + B) · (A' + C) | (A · B) + (A' · C) + (B · C) = (A · B) + (A' · C) |
+| Identity Law            | A · 1 = A                | A + 0 = A               |
+| Domination Law          | A · 1 = A                | A + 1 = 1               |
+| Idempotent Law          | A · A = A                | A + A = A               |
+| Complement Law          | A + A' = 1               | A · A' = 0              |
+| Double Negation Law     | A = A''                  | A = A''                 |
+| Commutative Law         | A · B = B · A            | A + B = B + A           |
+| Associative Law         | (A · B) · C = A · (B · C) | (A + B) + C = A + (B + C)|
+| Distributive Law        | A + (B · C) = (A + B) · (A + C) | A · (B + C) = (A · B) + (A · C) |
+| Absorption Law          | A . (A + B) = A          | A + (A . B) = A         |
+| De Morgan's Law         | (A . B)' = A' + B'       | (A + B)' = A' . B'      |
+| Consensus Theorem       | (A + B) · (A' + C) · (B + C) = (A + B) · (A' + C) | (A · B) + (A' · C) + (B · C) = (A · B) + (A' · C) |
 
 These identities are fundamental in Boolean algebra and are used for simplifying and manipulating logical expressions. The "AND Form" represents how the identity looks in terms of multiplication (logical AND), and the "OR Form" represents how it looks in terms of addition (logical OR).
 
