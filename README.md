@@ -984,4 +984,68 @@ This circuit employs two flip-flops with reset-set functionality. In this config
 The Synthesized Circuit:
 
 <img  width="1085" alt="lab_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_10.png"><br><br>
+
+ **Example-4:**
+ 
+The behavioral code:
+
+```ruby
+module dff_const4(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b1;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+
+endmodule
+```
+Simulation:
+
+<img  width="1085" alt="lab_11" src=""><br><br>
+
+The Synthesized Circuit:
+
+<img  width="1085" alt="lab_12" src=""><br><br>
+
+**Example-5:**
+ 
+The behavioral code:
+
+```ruby
+module dff_const5(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b0;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+
+endmodule
+```
+Simulation:
+
+<img  width="1085" alt="lab_13" src=""><br><br>
+
+The Synthesized Circuit:
+
+<img  width="1085" alt="lab_14" src=""><br><br>
 </details>
