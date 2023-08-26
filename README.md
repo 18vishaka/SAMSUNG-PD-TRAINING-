@@ -1051,3 +1051,35 @@ The Synthesized Circuit:
 
 <img  width="1085" alt="lab_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_14.png"><br><br>
 </details>
+
+<details>
+	<summary>Sequential Optimisation for Unused Outputs</summary>
+	Sequential circuits with unutilized outputs can be streamlined for better efficiency and resource utilization.
+
+ **An example of 3-bit up counter:**
+ 
+The Behavioral code:
+```ruby
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = count[0];
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+```
+
+In the provided code, the output q is influenced by count[0], count[1], and count[2], but these inputs aren't utilized. The counter resets to 0 when the reset signal is high; otherwise, it increments. It's worth noting that the least significant bit (LSB) incrementation causes the output to toggle with each clock cycle, independently of other output states. To optimize this, we can replace the three flip-flops with a single toggle flip-flop, resulting in an output change on every clock cycle.
+<img  width="1085" alt="seq_un" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/seq_un.jpeg"><br><br>
+
+The synthesized circuit:
+<img  width="1085" alt="seq_un1" src=""><br><br>
+
+
+</details>
