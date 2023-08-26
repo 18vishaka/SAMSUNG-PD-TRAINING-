@@ -708,4 +708,35 @@ endmodule
 The synthesized circuit is:
 <img  width="1085" alt="lab_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day3/lab_1.png"><br><br>
 
+
+**Example-4:**
+
+The behavioral code is:
+```ruby
+
+```
+
+The synthesized circuit is:
+<img  width="1085" alt="lab_2" src=""><br><br>
+
+**Example-5:**
+
+The behavioral code is:
+```ruby
+
+```
+
+The synthesized circuit is:
+<img  width="1085" alt="lab_3" src=""><br><br>
+
+**Example-6:**
+
+The behavioral code is:
+```ruby
+
+```
+
+The synthesized circuit is:
+<img  width="1085" alt="lab_4" src=""><br><br>
+
 </details>
