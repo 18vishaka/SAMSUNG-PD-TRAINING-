@@ -639,8 +639,7 @@ These identities are fundamental in Boolean algebra and are used for simplifying
 **Combinational Optimisation:**
 Combinational optimization deals with optimizing the combinational logic portion of a digital circuit. Combinational logic is a type of logic where the output depends only on the current input values, without any consideration for past input values or internal state.
 
-Techniques used for combinational logic optimisation:
-<ul>
+Techniques used for combinational logic optimisation:<ul>
 	<li>Constant Propagation
 	<ul>
 		<li>Direct optimisation</li>
@@ -655,8 +654,7 @@ Techniques used for combinational logic optimisation:
 **Sequential Optimization:**
 Sequential optimization focuses on optimizing the sequential logic portion of a digital circuit. Sequential logic includes elements like flip-flops, registers, and state machines, where the output depends not only on the current inputs but also on the previous state of the circuit.
 
-Techniques used for sequential logic optimisation:
-<ul>
+Techniques used for sequential logic optimisation:<ul>
 	<li>Sequential constant propagation</li>
 	<li>State optimisation</li>
 	<li>Retiming</li>
