@@ -1211,3 +1211,18 @@ end
 
 </ul>
 </details>
+
+<details>
+	<summary>GLS concepts and flow using iverilog</summary>
+
+	
+ **What is GLS?:**
+ Running the test bench with netlist as Design Under Test.
+
+ **Why GLS?:**
+ <ul>
+	 <li>Verify the logic correctness of the design after synthesis</li>
+	 <li>Ensuring the timing of the design is met.
+	 <ul></ul>./li>
+ </ul>
+</details>
