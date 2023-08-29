@@ -1186,9 +1186,10 @@ always @ (posedge clock)
 		<li>Sequential (always @ posedge) --> non blocking (<=) assignment.</li>
 		<li>Always separate sequential and combinational logic.</li>
 	</ul></li>
-</ul>
+</ul><br><br>
 
 **Simulation Synthesis Mismatch:**
+
 <ul>
 <li>Incomplete sensitivity lists
 	<ul>
