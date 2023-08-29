@@ -1121,14 +1121,14 @@ The synthesized circuit:
 <details>
 	<summary>Introduction</summary><br><br>
 
- **Gate Level Simulation (GLS):**
+**Gate Level Simulation (GLS):**
  <ul>
 	 <li>Mapping the appropriate technology parameters like delays and functionality from the library models, at hand to our synthesized netlist, we can simulate the netlist, just like our RTL code.</li>
 	 <li>We  are just conducting zero delay simulations, as we are focusing on synthesis and simulation mismatch at pre-layout level.</li>
 	 <li>Used in dynamic timing analysis as it is able to take in account various clocks and resets at the same time, and thus  give insight about the asynchronous performance which STA is not meant for.</li>
  </ul><br><br>
 
- **Blocking Assignment:**
+**Blocking Assignment:**
  
  Execution of blocking assignments can be viewed as a one-step process:
  	<ul>
@@ -1141,7 +1141,7 @@ Example of Blocking assignment:
 The value of 'a' is set to the sum of 'b' and 'c', and the next line of code will not execute until this assignment is complete.<br><br>
  
 
- **Non Blocking Assignment:**
+**Non Blocking Assignment:**
  <ul>
 	 <li>The non blocking operator is the same as the less than or equal to operator ("<=").</li>
 		 <li>Non blocking assignments are only made to register data types and are therefore only permitted inside of procedural blocks, such as initial blocks and always blocks. Non blocking assignments are not permitted in continuous assignments.</li>
