@@ -1213,7 +1213,7 @@ end
 </details>
 
 <details>
-	<summary>GLS concepts and flow using iverilog</summary>
+	<summary>GLS concepts and flow using iverilog</summary><br><br>
 
 	
  **What is GLS?:**<br>
