@@ -1216,13 +1216,13 @@ end
 	<summary>GLS concepts and flow using iverilog</summary>
 
 	
- **What is GLS?:**
+ **What is GLS?:**<br>
  Running the test bench with netlist as Design Under Test.
 
- **Why GLS?:**
+ **Why GLS?:**<br>
  <ul>
 	 <li>Verify the logic correctness of the design after synthesis</li>
-	 <li>Ensuring the timing of the design is met.
-	 <ul></ul>./li>
+	 <li>Ensuring the timing of the design is met; For this GLS needs to be run with delay annotation.</li>
+	
  </ul>
 </details>
