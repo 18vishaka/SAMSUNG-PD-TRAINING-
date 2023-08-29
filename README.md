@@ -8,6 +8,7 @@ Quick links:
 
 - [Day-2-Timing libs, Hierarchical vs flat synthesis and efficient flop coding styles](#Day-2--Timing-libs,-Hierarchical-vs-flat-synthesis-and-efficient-flop-coding-styles)
 - [Day-3-Combinational and Sequential optimisations](#Day-3--Combinational-and-Sequential-optimisations)
+- [Day-4-GLS, Blocking vs Non Blocking Assignments and Synthesis-Simulation Mismatch](#Day-4--GLS,-Blocking-vs-Non-Blocking-Assignments-and-Synthesis--Simulation-Mismatch)
 
 
 ## Day-0-Installation
