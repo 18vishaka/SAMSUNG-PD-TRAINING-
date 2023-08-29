@@ -1238,35 +1238,165 @@ This mismatch can arise due to:
 <ul>
 	<li>Missing sensitivity list.</li>
 	<li>Blocking vs Non blocking assignments.</li>
-	<li>Non standard verilog coding.</li><br>
-</ul>
-1. Missing sensitivity list:
+	<li>Non standard verilog coding.</li><
+</ul><br>
+1. Missing sensitivity list:<br>
 A simulator operates in response to evolving activity patterns. It generates updated outputs only when there are changes in the input. Let's take the example of a 2x1 multiplexer. In the first behavioral code, the primary focus is on the 'sel' input. When 'sel' undergoes a change, the simulator promptly recalculates the output, preserving either 'io' or 'i1' at that specific moment. This computed output remains constant until the next 'sel' change, regardless of any alterations in 'io' or 'i1.' Conversely, in the second behavioral code, the simulator continually monitors changes in all signals, including 'sel,' 'i0,' and 'i1.' It maintains a high degree of responsiveness by evaluating these signals for any modifications.
 
 ```ruby
 module mux(input i0, input i1, input sel, output reg y);
-     always @ (sel)
-	begin
-	  if (Sel)
-	          y= i1;
-	  else
-	    	  y= i0;
-	  end
+always @ (sel)
+begin
+    if (Sel)
+          y= i1;
+    else
+          y= i0;
+end
 endmodule
 ```
 
 
 ```ruby
 module mux(input i0, input i1, input sel, output reg y);
-     always @ (*)
-	begin
-	  if (Sel)
-	          y= i1;
-	  else
-	    	  y= i0;
-	  end
+always @ (*)
+begin
+   if (Sel)
+         y= i1;
+   else
+         y= i0;
+end
 endmodule
 ```
+
+**Caveats with blocking statements::**
+In the following case below, the number of flip-flops simulated in the circuit varies due to flip-flop assignments. To address this issue, one can employ Non-Blocking Statements as a more effective alternative.
+
+```ruby
+module code (input clk, input reset, input d, output d, output reg q);
+always @ (posedge clk, posedge reset)
+begin
+    if (reset)
+    begin
+         q0= 1'b0;
+         q= 1'b0;
+    end
+    else
+    begin
+         q0= q0;
+         q0= d;
+    end
+endmodule
+```
+Here our aim was to get shift registers i.e. two Flip flops and after synthesis we can see two Flip flops.
+
+```ruby
+module code (input clk, input reset, input d, output d, output reg q);
+always @ (posedge clk, posedge reset)
+begin
+    if (reset)
+    begin
+         q0= 1'b0;
+         q= 1'b0;
+    end
+    else
+    begin
+         q0= d;
+         q0= q0;
+    end
+endmodule
+```
+After synthesis we see only one Flip flop. 
+
+In the following cases below, the synthesis yields the same circuit as shown below, but the simulation gives different behaviour, which causes Synthesis-Simulation mismatch.
+<img  width="1085" alt="syn_sim" src="">
+
+Case- 1:
+```ruby
+module code (input a, input b, input c, output reg y);
+reg q0;
+always @ (*)
+begin
+    y= q0&c;
+    q0= a|b;
+end
+endmodule
+```
+
+Case- 2:
+```ruby
+module code (input a, input b, input c, output reg y);
+reg q0;
+always @ (*)
+begin
+    q0= a|b;
+    y= q0&c;
+end
+endmodule
+```
+
+In the above two cases, case 1 and case 2 namely we see syn-sim mismatch issues. Because of these type of issues it becomes very importance to run the GLS on the netlist and match the expectations. It is very important to check the behavior of the circuit obtained and then match it with the respected outputs or the expectations which were seen in the simulations and see that there are no synthesis and simulation mismatches.
+
+**Example- 1:**
+
+A ternary operator, also known as the conditional operator, is a shorthand way to write simple conditional statements, it is called "ternary" because it takes three operands: a condition followed by two expressions. 
+
+The syntax for the ternary operator is typically as follows:
+
+		condition ? expression_if_true : expression_if_false
+
+Behavioral code:
+
+```ruby
+module ternary_operator_mux (input i0 , input i1 , input sel , output y);
+	assign y = sel?i1:i0;
+endmodule
+```
+
+RTL simulated output:
+<img  width="1085" alt="syn_sim" src=""><br><br>
+
+RTL synthesized circuit:
+<img  width="1085" alt="syn_sim" src=""><br><br>
+
+GLS simulated output:
+<img  width="1085" alt="syn_sim" src=""><br><br>
+
+**Example-2:**
+
+Behavioral code:
+
+```ruby
+module bad_mux (input i0 , input i1 , input sel , output reg y);
+always @ (sel)
+begin
+    if(sel)
+         y <= i1;
+    else 
+         y <= i0;
+end
+endmodule
+```
+Synthesized circuit:
+<img  width="1085" alt="syn_sim" src=""><br><br>
+
+Simulated output:
+<img  width="1085" alt="syn_sim" src=""><br><br>
+
+**Example- 3:**
+
+Behavioral code:
+```ruby
+module blocking_caveat (input a , input b , input  c, output reg d); 
+reg x;
+always @ (*)
+begin
+	d = x & c;
+	x = a | b;
+end
+endmodule
+```
+
+Synthesized circuit:
 
 </details>
 
