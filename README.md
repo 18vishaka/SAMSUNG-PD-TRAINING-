@@ -1151,4 +1151,24 @@ The value of 'a' is set to the sum of 'b' and 'c', and the next line of code wil
 			 <li>Evaluate the RHS of non blocking  statements at the beginning of the time step.</li>
 			 <li>Update the LHS of non blocking statements at the end of the time step.</li>
  </ul>
+
+
+**A simple Example to differentiate Blocking Assignments and Non Blocking Assignmnets:**
+
+```ruby
+always @ (posedge clock)
+	begin
+	   temp= b;
+	   b= a;
+	   a= temp;
+	end
+```
+
+```ruby
+always @ (posedge clock)
+	begin
+	   a<= b;
+	   b<= a;
+	end
+```
 </details>
