@@ -1270,7 +1270,9 @@ end
 endmodule
 ```
 
-**Caveats with blocking statements::**
+**Caveats with blocking statements:**
+
+
 In the following case below, the number of flip-flops simulated in the circuit varies due to flip-flop assignments. To address this issue, one can employ Non-Blocking Statements as a more effective alternative.
 
 ```ruby
