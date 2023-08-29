@@ -1122,5 +1122,9 @@ The synthesized circuit:
 	<summary>Introduction</summary>
 
  **Gate Level Simulation (GLS):**
- 
+ <ul>
+	 <li>Mapping the appropriate technology parameters like delays and functionality from the library models, at hand to our synthesized netlist, we can simulate the netlist, just like our RTL code.</li>
+	 <li>We  are just conducting zero delay simulations, as we are focusing on synthesis and simulation mismatch at pre-layout level.</li>
+	 <li>Used in dynamic timing analysis as it is able to take in account various clocks and resets at the same time, and thus  give insight about the asynchronous performance which STA is not meant for.</li>
+ </ul>
 </details>
