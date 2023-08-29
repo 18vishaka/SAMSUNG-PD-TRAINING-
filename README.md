@@ -1173,8 +1173,7 @@ always @ (posedge clock)
 ```
 
 **Stratified Event Queue:**
-<img  width="1085" alt="" src="">
-<img  width="1085" alt="" src=""><br><br>
+<img  width="1085" alt="stratified" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/stratified.jpeg">
 
 
 **RTL Coding Guidelines:**
@@ -1227,7 +1226,7 @@ end
  </ul>
 
  **GLS using iverilog:**
- <img  width="1085" alt="" src=""><br><br>
+ <img  width="1085" alt="GLS_iverilog" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/GLS_iveriog.jpeg"><br><br>
 Before performing GLS, we typically start with RTL simulation to verify the functionality of our design at an abstract level using tool like iverilog, then we compile our verilog code into an executable form for simulation. GLS mainly involves  with replacing the abstract RTL description of digital circuit with gate level description. We need Gate level netlist for our design, which contains information about the gates, flip flops and their interconnections. Then there is Testbench which is a separate verilog code that applies inputs to our gate level netlist and checks the outputs,and simulates how our design responds to different inputs.
 
 
@@ -1308,7 +1307,7 @@ endmodule
 After synthesis we see only one Flip flop. 
 
 In the following cases below, the synthesis yields the same circuit as shown below, but the simulation gives different behaviour, which causes Synthesis-Simulation mismatch.
-<img  width="1085" alt="syn_sim" src="">
+<img  width="1085" alt="syn_sim" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/syn_sim.png">
 
 Case- 1:
 ```ruby
@@ -1353,13 +1352,13 @@ endmodule
 ```
 
 RTL simulated output:
-<img  width="1085" alt="syn_sim" src=""><br><br>
+<img  width="1085" alt="ter_op" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/ter_op.png"><br><br>
 
 RTL synthesized circuit:
-<img  width="1085" alt="syn_sim" src=""><br><br>
+<img  width="1085" alt="syn_ter_op" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/syn_ter_op.png"><br><br>
 
 GLS simulated output:
-<img  width="1085" alt="syn_sim" src=""><br><br>
+<img  width="1085" alt="GLS_ter_op" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/GLS_ter_op.png"><br><br>
 
 **Example-2:**
 
@@ -1376,11 +1375,18 @@ begin
 end
 endmodule
 ```
-Synthesized circuit:
-<img  width="1085" alt="syn_sim" src=""><br><br>
 
-Simulated output:
-<img  width="1085" alt="syn_sim" src=""><br><br>
+RTL Simulated output:
+<img  width="1085" alt="bad_mux" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/bad_mux.png"><br><br>
+
+RTL Synthesized circuit:
+<img  width="1085" alt="syn_bad_mux" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/syn_bad_mux.png"><br><br>
+
+GLS Simulated output:
+<img  width="1085" alt="GLS_bad_mux" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/GLS_bad_mux.png"><br><br>
+
+Synthesis Simulation Mismatch:
+<img  width="1085" alt="bad_mux_syn_sim" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/bad_mux_syn_sim.png"><br><br>
 
 **Example- 3:**
 
@@ -1396,7 +1402,21 @@ end
 endmodule
 ```
 
-Synthesized circuit:
+RTL Simulated output:
+<img  width="1085" alt="caveat" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/caveat.png"><br><br>
+
+
+RTL Synthesized circuit:
+<img  width="1085" alt="syn_caveat" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/syn_caveat.png"><br><br>
+
+
+GLS Simulated output:
+<img  width="1085" alt="GLS_caveat" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/GLS_caveat.png"><br><br>
+
+
+Synthesis Simulated Mismatch:
+<img  width="1085" alt="caveat_syn_sim" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/caveat_syn_sim.png"><br><br>
+
 
 </details>
 
