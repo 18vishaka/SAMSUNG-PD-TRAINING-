@@ -1150,7 +1150,7 @@ The value of 'a' is set to the sum of 'b' and 'c', and the next line of code wil
 		 <ul>
 			 <li>Evaluate the RHS of non blocking  statements at the beginning of the time step.</li>
 			 <li>Update the LHS of non blocking statements at the end of the time step.</li>
- </ul>
+ </ul><br><br>
 
 
 **A simple Example to differentiate Blocking Assignments and Non Blocking Assignmnets:**
