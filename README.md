@@ -1405,7 +1405,7 @@ end
 endmodule
 ```
 
-RTL Simulated output:
+RTL Simulated output:<br>
 <img  width="1085" alt="caveat" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/caveat.png"><br><br>
 
 
@@ -1414,15 +1414,20 @@ This circuit emulates the behavior of a flip-flop, although the synthesized circ
 <img  width="1085" alt="syn_caveat" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/syn_caveat.png"><br><br>
 
 
-GLS Simulated output:
+GLS Simulated output:<br>
 <img  width="1085" alt="GLS_caveat" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/GLS_caveat.png"><br><br>
 
 
-Synthesis Simulated Mismatch:
+Synthesis Simulated Mismatch:<br>
 In the output of the RTL simulation, even when 'a' or 'b' is low, the output turns high when 'c' is high. This behavior arises from the utilization of blocking statements. The previous value of 'a|b' is used in conjunction with 'c,' resulting in 'x' emulating the characteristics of a flip-flop. However, in the output of the GLS simulation, it's evident that the output relies solely on the current inputs, with no dependence on past values.
 <img  width="1085" alt="caveat_syn_sim" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/practice_1%23day4/caveat_syn_sim.png"><br><br>
 
 
+</details>
+
+<details>
+	<summary>Summary</summary>
+	Day 4, we explored various concepts related to digital circuit simulation, GLS, Blocking vs Non Blocking Assignments and synthesis-simulation mismatches.
 </details>
 
 
