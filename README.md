@@ -1231,14 +1231,14 @@ end
 Before performing GLS, we typically start with RTL simulation to verify the functionality of our design at an abstract level using tool like iverilog, then we compile our verilog code into an executable form for simulation. GLS mainly involves  with replacing the abstract RTL description of digital circuit with gate level description. We need Gate level netlist for our design, which contains information about the gates, flip flops and their interconnections. Then there is Testbench which is a separate verilog code that applies inputs to our gate level netlist and checks the outputs,and simulates how our design responds to different inputs.
 
 
-**Synthesis Simulation Mismatch:**
-Synthesis  Simulation Mismatch also known as syn-sim mismatc refers to the differences between the behavior of a digital circuit as simulated during the RTL simulation and how it actually operates after it has been synthesized and implemented in  hardware. 
+**Synthesis Simulation Mismatch:**<br>
+Synthesis  Simulation Mismatch also known as syn-sim mismatch refers to the differences between the behavior of a digital circuit as simulated during the RTL simulation and how it actually operates after it has been synthesized and implemented in  hardware. 
 
 This mismatch can arise due to:
 <ul>
 	<li>Missing sensitivity list.</li>
 	<li>Blocking vs Non blocking assignments.</li>
-	<li>Non standard verilog coding.</li><
+	<li>Non standard verilog coding.</li>
 </ul><br>
 
   
