@@ -1219,10 +1219,17 @@ end
  **What is GLS?:**<br>
  Running the test bench with netlist as Design Under Test.
 
- **Why GLS?:**<br>
+ **Why GLS?:**
  <ul>
 	 <li>Verify the logic correctness of the design after synthesis</li>
 	 <li>Ensuring the timing of the design is met; For this GLS needs to be run with delay annotation.</li>
 	
  </ul>
+
+ **GLS using iverilog:**
+ <img  width="1085" alt="" src=""><br><br>
+</details>
+
+<details>
+	<summary>Synthesis Simulation Mismatch</summary>
 </details>
