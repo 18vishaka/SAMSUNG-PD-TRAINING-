@@ -1233,11 +1233,13 @@ Before performing GLS, we typically start with RTL simulation to verify the func
 
 **Synthesis Simulation Mismatch:**
 Synthesis  Simulation Mismatch also known as syn-sim mismatc refers to the differences between the behavior of a digital circuit as simulated during the RTL simulation and how it actually operates after it has been synthesized and implemented in  hardware. 
+
 This mismatch can arise due to:
-1. Missing sensitivity list.
-2. Blocking vs Non blocking assignments.
-3. Non standard verilog coding.<br>
 <ul>
+	<li>Missing sensitivity list.</li>
+	<li>Blocking vs Non blocking assignments.</li>
+	<li>Non standard verilog coding.</li><br>
+</ul>
 1. Missing sensitivity list:
 A simulator operates in response to evolving activity patterns. It generates updated outputs only when there are changes in the input. Let's take the example of a 2x1 multiplexer. In the first behavioral code, the primary focus is on the 'sel' input. When 'sel' undergoes a change, the simulator promptly recalculates the output, preserving either 'io' or 'i1' at that specific moment. This computed output remains constant until the next 'sel' change, regardless of any alterations in 'io' or 'i1.' Conversely, in the second behavioral code, the simulator continually monitors changes in all signals, including 'sel,' 'i0,' and 'i1.' It maintains a high degree of responsiveness by evaluating these signals for any modifications.
 
@@ -1265,7 +1267,7 @@ module mux(input i0, input i1, input sel, output reg y);
 	  end
 endmodule
 ```
-</ul>
+
 </details>
 
 
