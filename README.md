@@ -1127,4 +1127,11 @@ The synthesized circuit:
 	 <li>We  are just conducting zero delay simulations, as we are focusing on synthesis and simulation mismatch at pre-layout level.</li>
 	 <li>Used in dynamic timing analysis as it is able to take in account various clocks and resets at the same time, and thus  give insight about the asynchronous performance which STA is not meant for.</li>
  </ul>
+
+ **Blocking Assignment:**
+ Execution of blocking assignments can be viewed as a one-step process:
+ <ul>
+	 <li>Evaluate the RHS (Right Hand Side equation) and update the LHS (Left Hand Side Equation) of the blocking assignment without interruption from any other verilog statement.</li>
+	 <li>A blocking assignment "blocks" trailing assignments in the same always block from occuring until after the current assignment has been completed.</li>
+ </ul>
 </details>
