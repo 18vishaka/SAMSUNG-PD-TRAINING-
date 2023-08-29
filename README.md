@@ -1139,4 +1139,15 @@ The synthesized circuit:
 		 	a=b+c;
 The value of 'a' is set to the sum of 'b' and 'c', and the next line of code will not execute until this assignment is complete.</li>
  </ul>
+
+ **Non Blocking Assignment:**
+ <ul>
+	 <li>The non blocking operator is the same as the less than or equal to operator ("<=").</li>
+		 <li>Non blocking assignments are only made to register data types and are therefore only permitted inside of procedural blocks, such as initial blocks and always blocks. Non blocking assignments are not permitted in continuous assignments.</li>
+		 <li>The non blocking assignment does not block other verilog statements from being evaluated.</li>
+		 <li>Execution of non blocking assignmnet can be viewed as a two step process:</li>
+		 <ul>
+			 <li>Evaluate the RHS of non blocking  statements at the beginning of the time step.</li>
+			 <li>Update the LHS of non blocking statements at the end of the time step.</li>
+ </ul>
 </details>
