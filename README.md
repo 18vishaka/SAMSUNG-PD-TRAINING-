@@ -1129,9 +1129,13 @@ The synthesized circuit:
  </ul>
 
  **Blocking Assignment:**
+ 
  Execution of blocking assignments can be viewed as a one-step process:
  <ul>
 	 <li>Evaluate the RHS (Right Hand Side equation) and update the LHS (Left Hand Side Equation) of the blocking assignment without interruption from any other verilog statement.</li>
 	 <li>A blocking assignment "blocks" trailing assignments in the same always block from occuring until after the current assignment has been completed.</li>
+	 <li>Example of Blocking assignment:
+	 a=b+c;
+	 The value of 'a' is set to the sum of 'b' and 'c', and the next line of code will not execute until this assignment is complete.</li>
  </ul>
 </details>
