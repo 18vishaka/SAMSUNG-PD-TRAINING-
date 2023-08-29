@@ -1115,3 +1115,12 @@ The synthesized circuit:
 	<summary>Summary</summary>
 	Day 3 involves discussions of topics related to digital circuit optimization, Boolean algebra identities, and the difference between combinational and sequential logic, emphasizing efficient design and resource utilization.
 </details>
+
+## Day-4-GLS, Blocking vs Non Blocking Assignments and Synthesis-Simulation Mismatch
+
+<details>
+	<summary>Introduction</summary>
+
+ **Gate Level Simulation (GLS):**
+ 
+</details>
