@@ -1171,4 +1171,44 @@ always @ (posedge clock)
 	   b<= a;
 	end
 ```
+
+**Stratified Event Queue:**
+<img  width="1085" alt="" src="">
+<img  width="1085" alt="" src=""><br><br>
+
+
+**RTL Coding Guidelines:**
+<ul>
+	<li>Never mix blocking and non blocking assignments in the same always block.</li>
+	<li>Never make assignments to the same variable from more than one always block.</li>
+	<li>Assignment (always blocks)
+	<ul>
+		<li>Combinational (always @ *) --> blocking (=) assignment.</li>
+		<li>Sequential (always @ posedge) --> non blocking (<=) assignment.</li>
+		<li>Always separate sequential and combinational logic.</li>
+	</ul></li>
+</ul>
+
+**Simulation Synthesis Mismatch:**
+<ul>
+	<li>Incomplete sensitivity lists
+	<ul>
+		<li>The synthesis may ignore this, but the simulators will adhere to it.</li>
+	</ul>
+	</li>
+	<li>Complete sensitivity list with mis-ordered assignments.</li>
+	<li>Timing delay; Placing delays on the left side of always block assignments does'nt accurately model either RTL or behavioral models.</li>
+	<ul>
+		<li>
+		```ruby
+		always @ (in) begin
+			#25 out 1= ~in;
+			#40 out 2= ~in;
+		end
+		```
+		</li>
+		<li>The outputs will not be updated on every input change if changes happen more frequently than every 65 time units.</li>
+		<li>The port synthesis gate level model will simulate two inverters while the pre synthesis RTL code will miss multiple input transitions.</li>
+	</ul>
+</ul>
 </details>
