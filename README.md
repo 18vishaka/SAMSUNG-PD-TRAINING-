@@ -1119,7 +1119,7 @@ The synthesized circuit:
 ## Day-4-GLS, Blocking vs Non Blocking Assignments and Synthesis-Simulation Mismatch
 
 <details>
-	<summary>Introduction</summary>
+	<summary>Introduction</summary><br><br>
 
  **Gate Level Simulation (GLS):**
  <ul>
