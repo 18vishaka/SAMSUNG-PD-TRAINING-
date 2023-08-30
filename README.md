@@ -1447,5 +1447,5 @@ In the output of the RTL simulation, even when 'a' or 'b' is low, the output tur
 Design for Testability (DFT) encompasses a suite of strategic methodologies and features integrated into the design of semiconductor chips. These techniques are purposefully implemented to streamline the process of testing and validating manufactured integrated circuits. 
 
 **Testability:**
-
+Refers to the ease with which a product, system or component can be tested effectively.
 </details>
