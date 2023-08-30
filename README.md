@@ -1438,4 +1438,11 @@ In the output of the RTL simulation, even when 'a' or 'b' is low, the output tur
 </details>
 
 
+## Day-5-Design for Testability (DFT)
 
+<details>
+	<summary>Introduction</summary>
+
+ **DFT:**
+Design for Testability (DFT) encompasses a suite of strategic methodologies and features integrated into the design of semiconductor chips. These techniques are purposefully implemented to streamline the process of testing and validating manufactured integrated circuits.
+</details>
