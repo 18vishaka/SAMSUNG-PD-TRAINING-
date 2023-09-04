@@ -1445,3 +1445,19 @@ In the output of the RTL simulation, even when 'a' or 'b' is low, the output tur
 	<summary>Summary</summary>
 	Day 5 gives us a brief dive into the world of DFT (Design For Test). 
 </details>
+
+## Day-6-Introduction to logic synthesis
+
+<details>
+	<summary>Getting started with DC (Design Compiler)</summary>
+
+
+ **Design Compiler (DC):**
+ <ul>
+	 <li>A synthesis EDA tool by Synopsys Inc.</li>
+	 <li>Command to invoke textual interface "dc_shell"</li>
+	 <li>Command to invoke GUI "design_vision"</li>
+	 <li>Understands .db forma.</li>
+	 <li>Design information can be stored in .ddc format.</li>
+ </ul>
+</details>
