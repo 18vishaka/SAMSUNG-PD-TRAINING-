@@ -10,6 +10,7 @@ Quick links:
 - [Day-3-Combinational and Sequential optimisations](#Day-3--Combinational-and-Sequential-optimisations)
 - [Day-4-GLS, Blocking vs Non Blocking Assignments and Synthesis-Simulation Mismatch](#Day-4--GLS,-Blocking-vs-Non-Blocking-Assignments-and-Synthesis--Simulation-Mismatch)
 - [Day-5-Design For Testability (DFT)](#Day-5--Design-For-Testability-(DFT))
+- [Day-6-Introduction to logic synthesis](#Day-6--Introduction-to-logic-synthesis)
 
 
 ## Day-0-Installation
@@ -1441,11 +1442,6 @@ In the output of the RTL simulation, even when 'a' or 'b' is low, the output tur
 ## Day-5-Design for Testability (DFT)
 
 <details>
-	<summary>Introduction</summary>
-
-**DFT:** <br> 
-Design for Testability (DFT) encompasses a suite of strategic methodologies and features integrated into the design of semiconductor chips. These techniques are purposefully implemented to streamline the process of testing and validating manufactured integrated circuits. 
-
-**Testability:**
-Refers to the ease with which a product, system or component can be tested effectively.
+	<summary>Summary</summary>
+	Day 5 gives us a brief dive into the world of DFT (Design For Test). 
 </details>
