@@ -1791,7 +1791,6 @@ STA considers process variations that affect transistor characteristics and temp
 This ensures the design functions correctly under different conditions.
 </li>
 
-
  </ul>
 </details>
 
