@@ -1788,9 +1788,24 @@ Net delay accounts for the time taken for a signal to traverse interconnects, wi
 Net delay varies with interconnect length, topology, and electrical properties.</li>
 <li>Process and Temperature Variation:
 STA considers process variations that affect transistor characteristics and temperature variations impacting circuit behavior.
-This ensures the design functions correctly under different conditions.
-</li>
-
+This ensures the design functions correctly under different conditions.</li>
  </ul>
 </details>
 
+**Timing Arcs:**
+Timing arcs describe the timing characteristics of signal paths within a digital circuit.
+They are critical for determining the arrival time, required time, and clock-to-q delays for signals as they propagate through gates and nets.
+<ul>
+	<li>Cell Arcs (or Gate Arcs):
+Cell arcs describe the timing behavior of individual logic gates or cells.
+Each cell in a technology library has associated cell arcs that specify how input transitions affect the output transition time and other timing parameters.</li>
+	<li>Combinational Arcs:
+		Combinational arcs describe the timing behavior of combinational logic paths.
+These arcs focus on signal paths that involve only combinational logic gates, where the output depends solely on the current input values without any feedback.</li>
+	<li>Sequential Arcs:
+	Sequential arcs describe the timing behavior of sequential logic paths.
+They consider signal paths that involve sequential elements like flip-flops, latches, and registers. These paths have clock-to-q delays, setup times, and hold times associated with them.</li>
+	<li>Net Arcs:
+		Net arcs describe the timing behavior of interconnects and nets.
+They take into account the delay introduced as signals propagate through wires, routing resources, and the parasitic capacitance of the interconnects.</li>
+</ul>
