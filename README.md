@@ -1641,8 +1641,6 @@ dc_shell> echo $target_library
 
 <details>
 	<summary>Lab-4: TCL (Tool Command Language)</summary>
-
- Tool Command Language is used for writing SDCs.
 	
 **Basic commands in TCL:**
 
@@ -1657,6 +1655,8 @@ dc_shell> echo $target_library
    - For example,
      <ul>
 **set a 8** --> a=8
+
+
 **set a \[expr $x+$y\]** --> x=x+y
      </ul>
    - Square brackets in TCL are employed for command nesting.
