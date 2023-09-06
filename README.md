@@ -1895,6 +1895,108 @@ For instance, consider the standard library name 'sky130_fd_sc_hd_tt_025C_1v8.' 
 - 'tt_025C_1v8': Specifies the operating conditions, where 'tt' signifies the typical temperature (25°C), and '1v8' represents the supply voltage (1.8 V).
 
 This naming convention helps users identify the specific library and its characteristics, such as the process technology, operating conditions, and voltage levels associated with the standard cells.
- <img  width="1085" alt="" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/sta_3.png"><br><br>
+ <img  width="1085" alt="lab_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7.png"><br><br>
+
+ The Timing File (.lib) also includes information about the technology used for standard cells, which in the example mentioned earlier is CMOS. It specifies the delay model, units of time, voltage, resistance, and other relevant units of measurement. Additionally, within the .lib file, you can find different flavors or variants of the same logic gates. These flavors may have varying characteristics to suit different design requirements.
+
+Furthermore, the .lib file provides data on leakage power, area, and timing sense for each of these different flavors of gate cells. This comprehensive information is crucial for accurately modeling and optimizing the performance of digital circuits during the design and synthesis process.
+<img  width="1085" alt="lab_7_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_3.png"><br><br>
+
+A Look-Up Table (LUT) within a Liberty file is a fundamental component that defines the logical behavior and timing characteristics of a combinational logic cell found in a digital library. These Liberty files are essential in the field of electronic design automation (EDA) and are used to represent collections of standard cells for use in Very Large Scale Integration (VLSI) design projects.
+
+In a Liberty file, the LUT typically comprises a table with two indices:
+- 'index1': This index represents the input transition characteristics.
+- 'index2': This index represents the output load capacitance.
+
+For instance, consider an example of a 'and2_1' gate index table, which provides specific data on the behavior and timing of a two-input AND gate for different input transition times and output load capacitances. This information is invaluable for EDA tools and designers when performing accurate timing analysis and optimization for their digital designs.
+<img  width="1085" alt="lab_7_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_2.png">
+<img  width="1085" alt="lab_7_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_22.png"><br><br>
+
+A Boolean function is termed 'unate' when it exhibits the unateness property, which characterizes its behavior concerning input variables. Unate functions play a pivotal role in logic optimization and simplification techniques, particularly in processes like logic synthesis and minimization.
+
+There are two primary types of unateness:
+
+1. **Positive Unate Function:** A Boolean function is deemed positive unate with respect to a specific input variable when, for any assignment of values to the other input variables, the function either remains constant or increases as the designated input variable transitions from 0 to 1. In essence, the function relies solely on the positive (1) values of that input variable.
+
+2. **Negative Unate Function:** A Boolean function is considered negative unate with respect to a particular input variable when, for any assignment of values to the other input variables, the function either remains constant or decreases as the specified input variable transitions from 0 to 1. In this scenario, the function hinges exclusively on the negative (0) values of that input variable.
+
+As an illustrative example, an AND gate exhibits positive unateness, as its output depends solely on the presence of positive (1) values in its input variables, regardless of the negative (0) values.
+
+This explanation provides a clearer understanding of unate functions and their significance in logic design and optimization.
+<img  width="1085" alt="unnate_lab" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/unnate_lab.png"><br><br>
+
+Sequential flip-flops are characterized by their clock pin set to 'true'
+```ruby
+area : 38.787200000;
+        cell_footprint : "sky130_fd_sc_hd__sdfbbn";
+        cell_leakage_power : 0.0153947700;
+        driver_waveform_fall : "ramp";
+        driver_waveform_rise : "ramp";
+        ff ("IQ","IQ_N") {
+            clear : "!RESET_B";
+            clear_preset_var1 : "H";
+            clear_preset_var2 : "L";
+            clocked_on : "!CLK_N";
+            next_state : "(D&!SCE) | (SCD&SCE)";
+            preset : "!SET_B";
+        }
+        pg_pin ("VGND") {
+            pg_type : "primary_ground";
+            related_bias_pin : "VPB";
+            voltage_name : "VGND";
+        }
+        pg_pin ("VNB") {
+            pg_type : "nwell";
+            physical_connection : "device_layer";
+            voltage_name : "VNB";
+        }
+        pg_pin ("VPB") {
+            pg_type : "pwell";
+            physical_connection : "device_layer";
+            voltage_name : "VPB";
+        }
+        pg_pin ("VPWR") {
+            pg_type : "primary_power";
+            related_bias_pin : "VNB";
+            voltage_name : "VPWR";
+        }
+        pin ("CLK_N") {
+            capacitance : 0.0017800000;
+            clock : "true";                           ( Clock is true )
+            direction : "input";
+            fall_capacitance : 0.0016980000;
+```
+
+**The unateness property of a D flip-flop that is negative-edge-triggered.**
+<img  width="1085" alt="unnate_lab2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/unnate_lab2.png"><br><br>
+
+**The unateness property of a positive-edge-triggered D latch.**
+<img  width="1085" alt="unnate_lab3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/unnate_lab3.png"><br><br>
+
+**The library linked:**
+<img  width="1085" alt="lab_7_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_5.png"><br><br>
+
+**To print all the sequential gates:**
+<img  width="1085" alt="lab_7_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_6.png"><br><br>
+
+**To print the list of cells from the collection:**
+<img  width="1085" alt="lab_7_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_7.png"><br><br>
+
+**To print the pins associated with the gate cell and functionality of a particular gate:**
+<img  width="1085" alt="lab_7_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_8.png"><br><br>
+
+**To print the pins along with the direction of nand2_4 gate:**
+<img  width="1085" alt="lab_7_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_9.png"><br><br>
+
+**To print the attributes of the cell/pin:**
+<img  width="1085" alt="lab_7_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_10.png"><br><br>
+
+**A TCL program that accepts a list of cells as input and prints the output pins along with their corresponding functionalities:**
+<img  width="1085" alt="lab_7_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_11.png">
+<img  width="1085" alt="lab_7_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_12.png"><br><br>
+
+**To print list of all attributes:**
+<img  width="1085" alt="lab_7_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_13.png"><br><br>
+<img  width="1085" alt="lab_7_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_14.png"><br><br>
 
 </details>
