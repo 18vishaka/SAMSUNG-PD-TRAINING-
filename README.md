@@ -1490,7 +1490,7 @@ In the output of the RTL simulation, even when 'a' or 'b' is low, the output tur
 <br><br>
 
  **DC Setup:**
- <img  width="1085" alt="" src=""><br><br>
+ <img  width="1085" alt="dc_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_setup.jpeg">
 A DC (Design Compiler) setup involves using Synopsys Design Compiler, a popular tool in the digital design and synthesis flow, to convert RTL (Register-Transfer Level) descriptions of a digital circuit into a gate-level netlist. This process includes specifying library files and SDC (Synopsys Design Constraints) constraints as inputs and obtaining outputs such as a Verilog netlist, DDC (Design Data Container), and synthesis reports.
 The DC setup process typically involves the following steps:
 <ul>
@@ -1502,7 +1502,7 @@ The DC setup process typically involves the following steps:
 <br><br>
 
  **Implementation flow of ASIC:**
- <img  width="1085" alt="" src=""><br><br>
+ <img  width="1085" alt="ASIC" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/ASIC.jpeg">
  Below is an overview of the ASIC implementation flow, including the key stages:
 <ul>
 	<li>RTL (Register Transfer Level) Design:
@@ -1536,7 +1536,7 @@ The ASIC implementation flow is a complex and iterative process that requires cl
 <br><br>
 
  **DC Synthesis Flow:**
- <img  width="1085" alt="" src=""><br><br>
+ <img  width="1085" alt="synth_flow" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/synth_flow.jpeg"><br><br>
 Here's a step-by-step explanation of the DC synthesis flow:
 <ul>
 	<li>Read Standard Cell or Technology Library (.lib):
