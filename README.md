@@ -1618,4 +1618,124 @@ Clicking on this flip-flop allows for a closer examination of its detailed behav
 
 <details>
 	<summary>Lab-3: Synopsys dc setup</summary>
+	
+**.synopsys dc setup:**
+To initiate the dc shell using csh and issue dc_shell commands, setting the 'target_library' and 'link_library' variables with each session load is essential. However, in a practical scenario, managing multiple .db files for a design can become cumbersome and error-prone if these variables are manually configured each time.
+
+This challenge can be effectively addressed through the use of the '.synopsys_dc.setup' file. DC reads '.synopsys_dc.setup' files in the following order of priority:
+1. Synopsys installation directory (applies to all user projects).
+2. User home directory (applies to all projects for the specific user).
+3. Current project directory.
+
+The order of priority dictates that if the file exists in the user's home directory, it will be chosen, and the installed (default) file will be ignored. If not found in the user's home directory, the installed one will be selected. This setup file is an excellent tool for automating repetitive tasks, especially those related to tool configuration, such as 'target_library' and 'link_library' settings.
+
+By creating a file with the name '.synopsys_dc.setup' and specifying the desired tasks within it, the tool will automatically retrieve and load these values into its memory. Achieving this can be done by following these steps:
+
+```ruby
+$ gvim .synopsys_dc.setup
+$dc_shell
+dc_shell> echo $target_library
+```
+<img  width="1085" alt="dc_shell_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_18.png">
+</details>
+
+<details>
+	<summary>Lab-4: TCL (Tool Command Language)</summary>
+
+ Tool Command Language is used for writing SDCs.
+	
+**Basic commands in TCL:**
+
+- Tcl is a typed language, meaning that correct spacing and proper parentheses usage are crucial.
+- The wildcard symbol (*), on the other hand, is employed for handling larger datasets.
+- The dollar sign ($) is employed to reference variables, not for assignment purposes.
+  
+```ruby
+  set
+  ```
+   - It is used both for declaring and assigning variables.
+   - For example,
+     <ul>
+**set a 8** --> a=8
+**set a \[expr $x+$y\]** --> x=x+y
+     </ul>
+   - Square brackets in TCL are employed for command nesting.
+     
+  ```ruby
+  if {condition} {
+  statements if true
+  } else {
+  statements if false
+  }
+   ```
+
+Conditions must always be enclosed within curly braces. The '$' sign is employed when referencing a variable's value, not when assigning it (use 'set' for assignment).
+Example:
+```ruby
+if {$a < 1} {
+echo "$a is less than 1"
+}else {
+echo "$a is greater than 1"
+}
+```
+
+- In Tcl, the 'echo' command is used for displaying output, similar to its use in Linux.
+	     
+  ```ruby
+  echo
+  ```
+     
+ ```ruby
+  while {condition} {
+  statements
+  }
+ ```
+
+Example:
+```ruby
+set i 0
+while {$i < 10} {
+  echo $i;
+ incr i;
+}
+```
+
+  ```ruby
+  for {looping var} {condition} {looping var modification} {
+  statements
+  }
+```
+
+Example:	  
+```ruby
+  for {set i 0} {$i < 10} {incr i} {
+  echo $i;
+  }
+```
+
+
+
+-  foreach is a general tcl statement.
+```ruby
+  foreach var list {
+  statements
+  }
+```
+	  
+
+The following image illustrates the usage of the DC-specific command 'get_lib_cells.' In this image, 'cellnames' is enclosed within curly braces. It's important to note that in Tcl, a collection, such as 'cellnames,' is typically enclosed with curly braces, while a list is enclosed with square brackets.
+<img  width="1085" alt="dc_shell_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_24.png"><br><br>
+
+
+```tcl
+foreach_in_collection var collection {
+   statements
+ }
+```
+foreach_in_collection is a dc specific command used for collections.
+
+The provided image demonstrates the usage of the DC-specific command 'get_object_name.' When 'get_object_name' is not used, the shell typically produces a pointer-like output, such as '_sel3.' By using 'get_object_name,' you can obtain the actual names of library cells, which are then printed as follows:
+<img  width="1085" alt="dc_shell_25" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_25.png"><br><br>
+
+
 </details>
