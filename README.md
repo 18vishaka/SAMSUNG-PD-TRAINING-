@@ -1823,5 +1823,54 @@ They take into account the delay introduced as signals propagate through wires, 
 </ul>
 
   **More about Static Timing Analysis:**
-  
+  <ul>
+	  <li>Each signal path in a digital circuit is subject to delay constraints, which encompass both a maximum delay (setup condition) and a minimum delay (hold condition).</li>
+	  <li>The setup condition establishes the maximum permissible delay for the combinational circuit, while the hold condition defines the minimum combinational delay required for reliable operation.</li>
+	  <li>The clock period is typically predetermined based on design requirements, and the clock-to-q delay as well as setup and hold times are specific to flip-flops. Therefore, the parameter that can be adjusted to meet timing requirements is the combinational delay.</li>
+  </ul>
+
+**Setup Time Equation (Tsu):**
+
+The setup time (Tsu) represents the minimum amount of time before the active edge of the clock signal during which the input data must be stable to guarantee correct capture by a flip-flop.
+
+Setup Time Equation: Tsu = Tck - Tcq - Tcomb
+
+Tsu: Setup time.
+Tck: Clock period (time between successive clock edges).
+Tcq: Clock-to-Q delay of the flip-flop (time taken for the output to respond to a clock edge).
+Tcomb: Combinational delay along the data path (time taken for the signal to propagate from input to flip-flop input).
+
+**Hold Time Equation (Th):**
+
+The hold time (Thold) represents the minimum amount of time after the active edge of the clock signal during which the input data must remain stable to guarantee correct capture by a flip-flop.
+
+Hold Time Equation: Thold = Tcq + Th - Tcomb
+
+Thold: Hold time.
+Tcq: Clock-to-Q delay of the flip-flop (time taken for the output to respond to a clock edge).
+Th: Hold time of the flip-flop (time data must remain stable after the clock edge).
+Tcomb: Combinational delay along the data path (time taken for the signal to propagate from input to flip-flop input).
+
+**Water Bucket Analogy:**
+
+Consider two water taps with different flow rates. The tap with faster inflow fills a bucket more quickly than the one with slower inflow. In this analogy, the slower inflow results in greater delay, while the faster inflow leads to less delay. Therefore, delay is a function of inflow rate. In our context, the inflow of water corresponds to the inflow of current (input transition). Faster current sourcing (faster rise times) results in less delay, and vice versa.
+
+Now, if we keep the inflow rates of the taps the same but vary the sizes of the buckets (e.g., 5 gallons and 25 gallons), the larger bucket takes more time to fill compared to the smaller one. This illustrates that delay is also influenced by the size of the container, which is analogous to load capacitance.
+
+Hence, the delay of a logic gate is a function of both the input transition (inflow) and the output load (bucket size).
+
+Let's consider two gates in a design that are physically far apart, resulting in a long net length between them. This extended net adds more capacitance, causing an increase in the delay of the first gate due to the load capacitance. High output load can occur not only due to long nets but also because of a large number of connected loads (high fanout). The cumulative capacitance of all these load pins adds up, resulting in high output capacitance at the gate and, consequently, increased delay.
+
+**Input and Output external delay:**
+The input ports of a digital design can also serve as the outputs of external registers, which may be clocked by the same or a different clock compared to the internal registers within the design. Likewise, the output ports of the design may be connected as the D inputs of other external registers. These external registers are subject to their own timing constraints and must meet their respective timing conditions.
+To ensure that the entire design operates correctly, it's essential to consider these external registers as boundary components of the design. Meeting the timing requirements for these external registers is crucial. To achieve this, both the input logic (feeding into the design) and the output logic (driven by the design's outputs) must be optimized effectively to prevent any timing violations from occurring.
+The input external delay and output external delay serve as two critical constraints that define the maximum allowable combinational design delay. These external delays are typically specified to restrict the combinational logic's operation within a specific time frame before signals enter or exit the external environment and use the clock period.
+A common guideline for setting these constraints is the '30-70 rule,' which means that the internal delay (comprising combinational logic and setup time) is constrained to be no more than 30% of the clock period, while the external delay (related to signals entering or exiting the design) is constrained to be at least 70% of the clock period. Adhering to these constraints helps ensure that the design operates reliably and within the required timing boundaries.
+ <img  width="1085" alt="sta_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/sta_3.png"><br><br>
+
+ **Input Transition and Output Capacitance:**
+When specifying external delays, it's essential to allocate the clock period among external delay, combinational logic delay, and setup time. This allocation assumes ideal conditions, where input signals have zero transition time, and there is no load at the output. 
+However, in practice, cell delay is influenced by both the input transition time and the output capacitance. Any non-ideal conditions, such as a non-zero transition time at the input or significant load capacitance at the output, can lead to delays exceeding the allocated budget. This can result in a violation of the setup time requirement.
+To prevent such violations, it's crucial to constrain both the input transition time and the output load capacitance. These constraints guide the optimization performed by the tool, ensuring that it optimizes the combinational delay to meet the setup time requirement more effectively.
+
 </details>
