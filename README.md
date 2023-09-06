@@ -1757,10 +1757,10 @@ The provided image demonstrates the usage of the DC-specific command 'get_object
 	<summary>Introduction</summary>
 
  **Recap: Setup Time:**
- <img  width="1085" alt="re_su" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/re_su.jpeg"><br><br>
+ <img  width="1085" alt="re_su" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/re_su.jpeg"><br><br>
 
  **Recap: Hold Time:**
- <img  width="1085" alt="re_ho" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/re_ho.jpeg"><br><br>
+ <img  width="1085" alt="re_ho" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/re_ho.jpeg"><br><br>
 
 **Basics of STA:**
 <ul>
@@ -1769,8 +1769,8 @@ The provided image demonstrates the usage of the DC-specific command 'get_object
 	<li>STA does a complete and exhaustive point to point analysis of the design.</li>
 	<li>It does'nt verify the functionalityof the design.</li>
 </ul>
-<img  width="1085" alt="sta_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/sta_1.jpeg"><br><br>
-<img  width="1085" alt="sta_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/sta_2.jpeg"><br><br>
+<img  width="1085" alt="sta_1" src=https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/sta_1.jpeg"><br><br>
+<img  width="1085" alt="sta_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/sta_2.jpeg"><br><br>
 
 **Delays:**
 <ul>
