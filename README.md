@@ -1648,18 +1648,22 @@ dc_shell> echo $target_library
 - The wildcard symbol (*), on the other hand, is employed for handling larger datasets.
 - The dollar sign ($) is employed to reference variables, not for assignment purposes.
   
-```ruby
-  set
-  ```
-   - It is used both for declaring and assigning variables.
-   - For example,
-     <ul>
+**set:**
+<ul>
+	<li>It is used both for declaring and assigning variables.</li>
+   <li>Example:
+	   <ul>
+		   
 **set a 8** --> a=8
 
 
 **set a \[expr $x+$y\]** --> x=x+y
      </ul>
-   - Square brackets in TCL are employed for command nesting.
+   </li>
+     
+<li>Square brackets in TCL are employed for command nesting.</li>
+     </ul>
+
      
   ```ruby
   if {condition} {
