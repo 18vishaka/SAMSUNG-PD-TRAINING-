@@ -1879,3 +1879,22 @@ However, in practice, cell delay is influenced by both the input transition time
 To prevent such violations, it's crucial to constrain both the input transition time and the output load capacitance. These constraints guide the optimization performed by the tool, ensuring that it optimizes the combinational delay to meet the setup time requirement more effectively.
 
 </details>
+
+
+<details>
+	<summary>Labs</summary>
+	
+**Timing .lib file:**
+The Timing File (.lib) contains ASCII representations of timing, area, and power information associated with standard cells. These files follow a naming convention known as PVT (Process, Voltage, Temperature). 
+
+For instance, consider the standard library name 'sky130_fd_sc_hd_tt_025C_1v8.' This naming convention provides the following information:
+- 'sky130': Indicates the technology node, in this case, 130 nm.
+- 'fd': Stands for 'foundry,' representing the manufacturing process.
+- 'sc': Denotes 'standard cell,' indicating that it's a library of standard logic cells.
+- 'hd': May refer to the cell height or variant.
+- 'tt_025C_1v8': Specifies the operating conditions, where 'tt' signifies the typical temperature (25°C), and '1v8' represents the supply voltage (1.8 V).
+
+This naming convention helps users identify the specific library and its characteristics, such as the process technology, operating conditions, and voltage levels associated with the standard cells.
+ <img  width="1085" alt="" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/sta_3.png"><br><br>
+
+</details>
