@@ -1560,7 +1560,10 @@ Throughout the synthesis flow, design engineers may iterate and fine-tune the co
 	 <li>Tcl scripts can be used to automate the entire synthesis flow within DC. This includes loading RTL designs, specifying constraints, running synthesis, performing optimizations, and generating reports.</li>
 	 <li>Overall, Tcl plays a crucial role in scripting and automating tasks within the DC shell, making it a powerful tool for managing complex RTL synthesis and optimization processes.</li>
 	 <li>Can handle huge designs with extreme complexity and provide very good QOR.</li>
- </ul>
+ </ul> 
+</details>
 
- 
+<details>
+	<summary>Lab 1- Invoking DC basic setup</summary>
+	
 </details>
