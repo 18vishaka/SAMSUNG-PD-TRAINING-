@@ -1464,7 +1464,7 @@ In the output of the RTL simulation, even when 'a' or 'b' is low, the output tur
 	 <li>Has interoperability with various backend tools from Synopsys.</li>
 	 <li>Has the ability to perform DFT scan stitch.</li>
 	 
- </ul>
+ </ul><br><br>
 
 **Common Terminologies Associated with DC:**
 	1. SDC (Synopsys Design Constraints)-
@@ -1484,7 +1484,7 @@ In the output of the RTL simulation, even when 'a' or 'b' is low, the output tur
 
 	5. Design-
    	RTL files which has the behavioral model of the design.
-
+<br><br>
 
  **DC Setup:**
  <img  width="1085" alt="" src=""><br><br>
@@ -1496,7 +1496,7 @@ The DC setup process typically involves the following steps:
 	<li>Synthesis: The synthesis tool generates the Verilog netlist and optimization reports based on the provided RTL, library, and constraint files.</li>
 	<li>Output Generation: The Verilog netlist, DDC, and synthesis reports are the final outputs of the synthesis process and can be used for further stages in the design flow, such as place-and-route and verification.</li>
 </ul>
-
+<br><br>
  **Implementation flow of ASIC:**
  <img  width="1085" alt="" src=""><br><br>
  Below is an overview of the ASIC implementation flow, including the key stages:
@@ -1529,7 +1529,7 @@ The DC setup process typically involves the following steps:
 		The tested ASIC chips are integrated into the final product, whether it's a consumer electronic device, a network router, or any other application-specific product.</li>
 </ul>
 The ASIC implementation flow is a complex and iterative process that requires close collaboration among RTL designers, synthesis engineers, physical design teams, and foundry partners.
-
+<br><br>
 
  **DC Synthesis Flow:**
  <img  width="1085" alt="" src=""><br><br>
@@ -1551,6 +1551,7 @@ Here's a step-by-step explanation of the DC synthesis flow:
 		The final step involves writing out the gate-level netlist in a format that can be used for subsequent stages of the design flow, such as place-and-route or simulation. Common formats for the output netlist include Verilog or EDIF (Electronic Design Interchange Format).</li>
 </ul>
 Throughout the synthesis flow, design engineers may iterate and fine-tune the constraints and optimization settings to achieve the desired results.
+    <br><br>
     
  **TCL (Tool Command Language):**
  <ul>
