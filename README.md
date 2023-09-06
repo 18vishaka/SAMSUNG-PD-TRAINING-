@@ -1790,7 +1790,6 @@ Net delay varies with interconnect length, topology, and electrical properties.<
 STA considers process variations that affect transistor characteristics and temperature variations impacting circuit behavior.
 This ensures the design functions correctly under different conditions.</li>
  </ul>
-</details>
 
 **Timing Arcs:**
 Timing arcs describe the timing characteristics of signal paths within a digital circuit.
@@ -1809,3 +1808,20 @@ They consider signal paths that involve sequential elements like flip-flops, lat
 		Net arcs describe the timing behavior of interconnects and nets.
 They take into account the delay introduced as signals propagate through wires, routing resources, and the parasitic capacitance of the interconnects.</li>
 </ul>
+
+**Timing Paths:**
+<ul>
+	<li>Timing paths are a collection of paths each having a start point and end point.</li>
+	<li>Valid timing paths based on valid start and end point are categorized intp four types
+	<ul>
+		<li>Input port to Output port (Not recommmended)</li>
+		<li>Input port to Input of flop (IO timing path)</li>
+		<li>Clock pin of a flop to Output port (IO timing path)</li>
+		<li>Clock pin of launch flop to Input pin of capture flop (Reg 2 Reg)</li>
+	</li>
+	<li>Timing paths are sorted into groups based on clocks associated with endpoint of path.</li>
+</ul>
+
+  **More about Static Timing Analysis:**
+  
+</details>
