@@ -7,11 +7,16 @@ Quick links:
 - [Day-1-Introduction to Verilog RTL design and Synthesis](#Day-1--Introduction-to-Verilog-RTL-design-and-Synthesis)
 
 - [Day-2-Timing libs, Hierarchical vs flat synthesis and efficient flop coding styles](#Day-2--Timing-libs,-Hierarchical-vs-flat-synthesis-and-efficient-flop-coding-styles)
+  
 - [Day-3-Combinational and Sequential optimisations](#Day-3--Combinational-and-Sequential-optimisations)
+  
 - [Day-4-GLS, Blocking vs Non Blocking Assignments and Synthesis-Simulation Mismatch](#Day-4--GLS,-Blocking-vs-Non-Blocking-Assignments-and-Synthesis--Simulation-Mismatch)
+  
 - [Day-5-Design For Testability (DFT)](#Day-5--Design-For-Testability-(DFT))
+  
 - [Day-6-Introduction to logic synthesis](#Day-6--Introduction-to-logic-synthesis)
-
+  
+- [Day-7-Basic SDC Constarints](#Day-7--Basic-SDC-Constarints)
 
 ## Day-0-Installation
 
@@ -1745,3 +1750,48 @@ The provided image demonstrates the usage of the DC-specific command 'get_object
 
 
 </details>
+
+## Day-7-Basic SDC Constraints
+
+<details>
+	<summary>Introduction</summary>
+
+ **Recap: Setup Time:**
+ <img  width="1085" alt="re_su" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/re_su.jpeg"><br><br>
+
+ **Recap: Hold Time:**
+ <img  width="1085" alt="re_ho" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/re_ho.jpeg"><br><br>
+
+**Basics of STA:**
+<ul>
+	<li>Static Timing Analysis, is a fundamental aspect of digital design, plays a crucial role in ensuring that digital circuits operate correctly and meet their timing requirements.</li>
+	<li>It helps ensure that signals in a digital design meet setup time, hold time, and other timing constraints.</li>
+	<li>STA does a complete and exhaustive point to point analysis of the design.</li>
+	<li>It does'nt verify the functionalityof the design.</li>
+</ul>
+<img  width="1085" alt="sta_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/sta_1.jpeg"><br><br>
+<img  width="1085" alt="sta_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/sta_2.jpeg"><br><br>
+
+**Delays:**
+<ul>
+<li>Transition Delay:
+Transition delay is the time taken for a signal to change from one logic state to another.
+It is specific to a single gate or cell and depends on factors like load capacitance and driving signal strength.</li>
+<li>Propagation Delay:
+Propagation delay is the time for a signal change at the input of a gate or cell to propagate through it and appear at the output.
+It includes intrinsic gate delay and net delays due to interconnections.</li>
+<li>Cell/Gate Delay:
+Cell or gate delay represents the delay introduced by a single logic gate or cell when processing input to produce an output.
+It's provided in library files as part of technology characterization.</li>
+<li>Net Delay:
+Net delay accounts for the time taken for a signal to traverse interconnects, wires, and routing resources between gates or cells.
+Net delay varies with interconnect length, topology, and electrical properties.</li>
+<li>Process and Temperature Variation:
+STA considers process variations that affect transistor characteristics and temperature variations impacting circuit behavior.
+This ensures the design functions correctly under different conditions.
+</li>
+
+
+ </ul>
+</details>
+
