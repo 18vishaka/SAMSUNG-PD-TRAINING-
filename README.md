@@ -1698,6 +1698,7 @@ while {$i < 10} {
  incr i;
 }
 ```
+<br><br>
 
   ```ruby
   for {looping var} {condition} {looping var modification} {
@@ -1711,16 +1712,17 @@ Example:
   echo $i;
   }
 ```
+<br><br>
 
 
 
--  foreach is a general tcl statement.
+foreach is a general tcl statement.
 ```ruby
   foreach var list {
   statements
   }
 ```
-	  
+<br><br>	  
 
 The following image illustrates the usage of the DC-specific command 'get_lib_cells.' In this image, 'cellnames' is enclosed within curly braces. It's important to note that in Tcl, a collection, such as 'cellnames,' is typically enclosed with curly braces, while a list is enclosed with square brackets.
 <img  width="1085" alt="dc_shell_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_24.png"><br><br>
