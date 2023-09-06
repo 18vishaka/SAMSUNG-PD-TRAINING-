@@ -1467,22 +1467,22 @@ In the output of the RTL simulation, even when 'a' or 'b' is low, the output tur
  </ul><br><br>
 
 **Common Terminologies Associated with DC:**
-	1. SDC (Synopsys Design Constraints)-
+-SDC (Synopsys Design Constraints)-
    	<ul>
 	   	<li>These are the design constraints which are supplied to DC to enable appropriate optimization suitable for achieving the best implementation.</li>
 	   	<li>It is more like industrial standard and it is used across EDA (Electronic Design Automation) implementation tools.</li>
 	   	<li>SDC is based on TCL.</li>
    	</ul>
-	2. .lib-
+- .lib-
    	Design library which contains the standard cells.
 
-	3. .db-
+- .db-
    	Same as .lib but in a different format. DC understands libraries in .db format.
 
-	4. DDC(Design Data Center)-
+  - DDC(Design Data Center)-
    	Synopsys proprietary format for storing the design information. DC can write out and read in DDC.
 
-	5. Design-
+- Design-
    	RTL files which has the behavioral model of the design.
 <br><br>
 
