@@ -1565,5 +1565,34 @@ Throughout the synthesis flow, design engineers may iterate and fine-tune the co
 
 <details>
 	<summary>Lab 1- Invoking DC basic setup</summary>
-	
+
+ DC_WORKSHOP directory contains two files lib and verilog_files; lib file contains the .db file and .lib file; verilog_files contain all the neccessary verilog files to conduct the lab experiments.
+  <img  width="1085" alt="dc_shell_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_1.png"><br><br>
+   <img  width="1085" alt="dc_shell_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_3.png"><br><br>
+
+ .lib file we will be using "sky130_fd_sc_hd__tt_025C_1v80"
+  <img  width="1085" alt="dc_shell_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_2.png"><br><br>
+
+  Invoke dc shell as a textual interface by "dc_shell" command
+  <img  width="1085" alt="dc_shell_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_4.png"><br><br>
+
+  In DC the technology library is present in terms of target library and link library.
+  These two libraries namely target library and link library are very important which will be used by the DC tool to run.
+  <img  width="1085" alt="dc_shell_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_6.png"><br><br>
+  
+  Internally from DC memory it is loading some db's to infer the design they are "gtech.db" and "standard.sldb".
+  We see a warning message saying **can't read link_library 'your_library_db'** the reason is that we have not yet linked the design or the proper technology lib.
+ 
+ <img  width="1085" alt="dc_shell_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_7.png"><br><br>
+ <img  width="1085" alt="dc_shell_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_8.png"><br><br>
+  We see it is in gtech format while we need it in the sky130 library format.
+
+ <img  width="1085" alt="dc_shell_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_9.png"><br><br>
+  <img  width="1085" alt="dc_shell_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_10.png"><br><br>
+ We still see it is in gtech format, because the target library and link library are still pointing to 'your_library.db' which needs to be corrected:
+ <img  width="1085" alt="dc_shell_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_11.png"><br><br>
+  
+  Here we are using a verilog file "lab1_flop_with_en.v"
+  <img  width="1085" alt="dc_shell_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_5.png"><br><br>
+  
 </details>
