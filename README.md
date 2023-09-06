@@ -1591,8 +1591,7 @@ Throughout the synthesis flow, design engineers may iterate and fine-tune the co
   <img  width="1085" alt="dc_shell_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_10.png"><br><br>
  We still see it is in gtech format, because the target library and link library are still pointing to 'your_library.db' which needs to be corrected:
  <img  width="1085" alt="dc_shell_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_11.png"><br><br>
-  
-  Here we are using a verilog file "lab1_flop_with_en.v"
+  The verilog file used here "lab1_flop_with_en.v"
   <img  width="1085" alt="dc_shell_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day6_1/dc_shell_5.png"><br><br>
   
 </details>
