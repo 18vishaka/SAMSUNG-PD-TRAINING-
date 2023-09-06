@@ -1662,7 +1662,7 @@ dc_shell> echo $target_library
    </li>
      
 <li>Square brackets in TCL are employed for command nesting.</li>
-     </ul>
+     </ul><br><br>
 
      
   ```ruby
@@ -1672,7 +1672,6 @@ dc_shell> echo $target_library
   statements if false
   }
    ```
-
 Conditions must always be enclosed within curly braces. The '$' sign is employed when referencing a variable's value, not when assigning it (use 'set' for assignment).
 Example:
 ```ruby
@@ -1682,12 +1681,8 @@ echo "$a is less than 1"
 echo "$a is greater than 1"
 }
 ```
-
-- In Tcl, the 'echo' command is used for displaying output, similar to its use in Linux.
-	     
-  ```ruby
-  echo
-  ```
+**echo:**
+In Tcl, the 'echo' command is used for displaying output, similar to its use in Linux.<br><br>
      
  ```ruby
   while {condition} {
