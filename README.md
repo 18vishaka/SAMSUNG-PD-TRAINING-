@@ -1500,6 +1500,7 @@ The DC setup process typically involves the following steps:
 	<li>Output Generation: The Verilog netlist, DDC, and synthesis reports are the final outputs of the synthesis process and can be used for further stages in the design flow, such as place-and-route and verification.</li>
 </ul>
 <br><br>
+
  **Implementation flow of ASIC:**
  <img  width="1085" alt="" src=""><br><br>
  Below is an overview of the ASIC implementation flow, including the key stages:
