@@ -2099,4 +2099,70 @@ Total latency= Source Latency + Network Latency
 	<li>Defined in the cell library of the asynchronous pin of the flop as the 'library recovery time.'</li>
 	<li>Max path check like the setup check.</li>
 </ul>
+
+**Clock Tree Modelling- Uncertainty:**
+
+<ul>
+	<li>All Reg 2 Reg paths are constrained by Clocks.</li>
+	<li>All In 2 Reg paths are constrained by Clock, Input delay and Input transition.</li>
+	<li>All Reg 2 Out paths are constrained by Clock, Output delay, Load.</li>
+</ul>
+
+*Clock Generation:*
+<ul>
+	<li>Oscillator</li>
+	<li>PLL</li>
+	<li>External Clock Source</li>
+All the above clcok sources have inherent variations in the clock period due to Stochastic effects called as a jitter.
+	Tclk - Tjitter >= Tcq + Tcombi + Tsu
+</ul>
+
+*Clock Distribution:*
+<ul>
+	<li>In ideal clock network all flops see the edge at same time.</li>
+	<img  width="1085" alt="clock_1" src=""><br><br>
+ 	<li>In a practical clock network after CTS, all flops may not see the clock edge at same instance this is called Clock skew.</li>
+  	<img  width="1085" alt="clock_1" src=""><br><br>
+
+</ul>
+
+*Jitter:*
+Refers to the short-term variations or fluctuations in the timing of a signal's edges or transitions from their ideal or expected positions. Jitter can manifest as small, rapid deviations in the timing of a clock or data signal. It is typically characterized by its amplitude (magnitude of variation) and frequency (rate of variation).
+
+*Clock Skew:*
+Refers to the variation in the arrival times of a clock signal at different elements or points within a digital circuit or system. It is a timing irregularity that occurs when the clock signal, which is supposed to arrive simultaneously at all parts of the circuit, arrives at different times due to differences in routing delays.
+
+*Effect of Clock skew:*
+<img  width="1085" alt="clock_1" src=""><br><br>
+<img  width="1085" alt="clock_1" src=""><br><br>
+<img  width="1085" alt="clock_1" src=""><br><br>
+
+*Clock Modelling:*
+Model the clock for following:
+<ul>
+	<li>Period</li>
+	<li>Source Latency (Time taken by the clock source to generate clock.)</li>
+	<li>Clock Network Latency (Time taken by clock distribution network.</li>
+	<li>Clock Skew (Clock path delay mismatches which causes difference in the arrival of clock.</li>
+</ul>
+
+*Clock Uncertainty:*
+Collectively clock skew, jitter is called clock uncertainty.
+<img  width="1085" alt="clock_1" src=""><br><br>
+
+**IO Dealy:**
+Getting ports in DC:
+
+```ruby
+get_ports clk;   
+
+get_ports *clk*;				#returns a collection of ports whose name contains clk in it
+
+get_ports *;					#gives all the ports of the design
+
+get_ports * -filter "direction == in";		#lists all input ports
+
+get_ports * -filter "direction == out";		#lists all output ports
+```
+
 </details>
