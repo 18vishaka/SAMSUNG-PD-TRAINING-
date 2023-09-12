@@ -18,6 +18,8 @@ Quick links:
   
 - [Day-7-Basic SDC Constarints](#Day-7--Basic-SDC-Constarints)
 
+- [Day-8-Advanced SDC Constraints](#Day-8--Advanced-SDC-Constraints)
+
 ## Day-0-Installation
 
 	
@@ -1999,4 +2001,102 @@ area : 38.787200000;
 <img  width="1085" alt="lab_7_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_13.png"><br><br>
 <img  width="1085" alt="lab_7_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/prtactice_1%23day7/lab_7_14.png"><br><br>
 
+</details>
+
+
+## Advanced SDC Constraints
+
+<details>
+	<summary>Introduction</summary>
+
+ **Clock:**
+ Is a fundamental timing signal that provides synchronization and coordination for various components and operations within a digital system.
+
+ **Clock Terminologies:**
+	1. **Clock Signal (CLK)**: The primary signal that synchronizes and controls the operation of various components in a digital circuit.
+
+	2. **Clock Edge**: Refers to either the rising edge (transition from low to high voltage) or falling edge (transition from high to low voltage) of the clock signal. Many operations in digital circuits are triggered on specific clock edges.
+
+	3. **Clock Frequency (fCLK)**: The rate at which the clock signal oscillates, typically measured in Hertz (Hz). It determines how quickly a circuit processes data.
+
+	4. **Clock Period (TCLK)**: The time interval between two consecutive rising (or falling) edges of the clock signal. It's the inverse of clock frequency (TCLK = 1 / fCLK).
+
+	5. **Clock Domain**: A specific region of a digital circuit that operates based on a common clock signal. Complex digital systems may have multiple clock domains.
+
+	6. **Clock Skew**: The variation in arrival times of the clock signal at different points in a clock domain. Excessive clock skew can lead to timing violations.
+
+	7. **Clock Gating**: A power-saving technique where the clock signal is used to enable or disable specific circuit elements, reducing power consumption when they are not needed.
+
+	8. **Clock Distribution Network**: The infrastructure that carries the clock signal to different parts of a chip. It includes clock trees and buffers to maintain signal integrity.
+
+	9. **Clock Jitter**: The variation in the timing of clock edges from their ideal positions. It can affect the reliability and performance of a circuit.
+
+	10. **Clock Synchronization**: Ensuring that different clock domains within a chip or system are aligned and operate together correctly.
+
+	11. **Clock Tree Synthesis (CTS)**: The process of designing and optimizing the clock distribution network to ensure a balanced and efficient clock signal distribution.
+
+	12. **Clock-to-Q Delay**: The time it takes for a flip-flop or latch to capture data after a clock edge. It's a critical parameter in ensuring proper circuit operation.
+
+**Clock Latency:**
+Clock latency in digital circuits refers to the delay or time it takes for a clock signal to propagate from its source to various components or registers within the circuit. Understanding and managing clock latency is crucial for ensuring that a digital design meets its timing requirements and functions correctly.
+
+Two types of Clock latency:
+<ul>
+	<li>Source Latency (Insertion delay)- from clock source to clock definition pin, could be on chip or off chip.</li>
+	<li>Network Latency- from clock definition point to clock pin of the flop.</li>
+</ul>
+
+```ruby
+Total latency= Source Latency + Network Latency
+```
+
+**Generated Clocks:**
+<ul>
+	<li>Such clocks are derived from master clock and are in phase with master clock.</li>
+	<li>Major advantage- Clock origin is still that of master clock --> Source latency specifications are automatically included.</li>
+</ul>
+
+**Virtual Clocks:**
+<ul>
+	<li>Is not associated with any pin or port, not a real clock but mimics the functionality of a real clock.</li>
+ 	<li>Used as reference to constrain the interface pins by relating the arrivals at input or output port with respect to it with help of input and output delays.</li>
+
+</ul>
+
+**False Paths:**
+<ul>
+	<li>Certain timing paths are not real/possible and need to be executed from STA as they don't occur during the functional operation of the design.</li>
+	<li>Such paths are turned off in STA as false paths</li>
+	<li>Reduced analysis to nfocus only on real paths is its advantage.</li>
+</ul>
+
+**Half-cycle Paths:**
+<ul>
+	<li>If the design has both the positive and negative edge triggered flops, such paths might exist.</li>
+	<li>It could be from rising edge of a flop to the falling edge of another flop.</li>
+	<li>Data path gets only half a cycle for setup check (more stringent condition)</li>
+	<li>The hold check gets relaxed by half a cycle --> resulting in slack met with a large value.</li>
+</ul>
+
+**Multicycle Paths- 1/2:**
+<ul>
+	<li>In some cases, the combinational path between two flops may take longer than one cycle to propagate through the logic.</li>
+	<li>We direct the STA tool that the relevant capture edge occurs after some specified number of clocks.</li>
+</ul>
+
+**Asynchronous timing checks- Removal time:**
+<ul>
+	<li>Related to asynchronous control signals like asynchronous reset.</li>
+	<li>Ensures there is adequate time between an active edge of clock and release of the asynchronous signal.</li>
+	<li>This is done in order to ensure the clock edge has no effect and does not cause any change in the values.</li>
+	<li>It is a min path check like hold check.</li>
+</ul>
+
+**Asynchronous timing checks- Recovery time:**
+<ul>
+	<li>Ensures that there is minimum amount of time between asynchronous signal becoming inactive and arrival of next active edge of clock.</li>
+	<li>Ensure that once the asynchronous signal inactivates, the design has enough time to recover and respond back to the clocks</li>
+	<li>Defined in the cell library of the asynchronous pin of the flop as the 'library recovery time.'</li>
+	<li>Max path check like the setup check.</li>
+</ul>
 </details>
