@@ -2208,10 +2208,37 @@ false
 ```
 
 *Clock Waveform:*
-The clock definition command specifies a 50% duty cycle with a period of 10ns. By default, the rising edge occurs at 0ns and 10ns, while the falling edge occurs at 5ns. Typically, the waveform is described as:
+
 ```ruby
 create_clock -name <clock name> -period <clock period value> [clock definition point] -wave { first rising edge, next falling edge }
 ```
+The clock definition command specifies a 50% duty cycle with a period of 10ns. By default, the rising edge occurs at 0ns and 10ns, while the falling edge occurs at 5ns.
+
+```ruby
+create_clock -name MYCLK -per 10 [get_ports clk] -wave {0 5}
+```
+
+*Constraining IO paths:*
+A clearer and more concise version of your sentence could be: "The input and output ports are constrained with respect to the MY_CLK generated on the 'clk' port. These constraints specify a permissible range for the clock period, which is set using the '-min' and '-max' switches.
+
+Input ports:
+Input ports in a design are subject to constraints such as clock period, input transition, and input delay. The following commands are employed to define these constraints for the input ports
+
+```ruby
+set_input_delay -max 3 -clock[get_clocks MY_CLK] [get_ports IN_*]
+set_input_delay -min 0.5 -clock[get_clocks MY_CLK] [get_ports IN_*]
+set_input_transition -max 1.5 [get_ports IN_*]
+set_input_transition -min 0.75 [get_ports IN_*]
+```
+
+Output ports:
+
+
+```ruby
+set_output_delay -max 3 -clock[get_clocks MY_CLK] [get_ports OUT_Y]
+set_output_delay -min 0.5 -clock[get_clocks MY_CLK] [get_ports OUT_Y]
+set_output_load -max 80 [get_ports OUT_Y]
+set_output_load -min 20 [get_ports OUT_Y]
 ```
 
 </details>
