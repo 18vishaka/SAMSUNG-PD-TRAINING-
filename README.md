@@ -2150,19 +2150,36 @@ Model the clock for following:
 Collectively clock skew, jitter is called clock uncertainty.
 <img  width="1085" alt="clock_1" src=""><br><br>
 
-**IO Dealy:**
-Getting ports in DC:
+**IO Dealy:** <br><br>
+
+*Getting ports in DC:*
 
 ```ruby
-get_ports clk;   
+get_ports clk   
 
-get_ports *clk*;				#returns a collection of ports whose name contains clk in it
+get_ports *clk*					#returns a collection of ports whose name contains clk in it
 
-get_ports *;					#gives all the ports of the design
+get_ports *					#gives all the ports of the design
 
-get_ports * -filter "direction == in";		#lists all input ports
+get_ports * -filter "direction == in"		#lists all input ports
 
-get_ports * -filter "direction == out";		#lists all output ports
+get_ports * -filter "direction == out"		#lists all output ports
+```
+
+*Getting the clocks in DC:*
+
+```ruby
+get_clocks *					#will get all the clocks in the design
+
+get_clocks *clk*				#all clocks which has the name clk
+
+get_clocks * -filter "period > 10"
+
+get_attribute [get_clocks my_clk] period
+
+get_attribute [get_clocks my_clk] is_generated
+
+report_clocks my_clk				#reports all the details about clock
 ```
 
 </details>
