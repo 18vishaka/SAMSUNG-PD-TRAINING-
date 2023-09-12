@@ -2007,7 +2007,7 @@ area : 38.787200000;
 ## Advanced SDC Constraints
 
 <details>
-	<summary>Introduction</summary>
+	<summary>Introduction</summary><br><br>
 
  **Clock:** <br>
  Is a fundamental timing signal that provides synchronization and coordination for various components and operations within a digital system.
