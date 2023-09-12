@@ -2125,7 +2125,14 @@ All the above clcok sources have inherent variations in the clock period due to 
   	<img  width="1085" alt="clock_1" src=""><br><br>
 
 </ul>
-
+The command to create clock is create_clock:
+```ruby
+create_clock -name <clock_name> -per <PERIOD> [clock_definition point]
+```
+<ul>
+	<li>Clocks must be created on the clock generator (PLL, Oscillators) or primary IO pins (for external clocks), clocks should not be created on hierarchical pins which are not clock generators.</li>
+</ul>
+ 
 *Jitter:*
 Refers to the short-term variations or fluctuations in the timing of a signal's edges or transitions from their ideal or expected positions. Jitter can manifest as small, rapid deviations in the timing of a clock or data signal. It is typically characterized by its amplitude (magnitude of variation) and frequency (rate of variation).
 
@@ -2180,6 +2187,31 @@ get_attribute [get_clocks my_clk] period
 get_attribute [get_clocks my_clk] is_generated
 
 report_clocks my_clk				#reports all the details about clock
+```
+
+*command used to query the cells in the design:*
+
+Physical cells, also known as standard cells, are pre-designed building blocks that incorporate the essential logic gates and other components required for the implementation of diverse digital functions. These standard cells serve as the foundational elements used in the layout and construction of the digital logic within an integrated circuit.
+
+```ruby
+get_cells * -hier				#lists all the cells in the design both physical and hierarchical cells.
+```
+
+Hierarchical cells represent a methodology employed in VLSI (Very Large Scale Integration) design to effectively manage and organize the intricacies of large-scale circuits.
+<img  width="1085" alt="clock_1" src=""><br><br>
+
+```ruby
+dc_shell> get_attribute [get_cells u_combo_logic] is_hierarchical
+true
+dc_shell> get_attribute [get_cells u_combo_logic/U1] is_hierarchical
+false
+```
+
+*Clock Waveform:*
+The clock definition command specifies a 50% duty cycle with a period of 10ns. By default, the rising edge occurs at 0ns and 10ns, while the falling edge occurs at 5ns. Typically, the waveform is described as:
+```ruby
+create_clock -name <clock name> -period <clock period value> [clock definition point] -wave { first rising edge, next falling edge }
+```
 ```
 
 </details>
