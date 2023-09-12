@@ -2004,7 +2004,7 @@ area : 38.787200000;
 </details>
 
 
-## Advanced SDC Constraints
+## Day-8-Advanced SDC Constraints
 
 <details>
 	<summary>Introduction</summary><br><br>
@@ -2232,7 +2232,7 @@ set_input_transition -min 0.75 [get_ports IN_*]
 ```
 
 Output ports:
-
+The output ports are subject to constraints related to clock period, output delay, and output load. The following commands are employed to specify constraints for the output ports of a design:
 
 ```ruby
 set_output_delay -max 3 -clock[get_clocks MY_CLK] [get_ports OUT_Y]
@@ -2241,4 +2241,10 @@ set_output_load -max 80 [get_ports OUT_Y]
 set_output_load -min 20 [get_ports OUT_Y]
 ```
 
+</details>
+
+<details>
+	<summary>Labs</summary>
+
+ 
 </details>
