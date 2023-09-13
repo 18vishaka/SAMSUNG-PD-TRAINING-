@@ -2248,7 +2248,7 @@ set_output_load -min 20 [get_ports OUT_Y]
  
 **Load design, get_cells, get_ports, get_nets:**
 The verilog file and design used for this lab is as follows:
-<img  width="1085" alt="lab8_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_1.png">
+<img  width="1085" alt="lab8_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/a6f401f64cc2bea2717cdc99eca0946ff888bf24/day8_1/lab8_1.png">
 <img  width="1085" alt="" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/"><br><br>
 
 get_ports:
