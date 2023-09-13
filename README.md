@@ -2121,9 +2121,9 @@ All the above clcok sources have inherent variations in the clock period due to 
 *Clock Distribution:*
 <ul>
 	<li>In ideal clock network all flops see the edge at same time.</li>
-	<img  width="1085" alt="clock_1" src=""><br><br>
+	<img  width="1085" alt="PHOTO-2023-09-13-12-07-50.jpg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/PHOTO-2023-09-13-12-07-50.jpg"><br><br>
  	<li>In a practical clock network after CTS, all flops may not see the clock edge at same instance this is called Clock skew.</li>
-  	<img  width="1085" alt="clock_1" src=""><br><br>
+  	<img  width="1085" alt="PHOTO-2023-09-13-12-07-51.jpg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/PHOTO-2023-09-13-12-07-51.jpg"><br><br>
 
 </ul>
 
@@ -2147,9 +2147,9 @@ Refers to the variation in the arrival times of a clock signal at different elem
 
 *Effect of Clock skew:* <br>
 
-<img  width="1085" alt="clock_1" src="">
-<img  width="1085" alt="clock_1" src="">
-<img  width="1085" alt="clock_1" src=""><br><br>
+<img  width="1085" alt="PHOTO-2023-09-13-12-07-52.jpg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/PHOTO-2023-09-13-12-07-52.jpg">
+<img  width="1085" alt="PHOTO-2023-09-13-12-07-52%202.jpg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/PHOTO-2023-09-13-12-07-52%202.jpg">
+<img  width="1085" alt="PHOTO-2023-09-13-12-07-53.jpg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/PHOTO-2023-09-13-12-07-53.jpg"><br><br>
 
 *Clock Modelling:* <br>
 
@@ -2165,7 +2165,7 @@ Model the clock for following:
 
 Collectively clock skew, jitter is called clock uncertainty.
 
-<img  width="1085" alt="clock_1" src=""><br><br>
+<img  width="1085" alt="PHOTO-2023-09-13-12-07-54.jpg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/PHOTO-2023-09-13-12-07-54.jpg"><br><br>
 
 **IO Dealy:** <br><br>
 
@@ -2208,7 +2208,7 @@ get_cells * -hier				#lists all the cells in the design both physical and hierar
 ```
 
 Hierarchical cells represent a methodology employed in VLSI (Very Large Scale Integration) design to effectively manage and organize the intricacies of large-scale circuits.
-<img  width="1085" alt="clock_1" src=""><br><br>
+<img  width="1085" alt="PHOTO-2023-09-13-12-07-55.jpg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/PHOTO-2023-09-13-12-07-55.jpg"><br><br>
 
 ```ruby
 dc_shell> get_attribute [get_cells u_combo_logic] is_hierarchical
