@@ -2404,7 +2404,7 @@ The timing report after defining the minimum load capacitance (hold report):
 A script that 
 Note:
 What should be the load, input transition, output transition that depends upon what is the design we are trying to constraint and how it should be modeled.
-</details>
+
 
 **Generated clock:**
 The necessity for the clock of the external world and the input module to match physically is hindered by the lengthy routing paths, which incorporate buffers and result in increased clock network delays. To address this challenge, we opt to define the generated clock at a separate location, ensuring both logical and physical alignment of the clocks. However, opting to create a new master clock in lieu of generated clocks introduces the following disadvantages:
@@ -2485,4 +2485,4 @@ Now, let's examine the same design with an additional 'in2out' path included (la
 <img  width="1085" alt="lab8_59" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_59.png"><br><br>
 
 
-
+</details>
