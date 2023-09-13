@@ -2322,6 +2322,23 @@ To see all the clocks in the design the command used:
 report_clocks *
 ```
 
+To see the clocks:
+script-
+<img  width="1085" alt="lab8_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_29.png">
+<img  width="1085" alt="lab8_30" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_30.png"><br><br>
+
+Note:
+Clock should be created only on the clock port, external port meaant to receive clock or clock generators and not on some pin:
+<img  width="1085" alt="lab8_32" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_32.png">
+In case there is a wrong clock created then the command used to remove it:
+```ruby
+remove_clock <clock name>
+```
+<img  width="1085" alt="lab8_33" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_33.png"><br><br>
+
+
+
+
 
 
 
