@@ -2037,7 +2037,8 @@ area : 38.787200000;
 
 12. **Clock-to-Q Delay**: The time it takes for a flip-flop or latch to capture data after a clock edge. It's a critical parameter in ensuring proper circuit operation.
 
-**Clock Latency:**
+**Clock Latency:** <br>
+
 Clock latency in digital circuits refers to the delay or time it takes for a clock signal to propagate from its source to various components or registers within the circuit. Understanding and managing clock latency is crucial for ensuring that a digital design meets its timing requirements and functions correctly.
 
 Two types of Clock latency:
@@ -2106,7 +2107,7 @@ Total latency= Source Latency + Network Latency
 	<li>All Reg 2 Reg paths are constrained by Clocks.</li>
 	<li>All In 2 Reg paths are constrained by Clock, Input delay and Input transition.</li>
 	<li>All Reg 2 Out paths are constrained by Clock, Output delay, Load.</li>
-</ul>
+</ul><br><br>
 
 *Clock Generation:*
 <ul>
@@ -2125,26 +2126,33 @@ All the above clcok sources have inherent variations in the clock period due to 
   	<img  width="1085" alt="clock_1" src=""><br><br>
 
 </ul>
+
 The command to create clock is create_clock:
+
 ```ruby
 create_clock -name <clock_name> -per <PERIOD> [clock_definition point]
 ```
+
 <ul>
 	<li>Clocks must be created on the clock generator (PLL, Oscillators) or primary IO pins (for external clocks), clocks should not be created on hierarchical pins which are not clock generators.</li>
 </ul>
  
-*Jitter:*
+*Jitter:* <br>
+
 Refers to the short-term variations or fluctuations in the timing of a signal's edges or transitions from their ideal or expected positions. Jitter can manifest as small, rapid deviations in the timing of a clock or data signal. It is typically characterized by its amplitude (magnitude of variation) and frequency (rate of variation).
 
-*Clock Skew:*
+*Clock Skew:* <br>
+
 Refers to the variation in the arrival times of a clock signal at different elements or points within a digital circuit or system. It is a timing irregularity that occurs when the clock signal, which is supposed to arrive simultaneously at all parts of the circuit, arrives at different times due to differences in routing delays.
 
-*Effect of Clock skew:*
-<img  width="1085" alt="clock_1" src=""><br><br>
-<img  width="1085" alt="clock_1" src=""><br><br>
+*Effect of Clock skew:* <br>
+
+<img  width="1085" alt="clock_1" src="">
+<img  width="1085" alt="clock_1" src="">
 <img  width="1085" alt="clock_1" src=""><br><br>
 
-*Clock Modelling:*
+*Clock Modelling:* <br>
+
 Model the clock for following:
 <ul>
 	<li>Period</li>
@@ -2153,8 +2161,10 @@ Model the clock for following:
 	<li>Clock Skew (Clock path delay mismatches which causes difference in the arrival of clock.</li>
 </ul>
 
-*Clock Uncertainty:*
+*Clock Uncertainty:* <br>
+
 Collectively clock skew, jitter is called clock uncertainty.
+
 <img  width="1085" alt="clock_1" src=""><br><br>
 
 **IO Dealy:** <br><br>
@@ -2189,7 +2199,7 @@ get_attribute [get_clocks my_clk] is_generated
 report_clocks my_clk				#reports all the details about clock
 ```
 
-*command used to query the cells in the design:*
+*Command used to query the cells in the design:*
 
 Physical cells, also known as standard cells, are pre-designed building blocks that incorporate the essential logic gates and other components required for the implementation of diverse digital functions. These standard cells serve as the foundational elements used in the layout and construction of the digital logic within an integrated circuit.
 
@@ -2218,10 +2228,12 @@ The clock definition command specifies a 50% duty cycle with a period of 10ns. B
 create_clock -name MYCLK -per 10 [get_ports clk] -wave {0 5}
 ```
 
-*Constraining IO paths:*
+*Constraining IO paths:* <br>
+
 A clearer and more concise version of your sentence could be: "The input and output ports are constrained with respect to the MY_CLK generated on the 'clk' port. These constraints specify a permissible range for the clock period, which is set using the '-min' and '-max' switches.
 
-Input ports:
+Input ports: <br>
+
 Input ports in a design are subject to constraints such as clock period, input transition, and input delay. The following commands are employed to define these constraints for the input ports
 
 ```ruby
@@ -2231,7 +2243,8 @@ set_input_transition -max 1.5 [get_ports IN_*]
 set_input_transition -min 0.75 [get_ports IN_*]
 ```
 
-Output ports:
+Output ports: <br>
+
 The output ports are subject to constraints related to clock period, output delay, and output load. The following commands are employed to specify constraints for the output ports of a design:
 
 ```ruby
