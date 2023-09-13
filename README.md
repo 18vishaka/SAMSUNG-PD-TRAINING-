@@ -2246,7 +2246,7 @@ set_output_load -min 20 [get_ports OUT_Y]
 <details>
 	<summary>Labs</summary>
  
-**Load design, get_cells, get_ports, get_nets:**
+**Load design, get_cells, get_ports, get_nets, get_pins, get_clocks, querying clocks:**
 The verilog file and design used for this lab is as follows:
 <img  width="1085" alt="lab8_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/a6f401f64cc2bea2717cdc99eca0946ff888bf24/day8_1/lab8_1.png">
 <img  width="1085" alt="" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/"><br><br>
@@ -2337,19 +2337,152 @@ remove_clock <clock name>
 <img  width="1085" alt="lab8_33" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_33.png"><br><br>
 
 
-*Clock waveforms:*
-To create
+**Clock waveforms:**
+To create a clock by name 'MYCLK' with clock period of 10ns with first rise edge at 5ns and the next fall edge at 10ns-
 <img  width="1085" alt="lab8_34" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_34.png"><br><br>
 
+To create a clock by name 'MYCLK' with clock period of 10ns with first rise edge at 15ns and the next fall edge at 20ns-
+<img  width="1085" alt="lab8_36" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_36.png"><br><br>
 
+To create 25% duty cycle clock:
+<img  width="1085" alt="lab8_35" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_35.png"><br><br>
 
+**Clock network modelling- Uncertainty, report_timing:**
+Few terminologies:
+<ul>
+	<li>Clock skew: Comes because of clock network, due to delay imbalance between flops.</li>
+	<li>Clock jitter: Random variation in the clock edge (coming from source.)</li>
+	<li>CTS: Clock Tree Synthesis, tool used for CTS will minimize the imbalance but it cannot make it zero.</li>
+	<li>Clock Uncertainty: During pre CTS phase uncertainty includes skew and jitter. During post CTS phase uncertainty includes jitter alone as clock network is actually built.</li>
+	<li>Source latency: refers to the delay or time it takes for a signal to propagate from the source of that signal, such as a digital input, to its destination within the circuit. This delay can occur due to various factors, including the time it takes for the signal to travel through wires, pass through logic gates, or encounter other components like buffers and flip-flops.</li>
+	<li>Network latency: refers to the delay or time it takes for data to travel from one point in a network to another.</li>
+</ul>
 
+Clock network modelling:
+Step-1: Modelling source latency
+step-2: Modelling network latency
+Step-3: Modelling clock uncertainty for max delay (for setup)
+Step-4: Modelling clock uncertainty for min delay (for hold)
+Step-5: Report timing
+Lets compare the two reports:
+<img  width="1085" alt="lab8_38" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_38.png"><br><br>
+<img  width="1085" alt="lab8_37" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_37.png"><br><br>
+Observations-
+<ul>
+	<li>Slack has reduced.</li>
+</ul>
 
+<img  width="1085" alt="lab8_39" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_39.png"><br><br>
+Reg2Reg path that ends at REGC_reg, since here clock is not defined we see the message 'Path is unconstrained.'
 
+<img  width="1085" alt="lab8_40" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_40.png"><br><br>
+When clock is defined now, we see the timing path shows timing being met with a positive slack of 9.55s.
 
+The following command gives information about all the constraints of ports:
+```ruby
+report_port -verbose
+```
+<img  width="1085" alt="lab8_42" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_42.png"><br><br>
+Example of one instance where input delay is being constrained to 5ns:
+<img  width="1085" alt="lab8_43" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_43.png"><br><br>
+<img  width="1085" alt="lab8_44" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_44.png"><br><br>
 
+Timing report after defining input transition:
+<img  width="1085" alt="lab8_45" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_45.png"><br><br>
+<img  width="1085" alt="lab8_46" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_46.png"><br><br>
 
+The timing report after defining output  delay and output constraints:
+<img  width="1085" alt="lab8_47" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_47.png"><br><br>
 
+The timing report after defining the load/capacitance:
+<img  width="1085" alt="lab8_48" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_48.png">
+<img  width="1085" alt="lab8_49" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_49.png"><br><br>
 
- 
+The timing report after defining the minimum load capacitance (hold report):
+<img  width="1085" alt="lab8_50" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_50.png"><br><br>
+
+A script that 
+Note:
+What should be the load, input transition, output transition that depends upon what is the design we are trying to constraint and how it should be modeled.
 </details>
+
+**Generated clock:**
+The necessity for the clock of the external world and the input module to match physically is hindered by the lengthy routing paths, which incorporate buffers and result in increased clock network delays. To address this challenge, we opt to define the generated clock at a separate location, ensuring both logical and physical alignment of the clocks. However, opting to create a new master clock in lieu of generated clocks introduces the following disadvantages:
+
+1. Managing additional clock domains becomes essential.
+2. The need for specifying supplementary constraints arises.
+3. Source latency specifications must be redefined for the new master clocks.
+
+Generated clocks are consistently defined with respect to the master clock, which functions as the primary clock source or is linked to the primary I/O pins. The relevant command for this procedure is as follows:
+```ruby
+create_generated_clock -name MYGEN_CLK -master [get_clocks MY_CLK] -source [get_ports clk] -div 1 [get_ports out_clk]
+```
+The command demonstrates that the generated clock, MYGEN_CLK, is derived from the master clock, MY_CLK, defined at the clk port with a divide factor of 1. MYGEN_CLK is defined at the output port, out_clk. Implementation tools automatically propagate the clock downstream using timing arcs from the definition point as the default behavior.
+
+Verilog file used for this experiment:
+<img  width="1085" alt="lab8_53" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_53.png"><br><br>
+
+A script with all the constraints:
+<img  width="1085" alt="lab8_54" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_54.png"><br><br>
+After sourcing the script and the report generated:
+<img  width="1085" alt="lab8_55" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_55.png"><br><br>
+<img  width="1085" alt="lab8_56" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_56.png"><br><br>
+<img  width="1085" alt="lab8_57" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_57.png"><br><br>
+<img  width="1085" alt="lab8_58" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_58.png"><br><br>
+
+
+**vclk, max_latency, rise_fall IO Delays:**
+*set_input_delay:*
+The command specifies that data arrives at the input port IN_A 3ns after the arrival of a clock edge. This means that 3ns of the total period (10ns) are reserved for input delay. Consequently, the available time for combinational delay is reduced when considering the setup constraint.
+```ruby
+create_clock -name myclk -per 10 [get_ports clk]
+set_input_delay -max 3 - clock myclk [get_ports IN_A]
+set_input_delay -min 1 - clock myclk [get_ports IN_A]
+```
+When the defined input delay is negative, it results in additional time for the combinational process. This scenario can be elucidated as follows: during routing, the clock experiences a delay, while the data arrives on schedule. Typically, a positive delay implies that data arrives after the clock edge, whereas a negative delay implies data arrives before the clock edge. In essence, a negative delay signifies that the clock is relatively delayed in relation to the data.
+In the context of hold constraints, when the input delay is positive, it means the data arrives after 1ns of the clock period, aiding in meeting the hold time requirement since the data aligns within the hold window. However, when the input delay is negative, the data arrives before the hold window, resulting in a failure. To rectify this situation, adjustments must be made to delay the data arrival appropriately.
+In scenarios where an input port connects to multiple external registers, leading to multiple timing paths towards a single endpoint with different starting points, the input delay can be constrained more than once using the '-add' switch. If one of these paths involves negative edge triggering while the capture is positive edge-triggered, you can specify this using the '-clock_fall' switch. This concept can be illustrated as follows:
+```ruby
+set_input_delay -max 2 -clock MY_CLK [get_ports IN_A]
+set_input_delay -max 3 -clock MY_CLK -clock_fall -add [get_ports IN_A]
+```
+Positive delay narrows the path for the maximum constraint and widens it for the minimum constraint, while negative delay widens the path for the maximum constraint and narrows it for the minimum constraint
+
+*set_output_delay:*
+The command specifies a 3ns delay for data to reach the external flop. As a result, 3ns of the total period (10ns) are allocated for output delay. This allocation reduces the available time for combinational delay.
+```ruby
+create_clock -name myclk -per 10 [get_ports clk]
+set_output_delay -max 3 - clock myclk [get_ports OUT_Y]
+set_output_delay -min 1 - clock myclk [get_ports OUT_Y]
+```
+Similarly, positive delay narrows the path for the maximum constraint and widens it for the minimum constraint, while negative delay widens the path for the maximum constraint and narrows it for the minimum constraint. Hold constraints remain independent of the clock period as launch and capture flops are evaluated simultaneously. Furthermore, the 'add' switch and 'clock' switch are also the same for output delay, as demonstrated below
+```ruby
+set_output_delay -max 2 -clock MY_CLK [get_ports OUT_Y]
+set_output_delay -max 3 -clock MY_CLK -clock_fall -add [get_ports OUT_Y]
+```
+The 'clock_fall' switch is used to indicate that the annotated delay is in reference to the negative edge of the clock. Conversely, the 'add' switch is employed to append the constraint to existing constraints without overwriting them.
+
+**constraining IO path:**
+To constrain pure combinational logic without any flops, you can utilize the 'set_max_latency' command or define a virtual clock. The command is defined as follows:
+```ruby
+set_max_latency 1.0 -from [get_ports IN_C] -to [get_ports OUT_Z]
+```
+This implies that data transfer from port IN_C to OUT_Z must occur within a 1ns timeframe. A virtual clock, unlike a physical clock, lacks latency and does not have a specific definition point. It serves as an abstract time reference for budgeting purposes and can be defined as follows:
+```ruby
+create_clock -name my_vclk -period 5
+set_input_delay -max 1.5 -clock my_vclk [get_ports IN_C]
+set_output_delay -max 2.5 -clock my_vclk [get_ports OUT_Z]
+```
+*set_driving_cell:*
+The 'set_driving_cell' command is employed for module-level IOs, where the same technology can be utilized. On the other hand, the 'set_input_transition' command is suitable for top-level primary IOs, where two different chips may be connected, and the transition is specified by the interface. These two commands can be used interchangeably, but 'set_driving_cell' is more accurate and recommended for all internal timing paths.
+
+The driving cell is defined to model input transitions based on the load and fanout of the input port or pin. The 'set_driving_cell' command is illustrated as follows: 'set_driving_cell -lib_cell <lib_cell_name> [ports]
+```ruby
+set_driving_cell -lib_cell sky130_fd_sc_hd _buf_1 [all inputs]
+```
+
+Now, let's examine the same design with an additional 'in2out' path included (lab14_circuit.v). Here's the corresponding behavioral code:
+<img  width="1085" alt="lab8_59" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_59.png"><br><br>
+
+
+
