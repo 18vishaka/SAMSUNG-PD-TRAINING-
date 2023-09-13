@@ -2484,5 +2484,33 @@ set_driving_cell -lib_cell sky130_fd_sc_hd _buf_1 [all inputs]
 Now, let's examine the same design with an additional 'in2out' path included (lab14_circuit.v). Here's the corresponding behavioral code:
 <img  width="1085" alt="lab8_59" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_59.png"><br><br>
 
+The following indicates that there are now 4 flip-flops after modifying the design. Consequently, all constraints are derived from the lab8_cons.tcl file. When reporting clocks, all clocks in the design are inferred as follows:
+<img  width="1085" alt="lab8_60" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_60.png"><br><br>
+<img  width="1085" alt="lab8_61" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_61.png"><br><br>
+
+<img  width="1085" alt="lab8_62" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_62.png">
+<img  width="1085" alt="lab8_63" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_63.png">
+Here:
+<ul>
+	<li>all_inputs : returns all the inputs in design.</li>
+	<li>all_outputs : returns all the outputs in design.</li>
+	<li>all_clocks : returns all clock in design.</li>
+	<li>all_fanout : returns all pins connected as load to given port/pin.</li>
+	<li>all registers -clock <clock_name> : returns the registers clocked with the given clock.</li>
+	<li>all_fanin : returns all the driving cells to a port/pin.</li>
+	<li>all_fanin -flat -startpoints_only : returns only startpoints of a timing path connected as driver.</li>
+	<li>all_fanout -flat -endpoints only : returns only endpoints of a timing path connected as load.</li>
+</ul>
+
+Here when max delay is constrained it violates the path, when compiled again the path is met as tool optimises the logic choosing appropriate cells:
+<img  width="1085" alt="lab8_64" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_64.png"><br><br>
+
+Schematic view of the design after writing out the ddc file:
+<img  width="1085" alt="lab8_65" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_65.png">
+<img  width="1085" alt="lab8_66" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_66.png">
+
+Clock report:
+<img  width="1085" alt="lab8_67" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_67.png">
+
 
 </details>
