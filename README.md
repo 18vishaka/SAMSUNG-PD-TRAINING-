@@ -2257,71 +2257,85 @@ set_output_load -min 20 [get_ports OUT_Y]
 </details>
 
 <details>
-	<summary>Labs</summary>
+	<summary>Labs</summary> <br>
  
-**Load design, get_cells, get_ports, get_nets, get_pins, get_clocks, querying clocks:**
+**Load design, get_cells, get_ports, get_nets, get_pins, get_clocks, querying clocks:** <br>
+
 The verilog file and design used for this lab is as follows:
 <img  width="1085" alt="lab8_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/a6f401f64cc2bea2717cdc99eca0946ff888bf24/day8_1/lab8_1.png">
 <img  width="1085" alt="" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/"><br><br>
 
-get_ports:
+get_ports: <br>
+
 <img  width="1085" alt="lab8_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_2.png">
 
-To print them one by one:
+To print them one by one: <br>
+
 <img  width="1085" alt="lab8_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_3.png"><br><br>
 
-To print direction of the ports:
+To print direction of the ports: <br>
+
 <img  width="1085" alt="lab8_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_4.png"><br><br>
 
-get_cells:
+get_cells: <br>
+
 <img  width="1085" alt="lab8_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_5.png"><br><br>
 
-To know if the cell is hierarchical or not:
+To know if the cell is hierarchical or not: <br>
+
 <img  width="1085" alt="lab8_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_6.png"><br>
 <img  width="1085" alt="lab8_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_7.png"><br><br>
 
-To get the reference name of all the cells in the design:
+To get the reference name of all the cells in the design: <br>
+
 <img  width="1085" alt="lab8_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_9.png"><br><br>
 
-To see what the DC has done in gui form using design vision:
+To see what the DC has done in gui form using design vision: <br>
+
 <img  width="1085" alt="lab8_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_10.png">
 <img  width="1085" alt="lab8_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_11.png">
 <img  width="1085" alt="lab8_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_12.png"><br><br>
 
-To print all the nets in the design:
+To print all the nets in the design: <br>
+
 <img  width="1085" alt="lab8_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_13.png"><br><br>
 
-To know what a particular net is connecting:
+To know what a particular net is connecting: <br>
+
 <img  width="1085" alt="lab8_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_14.png">
 <img  width="1085" alt="lab8_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_15.png"><br><br>
 
-To know who is getting driven and who is the driver on a particular net:
+To know who is getting driven and who is the driver on a particular net: <br>
+
 <img  width="1085" alt="lab8_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_16.png"><br><br>
 
-get_pins:
-Prints all the pins in the design
+get_pins: <br>
+Prints all the pins in the design <br>
 <img  width="1085" alt="lab8_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_17.png"><br><br>
 
-To know the clock pins in our design:
+To know the clock pins in our design: <br>
+
 <img  width="1085" alt="lab8_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_18.png">
 Here we see there is some error with respect to Q pin, so lets debug this-
 <img  width="1085" alt="lab8_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_19.png">
 From here we understand that the attribute 'clock' must be queried only on input pins. So let us first check if the pin is input pin or output pin; by listing all the attributes for cells and particularly checking for the 'clock' attribute-
 <img  width="1085" alt="lab8_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_20.png"><br><br>
 The script:
-<img  width="1085" alt="lab8_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_21.png"><br><br>
+<img  width="1085" alt="lab8_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_21.png">
 <img  width="1085" alt="lab8_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_22.png"><br><br>
 
 The difference between the attribute 'clocks' and 'clock':
 <img  width="1085" alt="lab8_23" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_23.png">
 
-The attribute 'clock' tells us if the pin is meant to be a clock pin or not. While the attribute 'clocks' tells what are the clocks reaching the pin.
+The attribute 'clock' tells us if the pin is meant to be a clock pin or not. While the attribute 'clocks' tells what are the clocks reaching the pin. <br><br>
 
-get_clocks:
-<img  width="1085" alt="lab8_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_24.png"><br><br>
+get_clocks: <br>
+
+<img  width="1085" alt="lab8_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_24.png">
 No clock is seen because we have not created a clock usinh the 'create_clock' command, 'get_clock' is meant to get the clocks of the design.
 
-Lets create clock:
+Lets create clock: <br> 
+
 To know which design we are currently working on-
 <img  width="1085" alt="lab8_25" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_25.png">
 <img  width="1085" alt="lab8_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_26.png"><br><br>
@@ -2340,8 +2354,10 @@ script-
 <img  width="1085" alt="lab8_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_29.png">
 <img  width="1085" alt="lab8_30" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_30.png"><br><br>
 
-Note:
-Clock should be created only on the clock port, external port meaant to receive clock or clock generators and not on some pin:
+Note: <br>
+
+Clock should be created only on the clock port, external port meaant to receive clock or clock generators and not on some pin: <br>
+
 <img  width="1085" alt="lab8_32" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_32.png">
 In case there is a wrong clock created then the command used to remove it:
 ```ruby
@@ -2350,7 +2366,8 @@ remove_clock <clock name>
 <img  width="1085" alt="lab8_33" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_33.png"><br><br>
 
 
-**Clock waveforms:**
+**Clock waveforms:** <br>
+
 To create a clock by name 'MYCLK' with clock period of 10ns with first rise edge at 5ns and the next fall edge at 10ns-
 <img  width="1085" alt="lab8_34" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_34.png"><br><br>
 
