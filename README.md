@@ -2337,6 +2337,10 @@ remove_clock <clock name>
 <img  width="1085" alt="lab8_33" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_33.png"><br><br>
 
 
+*Clock waveforms:*
+To create
+<img  width="1085" alt="lab8_34" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_34.png"><br><br>
+
 
 
 
