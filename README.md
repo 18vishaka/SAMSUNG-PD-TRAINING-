@@ -2552,5 +2552,30 @@ Clock report:
 <details>
 	<summary>Introduction</summary>
 
- 
+ **Optimisation:**
+Optimization in digital circuits involves improving various aspects of a digital design to meet specific goals, such as minimizing power consumption, maximizing performance, reducing area (size), or enhancing reliability.
+
+**Combinational logic optimisation:**
+Combinational logic optimization is the process of improving the performance, area efficiency, and other characteristics of combinational logic circuits. Combinational logic circuits consist of logic gates that perform specific Boolean functions without any feedback loops or memory elements. These circuits are used to perform various tasks such as data processing, arithmetic operations, and data routing.
+
+<ul>
+	<li>Constant Propagation:
+
+In constant propagation, simplifications are made by fixing one input as a constant value, which allows for the simplification of the remaining circuit. For instance, as previously mentioned, the expression (AB+C)' can be reduced to C', resulting in optimized area and power efficiency.
+</li>
+	<Li>Boolean Logic Optimization:
+
+<ul
+	<li>>K-Map (Karnaugh Map):
+	Utilizing K-Maps, Boolean logic expressions can be visually simplified, leading to more efficient logic designs. K-Maps help identify patterns and groupings of terms for simplification.</li>
+
+<li>Quine-McCluskey Algorithm:
+The Quine-McCluskey algorithm is a systematic method for minimizing Boolean functions. It efficiently finds prime implicants and essential prime implicants to optimize logic expressions.</li>
+
+<li>Nested Ternary Operator Optimization:
+
+Consider a circuit containing nested ternary (conditional) operators that include multiple multiplexers. Through optimization, this complex circuit can often be simplified to a more compact form, such as an exclusive-NOR (exnor) gate. This simplification process enhances both the area efficiency and the overall performance of the circuit.
+<li></ul>
+</Li>
+</ul>
 </details>
