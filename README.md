@@ -2685,7 +2685,7 @@ The following image presents the output of 'dff_const3.v.' This design has been 
 
 
 The output of 'dff_const4.v' is displayed in the following image. The design appears to be sub-optimized since the variable is set to false.
-<img  width="1085" alt="lab9_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_20.png">
+<img  width="1085" alt="lab9_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_19.png">
 
 
 When optimized with the variable set to true, the following output is achieved as shown:
