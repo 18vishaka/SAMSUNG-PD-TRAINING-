@@ -2694,98 +2694,98 @@ This command marks the specified path as a false path in STA analysis, indicatin
 
 **Combinational Optimisation:**
 The following image illustrates the behavioral code of various designs being synthesized as follows:
-<img  width="1085" alt="lab9_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_1.png">
+<img  width="1085" alt="lab9_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_1.png"><br><br>
 
 The following image illustrates the synthesis steps for synthesizing 'opt_check.v', which includes a multiplexer (ternary operator) in the design. After linking and compilation, the unconstrained path utilizes library cells as follows:
 <img  width="1085" alt="lab9_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_2.png">
 <img  width="1085" alt="lab9_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_3.png">
-<img  width="1085" alt="lab9_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_4.png">
+<img  width="1085" alt="lab9_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_4.png"><br><br>
 
 The following image depicts the synthesized design of 'opt_check'. Initially, the design includes a multiplexer, but after optimization, it has been reduced to an AND gate and an inverter.
 <img  width="1085" alt="lab9_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_5.png">
-<img  width="1085" alt="lab9_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_6.png">
+<img  width="1085" alt="lab9_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_6.png"><br><br>
 
 
 Likewise, in the following image, you can observe that the ternary operator in 'opt_check2.v' has been reduced to an OR gate after the synthesis process, as depicted:
-<img  width="1085" alt="lab9_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_7.png">
+<img  width="1085" alt="lab9_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_7.png"><br><br>
 
 
 Opt_check3.v has been optimized to a 3-input AND gate, as demonstrated below:
-<img  width="1085" alt="lab9_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_8.png">
+<img  width="1085" alt="lab9_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_8.png"><br><br>
 
 The nested ternary operator in 'opt_check4,' which originally contained three multiplexers, has been optimized and reduced to an EX-NOR gate, as shown below:
-<img  width="1085" alt="lab9_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_9.png">
+<img  width="1085" alt="lab9_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_9.png"><br><br>
 
 Let's examine the timing path of this circuit. When constrained with a maximum delay of 60ps, the initial timing report shows an unconstrained condition. However, if a slower gate is employed, the tool automatically selects a faster gate to rectify the timing violation, as illustrated below:
 <img  width="1085" alt="lab9_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_10.png">
-<img  width="1085" alt="lab9_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_11.png">
+<img  width="1085" alt="lab9_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_11.png"><br><br>
 
 
 **Sequential Optimization:**
 
 In the image below, you can see the behavioral code of the designs as follows:
 <img  width="1085" alt="lab9_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_12.png">
-<img  width="1085" alt="lab9_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_13.png">
+<img  width="1085" alt="lab9_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_13.png"><br><br>
 
 The following image illustrates the design, which includes a single flip-flop with an asynchronous reset. It also outlines the synthesis steps for 'dff_const1.v':
-<img  width="1085" alt="lab9_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_14.png">
+<img  width="1085" alt="lab9_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_14.png"><br><br>
 
 The synthesized design of 'dff_const1.v' is depicted in the following image. It demonstrates a flip-flop input connected to logic high via a tie cell, along with an asynchronous reset condition as defined in the code.
 <img  width="1085" alt="lab9_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_15.png">
 Tie Cell: <br>
 In CMOS designs, it's crucial to avoid surges at the gate terminal because the gate oxide is sensitive. Therefore, VDD (logic high) is not directly connected to the input pin. Tie cells are employed to drive values of 1'b1 or 1'b0.
 The image below displays the synthesized circuit of 'dff_const2.v.' This circuit has been fully optimized, with the 'compile_seqmap_propagate_constants' variable set to true.
-<img  width="1085" alt="lab9_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_16.png">
+<img  width="1085" alt="lab9_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_16.png"><br><br>
 
 If the boolean variable is set to false, the design appears as follows:
-<img  width="1085" alt="lab9_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_15.png">
+<img  width="1085" alt="lab9_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_15.png"><br><br>
 
 The following image presents the output of 'dff_const3.v.' This design has been retained, as it demonstrates a set-reset relationship between flip-flops.
-<img  width="1085" alt="lab9_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_19.png">
+<img  width="1085" alt="lab9_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_19.png"><br><br>
 
 
 The output of 'dff_const4.v' is displayed in the following image. The design appears to be sub-optimized since the variable is set to false.
-<img  width="1085" alt="lab9_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_19.png">
+<img  width="1085" alt="lab9_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_19.png"><br><br>
 
 
 When optimized with the variable set to true, the following output is achieved as shown:
-<img  width="1085" alt="lab9_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_18.png">
+<img  width="1085" alt="lab9_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_18.png"><br><br>
 
 The output of 'dff_const5.v' is presented in the following image. In this design, the two flip-flops have been retained due to their set and reset behavior.
-<img  width="1085" alt="lab9_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_19.png">
+<img  width="1085" alt="lab9_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_19.png"><br><br>
 
 The following code represents a 4-bit multiplier that multiplies two 4-bit numbers and utilizes three 8-bit registers to propagate data to the output.
-<img  width="1085" alt="lab9_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_20.png">
+<img  width="1085" alt="lab9_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_20.png"><br><br>
 
 The following image indicates the presence of three 8-bit registers, each equipped with asynchronous reset functionality.
-<img  width="1085" alt="lab9_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_21.png">
+<img  width="1085" alt="lab9_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_21.png"><br><br>
 
 The following images showcase the synthesized design with the graphical user interface (GUI) of the multiplier sub-module and the complete design.
 <img  width="1085" alt="lab9_23" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_23.png">
-<img  width="1085" alt="lab9_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_24.png">
+<img  width="1085" alt="lab9_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_24.png"><br><br>
 
 The following image illustrates the timing path where the worst delay violation occurs at the input port in the design.
 <img  width="1085" alt="lab9_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_26.png">
-<img  width="1085" alt="lab9_27" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_27.png">
+<img  width="1085" alt="lab9_27" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_27.png"><br><br>
 
 After using the command: 'compile_ultra -retime'
-<img  width="1085" alt="lab9_28" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_28.png">
+<img  width="1085" alt="lab9_28" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_28.png"><br><br>
 
 Now, the previously violated slack has been reduced, and the violation now occurs at the output delay.
-<img  width="1085" alt="lab9_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_29.png">
+<img  width="1085" alt="lab9_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_29.png"><br><br>
 
 
 The following image displays the behavioral code of 'boundary_check.v'.
-<img  width="1085" alt="lab9_30" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_30.png">
+<img  width="1085" alt="lab9_30" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_30.png"><br><br>
 
 In the provided code, 'im' represents the internal module, which is a 3-bit counter. When the counter reaches the value '111', it triggers 'cnt_roll,' enabling a 4-bit register. The following image illustrates the design, which includes a 3-bit counter and a 4-bit register, both equipped with asynchronous reset functionality.
-<img  width="1085" alt="lab9_31" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_31.png">
+<img  width="1085" alt="lab9_31" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_31.png"><br><br>
 
 The following image depicts the design, including the hierarchical module 'u_im.' In this design, Boundary Optimization has not been applied.
-<img  width="1085" alt="lab9_32" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_32.png">
+<img  width="1085" alt="lab9_32" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_32.png"><br><br>
 
 In the DC-Shell, Boundary Optimization is performed, which results in the absence of hierarchies. However, Design Vision retains the ability to display the hierarchical pins of the sub-module as shown above.
-<img  width="1085" alt="lab9_34" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_34.png">
+<img  width="1085" alt="lab9_34" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_34.png"><br><br>
 
 The Boundary optimized design is as follows:
 <img  width="1085" alt="lab9_35" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_35.png">
@@ -2793,38 +2793,38 @@ During functional Engineering Change Orders (ECOs), if bugs are identified, maki
 It's important to note that there's no fixed rule for setting `set_boundary_optimization` to either true or false. The decision depends entirely on the specific requirements and constraints of the design.
 
 The following image displays the behavioral code of 'mcp_check.v'.
-<img  width="1085" alt="lab9_36" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_36.png">
+<img  width="1085" alt="lab9_36" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_36.png"><br><br>
 
 The following image indicates that the design contains a 16-bit register for the multiplier output and a flip-flop for enable.
-<img  width="1085" alt="lab9_38" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_38.png">
+<img  width="1085" alt="lab9_38" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_38.png"><br><br>
 
 The following image shows the constraints defined in a tcl file for mcp_check:
-<img  width="1085" alt="lab9_37" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_37.png">
+<img  width="1085" alt="lab9_37" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_37.png"><br><br>
 
 
 The following image shows the initial violation before compilation and the violation after compilation:
 <img  width="1085" alt="lab9_39" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_39.png">
 <img  width="1085" alt="lab9_40" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_40.png">
-<img  width="1085" alt="lab9_41" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_41.png">
+<img  width="1085" alt="lab9_41" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_41.png"><br><br>
 
 Now, with the multi-cycle path set, the previously violated slack has been reduced, as shown below:
-<img  width="1085" alt="lab9_42" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_42.png">
+<img  width="1085" alt="lab9_42" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_42.png"><br><br>
 
 The command should infer the startpoint as well because single-cycle paths should not be affected or relaxed due to multi-cycle paths. In the following image, it is evident that all timing paths have met the setup requirements without violations.
 <img  width="1085" alt="lab9_43" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_43.png">
-<img  width="1085" alt="lab9_44" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_44.png">
+<img  width="1085" alt="lab9_44" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_44.png"><br><br>
 
 
 But the hold is violated as it is not constrained as follows:
-<img  width="1085" alt="lab9_45" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_45.png">
+<img  width="1085" alt="lab9_45" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_45.png"><br><br>
 
 After defining hold, the timing is met as follows:
-<img  width="1085" alt="lab9_46" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_46.png">
+<img  width="1085" alt="lab9_46" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_46.png"><br><br>
 
 
 Here the flop is overloaded with 0.4 fF, so by adding buffers to isolate output ports, all the timing violations are met as follows: 
 <img  width="1085" alt="lab9_47" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_47.png">
 <img  width="1085" alt="lab9_48" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_48.png">
-<img  width="1085" alt="lab9_49" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_49.png">
+<img  width="1085" alt="lab9_49" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_49.png"><br><br>
 
 </details>
