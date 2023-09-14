@@ -20,6 +20,8 @@ Quick links:
 
 - [Day-8-Advanced SDC Constraints](#Day-8--Advanced-SDC-Constraints)
 
+- [Day-9-Optimizations in Synthesis](#Day-9--Optimizations-in-Synthesis)
+
 ## Day-0-Installation
 
 	
@@ -2543,4 +2545,12 @@ Clock report:
 <img  width="1085" alt="lab8_67" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day8_1/lab8_67.png">
 
 
+</details>
+
+## Day-9-Optimizations in Synthesis
+
+<details>
+	<summary>Introduction</summary>
+
+ 
 </details>
