@@ -2624,6 +2624,66 @@ compile_delete_unloaded_sequential_cells: If this variable is set to true, it al
 compile_register_replication: When set to true, this variable enables register replication in cloning optimization, ensuring that timing constraints are met while maintaining the design's efficiency. <br>
 These variables provide control and flexibility in optimizing designs with unused outputs while allowing for potential future adjustments if needed.
 
+**"Register Retiming:**
+
+Also known as Pipelining, is a technique that involves breaking down long combinational paths by inserting registers. This concept can be illustrated through an example. Consider the following design with a significant combinational delay of 48ns, and the setup time of flops is 1ns each. This lengthy combinational path represents the critical path of the design, limiting the circuit's operating frequency to 20MHz.
+To overcome this limitation, more flip-flops can be introduced into the design. These additional flip-flops create new 'reg2reg' paths, which have ample positive slack, up to 48ns. The combinational logic can then be divided and shared among these flip-flops. This pipelining technique effectively improves the performance of the design.
+The tool does not necessarily distribute the logic equally; it optimizes the design to a certain extent. In the shared configuration shown, the delay of the design on the critical path is reduced to 20ns, effectively improving the performance to 50 MHz. However, when the design is heavily optimized, it may become challenging to define intermediate values, making it difficult to calculate the exact impact of the optimization. Consequently, any bugs that arise in subsequent design stages can make debugging more complex.
+Choosing not to use optimization may result in a sub-optimal design, while using it introduces complex behaviors at intermediate stages of the design process.
+
+**Boundary Optimization:**
+
+Boundary Optimization can be illustrated through an example. Suppose you have a top module that includes an internal submodule. By optimizing the combinational logic at the output port of the submodule and the external logic, you can reduce area or power consumption. This process involves dissolving the boundary of the submodule, merging the logic to obtain the optimal design, and then implementing the design. Essentially, this optimization is performed without considering the boundaries, resulting in a remodeled design.
+However, it's important to note that this optimization doesn't preserve the hierarchical structure of the design. As a result, the tool may remove intermediate signals in the netlist during optimization. This can make debugging complex, as some hierarchical modules and intermediate signals may be absent in the optimized design.
+
+Boundary optimizations can be controlled using the following switches:
+
+- `set_boundary_optimization true|false`: This switch enables or disables boundary optimization.
+- `set_boundary_optimization u_im false`: This switch controls boundary optimization for specific cases or scenarios."
+
+These switches provide control over whether boundary optimization is applied and under what conditions.
+
+
+**Multi-cycle paths (MCPs):**
+Are a concept in digital VLSI (Very Large Scale Integration) design that allows specific paths within a digital circuit to have different clock cycles or timing constraints than the primary clock signal. MCPs are essential for accommodating various functional requirements and ensuring that different parts of a circuit can operate at their own, often slower, clock rates.
+
+**How Multi-Cycle Paths (MCPs) are Timed:**
+
+In the context of timing analysis, Multi-Cycle Paths (MCPs) are timed differently compared to single-cycle paths. Here's how the timing checks for MCPs are typically performed:
+
+1. Single-Cycle Paths:
+
+For single-cycle paths, setup and hold checks are done at the same consecutive clock edge of the flip-flop.
+The setup check ensures that data is stable before the next clock edge, and the hold check verifies that the data remains stable until the next clock edge.
+Hold check is always performed one clock edge before the setup check to ensure data stability.
+
+2. Half-Cycle Paths:
+
+In half-cycle paths, the setup check is performed at the subsequent falling edge of the flip-flop.
+The hold check is done at the previous falling edge of the flip-flop.
+Half-cycle paths have stringent setup requirements and relaxed hold requirements.
+
+3. Multi-Cycle Paths:
+
+Multi-cycle paths are more flexible and allow for setup and hold checks to be delayed by multiple clock cycles.
+The '-setup' switch specifies the number of cycles after the launch edge that need to be checked for setup.
+The '-hold' switch specifies the number of cycles the launch edge can move for hold checks with respect to capture.
+
+Example of Multi-Cycle Path Definitions:
+```ruby
+set_multicycle_path -setup 2 -to prod_reg[*]/D -through [all_inputs]
+set_multicycle_path -hold 1 -to prod_reg[*]/D -through [all_inputs]
+```
+
+**False Paths:**
+
+False paths are paths in a design that are considered invalid for Static Timing Analysis (STA). These paths are typically paths where the launch and capture flops have no temporal correlation between their clock edges. Not all paths between different clocks are necessarily asynchronous; clocks generated from the same master clock may have a known relationship, which would not classify them as false paths. Additionally, paths from constant selection lines of multiplexers to registers are not considered timing paths and are therefore designated as false paths.
+
+To specify a false path in a design, you can use the following command:
+```ruby
+set_false_path -through <>
+```
+This command marks the specified path as a false path in STA analysis, indicating that it should not be considered when performing timing checks. False paths are important to exclude from analysis to prevent unnecessary violations and to accurately represent the timing relationships in the design.
 
 
 
@@ -2692,6 +2752,79 @@ When optimized with the variable set to true, the following output is achieved a
 <img  width="1085" alt="lab9_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_18.png">
 
 The output of 'dff_const5.v' is presented in the following image. In this design, the two flip-flops have been retained due to their set and reset behavior.
-<img  width="1085" alt="lab9_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_18.png">
+<img  width="1085" alt="lab9_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_19.png">
+
+The following code represents a 4-bit multiplier that multiplies two 4-bit numbers and utilizes three 8-bit registers to propagate data to the output.
+<img  width="1085" alt="lab9_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_20.png">
+
+The following image indicates the presence of three 8-bit registers, each equipped with asynchronous reset functionality.
+<img  width="1085" alt="lab9_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_21.png">
+
+The following images showcase the synthesized design with the graphical user interface (GUI) of the multiplier sub-module and the complete design.
+<img  width="1085" alt="lab9_23" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_23.png">
+<img  width="1085" alt="lab9_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_24.png">
+
+The following image illustrates the timing path where the worst delay violation occurs at the input port in the design.
+<img  width="1085" alt="lab9_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_26.png">
+<img  width="1085" alt="lab9_27" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_27.png">
+
+After using the command: 'compile_ultra -retime'
+<img  width="1085" alt="lab9_28" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_28.png">
+
+Now, the previously violated slack has been reduced, and the violation now occurs at the output delay.
+<img  width="1085" alt="lab9_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_29.png">
+
+
+The following image displays the behavioral code of 'boundary_check.v'.
+<img  width="1085" alt="lab9_30" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_30.png">
+
+In the provided code, 'im' represents the internal module, which is a 3-bit counter. When the counter reaches the value '111', it triggers 'cnt_roll,' enabling a 4-bit register. The following image illustrates the design, which includes a 3-bit counter and a 4-bit register, both equipped with asynchronous reset functionality.
+<img  width="1085" alt="lab9_31" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_31.png">
+
+The following image depicts the design, including the hierarchical module 'u_im.' In this design, Boundary Optimization has not been applied.
+<img  width="1085" alt="lab9_32" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_32.png">
+
+In the DC-Shell, Boundary Optimization is performed, which results in the absence of hierarchies. However, Design Vision retains the ability to display the hierarchical pins of the sub-module as shown above.
+<img  width="1085" alt="lab9_34" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_34.png">
+
+The Boundary optimized design is as follows:
+<img  width="1085" alt="lab9_35" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_35.png">
+During functional Engineering Change Orders (ECOs), if bugs are identified, making direct changes in the netlist is possible when hierarchies are preserved. However, if hierarchies are not preserved, re-synthesizing the entire design may consume a significant amount of time.
+It's important to note that there's no fixed rule for setting `set_boundary_optimization` to either true or false. The decision depends entirely on the specific requirements and constraints of the design.
+
+The following image displays the behavioral code of 'mcp_check.v'.
+<img  width="1085" alt="lab9_36" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_36.png">
+
+The following image indicates that the design contains a 16-bit register for the multiplier output and a flip-flop for enable.
+<img  width="1085" alt="lab9_38" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_38.png">
+
+The following image shows the constraints defined in a tcl file for mcp_check:
+<img  width="1085" alt="lab9_37" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_37.png">
+
+
+The following image shows the initial violation before compilation and the violation after compilation:
+<img  width="1085" alt="lab9_39" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_39.png">
+<img  width="1085" alt="lab9_40" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_40.png">
+<img  width="1085" alt="lab9_41" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_41.png">
+
+Now, with the multi-cycle path set, the previously violated slack has been reduced, as shown below:
+<img  width="1085" alt="lab9_42" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_42.png">
+
+The command should infer the startpoint as well because single-cycle paths should not be affected or relaxed due to multi-cycle paths. In the following image, it is evident that all timing paths have met the setup requirements without violations.
+<img  width="1085" alt="lab9_43" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_43.png">
+<img  width="1085" alt="lab9_44" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_44.png">
+
+
+But the hold is violated as it is not constrained as follows:
+<img  width="1085" alt="lab9_45" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_45.png">
+
+After defining hold, the timing is met as follows:
+<img  width="1085" alt="lab9_46" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_46.png">
+
+
+Here the flop is overloaded with 0.4 fF, so by adding buffers to isolate output ports, all the timing violations are met as follows: 
+<img  width="1085" alt="lab9_47" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_47.png">
+<img  width="1085" alt="lab9_48" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_48.png">
+<img  width="1085" alt="lab9_49" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_49.png">
 
 </details>
