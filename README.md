@@ -2553,9 +2553,11 @@ Clock report:
 	<summary>Introduction</summary>
 
  **Optimisation:**
+ 
 Optimization in digital circuits involves improving various aspects of a digital design to meet specific goals, such as minimizing power consumption, maximizing performance, reducing area (size), or enhancing reliability.
 
 **Combinational logic optimisation:**
+
 Combinational logic optimization is the process of improving the performance, area efficiency, and other characteristics of combinational logic circuits. Combinational logic circuits consist of logic gates that perform specific Boolean functions without any feedback loops or memory elements. These circuits are used to perform various tasks such as data processing, arithmetic operations, and data routing.
 
 <ul>
@@ -2574,7 +2576,51 @@ The Quine-McCluskey algorithm is a systematic method for minimizing Boolean func
 
 <li>Nested Ternary Operator Optimization:
 Consider a circuit containing nested ternary (conditional) operators that include multiple multiplexers. Through optimization, this complex circuit can often be simplified to a more compact form, such as an exclusive-NOR (exnor) gate. This simplification process enhances both the area efficiency and the overall performance of the circuit.
-<li></ul>
-</Li>
+<li></ul></Li>
 </ul>
+
+**Resource Sharing:**
+
+Let's consider a ternary operator represented as y = sel ? ab : cd. This operator performs multiplication based on the value of 'sel,' but multiplication circuits tend to be large and resource-intensive.
+To optimize both area and power efficiency, we can implement this operation using two multiplexers as follows: y = (sel ? a : c) * (sel ? b : d). By doing this, we share the 'sel' input between both multiplexers, allowing us to obtain the same result with a significantly smaller area footprint. This resource sharing not only optimizes area utilization but also leads to power savings in the circuit.
+
+**Logic Sharing:**
+
+Efficient logic design involves sharing common logic elements when multiple gates can use the same intermediate results. For example, let's consider a design with two expressions: y = a & b & c and z = (a & b) | c. In the traditional approach, this would require one 3-input AND gate (which consumes more area and power), one 2-input AND gate, and one 2-input OR gate.
+However, both of these expressions share a common 2-input AND gate. By leveraging this shared logic element, we can optimize the design by using two 2-input AND gates and one OR gate. This approach results in a more area and power-efficient circuit compared to the previous configuration.
+
+**Balanced Implementation vs. Preferential Implementation:**
+
+In a balanced implementation, equal time is allocated to all timing arcs, ensuring that the delay from input to output pins is consistent across all paths. Conversely, preferential implementation prioritizes certain signals by giving them less delay time, while others receive more time based on their margin.
+Let's illustrate this with an example. Imagine a design that doesn't include any 5-input AND gates. This design can be implemented in two ways, as shown below:
+In the left image, there is an equal delay between signals a → y and e → y.
+In the right image, there's more delay for signal a → y and less delay for signal e → y.
+When e represents a signal with a very tight delay requirement, meaning it arrives late due to external factors (e.g., long routing delays), and it cannot tolerate a 2-gate delay, the preferential implementation shown on the right is preferred. This approach ensures that the critical signal e meets its timing requirements while still accommodating other signals within their respective timing constraints.
+<img  width="1085" alt="" src="">
+
+**Sequential Logic Optimizations::**
+
+Sequential logic optimizations encompass various techniques to improve the efficiency and performance of sequential logic circuits. These optimizations can be categorized as basic and advanced methods:
+
+<ul>
+	<li>Basic Sequential Optimizations:
+
+<ul>
+	<li>Sequential Constant Propagation: Involves simplifying sequential circuits by propagating constant values through flip-flops and logic elements.</li>
+	<li>Sequential Constant Propagation: Involves simplifying sequential circuits by propagating constant values through flip-flops and logic elements.</li>
+
+	<li>Retiming: Reorders the placement of flip-flops within a design to optimize critical paths and meet timing requirements.</li>
+
+	<li>Unused Flop Removal: Identifies and eliminates flip-flops that are no longer necessary for correct circuit operation, reducing area and power consumption.</li>
+
+<li>Clock Gating: Introduces clock gating logic to disable clock signals to specific flip-flops during idle or non-active periods, reducing power consumption.</li>
+</li> </ul>
+<li>>Advanced Sequential Optimizations:
+<ul>
+	<li>State Optimization: Analyzes and optimizes the state transition logic of finite state machines (FSMs) to reduce the number of states or transitions, leading to a more efficient design.</li>
+	<li>Sequential Logic Cloning: Involves replicating portions of sequential logic with specific conditions, often used for optimization when dealing with asynchronous set or reset signals.</li></li>
+</ul>
+</ul>
+
+For example, if a flip-flop has an asynchronous set input and its D pin is connected to Vss (ground), it can be optimized by connecting the D pin to Vss directly. Similarly, if a flip-flop has an asynchronous reset input and its D pin is connected to Vdd (supply voltage), it can be optimized by connecting the D pin to Vdd directly. However, if the flip-flop has an asynchronous set input with D connected to Vss or an asynchronous reset input with D connected to Vdd, it cannot be optimized and remains in the circuit.
 </details>
