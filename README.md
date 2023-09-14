@@ -2602,25 +2602,14 @@ When e represents a signal with a very tight delay requirement, meaning it arriv
 
 Sequential logic optimizations encompass various techniques to improve the efficiency and performance of sequential logic circuits. These optimizations can be categorized as basic and advanced methods:
 
-<ul>
-	<li>Basic Sequential Optimizations:
-
-<ul>
-	<li>Sequential Constant Propagation: Involves simplifying sequential circuits by propagating constant values through flip-flops and logic elements.</li>
-	<li>Sequential Constant Propagation: Involves simplifying sequential circuits by propagating constant values through flip-flops and logic elements.</li>
-
-	<li>Retiming: Reorders the placement of flip-flops within a design to optimize critical paths and meet timing requirements.</li>
-
-	<li>Unused Flop Removal: Identifies and eliminates flip-flops that are no longer necessary for correct circuit operation, reducing area and power consumption.</li>
-
-<li>Clock Gating: Introduces clock gating logic to disable clock signals to specific flip-flops during idle or non-active periods, reducing power consumption.</li>
-</li> </ul>
-<li>>Advanced Sequential Optimizations:
-<ul>
-	<li>State Optimization: Analyzes and optimizes the state transition logic of finite state machines (FSMs) to reduce the number of states or transitions, leading to a more efficient design.</li>
-	<li>Sequential Logic Cloning: Involves replicating portions of sequential logic with specific conditions, often used for optimization when dealing with asynchronous set or reset signals.</li></li>
-</ul>
-</ul>
-
+A. Basic Sequential Optimizations:
+	1. Sequential Constant Propagation: Involves simplifying sequential circuits by propagating constant values through flip-flops and logic elements.
+	2. Sequential Constant Propagation: Involves simplifying sequential circuits by propagating constant values through flip-flops and logic elements.
+	3. Retiming: Reorders the placement of flip-flops within a design to optimize critical paths and meet timing requirements.
+	4. Unused Flop Removal: Identifies and eliminates flip-flops that are no longer necessary for correct circuit operation, reducing area and power consumption.
+	5. Clock Gating: Introduces clock gating logic to disable clock signals to specific flip-flops during idle or non-active periods, reducing power consumption.
+B. Advanced Sequential Optimizations:
+	1. State Optimization: Analyzes and optimizes the state transition logic of finite state machines (FSMs) to reduce the number of states or transitions, leading to a more efficient design.
+	2. Sequential Logic Cloning: Involves replicating portions of sequential logic with specific conditions, often used for optimization when dealing with asynchronous set or reset signals.
 For example, if a flip-flop has an asynchronous set input and its D pin is connected to Vss (ground), it can be optimized by connecting the D pin to Vss directly. Similarly, if a flip-flop has an asynchronous reset input and its D pin is connected to Vdd (supply voltage), it can be optimized by connecting the D pin to Vdd directly. However, if the flip-flop has an asynchronous set input with D connected to Vss or an asynchronous reset input with D connected to Vdd, it cannot be optimized and remains in the circuit.
 </details>
