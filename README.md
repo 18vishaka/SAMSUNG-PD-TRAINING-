@@ -2596,7 +2596,7 @@ Let's illustrate this with an example. Imagine a design that doesn't include any
 In the left image, there is an equal delay between signals a → y and e → y.
 In the right image, there's more delay for signal a → y and less delay for signal e → y.
 When e represents a signal with a very tight delay requirement, meaning it arrives late due to external factors (e.g., long routing delays), and it cannot tolerate a 2-gate delay, the preferential implementation shown on the right is preferred. This approach ensures that the critical signal e meets its timing requirements while still accommodating other signals within their respective timing constraints.
-<img  width="1085" alt="" src="">
+<img  width="1085" alt="lab9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9.png">
 
 **Sequential Logic Optimizations::**
 
