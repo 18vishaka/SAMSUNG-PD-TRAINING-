@@ -2565,15 +2565,14 @@ In constant propagation, simplifications are made by fixing one input as a const
 </li>
 	<Li>Boolean Logic Optimization:
 
-<ul
-	<li>>K-Map (Karnaugh Map):
+<ul>
+	<li>K-Map (Karnaugh Map):
 	Utilizing K-Maps, Boolean logic expressions can be visually simplified, leading to more efficient logic designs. K-Maps help identify patterns and groupings of terms for simplification.</li>
 
 <li>Quine-McCluskey Algorithm:
 The Quine-McCluskey algorithm is a systematic method for minimizing Boolean functions. It efficiently finds prime implicants and essential prime implicants to optimize logic expressions.</li>
 
 <li>Nested Ternary Operator Optimization:
-
 Consider a circuit containing nested ternary (conditional) operators that include multiple multiplexers. Through optimization, this complex circuit can often be simplified to a more compact form, such as an exclusive-NOR (exnor) gate. This simplification process enhances both the area efficiency and the overall performance of the circuit.
 <li></ul>
 </Li>
