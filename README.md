@@ -2639,5 +2639,59 @@ The following image illustrates the behavioral code of various designs being syn
 The following image illustrates the synthesis steps for synthesizing 'opt_check.v', which includes a multiplexer (ternary operator) in the design. After linking and compilation, the unconstrained path utilizes library cells as follows:
 <img  width="1085" alt="lab9_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_2.png">
 <img  width="1085" alt="lab9_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_3.png">
+<img  width="1085" alt="lab9_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_4.png">
+
+The following image depicts the synthesized design of 'opt_check'. Initially, the design includes a multiplexer, but after optimization, it has been reduced to an AND gate and an inverter.
+<img  width="1085" alt="lab9_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_5.png">
+<img  width="1085" alt="lab9_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_6.png">
+
+
+Likewise, in the following image, you can observe that the ternary operator in 'opt_check2.v' has been reduced to an OR gate after the synthesis process, as depicted:
+<img  width="1085" alt="lab9_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_7.png">
+
+
+Opt_check3.v has been optimized to a 3-input AND gate, as demonstrated below:
+<img  width="1085" alt="lab9_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_8.png">
+
+The nested ternary operator in 'opt_check4,' which originally contained three multiplexers, has been optimized and reduced to an EX-NOR gate, as shown below:
+<img  width="1085" alt="lab9_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_9.png">
+
+Let's examine the timing path of this circuit. When constrained with a maximum delay of 60ps, the initial timing report shows an unconstrained condition. However, if a slower gate is employed, the tool automatically selects a faster gate to rectify the timing violation, as illustrated below:
+<img  width="1085" alt="lab9_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_10.png">
+<img  width="1085" alt="lab9_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_11.png">
+
+
+**Sequential Optimization:**
+
+In the image below, you can see the behavioral code of the designs as follows:
+<img  width="1085" alt="lab9_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_12.png">
+<img  width="1085" alt="lab9_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_13.png">
+
+The following image illustrates the design, which includes a single flip-flop with an asynchronous reset. It also outlines the synthesis steps for 'dff_const1.v':
+<img  width="1085" alt="lab9_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_14.png">
+
+The synthesized design of 'dff_const1.v' is depicted in the following image. It demonstrates a flip-flop input connected to logic high via a tie cell, along with an asynchronous reset condition as defined in the code.
+<img  width="1085" alt="lab9_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_15.png">
+Tie Cell: <br>
+In CMOS designs, it's crucial to avoid surges at the gate terminal because the gate oxide is sensitive. Therefore, VDD (logic high) is not directly connected to the input pin. Tie cells are employed to drive values of 1'b1 or 1'b0.
+The image below displays the synthesized circuit of 'dff_const2.v.' This circuit has been fully optimized, with the 'compile_seqmap_propagate_constants' variable set to true.
+<img  width="1085" alt="lab9_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_16.png">
+
+If the boolean variable is set to false, the design appears as follows:
+<img  width="1085" alt="lab9_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_17.png">
+
+The following image presents the output of 'dff_const3.v.' This design has been retained, as it demonstrates a set-reset relationship between flip-flops.
+<img  width="1085" alt="lab9_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_19.png">
+
+
+The output of 'dff_const4.v' is displayed in the following image. The design appears to be sub-optimized since the variable is set to false.
+<img  width="1085" alt="lab9_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_20.png">
+
+
+When optimized with the variable set to true, the following output is achieved as shown:
+<img  width="1085" alt="lab9_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_18.png">
+
+The output of 'dff_const5.v' is presented in the following image. In this design, the two flip-flops have been retained due to their set and reset behavior.
+<img  width="1085" alt="lab9_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_18.png">
 
 </details>
