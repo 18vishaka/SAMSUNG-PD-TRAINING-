@@ -2612,4 +2612,32 @@ B. Advanced Sequential Optimizations:<br>
 	<br>1. State Optimization: Analyzes and optimizes the state transition logic of finite state machines (FSMs) to reduce the number of states or transitions, leading to a more efficient design.<br>
 	<br>2. Sequential Logic Cloning: Involves replicating portions of sequential logic with specific conditions, often used for optimization when dealing with asynchronous set or reset signals.<br>
 For example, if a flip-flop has an asynchronous set input and its D pin is connected to Vss (ground), it can be optimized by connecting the D pin to Vss directly. Similarly, if a flip-flop has an asynchronous reset input and its D pin is connected to Vdd (supply voltage), it can be optimized by connecting the D pin to Vdd directly. However, if the flip-flop has an asynchronous set input with D connected to Vss or an asynchronous reset input with D connected to Vdd, it cannot be optimized and remains in the circuit.
+
+**Optimization of Unused Outputs:**
+
+Unused outputs in a design do not need to be generated, which can lead to more efficient implementations. For instance, consider a 4-bit up counter where only q is assigned to cnt[0], while the remaining outputs (cnt[1], cnt[2], cnt[3]) are unused. In this case, the design can be simplified to a single flip-flop that toggles when enabled. This optimization can be achieved using just one flip-flop and a multiplexer with an inverter, rather than employing four registers for counting.
+
+However, it's important to note that if there's a future need for cnt[1], the design tool can make suboptimal changes during the design process to ensure no violations occur. This can be controlled using specific boolean variables:
+
+compile_seqmap_propagate_constants: When this variable is set to true, the tool will propagate constants sequentially, optimizing circuits by removing unnecessary sequential constant-propagating circuits. <br>
+compile_delete_unloaded_sequential_cells: If this variable is set to true, it allows the tool to remove unused counter cells as discussed earlier, helping optimize the design by eliminating unnecessary components. <br>
+compile_register_replication: When set to true, this variable enables register replication in cloning optimization, ensuring that timing constraints are met while maintaining the design's efficiency. <br>
+These variables provide control and flexibility in optimizing designs with unused outputs while allowing for potential future adjustments if needed.
+
+
+
+
+</details>
+
+<details>
+	<summary>Labs</summary>
+
+**Combinational Optimisation:**
+The following image illustrates the behavioral code of various designs being synthesized as follows:
+<img  width="1085" alt="lab9_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_1.png">
+
+The following image illustrates the synthesis steps for synthesizing 'opt_check.v', which includes a multiplexer (ternary operator) in the design. After linking and compilation, the unconstrained path utilizes library cells as follows:
+<img  width="1085" alt="lab9_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_2.png">
+<img  width="1085" alt="lab9_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_3.png">
+
 </details>
