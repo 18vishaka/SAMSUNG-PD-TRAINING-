@@ -3144,27 +3144,27 @@ In summary, SoCs offer a versatile and efficient solution for electronic device 
 The Samsung Exynos 9611 is a prominent example of a System-on-Chip (SoC) designed and manufactured by Samsung Electronics. Launched in 2019, the Exynos 9611 is part of the Exynos 7 Series, which targets mid-range smartphones and other mobile devices. This SoC packs a host of advanced features and capabilities, making it a notable player in the mobile computing landscape.
 *Architecture:*
 
-CPU
+CPU <br>
 The Exynos 9611 boasts an octa-core CPU architecture, divided into two clusters:
 1. High-Performance Cluster (Cortex-A73): Four cores clocked at up to 2.3 GHz. These cores handle resource-intensive tasks such as gaming and multimedia playback, delivering a responsive user experience.
 2. Power-Efficient Cluster (Cortex-A53): Four additional cores running at up to 1.7 GHz. These cores handle less demanding tasks to optimize power efficiency and extend battery life.
 
-GPU
+GPU <br>
 For graphics processing, the Exynos 9611 features the Mali-G72 MP3 GPU. This tri-core GPU offers a balance between performance and power efficiency, enabling smooth gaming and multimedia experiences.
 
-AI Capabilities
+AI Capabilities <br>
 The SoC incorporates a dedicated neural processing unit (NPU) for AI and machine learning tasks. This enhances various aspects of the device, including camera capabilities, voice recognition, and user experience personalization.
 
-Connectivity
+Connectivity <br>
 The Exynos 9611 includes an integrated LTE modem, supporting fast data speeds and reliable network connectivity. It also provides support for Wi-Fi, Bluetooth, and NFC, ensuring comprehensive connectivity options for diverse applications.
 
-Camera Support
+Camera Support <br>
 With support for up to 64-megapixel camera sensors, the Exynos 9611 enables high-quality photography and video recording. It also supports various camera features, including multi-camera setups and advanced image processing.
 
-Display
+Display <br>
 The SoC is equipped to handle Full HD+ displays with ease, offering vibrant visuals and an immersive viewing experience.
 
-Performance and Efficiency
+Performance and Efficiency <br>
 The Exynos 9611 strikes a balance between performance and power efficiency, making it an ideal choice for mid-range smartphones and mobile devices. Its octa-core CPU architecture, coupled with the Mali-G72 GPU, provides solid performance for everyday tasks, gaming, and multimedia consumption while optimizing power consumption for prolonged battery life.
 
 **Conclusion:** <br>
