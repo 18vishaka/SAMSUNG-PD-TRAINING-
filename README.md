@@ -2866,6 +2866,19 @@ Here the flop is overloaded with 0.4 fF, so by adding buffers to isolate output 
 	
   </li>
 
-These checks are essential for guaranteeing the reliable operation of your circuit within defined timing constraints.
+These checks are essential for guaranteeing the reliable operation of your circuit within defined timing constraints.</ul>
+
+*Efficient Path Analysis in DC:*
+<ul>
+	<li>Within the DC tool, a comprehensive inventory of all available paths, encompassing various transitions (fall to rise, rise to fall, and more), is meticulously compiled. This exhaustive path database serves as a foundation for precise timing path calculations, which complement the constraints provided.
+</li>
+	<li>To tailor the analysis to your specific needs, DC offers the following options:</li>
+	<ul>
+		<li>'-max_paths N': Enables you to define the maximum number of paths to be included in each path group's report.</li>
+		<li>'-n_worst paths_per_endpoint': Allows you to specify the number of paths to be reported for each individual endpoint within a given path group.
+</li></ul>
+	</ul>
+These features empower you to fine-tune your analysis and obtain targeted insights into your design's timing characteristics.
+
 
 </details>
