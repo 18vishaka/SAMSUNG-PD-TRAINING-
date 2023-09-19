@@ -2860,9 +2860,10 @@ Here the flop is overloaded with 0.4 fF, so by adding buffers to isolate output 
 	<li>Setup Check: To ensure the proper functioning of your circuit within the specified cycle time, it is imperative that the rising edge of the clock signal arrives either later or simultaneously with your data signal. In other words, your slack should always be non-negative.
 </li>
 	<li>Hold Check: For your data to change (data arrival time) at a specific time after the rising edge of the clock signal (data required time), we employ hold checks. In this context, we aim for the following condition to hold true: the slack should be non-negative, calculated as:
-```ruby
+
+		```ruby
 		Slack = data arrival time - data required time.
-```</li>
+		```</li>
 
 These checks are essential for guaranteeing the reliable operation of your circuit within defined timing constraints.
 
