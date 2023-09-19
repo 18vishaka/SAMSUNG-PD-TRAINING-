@@ -2937,7 +2937,62 @@ These optimization techniques play a vital role in refining digital designs, str
 This structured workflow ensures a systematic and efficient approach to digital design, from code input to optimization and reporting.
 
 **QOR:**
+
 When evaluating the performance of a design, the Quality of Results (QOR) emerges as a pivotal metric. A high-quality result is achieved when your design not only meets but also surpasses all specified design constraints, leaving comfortable margins for error and variability. In essence, a strong QOR signifies that your design is not just compliant but excels in its performance, offering robustness and reliability.
 
+**report_timig:**
+The 'report_timing' command is a vital tool for analyzing timing paths in your design, offering valuable insights into critical parameters such as cell delays, signal transitions, capacitance, and timing slack. By default, this command provides the setup delay of a timing path with two significant digits. Here are various ways to utilize the 'report_timing' command:
 
+report_timing -from DFF_A/clk: Analyzes timing paths starting from the DFF_A/clk signal.
+report_timing -from DFF_A/clk -to DFF_C/D: Evaluates timing paths from DFF_A/clk to DFF_C/D.
+report_timing -fall_from DFF_A/clk: Focuses on falling-edge transitions from DFF_A/clk.
+report_timing -rise_from DFF_B/clk: Concentrates on rising-edge transitions from DFF_B/clk.
+report_timing -delay_type min -to DFF_C/D: Specifies the minimum delay and analyzes paths to DFF_C/D.
+report_timing -delay_type min -through INV/a: Considers minimum delays and examines paths passing through the INV/a gate.
+report_timing -delay_type max -through AND/b: Utilizes maximum delays and investigates paths traversing the AND/b gate.
+report_timing -rise_from DFF_B/clk -delay_type max -nets -cap -trans -sig 4: Fine-tunes the analysis by focusing on rising-edge transitions from DFF_B/clk, using maximum delays, and providing detailed information on nets, capacitance, transitions, and signals with a precision of 4 significant digits.
+
+**Example:**
+
+Behavioral code:
+<img  width="1085" alt="lab10_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_1.png"><br><br>
+
+Constraints to be defined for the design:
+<img  width="1085" alt="lab10_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_2.png"><br><br>
+
+The image below illustrates the sequential steps involved in synthesizing a netlist from behavioral code. Within this design, there are a total of four flip-flops, each featuring an asynchronous reset.
+<img  width="1085" alt="lab10_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_3.png"><br><br>
+
+Timing report of setup:
+<img  width="1085" alt="lab10_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_5.png">
+This implies:
+- The selected delay type is 'max,' focusing on maximum delays.
+- There's a disparity in timing between the launch edge and capture edge.
+- The design incorporates a specified library setup time.
+- Slack is calculated as the difference between the required time and arrival time.
+
+In the provided image, two separate timing reports are displayed: one considering the 'fall_from' transition in IN_A, and the other focusing on the 'rise_from' transition in IN_A. In this context:
+The letter 'r' indicates the rise delay, while 'f' denotes the fall delay for the specified timing path.
+Notably, the U14 cell exhibits a shorter delay for the 'rise to fall' arc (113ps) compared to the 'fall to rise' arc (248ps). This discrepancy is attributed to the U14 gate's nature as an inverter, characterized by negative unateness.
+The library setup time differs for rise and fall transitions, reflecting the intrinsic characteristics of the library elements.
+Within the timing path, there is variation in delay between the 'rise_from' and 'fall_from' transitions.
+The slack, a key metric, exhibits a variation of 200ps, signifying the difference between required time and arrival time, thus highlighting timing disparities in the design.
+<img  width="1085" alt="lab10_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_8.png">
+<img  width="1085" alt="lab10_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_6.png"><br><br>
+
+
+
+<img  width="1085" alt="lab10_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_6.png">
+- This depiction illustrates the 'hold' condition, specifically considering the minimum hold time requirement for a timing path.
+- The concept of library hold time is introduced, reflecting a crucial parameter in ensuring proper timing in the design.
+- Both the launch edge and capture edge are synchronized, occurring at the same moment in time.
+- The slack is calculated as the difference between the arrival time and the required time, helping assess whether the hold condition is met or not for the specified timing path.
+
+<img  width="1085" alt="lab10_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_10.png">
+<img  width="1085" alt="lab10_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_11.png">
+- The timing report highlights variations in cell delay when assessing setup and hold conditions. Specifically, it focuses on the U14 cell.
+- For the setup condition at the rising transition, the U14 cell exhibits a delay of 25 ps.
+- Conversely, for the hold condition at the falling transition, the cell demonstrates a delay of 60 ps.
+- It's worth noting that the cell delay can fluctuate, potentially being either high or low.
+- Despite these variations in cell delay, the overall arrival time is evaluated by the path and considered as the worst-violating timing path, emphasizing the significance of addressing timing violations comprehensively.
 </details>
