@@ -2983,16 +2983,75 @@ The slack, a key metric, exhibits a variation of 200ps, signifying the differenc
 
 
 <img  width="1085" alt="lab10_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_6.png">
-- This depiction illustrates the 'hold' condition, specifically considering the minimum hold time requirement for a timing path.
-- The concept of library hold time is introduced, reflecting a crucial parameter in ensuring proper timing in the design.
-- Both the launch edge and capture edge are synchronized, occurring at the same moment in time.
-- The slack is calculated as the difference between the arrival time and the required time, helping assess whether the hold condition is met or not for the specified timing path.
+<ul>
+	<li>This depiction illustrates the 'hold' condition, specifically considering the minimum hold time requirement for a timing path.</li>
+	<li>The concept of library hold time is introduced, reflecting a crucial parameter in ensuring proper timing in the design.</li>
+	<li>Both the launch edge and capture edge are synchronized, occurring at the same moment in time.</li>
+	<li>The slack is calculated as the difference between the arrival time and the required time, helping assess whether the hold condition is met or not for the specified timing path.</li>
+</ul>
 
 <img  width="1085" alt="lab10_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_10.png">
 <img  width="1085" alt="lab10_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_11.png">
-- The timing report highlights variations in cell delay when assessing setup and hold conditions. Specifically, it focuses on the U14 cell.
-- For the setup condition at the rising transition, the U14 cell exhibits a delay of 25 ps.
-- Conversely, for the hold condition at the falling transition, the cell demonstrates a delay of 60 ps.
-- It's worth noting that the cell delay can fluctuate, potentially being either high or low.
-- Despite these variations in cell delay, the overall arrival time is evaluated by the path and considered as the worst-violating timing path, emphasizing the significance of addressing timing violations comprehensively.
+<ul>
+	<li>The timing report highlights variations in cell delay when assessing setup and hold conditions. Specifically, it focuses on the U14 cell.</li>
+	<li>For the setup condition at the rising transition, the U14 cell exhibits a delay of 25 ps.</li>
+	<li>Conversely, for the hold condition at the falling transition, the cell demonstrates a delay of 60 ps.</li>
+	<li>It's worth noting that the cell delay can fluctuate, potentially being either high or low.</li>
+	<li>Despite these variations in cell delay, the overall arrival time is evaluated by the path and considered as the worst-violating timing path, emphasizing the significance of addressing timing violations comprehensively.</li>
+</ul>
+</details>
+
+
+<details>
+	<summary>Labs</summary>
+
+In the image provided, it outlines the sequential steps involved in the process of synthesizing a netlist from a behavioral design. Within this context:
+1. The 'check_design' step indicates the presence of a feedthrough path within the design.
+2. Notably, there's a direct connection between the input clock and output clock signals, implying a direct linkage between them.
+<img  width="1085" alt="lab10_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_12.png">
+<img  width="1085" alt="lab10_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_13.png">
+
+
+In the image provided, the combined output of 'check_timing' and 'report_constraints' is depicted. 'check_timing' serves as a crucial diagnostic tool to determine if the design adheres to its constraints. Within this context, the output highlights whether the design is properly constrained or not, with 'MET' indicating constraints that are met, and unconstrained endpoints listed as such, signifying that constraints for those endpoints have not been defined yet.
+Simultaneously, the 'report_constraints' output sheds light on the default constraints that are preloaded into the tool's memory, providing insight into the baseline conditions against which the design is being evaluated.
+<img  width="1085" alt="lab10_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_14.png">
+<img  width="1085" alt="lab10_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_15.png">
+
+Following the definition of constraints, a subsequent 'check_timing' analysis reveals that several endpoints have been successfully defined. However, it's worth noting that, at this point, only the clock ports remain undefined. This condition is illustrated as follows:
+<img  width="1085" alt="lab10_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_16.png">
+
+The following report shows that the timing paths met the violation:
+<img  width="1085" alt="lab10_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_18.png">
+<img  width="1085" alt="lab10_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_17.png">
+
+The image below, displaying the 'report_constraints' output, confirms that there is no negative slack detected. This unequivocally indicates that the design satisfies all constraints, categorizing it as 'MET' in terms of its compliance with the specified timing requirements.
+<img  width="1085" alt="lab10_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_19.png">
+<img  width="1085" alt="lab10_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_20.png">
+
+
+Now, let's delve into another design, a 128-bit multiplexer. While the code snippet below represents a 4:1 multiplexer, the one above it is a 128:1 multiplexer. Here's the corresponding behavioral code for the design:
+<img  width="1085" alt="lab10_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_22.png">
+
+Let's proceed with reading the design and initiating the netlist synthesis process as outlined below. Although the original design infers the presence of a latch, it's important to note that after synthesis, the resulting netlist will comprise only gates, with any latch elements transformed accordingly.
+<img  width="1085" alt="lab10_23" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_23.png">
+
+Generated list is a pure combinational logic design:
+<img  width="1085" alt="lab10_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_24.png">
+
+In the provided image, it's evident that there are no sequential cells present in the design. The inference of a latch occurs due to the utilization of an 'always' statement and the assignment of 'y' within a 'for' loop. The 'report_timing' analysis reveals the presence of multiple fanouts, with counts of 16 and 17, among others. It's important to note that a higher fanout count can result in increased capacitance, exemplified by the net with a fanout of 17, which carries a capacitance of 40fF.
+<img  width="1085" alt="lab10_25" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_25.png">
+
+Check_timing report; The report shows y is unconstrained so the set_max_delay constraints all feedthrough paths so it gets constrained. Now, the timing gets violated.
+<img  width="1085" alt="lab10_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_26.png">
+
+Now, to adhere to a stricter capacitance constraint of 0.025pF, it's essential to address violations on specific nets. These violations become apparent when using the 'report_constraints' command, providing a clear picture of which nets require adjustment to meet the desired capacitance target.
+
+
+compile_ultra, there is no unconstrained endpoint due to set_max_delay command. 
+
+
+
+
+
+
 </details>
