@@ -2839,5 +2839,14 @@ Here the flop is overloaded with 0.4 fF, so by adding buffers to isolate output 
 <details>
 	<summary>Introduction</summary>
 
- 
+**Generating Timing Reports:** 
+
+• Our process for generating timing reports is grounded in the fundamental principles of semiconductor device physics.
+• These reports delve into the intricacies of transistor configuration, type selection, and interconnections, each of which contributes to the unique characteristics of different cells, ultimately influencing cell delays.
+• Furthermore, our analysis extends to the modeling of wires, accounting for factors such as resistance and capacitance. These wire properties, in turn, play a pivotal role in determining path delays. It's important to note that the path with the most significant delay is referred to as the critical path.
+• To generate these informative reports, we utilize the 'report_timing' tool, employing various parameters such as:
+   - '-to {list of signals}': Analyzing inputs and flip-flop outputs relevant to these specified signals.
+   - '-from {list of signals}': Investigating flip-flop outputs and inputs that are connected to these designated signals.
+   - '-through {list of pins}': Exploring paths that traverse through these specific pins.
+   - '-max_paths N': Customizing the report to include information on the top N paths of interest.
 </details>
