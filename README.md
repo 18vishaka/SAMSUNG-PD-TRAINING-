@@ -2837,7 +2837,7 @@ Here the flop is overloaded with 0.4 fF, so by adding buffers to isolate output 
 ## Day-10-Quality Checks
 
 <details>
-	<summary>Introduction</summary>
+	<summary>Introduction</summary><br>
 
 **Generating Timing Reports:** 
 <ul>
@@ -2852,4 +2852,18 @@ Here the flop is overloaded with 0.4 fF, so by adding buffers to isolate output 
 		<li>'-through {list of pins}': Exploring paths that traverse through these specific pins.</li>
 		<li>'-max_paths N': Customizing the report to include information on the top N paths of interest.</li></ul>
 </ul>
+
+*Understanding Timing Slack and Checks:*
+<ul>
+	<li>Timing slack, a crucial concept in our reports, represents the time difference between the arrival of the clock signal (referred to as data required time) and the arrival of the data signal (data arrival time). This difference is expressed as:
+   Slack = data required time - data arrival time.</li>
+	<li>Setup Check: To ensure the proper functioning of your circuit within the specified cycle time, it is imperative that the rising edge of the clock signal arrives either later or simultaneously with your data signal. In other words, your slack should always be non-negative.
+</li>
+	<li>Hold Check: For your data to change (data arrival time) at a specific time after the rising edge of the clock signal (data required time), we employ hold checks. In this context, we aim for the following condition to hold true: the slack should be non-negative, calculated as:
+```ruby
+		Slack = data arrival time - data required time.
+```</li>
+
+These checks are essential for guaranteeing the reliable operation of your circuit within defined timing constraints.
+
 </details>
