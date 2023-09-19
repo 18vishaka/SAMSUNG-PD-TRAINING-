@@ -22,6 +22,8 @@ Quick links:
 
 - [Day-9-Optimizations in Synthesis](#Day-9--Optimizations-in-Synthesis)
 
+- [Day-10-Quality Checks](#Day-10--Quality-Checks)
+
 ## Day-0-Installation
 
 	
@@ -2829,4 +2831,13 @@ Here the flop is overloaded with 0.4 fF, so by adding buffers to isolate output 
 <img  width="1085" alt="lab9_48" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_48.png">
 <img  width="1085" alt="lab9_49" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day9_1/lab9_49.png"><br><br>
 
+</details>
+
+
+## Day-10-Quality Checks
+
+<details>
+	<summary>Introduction</summary>
+
+ 
 </details>
