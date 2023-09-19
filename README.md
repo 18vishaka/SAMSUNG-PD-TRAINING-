@@ -3050,6 +3050,60 @@ Now, to adhere to a stricter capacitance constraint of 0.025pF, it's essential t
 compile_ultra, there is no unconstrained endpoint due to set_max_delay command. 
 <img  width="1085" alt="lab10_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_26.png">
 
+The 'report_constraints' command confirms that all constraints are met, thanks to the defined 'set_max_capacitance' parameter. This feature plays a crucial role in managing high fanout nets, ensuring they are appropriately broken down or buffered. Failing to address poorly loaded nets can potentially lead to critical timing issues within the design.
+<img  width="1085" alt="lab10_27" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_27.png">
+
+Now, with a capacitance constraint set to be below 25fF for each cell, as depicted in the constraints, a meticulous optimization process takes place. This optimization effort focuses on splitting and optimizing the fanout, thus reducing both transition times and capacitance. The ultimate goal is to significantly reduce cell delays and enhance overall design efficiency.
+<img  width="1085" alt="lab10_28" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_28.png">
+<img  width="1085" alt="lab10_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_29.png">
+
+As the number of inputs increases, the fanout of the select line also rises. When this fanout reaches significant levels, it results in what we call a High Fanout Net (HFN). Fanout represents the count of gate inputs that are being driven by the output of a single logic gate. Typically, clock nets, reset signals, scan lines, and enable networks are prime examples of High Fanout Nets.
+A high fanout configuration translates to an exceptionally high capacitance load on the net. This heavy loading can lead to timing violations due to the prolonged signal transition times, which subsequently contribute to delay calculation issues. To illustrate this concept, let's consider the following design where the enable pin is combined with the input through an AND operation. Consequently, the load on the enable pin becomes exceedingly high. Below is the corresponding behavioral code:
+<img  width="1085" alt="lab10_37" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_37.png">
+
+The steps to synthesize the netlist as follows:
+<img  width="1085" alt="lab10_38" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_38.png">
+
+
+The report_timing shows the unconstrained path as follows. It has a fanout of 128 which results a high capacitance of 0.2pF.
+<img  width="1085" alt="lab10_39" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_39.png">
+
+
+Let us constraint the capacitance to 30fF on current design. So, the capacitance is violated by huge amount as follows: 
+<img  width="1085" alt="lab10_40" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_40.png">
+
+After compiling the design, the capacitance is now limited to 0.03 pF and fanout is reduced to 17
+<img  width="1085" alt="lab10_42" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_42.png">
+
+
+ Design in ddc can be viewed as follows:
+ <img  width="1085" alt="lab10_43" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_43.png">
+ <img  width="1085" alt="lab10_44" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_44.png">
+
+In the current design, the enable signal is no longer directly driving all the cells. Instead, it is selectively driving a specific group of cells through the intermediary of a buffer, as depicted below:
+  <img  width="1085" alt="lab10_45" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_45.png">
+
+In the provided image, it's evident that the transition hasn't been optimized to its desired level. To address this, we utilize the 'set_max_transition' constraint, aimed at constraining the transition time. Specifically, if the transition time exceeds 0.36 (indicating high transition time), it is constrained to a more favorable value of 0.15.
+However, the 'report_constraints' output reveals that the transition constraint is currently violated. The 'cost' value associated with this constraint represents the optimization target that the tool aims to achieve. It's important to note that, in this context, capacitance does not have a cost associated with it, signifying that only the transition time will undergo further optimization efforts to meet the specified constraint.
+ <img  width="1085" alt="lab10_46" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_46.png">
+ <img  width="1085" alt="lab10_47" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_47.png">
+
+The report_constraint shows all the pins violating the transition:
+ <img  width="1085" alt="lab10_48" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_48.png">
+
+ After compiling the design:
+  <img  width="1085" alt="lab10_49" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_49.png">
+
+Check_timing shows only the unconstrained endpoints:
+  <img  width="1085" alt="lab10_50" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_50.png">
+
+  The transition is limited to 150ps in the timing report. 
+    <img  width="1085" alt="lab10_50" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_50.png">
+
+
+
+
+
 
 
 
