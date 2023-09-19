@@ -3009,103 +3009,104 @@ In the image provided, it outlines the sequential steps involved in the process 
 1. The 'check_design' step indicates the presence of a feedthrough path within the design.
 2. Notably, there's a direct connection between the input clock and output clock signals, implying a direct linkage between them.
 <img  width="1085" alt="lab10_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_12.png">
-<img  width="1085" alt="lab10_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_13.png">
+<img  width="1085" alt="lab10_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_13.png"><br><br>
 
 
 In the image provided, the combined output of 'check_timing' and 'report_constraints' is depicted. 'check_timing' serves as a crucial diagnostic tool to determine if the design adheres to its constraints. Within this context, the output highlights whether the design is properly constrained or not, with 'MET' indicating constraints that are met, and unconstrained endpoints listed as such, signifying that constraints for those endpoints have not been defined yet.
 Simultaneously, the 'report_constraints' output sheds light on the default constraints that are preloaded into the tool's memory, providing insight into the baseline conditions against which the design is being evaluated.
 <img  width="1085" alt="lab10_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_14.png">
-<img  width="1085" alt="lab10_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_15.png">
+<img  width="1085" alt="lab10_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_15.png"><br><br>
 
 Following the definition of constraints, a subsequent 'check_timing' analysis reveals that several endpoints have been successfully defined. However, it's worth noting that, at this point, only the clock ports remain undefined. This condition is illustrated as follows:
-<img  width="1085" alt="lab10_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_16.png">
+<img  width="1085" alt="lab10_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_16.png"><br><br>
 
 The following report shows that the timing paths met the violation:
 <img  width="1085" alt="lab10_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_18.png">
-<img  width="1085" alt="lab10_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_17.png">
+<img  width="1085" alt="lab10_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_17.png"><br><br>
 
 The image below, displaying the 'report_constraints' output, confirms that there is no negative slack detected. This unequivocally indicates that the design satisfies all constraints, categorizing it as 'MET' in terms of its compliance with the specified timing requirements.
 <img  width="1085" alt="lab10_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_19.png">
-<img  width="1085" alt="lab10_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_20.png">
+<img  width="1085" alt="lab10_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_20.png"><br><br>
 
 
 Now, let's delve into another design, a 128-bit multiplexer. While the code snippet below represents a 4:1 multiplexer, the one above it is a 128:1 multiplexer. Here's the corresponding behavioral code for the design:
-<img  width="1085" alt="lab10_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_22.png">
+<img  width="1085" alt="lab10_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_22.png"><br><br>
 
 Let's proceed with reading the design and initiating the netlist synthesis process as outlined below. Although the original design infers the presence of a latch, it's important to note that after synthesis, the resulting netlist will comprise only gates, with any latch elements transformed accordingly.
-<img  width="1085" alt="lab10_23" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_23.png">
+<img  width="1085" alt="lab10_23" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_23.png"><br><br>
 
 Generated list is a pure combinational logic design:
-<img  width="1085" alt="lab10_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_24.png">
+<img  width="1085" alt="lab10_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_24.png"><br><br>
 
 In the provided image, it's evident that there are no sequential cells present in the design. The inference of a latch occurs due to the utilization of an 'always' statement and the assignment of 'y' within a 'for' loop. The 'report_timing' analysis reveals the presence of multiple fanouts, with counts of 16 and 17, among others. It's important to note that a higher fanout count can result in increased capacitance, exemplified by the net with a fanout of 17, which carries a capacitance of 40fF.
-<img  width="1085" alt="lab10_25" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_25.png">
+<img  width="1085" alt="lab10_25" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_25.png"><br><br>
 
 Check_timing report; The report shows y is unconstrained so the set_max_delay constraints all feedthrough paths so it gets constrained. Now, the timing gets violated.
-<img  width="1085" alt="lab10_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_26.png">
+<img  width="1085" alt="lab10_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_26.png"><br><br>
 
 Now, to adhere to a stricter capacitance constraint of 0.025pF, it's essential to address violations on specific nets. These violations become apparent when using the 'report_constraints' command, providing a clear picture of which nets require adjustment to meet the desired capacitance target.
-
-
 compile_ultra, there is no unconstrained endpoint due to set_max_delay command. 
-<img  width="1085" alt="lab10_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_26.png">
+<img  width="1085" alt="lab10_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_26.png"><br><br>
 
 The 'report_constraints' command confirms that all constraints are met, thanks to the defined 'set_max_capacitance' parameter. This feature plays a crucial role in managing high fanout nets, ensuring they are appropriately broken down or buffered. Failing to address poorly loaded nets can potentially lead to critical timing issues within the design.
-<img  width="1085" alt="lab10_27" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_27.png">
+<img  width="1085" alt="lab10_27" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_27.png"><br><br>
 
 Now, with a capacitance constraint set to be below 25fF for each cell, as depicted in the constraints, a meticulous optimization process takes place. This optimization effort focuses on splitting and optimizing the fanout, thus reducing both transition times and capacitance. The ultimate goal is to significantly reduce cell delays and enhance overall design efficiency.
 <img  width="1085" alt="lab10_28" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_28.png">
-<img  width="1085" alt="lab10_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_29.png">
+<img  width="1085" alt="lab10_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_29.png"><br><br>
 
 As the number of inputs increases, the fanout of the select line also rises. When this fanout reaches significant levels, it results in what we call a High Fanout Net (HFN). Fanout represents the count of gate inputs that are being driven by the output of a single logic gate. Typically, clock nets, reset signals, scan lines, and enable networks are prime examples of High Fanout Nets.
 A high fanout configuration translates to an exceptionally high capacitance load on the net. This heavy loading can lead to timing violations due to the prolonged signal transition times, which subsequently contribute to delay calculation issues. To illustrate this concept, let's consider the following design where the enable pin is combined with the input through an AND operation. Consequently, the load on the enable pin becomes exceedingly high. Below is the corresponding behavioral code:
-<img  width="1085" alt="lab10_37" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_37.png">
+<img  width="1085" alt="lab10_37" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_37.png"><br><br>
 
 The steps to synthesize the netlist as follows:
-<img  width="1085" alt="lab10_38" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_38.png">
+<img  width="1085" alt="lab10_38" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_38.png"><br><br>
+
 
 
 The report_timing shows the unconstrained path as follows. It has a fanout of 128 which results a high capacitance of 0.2pF.
-<img  width="1085" alt="lab10_39" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_39.png">
+<img  width="1085" alt="lab10_39" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_39.png"><br><br>
+
 
 
 Let us constraint the capacitance to 30fF on current design. So, the capacitance is violated by huge amount as follows: 
-<img  width="1085" alt="lab10_40" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_40.png">
+<img  width="1085" alt="lab10_40" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_40.png"><br><br>
+
 
 After compiling the design, the capacitance is now limited to 0.03 pF and fanout is reduced to 17
-<img  width="1085" alt="lab10_42" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_42.png">
+<img  width="1085" alt="lab10_42" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_42.png"><br><br>
+
 
 
  Design in ddc can be viewed as follows:
  <img  width="1085" alt="lab10_43" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_43.png">
- <img  width="1085" alt="lab10_44" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_44.png">
+ <img  width="1085" alt="lab10_44" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_44.png"><br><br>
+
 
 In the current design, the enable signal is no longer directly driving all the cells. Instead, it is selectively driving a specific group of cells through the intermediary of a buffer, as depicted below:
-  <img  width="1085" alt="lab10_45" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_45.png">
+  <img  width="1085" alt="lab10_45" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_45.png"><br><br>
+
 
 In the provided image, it's evident that the transition hasn't been optimized to its desired level. To address this, we utilize the 'set_max_transition' constraint, aimed at constraining the transition time. Specifically, if the transition time exceeds 0.36 (indicating high transition time), it is constrained to a more favorable value of 0.15.
 However, the 'report_constraints' output reveals that the transition constraint is currently violated. The 'cost' value associated with this constraint represents the optimization target that the tool aims to achieve. It's important to note that, in this context, capacitance does not have a cost associated with it, signifying that only the transition time will undergo further optimization efforts to meet the specified constraint.
  <img  width="1085" alt="lab10_46" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_46.png">
- <img  width="1085" alt="lab10_47" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_47.png">
+ <img  width="1085" alt="lab10_47" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_47.png"><br><br>
+
 
 The report_constraint shows all the pins violating the transition:
- <img  width="1085" alt="lab10_48" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_48.png">
+ <img  width="1085" alt="lab10_48" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_48.png"><br><br>
+
 
  After compiling the design:
-  <img  width="1085" alt="lab10_49" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_49.png">
+  <img  width="1085" alt="lab10_49" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_49.png"><br><br>
+
 
 Check_timing shows only the unconstrained endpoints:
-  <img  width="1085" alt="lab10_50" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_50.png">
+  <img  width="1085" alt="lab10_50" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_50.png"><br><br>
+
 
   The transition is limited to 150ps in the timing report. 
-    <img  width="1085" alt="lab10_50" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_50.png">
-
-
-
-
-
-
-
+    <img  width="1085" alt="lab10_50" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_50.png"><br><br>
 
 
 
