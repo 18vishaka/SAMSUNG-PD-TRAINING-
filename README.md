@@ -3119,10 +3119,10 @@ Check_timing shows only the unconstrained endpoints:
 <details>
 	<summary>Introduction</summary>
 
- **Introduction to System-on-Chip (SoC):**
+ **Introduction to System-on-Chip (SoC):** <br>
 A System-on-Chip (SoC) is a cutting-edge integrated circuit that encompasses multiple electronic components required for the operation of a computing or electronic device. These components include central processing units (CPUs), graphics processing units (GPUs), memory, input/output interfaces, and more, all consolidated onto a single chip. SoCs have become a cornerstone in modern electronics, powering a wide range of devices, from smartphones and tablets to smart appliances and IoT devices.
 
-**Why Soc:**
+**Why Soc:** <br>
 System-on-Chip (SoC) technology has gained widespread adoption due to its numerous advantages in the realm of electronic device design and development. Here are some key reasons why SoCs are favored:
 
 1. **Integration of Components**: SoCs consolidate a variety of electronic components onto a single chip. These components can include CPUs, GPUs, memory, input/output interfaces, and more. This integration not only reduces the physical space required but also lowers power consumption and simplifies overall device design.
@@ -3167,7 +3167,7 @@ The SoC is equipped to handle Full HD+ displays with ease, offering vibrant visu
 Performance and Efficiency
 The Exynos 9611 strikes a balance between performance and power efficiency, making it an ideal choice for mid-range smartphones and mobile devices. Its octa-core CPU architecture, coupled with the Mali-G72 GPU, provides solid performance for everyday tasks, gaming, and multimedia consumption while optimizing power consumption for prolonged battery life.
 
-**Conclusion:**
+**Conclusion:** <br>
 The Samsung Exynos 9611 processor exemplifies the capabilities of modern SoCs designed for mid-range mobile devices. Its architecture, featuring a robust CPU cluster, efficient GPU, AI capabilities, and comprehensive connectivity options, underscores its suitability for a wide range of applications, offering a compelling user experience.
 
  
