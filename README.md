@@ -3106,7 +3106,7 @@ Check_timing shows only the unconstrained endpoints:
 
 
   The transition is limited to 150ps in the timing report. 
-    <img  width="1085" alt="lab10_50" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_50.png"><br><br>
+    <img  width="1085" alt="lab10_52" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_52.png"><br><br>
 
 
 
