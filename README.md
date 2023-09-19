@@ -3048,6 +3048,7 @@ Now, to adhere to a stricter capacitance constraint of 0.025pF, it's essential t
 
 
 compile_ultra, there is no unconstrained endpoint due to set_max_delay command. 
+<img  width="1085" alt="lab10_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day10/lab10_26.png">
 
 
 
