@@ -3268,7 +3268,7 @@ Before we dive into the modeling process, let's first gain a comprehensive under
 This provides a clearer and more organized explanation of RVMYTH and the RISC-V ISA. <br>
 
 **A simple one cycle CPU for Risc-V:** <br>
-<img  width="1085" alt="" src="">
+<img  width="1085" alt="lab12.1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12.1.jpeg">
 A simple one-cycle CPU for RISC-V is a minimalistic central processing unit (CPU) design that executes instructions in a single clock cycle. Here's a basic explanation of how it works:
 Fetch:<br>
 The CPU begins by fetching the next instruction from memory. In the case of RISC-V, each instruction is a fixed length, typically 32 bits. The CPU reads this instruction from memory into an instruction register.
@@ -3377,7 +3377,7 @@ Now, consider the impact of ppm error in the context of an integrated circuit (c
 In summary, ppm error, although seemingly small in absolute terms, can have a significant impact on the performance and reliability of electronic devices, particularly in high-speed systems like microprocessors and integrated circuits. It underscores the importance of precise clock signal generation and management in modern electronic design.
 
 **A PLL Used in SoCs - Main Components:** <br>
-<img  width="1085" alt="" src="">
+<img  width="1085" alt="lab12.2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12.2.jpeg">
 1. *Phase Detector (PD):* <br>
    - The Phase Detector is a crucial component of a PLL. Its primary function is to compare the phase of the incoming reference clock (often denoted as "REF") with the phase of the feedback clock (usually labeled "FB").
    
@@ -3431,7 +3431,7 @@ In both types of DACs, the key principle is to use binary codes to control resis
 In summary, DACs are vital components that bridge the digital and analog worlds by converting discrete digital data into continuous analog signals, making them indispensable in various electronic systems and communication devices. The choice of DAC type depends on the specific requirements and constraints of the application at hand. <br>
 
 **Weighted Resistor Digital-to-Analog Converter (DAC):** <br>
-<img  width="1085" alt="" src="">
+<img  width="1085" alt="lab12.3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12.3.jpeg">
 A Weighted Resistor DAC is a type of Digital-to-Analog Converter (DAC) that generates an analog output signal proportional to a digital input. It achieves this by employing a specific configuration of binary-weighted resistors within an inverting adder circuit. <br>
 *Key Features of a Weighted Resistor DAC:*
 - Binary Weighting: <br>
@@ -3451,7 +3451,7 @@ The binary-weighted resistors are connected to an inverting adder circuit. This 
 In summary, a Weighted Resistor DAC operates by using binary-weighted resistors and an inverting adder circuit to produce an analog output that closely matches the digital input. The choice of binary-weighted resistors allows for precise control over the analog output levels based on the binary code applied to the DAC. This type of DAC is widely used in various applications where accurate digital-to-analog conversion is required. <br>
 
 **R-2R Ladder Digital-to-Analog Converter (DAC):** <br>
-<img  width="1085" alt="" src="">
+<img  width="1085" alt="lab12.4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12.4.jpeg">
 The R-2R Ladder DAC is a type of Digital-to-Analog Converter (DAC) that offers advantages over the binary-weighted resistor DAC. It achieves this by utilizing an R-2R ladder network within the inverting adder circuit to generate an analog output signal that closely corresponds to the digital (binary) input. <br>
 *Key Features of an R-2R Ladder DAC:*
 - R-2R Ladder Network: <br>
