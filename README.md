@@ -3225,6 +3225,121 @@ The Samsung Exynos 9611 processor exemplifies the capabilities of modern SoCs de
  </ul>
 
 **Purpose of Modelling:**
+System models are specifically developed to:
+a. support analysis, specification,
+b. design,
+c. verification,
+d. and validation of a system,
+e. as well as to communicate certain information
+
+**What are we modelling?**
+Modelling of VSDBabySoC, a System-on-Chip (SoC). In this process, we aim to create a comprehensive model and conduct simulations for VSDBabySoC.
+<ul>
+	<li>To kick things off, we'll introduce some initial input signals into the VSDBabySoC module. These signals will trigger the phase-locked loop (PLL) to start generating the necessary clock signals for the entire circuit.</li>
+	<li>The clock signal, now in action, serves a critical role. It drives the RVMyth processor to execute instructions, resulting in the generation of various values. These generated values play a pivotal role as inputs for the Digital-to-Analog Converter (DAC) core, which is responsible for producing the ultimate output signal aptly named 'OUT.'
+</li>
+	<li>In essence, our SoC comprises three main elements, each represented as Intellectual Property (IP) cores. These cores, along with a wrapper, come together to form the SoC. Additionally, it's important to mention that there is also a testbench module integrated into the overall design for testing and verification purposes.
+</li>
+</ul>
+We will get to see more structured and coherent explanation of the VSDBabySoC modeling process.
+
+**This week's task is centered around modeling the three primary IP cores::**
+1. RVMYTH Modelling
+2. PLL Modelling
+3. DAC Modelling
+4. 
+Before we dive into the modeling process, let's first gain a comprehensive understanding of how each of these components operates.
+
+**1. RVMYTH - Risc-V based MYTH (Microprocessor for You in Thirty Hours):**
+<ul>
+	<li>RVMYTH, which stands for RISC-V based Microprocessor for You in Thirty Hours, is built upon the principles of Reduced Instruction Set Computer (RISC). 
+</li>
+	<li>The RISC-V ISA, pronounced as 'risk-five,' is defined as a fundamental integer ISA (Instruction Set Architecture) that must be present in any RISC-V implementation. This base ISA can be extended with optional add-ons to enhance its capabilities.</li>
+	<li>Key characteristics of each base integer instruction set include the width of the integer registers, the size of the address space, and the number of integer registers. There are two primary base integer variants within the RISC-V architecture, namely RV32I and RV64I.</li>
+	<li>Within the RISC-V ISA, there are two primary base integer variants, namely RV32I and RV64I:</li>
+	<ul>
+		<li>RV32I: This variant is characterized by a 32-bit wide integer register file. It offers a 32-bit address space, meaning it can address 2^32 unique memory locations. RV32I provides a balance between performance and code size, making it suitable for a wide range of embedded systems and applications.
+</li>
+		<li>RV64I: In contrast, RV64I features a 64-bit wide integer register file. It boasts a more extensive 64-bit address space, allowing it to access a much larger memory range. This variant is well-suited for more demanding computational tasks and applications that require larger data sets.
+</li>
+		The 'I' in both RV32I and RV64I signifies that these are base integer instruction sets, forming the core of the RISC-V architecture. While they share common features, their differences in register width and address space size cater to varying performance and memory requirements.
+	</ul>
+</ul>
+This provides a clearer and more organized explanation of RVMYTH and the RISC-V ISA.
+
+**A simple one cycle CPU for Risc-V:**
+A simple one-cycle CPU for RISC-V is a minimalistic central processing unit (CPU) design that executes instructions in a single clock cycle. Here's a basic explanation of how it works:
+Fetch:<br>
+The CPU begins by fetching the next instruction from memory. In the case of RISC-V, each instruction is a fixed length, typically 32 bits. The CPU reads this instruction from memory into an instruction register.
+
+Decode:<br>
+Once the instruction is fetched, the CPU decodes it to determine the operation to be performed and the operands involved. RISC-V instructions have a straightforward encoding, which makes decoding relatively simple.
+
+Execute:<br>
+In the one-cycle CPU, the execution of the instruction takes place in the same clock cycle as the fetch and decode stages. This means that the actual operation (e.g., arithmetic, logical, or data transfer) is carried out immediately.
+
+Writeback:<br>
+After execution, the result is written back to the appropriate destination, such as a register file or memory location. This ensures that the CPU can store the output or update registers as needed.
+
+Next Instruction:<br>
+Finally, the CPU increments the program counter to point to the next instruction in memory, and the process repeats. This allows the CPU to continue fetching, decoding, and executing instructions in a seamless loop.
+
+A one-cycle CPU design is straightforward and efficient but often lacks the performance optimizations found in more complex CPUs. It's typically used in educational settings to teach the fundamentals of CPU architecture. In real-world applications, modern CPUs use pipelining and multiple stages to achieve higher performance.
+
+**PLL (Phase Locked Loop):**
+**Explanation:** <br>
+A Phase-Locked Loop (PLL) is an electronic circuit commonly used in digital systems to generate and control clock signals. It operates by constantly adjusting the frequency and phase of its output signal to match that of an input signal. PLLs have a wide range of applications, including frequency synthesis, clock recovery, modulation, and demodulation. They play a crucial role in many electronic devices, including System-on-Chip (SoC) designs.
+
+**Let's answer few of the questions in detail to get better understand the importance of PLL:**
+
+**1. Why do we need a PLL for our SoC?** <br>
+   - *Clock Synchronization:* <br>
+In a SoC, various components and subsystems often need to work together at specific time intervals, requiring a synchronized clock signal. A PLL ensures that the clock signal generated for the SoC is stable, precise, and aligned with the desired frequency, enabling reliable operation of the entire system.
+
+   - *Frequency Scaling:* <br>
+PLLs can generate clock signals at different frequencies, allowing the SoC to adapt to varying performance requirements. This is essential for power management and optimizing performance in different operational modes.
+
+   - *Clock Domain Crossing:* <br>
+In complex SoCs, there can be multiple clock domains with different clock frequencies. PLLs help in synchronizing data between these domains, preventing data corruption and ensuring correct operation.
+
+   - *Reducing Jitter and Noise:* <br>
+PLLs are designed to reduce phase noise and jitter in the clock signal, which is critical for high-speed data transfer and signal integrity in digital circuits.
+
+   - *Clock Recovery:* <br>
+In communication systems, PLLs are used to recover clock signals from incoming data streams, ensuring accurate data reception. <br>
+
+**2. How is a clock generated?** <br>
+Clock signals are generated by electronic circuits known as oscillators. There are various types of oscillators, and one commonly used method is the **Quartz Crystal Oscillator**. Here's how it works:
+   - A quartz crystal oscillator relies on the piezoelectric effect in quartz crystals. When a voltage is applied to a quartz crystal, it vibrates at a specific frequency determined by its physical dimensions. <br>
+
+   - The crystal's vibration frequency is highly stable and precise, making it suitable for generating accurate clock signals. <br>
+
+   - The oscillator circuit typically includes amplifiers and feedback mechanisms to sustain the oscillations and maintain a constant frequency. <br>
+
+   - The output of the quartz crystal oscillator is a clean and stable clock signal that can be used as a reference or input to a PLL for frequency synthesis and control. <br>
+
+**3. Why is an off-chip oscillator not good enough for frequencies above 100MHz?** <br>
+Off-chip oscillators, such as those in the form of discrete components, are suitable for generating clock signals up to a certain frequency, but they may not be sufficient for higher frequencies (e.g., above 100MHz) due to several reasons:
+
+   - *Signal Integrity:* <br>
+At higher frequencies, the transmission of clock signals through external wires and connectors can introduce signal integrity issues, including noise, interference, and attenuation, which can degrade the quality of the clock signal. 
+
+   - *Phase Noise:* <br>
+Off-chip oscillators may have higher phase noise, which can affect the precision and stability of the clock signal. PLLs can be used to reduce phase noise.
+
+   - *Jitter:* <br>
+Jitter, or variations in the timing of clock edges, becomes more critical at higher frequencies. PLLs can mitigate jitter effects.
+
+   - *Frequency Accuracy:* <br>
+Off-chip oscillators may have limitations in achieving precise frequency control and synchronization, which can be essential in SoC designs. <br>
+
+To overcome these challenges and meet the stringent requirements of high-speed digital systems, on-chip PLLs are often used to generate and stabilize clock signals at frequencies above 100MHz within the SoC itself, ensuring reliable and accurate operation. <br>
+
+
+
+
+
+
 
 
   </details>
