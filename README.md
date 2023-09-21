@@ -3542,9 +3542,10 @@ Clock Generation: <br>
 A clock signal clk is defined for simulation purposes. This clock signal toggles every 5 time units (simulation time).
 
 Test Input Values: <br>
-Inside the initial block, test cases are defined to verify the behavior of the mux_generate module. Two test cases are provided as examples:
-Case 1: It selects input 0 (sel = 3'b000) and applies an 8-bit data input of 8'b10101010.
-Case 2: It selects input 3 (sel = 3'b011) and applies an 8-bit data input of 8'b11001100.
+Inside the initial block, test cases are defined to verify the behavior of the mux_generate module. Two test cases are provided as examples: <br>
+
+Case 1: It selects input 0 (sel = 3'b000) and applies an 8-bit data input of 8'b10101010. <br>
+Case 2: It selects input 3 (sel = 3'b011) and applies an 8-bit data input of 8'b11001100. <br>
 
 Simulation Termination: <br>
 The simulation is finished using $finish to conclude the testbench after all test cases are executed.
