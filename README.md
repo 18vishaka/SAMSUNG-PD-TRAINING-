@@ -3552,7 +3552,13 @@ The simulation is finished using $finish to conclude the testbench after all tes
 
 This testbench checks the functionality of the mux_81 module by applying different input combinations and verifying that the output y corresponds to the selected input according to the values of sel. You can extend the test cases as needed to thoroughly test the module's behavior. <br><br>
 
- Simulation using gtkwave- <br>
+Explanation of VCD Dumping Code: <br>
+$dumpfile("tb_mux81.vcd"): This line specifies the name of the VCD file where the simulation results will be saved. We can choose any suitable file name, here it is 'tb_mux81.vcd".
+
+$dumpvars(0, tb_mux81): This line instructs the simulator to dump the values of all signals within the tb_mux81 module (including signals inside the mux_81 module if they are instantiated within the testbench). The 0 argument indicates that dumping starts at time 0. <br>
+
+
+Simulation using gtkwave- <br>
 <img  width="1085" alt="lab12_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_3.png"><br><br>
 
 **Lab-2:** <br>
