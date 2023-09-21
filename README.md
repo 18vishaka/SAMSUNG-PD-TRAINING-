@@ -3486,91 +3486,93 @@ In summary, the R-2R Ladder DAC is an innovative approach to digital-to-analog c
 <details>
 	<summary>Labs</summary>
 
- **Lab-1:**
- *Consider a 8:1 multiplexer:*
- Verilog code-
+ **Lab-1:** <br>
+ *Consider a 8:1 multiplexer:* <br>
+ Verilog code- <br>
  <img  width="1085" alt="lab12_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_1.png"><br><br>
 
- Testbench code-
+ Testbench code- <br>
  <img  width="1085" alt="lab12_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_2.png"><br><br>
 
- Simulation using gtkwave-
+ Simulation using gtkwave- <br>
 <img  width="1085" alt="lab12_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_3.png"><br><br>
 
-**Lab-2:**
-*Modelling of BabySoc:*
+**Lab-2:** <br>
+*Modelling of BabySoc:* <br>
 
- Step-1: Modelling rvmyth
- commands involved-
+ Step-1: Modelling rvmyth <br>
+ commands involved- <br>
  ```ruby
 iverilog mythcore_test.v tb_mythcore_test.v 
 ./a.out
 gtkwave tb_mythcore_test.vcd
 ```
 
-Simulation output using gtkwave-
+Simulation output using gtkwave- <br>
 <img  width="1085" alt="lab12_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_8.png">
 *10-bit Digital Output (D) in RVMyth:*
 The 10-bit digital output 'D' in RVMyth is a dynamic representation of the cumulative sum of natural numbers computed by the processor. This processor operates in a continuous loop, adding natural numbers until the sum surpasses 999, at which point it reverses its operation and subtracts the natural numbers in reverse order. 'D' provides insight into the current state of this computational process, serving as an indicator of the ongoing operations within the RVMyth RISC-V processor. <br>
 
-Step-2: Modelling DAC
-commands involved-
+Step-2: Modelling DAC <br>
+commands involved- <br>
  ```ruby
 iverilog avsddac.v avsddac_tb_test.v
 ./a.out
 gtkwave avsddac_tb_test.vcd
 ```
 
-Simulation output using gtkwave-
+Simulation output using gtkwave- <br>
 <img  width="1085" alt="lab12_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_9.png">
 *10-Bit Digital-to-Analog Converter (DAC):*
-This 10-bit DAC takes digital input D[9:0] and converts it into an analog voltage signal. It operates with a voltage range of Vhigh (3.3V) and Vlow (0V). For example, if the input D[9:0] is 111111011, which is equivalent to 1019, the output is calculated as:
-		Out = Vref * (1019/1024) = 3.2878986 volts.
-This calculated output voltage aligns accurately with the expected values, as verified using gtkwave.
+This 10-bit DAC takes digital input D[9:0] and converts it into an analog voltage signal. It operates with a voltage range of Vhigh (3.3V) and Vlow (0V). For example, if the input D[9:0] is 111111011, which is equivalent to 1019, the output is calculated as: <br>
+```ruby
+Out = Vref * (1019/1024) = 3.2878986 volts.
+```
+This calculated output voltage aligns accurately with the expected values, as verified using gtkwave. <br>
 
 
-Step-3: Modelling PLL
-commands involved-
+Step-3: Modelling PLL <br>
+commands involved- <br>
  ```ruby
 iverilog avsd_pll_1v8.v pll_tb.v
 ./a.out
 gtkwave test.vcd
 ```
 
-Simulation output using gtkwave-
+Simulation output using gtkwave- <br>
 <img  width="1085" alt="lab12_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_15.png"><br><br>
 
-Step-4: Modelling rvmyth and DAC interface
-commands involved-
+Step-4: Modelling rvmyth and DAC interface <br>
+commands involved- <br>
  ```ruby
 verilog rvmyth_avsddac.v rvmyth_avsddac_TB.v
 ./a.out
 gtkwave rvmyth_avsddac.vcd
 ```
 
-Simulation output using gtkwave-
+Simulation output using gtkwave- <br>
 <img  width="1085" alt="lab12_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_13.png"><br><br>
 
-Step-5: Modelling rvmyth and PLL interface
-commands involved-
+Step-5: Modelling rvmyth and PLL interface <br>
+commands involved- <br>
  ```ruby
 iverilog rvmyth_pll.v rvmyth_pll_tb.v
 ./a.out
 gtkwave test1.vcd
 ```
 
-Simulation output using gtkwave-
+Simulation output using gtkwave- <br>
 <img  width="1085" alt="lab12_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_16.png"><br><br>
 
-Step-6: Interfacing all the modules
-commands involved-
+Step-6: Interfacing all the modules <br>
+commands involved- <br>
  ```ruby
 iverilog vsdbabysoc.v testbench.v mythcore_test.v avsddac.v avsdpll.v 
 ./a.out
 gtkwave dump.vcd
 ```
 
-Simulation output using gtkwave-
+Simulation output using gtkwave- <br>
 <img  width="1085" alt="lab12_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_17.png"><br><br>
 
 
