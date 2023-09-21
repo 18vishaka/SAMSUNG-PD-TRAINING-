@@ -3538,8 +3538,6 @@ In the testbench module tb_mux81, signals are declared to mimic the inputs and o
 Module Instantiation: <br>
 The mux_generate module (uut) is instantiated within the testbench. It connects the testbench signals to the module's ports.
 
-Clock Generation: <br>
-A clock signal clk is defined for simulation purposes. This clock signal toggles every 5 time units (simulation time).
 
 Test Input Values: <br>
 Inside the initial block, test cases are defined to verify the behavior of the mux_generate module. Two test cases are provided as examples: <br>
