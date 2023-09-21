@@ -3488,11 +3488,68 @@ In summary, the R-2R Ladder DAC is an innovative approach to digital-to-analog c
 
  **Lab-1:** <br>
  *Consider a 8:1 multiplexer:* <br>
+An 8-to-1 multiplexer (often abbreviated as 8:1 MUX) is a digital circuit that has eight data inputs (D0 to D7), one output (Y), three control inputs (A, B, and C), and a single select input (S). Its primary function is to select one of the eight data inputs and route it to the output based on the binary value of the control inputs (A, B, C) provided by the select input (S).
+
+Here's a detailed explanation of how an 8:1 multiplexer works:
+1. **Data Inputs (D0 to D7):** An 8:1 MUX has eight data input lines labeled D0 through D7. These are the potential data sources that can be selected and directed to the output.
+2. **Output (Y):** The output Y is where the selected data input is sent to. When the multiplexer is configured to choose a specific data input, that input's value appears on the Y output.
+3. **Select Input (S):** The select input (S) determines which of the eight data inputs will be selected. It's a 3-bit input, meaning it can take one of eight possible binary values (000, 001, 010, 011, 100, 101, 110, 111), corresponding to the eight data inputs.
+4. **Control Inputs (A, B, and C):** These control inputs (A, B, and C) are directly connected to the select input lines. They help specify which of the eight data inputs will be routed to the output based on the binary value of these inputs.
+   - If A, B, and C are set to 000, the multiplexer selects D0 as the output.
+   - If A, B, and C are set to 001, the multiplexer selects D1 as the output.
+   - And so on, up to A=1, B=1, C=1, which selects D7 as the output.
+5. **Functionality:** The 8:1 MUX functions as a data selector. Depending on the values of the control inputs (A, B, and C), it routes the data input from one of the eight lines (D0 to D7) to the output Y. The select input (S) specifies which control inputs (A, B, C) should be used to make the selection.
+
+In summary, an 8-to-1 multiplexer is a versatile digital circuit used in various applications, including data routing and selection in digital systems. It can choose from eight data inputs and send the selected data to the output based on the binary value of the control inputs, making it a fundamental building block in digital electronics and computer architecture.
+
  Verilog code- <br>
  <img  width="1085" alt="lab12_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_1.png"><br><br>
+The Verilog code provided defines a module named "mux_81," which represents a simple multiplexer (mux). This multiplexer takes an 8-bit input vector `in`, a 3-bit selection vector `sel`, and produces a single output `y`.  <br>
+Breaking down the code step by step:
+
+```verilog
+module mux_81 (input [7:0] in, input [2:0] sel, output y);
+```
+
+- `module mux_81`: This line declares the beginning of a Verilog module named "mux_81." Modules are used to encapsulate and define reusable logic components in a Verilog design.
+
+- `(input [7:0] in, input [2:0] sel, output y)`: This line defines the module's ports. Here's what each part means:
+  - `input [7:0] in`: This declares an 8-bit input vector named "in." The `[7:0]` notation specifies that the input vector consists of eight bits, labeled from bit 7 (the most significant bit) to bit 0 (the least significant bit). This is where the data to be selected by the multiplexer is provided.
+  - `input [2:0] sel`: This declares a 3-bit input vector named "sel." The `[2:0]` notation specifies that the input vector consists of three bits, labeled from bit 2 to bit 0. This vector is used to select one of the eight data inputs.
+  - `output y`: This declares a single output wire named "y." The output "y" will carry the selected data value based on the input vector "sel."
+
+```verilog
+assign y = in[sel];
+```
+
+- `assign y = in[sel];`: This line defines the behavior of the mux_generate module. It uses an "assign" statement to specify that the output wire "y" is equal to the value of one of the bits in the input vector "in," determined by the value of the selection vector "sel."
+
+
+   - `in[sel]`: This expression selects a specific bit from the "in" vector based on the binary value represented by the "sel" vector. For example, if `sel` is 3'b001 (binary value 1), it selects the second bit (bit 1) from the "in" vector, and that value is assigned to "y."
+
+
+In summary, the "mux_81" module represents a multiplexer that selects one of the eight inputs (from "in") based on the 3-bit control input "sel" and routes the selected value to the output wire "y." This code is a concise representation of a multiplexer's functionality in Verilog. <br><br>
 
  Testbench code- <br>
  <img  width="1085" alt="lab12_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_2.png"><br><br>
+Signal Declarations: <br>
+In the testbench module tb_mux81, signals are declared to mimic the inputs and outputs of the mux_81 module. These include in (the 8-bit data input), sel (the 3-bit selection input), and y (the output wire).
+
+Module Instantiation: <br>
+The mux_generate module (uut) is instantiated within the testbench. It connects the testbench signals to the module's ports.
+
+Clock Generation: <br>
+A clock signal clk is defined for simulation purposes. This clock signal toggles every 5 time units (simulation time).
+
+Test Input Values: <br>
+Inside the initial block, test cases are defined to verify the behavior of the mux_generate module. Two test cases are provided as examples:
+Case 1: It selects input 0 (sel = 3'b000) and applies an 8-bit data input of 8'b10101010.
+Case 2: It selects input 3 (sel = 3'b011) and applies an 8-bit data input of 8'b11001100.
+
+Simulation Termination: <br>
+The simulation is finished using $finish to conclude the testbench after all test cases are executed.
+
+This testbench checks the functionality of the mux_81 module by applying different input combinations and verifying that the output y corresponds to the selected input according to the values of sel. You can extend the test cases as needed to thoroughly test the module's behavior. <br><br>
 
  Simulation using gtkwave- <br>
 <img  width="1085" alt="lab12_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day12/lab12_3.png"><br><br>
