@@ -26,6 +26,8 @@ Quick links:
 
 - [Day-11-Introduction to BabySoC](#Day-11--Introduction-to-BabySoc)
 
+- [Day-12-BabySoC Modelling](#Day-12--BabySoC-Modelling)
+
 ## Day-0-Installation
 
 	
@@ -3206,3 +3208,6 @@ The Samsung Exynos 9611 processor exemplifies the capabilities of modern SoCs de
 
  
 </details>
+
+## Day-12-BabySoC Modelling
+
