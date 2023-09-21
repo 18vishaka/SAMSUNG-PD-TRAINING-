@@ -3211,3 +3211,20 @@ The Samsung Exynos 9611 processor exemplifies the capabilities of modern SoCs de
 
 ## Day-12-BabySoC Modelling
 
+<details>
+	<summary>Introduction</summary>
+
+ **SoC (System on Chip):**
+ Soc is a single-die chip that has some different IP cores on it. These IP could vary from microprocessor (completely digital) to 5G broadband modems (completely analog).
+
+ **Modelling:**
+ <ul>
+	 <li>Modelling and simulation is the use of a physical or logical representation of a given system to generate data and help determine decisions or make predictions about the system.</li>
+	 <li>Models are representations that can aid in defining, analyzing and communicating a set of concepts.</li>
+ 
+ </ul>
+
+**Purpose of Modelling:**
+
+
+  </details>
