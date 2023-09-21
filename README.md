@@ -3212,19 +3212,19 @@ The Samsung Exynos 9611 processor exemplifies the capabilities of modern SoCs de
 ## Day-12-BabySoC Modelling
 
 <details>
-	<summary>Introduction</summary>
+	<summary>Introduction</summary> <br><br>
 
- **SoC (System on Chip):**
- Soc is a single-die chip that has some different IP cores on it. These IP could vary from microprocessor (completely digital) to 5G broadband modems (completely analog).
+ **SoC (System on Chip):** <br>
+ Soc is a single-die chip that has some different IP cores on it. These IP could vary from microprocessor (completely digital) to 5G broadband modems (completely analog). <br>
 
- **Modelling:**
+ **Modelling:** <br>
  <ul>
 	 <li>Modelling and simulation is the use of a physical or logical representation of a given system to generate data and help determine decisions or make predictions about the system.</li>
 	 <li>Models are representations that can aid in defining, analyzing and communicating a set of concepts.</li>
  
- </ul>
+ </ul> <br>
 
-**Purpose of Modelling:**
+**Purpose of Modelling:** <br>
 System models are specifically developed to:
 a. support analysis, specification,
 b. design,
@@ -3232,7 +3232,7 @@ c. verification,
 d. and validation of a system,
 e. as well as to communicate certain information
 
-**What are we modelling?**
+**What are we modelling?** <br>
 Modelling of VSDBabySoC, a System-on-Chip (SoC). In this process, we aim to create a comprehensive model and conduct simulations for VSDBabySoC.
 <ul>
 	<li>To kick things off, we'll introduce some initial input signals into the VSDBabySoC module. These signals will trigger the phase-locked loop (PLL) to start generating the necessary clock signals for the entire circuit.</li>
@@ -3241,16 +3241,16 @@ Modelling of VSDBabySoC, a System-on-Chip (SoC). In this process, we aim to crea
 	<li>In essence, our SoC comprises three main elements, each represented as Intellectual Property (IP) cores. These cores, along with a wrapper, come together to form the SoC. Additionally, it's important to mention that there is also a testbench module integrated into the overall design for testing and verification purposes.
 </li>
 </ul>
-We will get to see more structured and coherent explanation of the VSDBabySoC modeling process.
+We will get to see more structured and coherent explanation of the VSDBabySoC modeling process. <br>
 
-**This week's task is centered around modeling the three primary IP cores::**
+**This week's task is centered around modeling the three primary IP cores::** <br>
 1. RVMYTH Modelling
 2. PLL Modelling
 3. DAC Modelling
-4. 
-Before we dive into the modeling process, let's first gain a comprehensive understanding of how each of these components operates.
 
-**1. RVMYTH - Risc-V based MYTH (Microprocessor for You in Thirty Hours):**
+Before we dive into the modeling process, let's first gain a comprehensive understanding of how each of these components operates. <br>
+
+**1. RVMYTH - Risc-V based MYTH (Microprocessor for You in Thirty Hours):** <br>
 <ul>
 	<li>RVMYTH, which stands for RISC-V based Microprocessor for You in Thirty Hours, is built upon the principles of Reduced Instruction Set Computer (RISC). 
 </li>
@@ -3287,13 +3287,13 @@ Finally, the CPU increments the program counter to point to the next instruction
 
 A one-cycle CPU design is straightforward and efficient but often lacks the performance optimizations found in more complex CPUs. It's typically used in educational settings to teach the fundamentals of CPU architecture. In real-world applications, modern CPUs use pipelining and multiple stages to achieve higher performance. <br>
 
-**PLL (Phase Locked Loop):**
+**2. PLL (Phase Locked Loop):**
 **Explanation:** <br>
 A Phase-Locked Loop (PLL) is an electronic circuit commonly used in digital systems to generate and control clock signals. It operates by constantly adjusting the frequency and phase of its output signal to match that of an input signal. PLLs have a wide range of applications, including frequency synthesis, clock recovery, modulation, and demodulation. They play a crucial role in many electronic devices, including System-on-Chip (SoC) designs. <br>
 
 **Let's answer few of the questions in detail to get better understand the importance of PLL:**
 
-**1. Why do we need a PLL for our SoC?** <br>
+**A. Why do we need a PLL for our SoC?** <br>
    - *Clock Synchronization:* <br>
 In a SoC, various components and subsystems often need to work together at specific time intervals, requiring a synchronized clock signal. A PLL ensures that the clock signal generated for the SoC is stable, precise, and aligned with the desired frequency, enabling reliable operation of the entire system.
 
@@ -3309,7 +3309,7 @@ PLLs are designed to reduce phase noise and jitter in the clock signal, which is
    - *Clock Recovery:* <br>
 In communication systems, PLLs are used to recover clock signals from incoming data streams, ensuring accurate data reception. <br>
 
-**2. How is a clock generated?** <br>
+**B. How is a clock generated?** <br>
 Clock signals are generated by electronic circuits known as oscillators. There are various types of oscillators, and one commonly used method is the **Quartz Crystal Oscillator**. Here's how it works:
    - A quartz crystal oscillator relies on the piezoelectric effect in quartz crystals. When a voltage is applied to a quartz crystal, it vibrates at a specific frequency determined by its physical dimensions. <br>
 
@@ -3319,7 +3319,7 @@ Clock signals are generated by electronic circuits known as oscillators. There a
 
    - The output of the quartz crystal oscillator is a clean and stable clock signal that can be used as a reference or input to a PLL for frequency synthesis and control. <br>
 
-**3. Why is an off-chip oscillator not good enough for frequencies above 100MHz?** <br>
+**C. Why is an off-chip oscillator not good enough for frequencies above 100MHz?** <br>
 Off-chip oscillators, such as those in the form of discrete components, are suitable for generating clock signals up to a certain frequency, but they may not be sufficient for higher frequencies (e.g., above 100MHz) due to several reasons:
 
    - *Signal Integrity:* <br>
@@ -3336,18 +3336,22 @@ Off-chip oscillators may have limitations in achieving precise frequency control
 
 To overcome these challenges and meet the stringent requirements of high-speed digital systems, on-chip PLLs are often used to generate and stabilize clock signals at frequencies above 100MHz within the SoC itself, ensuring reliable and accurate operation. <br>
 
-**Why Off-Chip Clocks Can't Be Used All the Time in SoCs:** <br>
+**D. Why Off-Chip Clocks Can't Be Used All the Time in SoCs:** <br>
 Off-chip clocks, generated by external sources, cannot always be relied upon for all aspects of an integrated circuit, especially in the case of System-on-Chip (SoC) designs. Several critical factors necessitate the use of on-chip clock generation and distribution:
 
-1. **Propagation Delays and Signal Quality:** Clock signals originating from off-chip sources can experience substantial propagation delays when distributed across the chip. Long interconnects and routing can introduce timing uncertainties, leading to synchronization issues and compromised signal quality. This can result in unreliable operation and data corruption in a complex SoC.
+1. *Propagation Delays and Signal Quality:* <br>
+Clock signals originating from off-chip sources can experience substantial propagation delays when distributed across the chip. Long interconnects and routing can introduce timing uncertainties, leading to synchronization issues and compromised signal quality. This can result in unreliable operation and data corruption in a complex SoC.
 
-2. **Clock Jitter:** Off-chip clocks are susceptible to clock jitter, which refers to small, unpredictable variations in the clock signal's timing. Jitter can negatively impact the synchronization and stability of various on-chip components, particularly when stringent timing requirements must be met.
+2. *Clock Jitter:* <br>
+Off-chip clocks are susceptible to clock jitter, which refers to small, unpredictable variations in the clock signal's timing. Jitter can negatively impact the synchronization and stability of various on-chip components, particularly when stringent timing requirements must be met.
 
-3. **Variable Clock Frequencies:** In SoCs, different blocks and subsystems often operate at varying clock frequencies based on their specific performance requirements. For example, some components may require a 200MHz clock, while others may function optimally at 100MHz. Using a single off-chip clock source for all these diverse requirements is impractical.
+3. *Variable Clock Frequencies:* <br>
+In SoCs, different blocks and subsystems often operate at varying clock frequencies based on their specific performance requirements. For example, some components may require a 200MHz clock, while others may function optimally at 100MHz. Using a single off-chip clock source for all these diverse requirements is impractical.
 
-4. **Precision and Accuracy:** Clock accuracy is a critical consideration. When external quartz crystals are used as clock sources, they inherently come with a certain degree of error, typically measured in parts per million (ppm). This error can accumulate when distributed across a large SoC, leading to timing discrepancies that affect system performance.
+4. *Precision and Accuracy:* <br>
+Clock accuracy is a critical consideration. When external quartz crystals are used as clock sources, they inherently come with a certain degree of error, typically measured in parts per million (ppm). This error can accumulate when distributed across a large SoC, leading to timing discrepancies that affect system performance.
 
-To address these challenges, SoC designers often implement on-chip Phase-Locked Loops (PLLs) and clock distribution networks. These on-chip PLLs allow for the generation of stable, synchronized, and precise clock signals tailored to the specific needs of different blocks within the SoC. By doing so, designers can minimize the impact of propagation delays, mitigate clock jitter, and ensure that each component operates at its required frequency with high accuracy, thereby maintaining the overall reliability and performance of the integrated circuit.
+To address these challenges, SoC designers often implement on-chip Phase-Locked Loops (PLLs) and clock distribution networks. These on-chip PLLs allow for the generation of stable, synchronized, and precise clock signals tailored to the specific needs of different blocks within the SoC. By doing so, designers can minimize the impact of propagation delays, mitigate clock jitter, and ensure that each component operates at its required frequency with high accuracy, thereby maintaining the overall reliability and performance of the integrated circuit. <br>
 
 **What is ppm Error (Parts Per Million)?** <br>
 PPM, which stands for parts per million, is a measurement of relative error or variation. It expresses the magnitude of a discrepancy in parts per million between an expected value and an actual value. In the context of electronic devices, including integrated circuits, ppm error is used to quantify how accurate a clock signal generated by a component, such as a quartz crystal oscillator, is when compared to an ideal or reference frequency. <br>
@@ -3396,7 +3400,7 @@ In summary, ppm error, although seemingly small in absolute terms, can have a si
 
 In summary, a PLL in an SoC is a feedback control system that aims to synchronize and stabilize the output clock signal with respect to an input reference clock. The Phase Detector compares the phases, the Loop Filter processes the error signal, the VCO generates the output clock, and the Frequency Divider controls feedback. These components work together to ensure that the output clock maintains a desired frequency and phase relationship with the reference clock, making PLLs indispensable in modern integrated circuits.
 
-**Digital-to-Analog Converter (DAC):** <br>
+**3. Digital-to-Analog Converter (DAC):** <br>
 A Digital-to-Analog Converter (DAC) is an essential electronic component that plays a fundamental role in converting digital signals into analog signals. It takes a digital input, which is typically represented using binary code (combinations of 0s and 1s), and transforms it into a continuous analog output signal. DACs are employed in various applications, from audio reproduction to communication systems, where converting digital data into analog waveforms is necessary.
 
 **Key Features of a DAC:**
