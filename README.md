@@ -3522,7 +3522,7 @@ module mux_81 (input [7:0] in, input [2:0] sel, output y);
 assign y = in[sel];
 ```
 
-- `assign y = in[sel];`: This line defines the behavior of the mux_generate module. It uses an "assign" statement to specify that the output wire "y" is equal to the value of one of the bits in the input vector "in," determined by the value of the selection vector "sel."
+- `assign y = in[sel];`: This line defines the behavior of the mux_81 module. It uses an "assign" statement to specify that the output wire "y" is equal to the value of one of the bits in the input vector "in," determined by the value of the selection vector "sel."
 
 
    - `in[sel]`: This expression selects a specific bit from the "in" vector based on the binary value represented by the "sel" vector. For example, if `sel` is 3'b001 (binary value 1), it selects the second bit (bit 1) from the "in" vector, and that value is assigned to "y."
