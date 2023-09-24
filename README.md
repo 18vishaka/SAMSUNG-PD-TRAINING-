@@ -3687,3 +3687,18 @@ In summary, pre-synthesis simulation is essential for early design validation an
 
 </details>
 
+<details>
+	<summary>Post-Synthesis of 8:1 Multiplexer</summary>
+
+ **Gate level Simulation:** <br>
+ Commands:
+ ```ruby
+iverilog <netlist_file_name> <testbench>
+./a.out
+gtkwave <vcd_file_name>
+```
+
+
+
+
+</details>
