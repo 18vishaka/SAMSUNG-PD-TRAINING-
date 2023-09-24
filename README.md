@@ -28,6 +28,8 @@ Quick links:
 
 - [Day-12-BabySoC Modelling](#Day-12--BabySoC-Modelling)
 
+- [Day-13-Post Synthesis Simulation](#Day-13--Post-Synthesis-Simulation)
+
 ## Day-0-Installation
 
 	
@@ -3641,3 +3643,46 @@ Simulation output using gtkwave- <br>
 
 
 </details>
+
+
+<details>
+	<summary>Introduction</summary>
+
+**Synthesis:** <br>
+Synthesis, within the realm of digital integrated circuit design, is the pivotal process of transforming a high-level description of a hardware design into a lower-level representation that comprises logic gates and flip-flops. 
+
+**Pre-Synthesis:** <br>
+The pre-synthesis phase in digital circuit design is a critical step that occurs before the actual synthesis process. It involves several technical tasks and activities aimed at preparing the design for synthesis, which ultimately leads to the creation of the physical hardware. 
+
+**Post-Synthesis:** <br>
+The post-synthesis phase in digital circuit design occurs after the synthesis process has translated the high-level RTL (Register-Transfer Level) design into a gate-level representation. This phase involves a set of technical tasks and activities aimed at further refining and optimizing the design, ensuring that it meets performance, area, and power constraints.
+
+**Why do pre-synthesis? Why not just do post-synthesis?** <br>
+Pre-synthesis and post-synthesis simulations serve different purposes in the design and verification of digital circuits. Both have their own advantages and are essential at different stages of the design process. Let's explore why both are important:
+
+1. **Pre-Synthesis Simulation**: <br>
+   - **Functionality Focus**: Pre-synthesis simulation is primarily focused on verifying the logical functionality of the design. It checks whether the design operates as intended based on the high-level RTL (Register Transfer Level) description.
+   - **Early Validation**: It allows designers to catch and correct logical errors and functional issues before the design is synthesized. This is crucial for identifying and fixing design flaws early in the development cycle, which can save a lot of time and resources.
+   - **Fast Execution**: Pre-synthesis simulations are usually faster than post-synthesis simulations because they don't consider gate-level delays and are closer to the original RTL code.
+
+2. **Post-Synthesis Simulation**: <br>
+   - **Timing Analysis**: Post-synthesis simulation considers gate-level delays, which means it takes into account the actual propagation delays of logic gates, interconnects, and other physical components. This helps in analyzing the timing behavior of the design.
+   - **Accurate Timing Violation Detection**: It can detect and report timing violations such as setup and hold time violations, clock-to-q delays, and other timing-related issues. This is essential for ensuring that the design meets the required performance criteria.
+   - **Power Analysis**: Post-synthesis simulations can also provide insights into power consumption, which is important for battery-powered or low-power designs.
+   - **Realistic Behavior**: It provides a more realistic view of how the design will behave once implemented in hardware.
+
+3. **Mismatch Detection**: <br>
+   - Both pre-synthesis and post-synthesis simulations are used to detect mismatches, but they focus on different aspects. Pre-synthesis simulation can identify logical mismatches early in the design phase, while post-synthesis simulation helps identify timing-related mismatches and issues caused by incorrect usage of operators and inference of latches.
+
+In summary, pre-synthesis simulation is essential for early design validation and catching logical errors, while post-synthesis simulation is crucial for ensuring that the design meets timing requirements and for obtaining a realistic view of how the design will perform in hardware. Both types of simulation are complementary and necessary for a comprehensive design verification process.
+
+**GLS: a brief introduction:** <br>
+  - **Gate Level Perspective**: The term "gate level" refers to the netlist representation of a circuit, typically generated through logic synthesis.
+  - **Timing in the Design Flow**: While RTL simulation takes place prior to synthesis, GLS is conducted after synthesis has transformed the design. 
+  - **Comprehensive Netlist**: The netlist view encompasses a detailed connection list that includes gates and IP models, complete with their functional and timing characteristics.
+  - **Simulation Environments**: RTL simulation operates within a zero-delay environment, where events primarily occur on the active clock edge. On the other hand, GLS can be configured for zero delay but is often utilized in unit delay or full timing modes.
+  - **Confidence in Implementation**: Gate level simulation serves as a critical step in the verification process, enhancing confidence in the design's practical implementation. It excels in verifying dynamic circuit behavior, a task that static methods like RTL simulation cannot accurately accomplish.
+
+
+</details>
+
