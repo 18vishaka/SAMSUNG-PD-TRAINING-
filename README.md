@@ -3691,14 +3691,33 @@ In summary, pre-synthesis simulation is essential for early design validation an
 	<summary>Post-Synthesis of 8:1 Multiplexer</summary>
 
  **Gate level Simulation:** <br>
- Commands:
+
+ The 8:1 multiplexer output discussed in the pre-synthesis simulation matches the post-synthesis simulation output. 
+ The following are the sequence of steps for simulating the output:
+ 
  ```ruby
 iverilog <netlist_file_name> <testbench>
 ./a.out
 gtkwave <vcd_file_name>
 ```
 
+The 'iverilog' command utilizes the simulated gate-level netlist and the same testbench for post-synthesis simulation. Running './a.out' generates a VCD format file corresponding to the netlist, which can be viewed using 'gtkwave'.
+The post-simulaation output is as follows:
+<img  width="1085" alt="lab13_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day13/lab13_14.png"><br>
+Thus the exact match between the post-synthesis and pre-synthesis outputs verifies the logical correctness of the design.
 
+
+**Synthesis of 8:1 Multiplexer using DC shell:**
+The following are the sequence of steps:
+```ruby
+set target_library <path_of_the_target_library>
+set linl_library {* <path_of_the_target_library>}
+read_verilog <file_name.v>
+link
+compile_ultra
+```
+The schematic of 8:1 Multiplexer in design vision:
+<img  width="1085" alt="lab13_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day13/lab13_22.png"><br>
 
 
 </details>
