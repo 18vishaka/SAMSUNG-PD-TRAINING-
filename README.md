@@ -3703,7 +3703,7 @@ gtkwave <vcd_file_name>
 
 The 'iverilog' command utilizes the simulated gate-level netlist and the same testbench for post-synthesis simulation. Running './a.out' generates a VCD format file corresponding to the netlist, which can be viewed using 'gtkwave'.
 The post-simulaation output is as follows: <br>
-<img  width="1085" alt="lab13_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day13/lab13_14.png"><br>
+<img  width="1085" alt="lab13_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day13/lab13_21.png"><br>
 Thus the exact match between the post-synthesis and pre-synthesis outputs verifies the logical correctness of the design. 
 
 
@@ -3717,9 +3717,65 @@ set linl_library {* <path_of_the_target_library>}
 read_verilog <file_name.v>
 link
 compile_ultra
+write -f verilog -out mux81_net.v
+write -f ddc -out mux81.vcd
 ```
 The schematic of 8:1 Multiplexer in design vision: <br>
 <img  width="1085" alt="lab13_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day13/lab13_22.png"><br>
 
 
+</details>
+
+<details>
+	<summary>Post Synthesis of BabySoC</summary>
+
+BabySoc consists of three IP's-
+1. RVMYTH
+2. DAC
+3. PLL
+Here only RVMYTH is synthesizable and not DAC nor PLL.
+
+So here is the post-synthesis output of RISC-V processor RVMYTH is as follows: <br>
+<img  width="1085" alt="lab13_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day13/lab13_14.png">
+We observe that the functionality remains consistent with the one compared to the pre-synthesis stage, where it calculates the sum of the first n natural numbers up to 1000 and then decrements in the same manner.
+The following are the sequence of steps:
+```ruby
+set target_library <path_of_the_target_library>
+set linl_library {* <path_of_the_target_library>}
+read_verilog mythcore_test.v
+link
+compile_ultra
+write -f verilog -out rvmyth_net.v
+```
+The netlist written here as 'out' represents the default output 'clk_gate' in the code. Hence, the 'current_design' is switched to 'core' and the resulting netlist is written out as follows: <br>
+```ruby
+current_design core
+write -f verilog -out rvmyth_net.v
+```
+The processor's output increments in the same manner as it did at the pre-synthesis stage, confirming the proper definition of logic. 
+The following commands are used to simulate the output waveform: <br>
+```ruby
+iverilog -DFUNCTIONAL -DUNIT_DELAY=#1 rvmyth_net.v tb_mythcore_test.v primitives.v sky130_fd_sc_hdd.v
+./a.out
+gtkwave tb_mythcore_test.vcd
+```
+
+**BabySoC post-synthesis:** <br>
+Since only RVMYTH is synthesizable, we proceed to synthesis 'rvmyth' and subsequently verify its functionality with 'DAC' and 'PLL'.
+The following are the sequence of steps:
+```ruby
+set target_library <path_of_the_target_library>
+set linl_library {* <path_of_the_target_library>}
+read_verilog mythcore_test.v
+link
+compile_ultra
+write -f verilog -out rvmyth_net.v
+```
+```ruby
+iverilog -DFUNCTIONAL -DUNIT_DELAY=#1 rvmyth_net.v vsdbabysoc.v testbench.v avsddac.v avsdpll.v primitives.v sky130_fd_sc_hdd.v
+./a.out
+gtkwave dump.vcd
+```
+<img  width="1085" alt="lab13_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day13/lab13_16.png">
+We observe that the outputs of both pre-synthesis and post-synthesis simulations match, confirming the logical correctness of the design.
 </details>
