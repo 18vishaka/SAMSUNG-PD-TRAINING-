@@ -3732,7 +3732,7 @@ The schematic of 8:1 Multiplexer in design vision: <br>
 BabySoc consists of three IP's-
 1. RVMYTH
 2. DAC
-3. PLL
+3. PLL <br>
 Here only RVMYTH is synthesizable and not DAC nor PLL.
 
 So here is the post-synthesis output of RISC-V processor RVMYTH is as follows: <br>
