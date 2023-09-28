@@ -3786,9 +3786,9 @@ We observe that the outputs of both pre-synthesis and post-synthesis simulations
 ## Day-14-Synopsys DC and Timing Analysis
 
 <details>
-	<summary>Introduction</summary>
+	<summary>Introduction</summary> <br>
 
- **What is PVT?:**
+ **What is PVT?:** <br>
  PVT stands for Process, Voltage and Temperature. We can think of these factors as the 'environment' in which electronic chips or circuits operate.
  <ul>
 	 <li>Process: <br>
@@ -3817,7 +3817,7 @@ We observe that the outputs of both pre-synthesis and post-synthesis simulations
   
 In semiconductor design and testing, "corners" refer to different combinations of Process, Voltage, and Temperature (PVT) conditions. These corners are used to evaluate how a chip or integrated circuit (IC) performs under a range of real-world operating conditions. Let's delve into greater detail about PVT corners:
 
-1. **Process Corner**:
+1. **Process Corner**: 
    - *Definition*: The process corner represents variations in the manufacturing process itself. It accounts for differences in factors like doping levels, oxide thickness, and other fabrication parameters.
    - *Types*: There are typically three main process corners:
      - *Nominal (Typical)*: This represents the expected or ideal process conditions. It assumes that the manufacturing process is performing as intended.
@@ -3857,7 +3857,7 @@ PVT corners are crucial for ensuring that a semiconductor device or IC works rel
 
 Understanding these PVT factors is critical for semiconductor designers and engineers because they directly influence how a chip performs under real-world conditions. To ensure the reliability and functionality of a chip across a range of scenarios, designers conduct extensive testing and simulation under different PVT conditions, known as PVT corners. This testing helps identify potential issues, optimize performance, and ensure that the chip can operate successfully in diverse environments, despite the inherent variations in process, voltage, and temperature.
 
- **PVT Graphs:**
+ **PVT Graphs:** <br>
 <img  width="1085" alt="pvt_graphs" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/pvt_graphs.jpeg">
 
 </details>
