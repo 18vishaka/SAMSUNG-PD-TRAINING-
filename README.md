@@ -30,6 +30,8 @@ Quick links:
 
 - [Day-13-Post Synthesis Simulation](#Day-13--Post-Synthesis-Simulation)
 
+- [Day-14-Synopsys DC and Timing Analysis](#Day-14--Synopsys-DC-and-Timing-Analysis)
+
 ## Day-0-Installation
 
 	
@@ -3778,4 +3780,37 @@ gtkwave dump.vcd
 ```
 <img  width="1085" alt="lab13_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day13/lab13_16.png">
 We observe that the outputs of both pre-synthesis and post-synthesis simulations match, confirming the logical correctness of the design.
+</details>
+
+
+## Day-14-Synopsys DC and Timing Analysis
+
+<details>
+	<summary>Introduction</summary>
+
+ **What is PVT?:**
+ PVT stands for Process, Voltage and Temperature. We can think of these factors as the 'environment' in which electronic chips or circuits operate.
+ <ul>
+	 <li>Process: <br>
+	 This refers to how a chip is manufactured and the tiny details in it's design. It's like the recipe and ingredients used to bake a cake. Different manufacturing processes can create chips with varying performace and power characteristics.</li>
+	 <li>Voltage: <br>
+	 It is like the electrical pressure that powers the chip. Just like our electronic devices need the right voltage from batteries or power outlets to work properly, chips need a specific voltage level to function correctly.</li>
+	 <li>Temperature: <br>
+	 Temperature is how hot or cold the chip becomes during operation. Like how a car engine can overheat if it gets too hot, chips can malfunction if they get too hot or too cold.</li>
+ </ul>
+
+ **Corners of PVT:**
+
+ **Understanding PVT:**
+
+ **PVT Graphs:**
+
+
+</details>
+
+<details>
+	<summary>Labs</summary>
+ **
+
+ 
 </details>
