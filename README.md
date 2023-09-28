@@ -3966,13 +3966,26 @@ The images below illustrates the setup delay and quality of results (QoR) for di
 <img  width="1085" alt="db2_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_13.png"> <br><br>
 
 **Table and Graph for setup:**
-<img  width="1085" alt="" src="">
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="setup_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/setup_1.png">
+<img  width="1085" alt="setup_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/setup_2.png"> <br><br>
 
 
 **Table and Graph for hold:**
-<img  width="1085" alt="" src="">
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="hold_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/hold_1.png">
+<img  width="1085" alt="hold_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/hold_2.png"> <br><br>
+
+**Conclusions drawn:**
+Hold violations and setup issues are common challenges in digital circuit design. Here's a breakdown of their characteristics and some insight into specific process, voltage, and temperature (PVT) corners:
+
+1. **Hold Violations**: These are more likely to occur in faster cells. Hold time is the minimum amount of time that data must be stable before the clock edge to be reliably captured by a flip-flop. Faster cells process data quickly, leaving less time for data to stabilize. Hence, they are more susceptible to hold violations.
+
+2. **Setup Issues**: Conversely, setup issues tend to arise in slower cells. Setup time is the minimum time that data must be stable after the clock edge to be correctly captured. Slower cells need a longer setup time because they process data more slowly, which can lead to setup violations if not met.
+
+Now, about PVT corners:
+
+- **Worst Setup Corner**: The most critical PVT corner for setup is sky130_fd_sc_hd__ss_n40C_1v28. This means slow process (ss), low temperature (n40C), and a supply voltage of 1.28 volts. If we can ensure that our design meets timing requirements in this challenging corner, it's likely to perform well in all other corners, providing robustness across varying conditions.
+
+- **Best PVT Corner**: On the other hand, the best PVT corner is sky130_fd_sc_hd__ff_n40C_1v76. In this corner, there are no setup violations, and hold violations are minimal. It's considered the most favorable condition because it offers the best overall performance and reliability.
 
 
 </details>
