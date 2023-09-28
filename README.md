@@ -3864,7 +3864,115 @@ Understanding these PVT factors is critical for semiconductor designers and engi
 
 <details>
 	<summary>Labs</summary>
- **
 
- 
+**Objective:** <br>
+Objective is to evaluate how our designed circuit's timing behaves under different conditions: Process (manufacturing variations), Voltage (power supply fluctuations), and Temperature (heat variations), collectively referred to as PVT corners. Understanding how these factors affect our circuit's performance is crucial for ensuring its reliability and adherence to specified timing requirements.
+
+During our analysis, we synthesized the design while considering various PVT corners. Our focus was on three key timing parameters: Total Negative Slack (TNS), Worst Negative Slack (WNS), and Worst Hold Slack (WHS). TNS provides an overall assessment of timing issues across the entire design, while WNS and WHS help pinpoint the most critical timing challenges, such as setup and hold violations.
+
+Step-1: Transforming .lib Files into .db Format for Synthesis: <br>
+In preparation for the synthesis process using Synopsys Design Compiler (dc_shell), it is essential to convert the required .lib files into a compatible .db format using lc_shell.
+Procedure- <br>
+```ruby
+read_lib <library_name>
+write_lib <library_name> -f db -o <name_of_the_db_file>
+```
+
+Step-2: To create a constraint file: <br>
+```ruby
+ set_units -time ns
+create_clock -name MYCLK -per 2 [get_pins {pll/CLK}];
+
+set_clock_latency -source 1 [get_clocks MYCLK]
+set_clock_uncertainty -setup 0.5 [get_clocks MYCLK]; 
+set_clock_uncertainty -hold 0.4 [get_clocks MYCLK]; 
+
+set_input_delay -max 1 -clock \[get_clocks MYCLK] [all_inputs];
+set_input_delay -min 0.5 -clock \[get_clocks MYCLK] [all_inputs];
+set_output_delay -max 1 -clock \[get_clocks MYCLK] [all_outputs];
+set_output_delay -min 0.5 -clock \[get_clocks MYCLK] [all_outputs];
+
+set_input_transition -max 0.2 \[all_inputs];
+set_input_transition -min 0.1 \[all_inputs];
+
+set_max_area  800;
+
+set_load -max 0.2 \[all_outputs];
+set_load -min 0.1 \[all_outputs];
+```
+
+Step-3: Configure the necessary database files (sky130.db, avsddac.db, avsdpll.db), read the design, link the library, and initiate the compile_ultra process:
+```ruby
+set target_library { <sky130_PVT_corner> , avsddac.db , avsdpll.db}
+set link_library {* sky130_PVT_corner> , avsddac.db , avsdpll.db}
+read_verilog vsdbabysoc.v
+link
+source <constraints_file_name>
+compile_ultra
+report_qor
+```
+
+The images below illustrates the setup delay and quality of results (QoR) for different PVT corners:
+1. sky130_fd_sc_hd__ff_100C_1v65 <br>
+<img  width="1085" alt="db1_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_1.png">
+<img  width="1085" alt="db2_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_1.png"> <br><br>
+
+2. sky130_fd_sc_hd__ff_100C_1v95
+<img  width="1085" alt="db1_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_2.png">
+<img  width="1085" alt="db2_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_2.png"> <br><br>
+
+3. sky130_fd_sc_hd__ff_n40C_1v56
+<img  width="1085" alt="db1_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_3.png">
+<img  width="1085" alt="db2_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_3.png"> <br><br>
+
+4. sky130_fd_sc_hd__ff_n40C_1v65
+<img  width="1085" alt="db1_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_4.png">
+<img  width="1085" alt="db2_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_4.png"> <br><br>
+
+5. sky130_fd_sc_hd__ff_n40C_1v76
+<img  width="1085" alt="db1_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_5.png">
+<img  width="1085" alt="db2_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_5.png"> <br><br>
+
+6. sky130_fd_sc_hd__ss_100C_1v40
+<img  width="1085" alt="db1_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_6.png">
+<img  width="1085" alt="db2_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_6.png"> <br><br>
+
+7.  sky130_fd_sc_hd__ss_100C_1v60
+<img  width="1085" alt="db1_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_7.png">
+<img  width="1085" alt="db2_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_7.png"> <br><br>
+
+8. sky130_fd_sc_hd__ss_n40C_1v28
+<img  width="1085" alt="db1_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_8.png">
+<img  width="1085" alt="db2_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_8.png"> <br><br>
+
+9. sky130_fd_sc_hd__ss_n40C_1v35
+<img  width="1085" alt="db1_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_9.png">
+<img  width="1085" alt="db2_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_9.png"> <br><br>
+
+10. sky130_fd_sc_hd__ss_n40C_1v40
+<img  width="1085" alt="db1_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_10.png">
+<img  width="1085" alt="db2_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_10.png"> <br><br>
+
+11. sky130_fd_sc_hd__ss_n40C_v44
+<img  width="1085" alt="db1_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_11.png">
+<img  width="1085" alt="db2_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_11.png"> <br><br>
+
+12. sky130_fd_sc_hd__ss_n40C_1v76
+<img  width="1085" alt="db1_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_12.png">
+<img  width="1085" alt="db2_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_12.png"> <br><br>
+
+13. sky130_fd_sc_hd__tt_025C_1v80
+<img  width="1085" alt="db1_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db1_13.png">
+<img  width="1085" alt="db2_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day14/db2_13.png"> <br><br>
+
+**Table and Graph for setup:**
+<img  width="1085" alt="" src="">
+<img  width="1085" alt="" src=""> <br><br>
+
+
+**Table and Graph for hold:**
+<img  width="1085" alt="" src="">
+<img  width="1085" alt="" src=""> <br><br>
+
+
 </details>
