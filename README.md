@@ -4002,7 +4002,7 @@ Now, about PVT corners:
 	<summary>Introduction</summary>
 
 **Simpliflied RTL to GDS2 flow:** <br>
-<img  width="1085" alt="" src="">
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.32.17.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.32.17.jpeg">
 The RTL to GDS2 flow is a comprehensive process utilized in semiconductor design to transform a high-level hardware description of a digital integrated circuit into a physical layout ready for manufacturing. This intricate journey can be summarized as follows:
 
 RTL Design: <br>
@@ -4050,9 +4050,9 @@ The openLANE flow takes in the rtl from your design and the PDK's provided by th
 
 
 **openLANE Architecture:** <br>
-<img  width="1085" alt="" src="">
-<img  width="1085" alt="" src="">
-<img  width="1085" alt="" src="">
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.32.51.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.32.51.jpeg">
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.34.50.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.34.50.jpeg">
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.35.28.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.35.28.jpeg">
 
 OpenLANE's architecture is built upon a stack of open-source EDA (Electronic Design Automation) tools, libraries, and resources, making it accessible to a wide range of designers and researchers. It provides an efficient and automated flow for ASIC design, promoting collaboration and innovation in the field of semiconductor design.
 
@@ -4118,7 +4118,7 @@ In summary, RISC-V is an open-source and modular instruction set architecture th
 
 
 **Digital ASIC (Application-Specific Integrated Circuit):** <br>
-<img  width="1085" alt="" src="">
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.36.29.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.36.29.jpeg">
 
 1. **Specification**: Defining the chip's purpose, performance, and power requirements.
 
@@ -4204,8 +4204,8 @@ This means that the flop count constitutes approximately 10.8% of the total cell
  Step-1: Define width and height of core and die <br>
 
  Let's examine a straightforward netlist featuring a register-to-register timing path, comprising two flip-flops and two combinational gates, as depicted below:
-<img  width="1085" alt="" src=""> <br>
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.40.04.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.40.04.jpeg"> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.44.04.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.44.04.jpeg"> <br>
 The dimensions of the core and die are determined by the combined area of the standard cells within the design. Assuming that each standard cell occupies 1 square unit of area, and each flip-flop also occupies 1 square unit, the minimum area occupied by the netlist is 4 square units, which can be placed as needed.
 
 The core is the specific section of a chip where the primary logic of a design is located. Meanwhile, the die, which includes the core, is a small semiconductor material structure on which the fundamental circuit is fabricated. The core is enclosed within the die. When our design is placed on the core, the logic cells occupy the entire core area, resulting in a utilization factor of 100%.
