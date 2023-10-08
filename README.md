@@ -4206,6 +4206,7 @@ This means that the flop count constitutes approximately 10.8% of the total cell
  Let's examine a straightforward netlist featuring a register-to-register timing path, comprising two flip-flops and two combinational gates, as depicted below:
 <img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.40.04.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.40.04.jpeg"> <br>
 <img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.44.04.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.44.04.jpeg"> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.44.44.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.44.44.jpeg"> <br>
 The dimensions of the core and die are determined by the combined area of the standard cells within the design. Assuming that each standard cell occupies 1 square unit of area, and each flip-flop also occupies 1 square unit, the minimum area occupied by the netlist is 4 square units, which can be placed as needed.
 
 The core is the specific section of a chip where the primary logic of a design is located. Meanwhile, the die, which includes the core, is a small semiconductor material structure on which the fundamental circuit is fabricated. The core is enclosed within the die. When our design is placed on the core, the logic cells occupy the entire core area, resulting in a utilization factor of 100%.
@@ -4223,8 +4224,8 @@ When the aspect ratio is 1, it signifies a square chip. Otherwise, it indicates 
 For example, let's consider a design with a utilization factor of 0.5 and an aspect ratio of 0.5. If the length of the die is 2 units and the height is 4 units, the aspect ratio is calculated as 2/4, resulting in 0.5. The logic requires an area of 4 units, so the utilization factor is calculated as 4/(2 x 4), yielding 1/2 or 0.5.
 
 In this scenario, the utilization factor and aspect ratio are both 0.5, indicating that the design occupies half of the available core area and that the chip has a rectangular shape.
-<img  width="1085" alt="" src=""> <br>
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.45.26.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.45.26.jpeg"> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.46.06.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.46.06.jpeg"> <br>
 
 
 Now, let's consider another core with an area of 4x4 square units while using the same netlist. The utilization factor in this case would be calculated as (2x2)/(4x4), resulting in 0.25. This means that only 25% of the available area is utilized, leaving the remaining space available for optimization.
@@ -4234,8 +4235,8 @@ Furthermore, in this scenario, the aspect ratio is 1, which indicates that the c
 
 Step-2: Define locations of preplaced cells
 Preplaced cells are specific segments of combinational logic, such as macros or IPs, that are designed for reuse multiple times. These cells are strategically placed based on the design scenario, and their locations must be precisely defined. To illustrate the concept of preplaced cells, consider a combinational logic circuit with 100,000 gates that can be broken down into two distinct blocks.
-<img  width="1085" alt="" src=""> <br>
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.49.11.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.49.11.jpeg"> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.49.50.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.49.50.jpeg"> <br>
 
 Preplaced cells are fundamental building blocks of a chip's design, consisting of I/O pins that extend from these blocks, effectively dividing them into separate IP (Intellectual Property) modules. Within these modules, the inner logic remains concealed, represented as a "black box." The advantage of preplaced cells lies in their reusability throughout the netlist, allowing the designer to create the block's functionality just once.
 
@@ -4244,19 +4245,18 @@ The arrangement and placement of these IPs, known as floorplanning, are user-def
 
 To ensure optimal performance, pre-placed cells should be surrounded by decoupling capacitors. When the output of a logic gate transitions from 0 to 1, it demands a certain amount of current, which the output capacitance of the gate supplies. Vdd is responsible for providing the necessary voltage for logic switching in the design. Conversely, when transitioning from logic 1 to 0, Vss should be capable of handling the discharged currents produced by the logic in the design.
 Physical wires connecting the design components introduce resistance, inductance, and capacitance, which can result in voltage drops. Careful consideration and design of the power distribution network are essential to ensure stable operation and prevent voltage drop-related issues.
-<img  width="1085" alt="" src=""> <br>
-
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.50.29.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.50.29.jpeg"> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.51.18.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.51.18.jpeg"> <br>
 During the switching operation of a circuit, it requires a certain amount of switching current. As a result, there will be a voltage drop across the circuit, causing the voltage to become Vdd - IRdrop. If this value falls below the noise margin, due to the IR drop, the logic level 1 at the output won't be reliably detected as a logic level 1 at the input of the circuit.
 In digital circuits, voltage levels are defined within certain voltage ranges. Typically, any voltage between Vol (output low voltage) and Vil (input low voltage) is considered as logic '0,' while any voltage between Voh (output high voltage) and Vih (input high voltage) is considered as logic '1.' The voltage range between Vil and Vih is regarded as an undefined region because the voltage in this range may either rise to Vih or degrade to Vil, making it uncertain and unreliable for logic interpretation.
 
 **Noise margin Summary:**
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.51.58.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.51.58.jpeg"> <br>
 
 Step-3: Surround pre-placed cells with deoupling capacitors
 Decoupling capacitors play a crucial role in mitigating noise caused by the long distance between the circuit and the supply voltage. To achieve this, decoupling capacitors are added in parallel with the circuit. 
 Here's how they work: Every time the circuit switches, it draws current from the decoupling capacitor (Cd). An RL network is typically employed to replenish the charge into Cd, ensuring that the capacitor remains charged and can provide a stable and noise-free supply voltage to the circuit during switching operations.
 The inclusion of decoupling capacitors serves to prevent issues such as crosstalk and the degradation of logic signals.
-<img  width="1085" alt="" src=""> <br>
 
 
 Step-4: Power Planning
@@ -4264,10 +4264,11 @@ In a design containing various macros, each macro requires a certain amount of c
 Now, let's focus on two specific macros, one serving as the driver and the other as the load. The objective is for the signal to propagate from the driver to the load without any degradation. Imagine that the driver initially sends a logic 0 and transitions to logic 1 at the load.
 Adding a decoupling capacitor to every single cell within the logic is not practically feasible. Instead, decoupling capacitors are strategically placed within critical blocks of the design. Let's consider a 16-bit bus in this context, where each of the 16 bits undergoes logic transitions, charging and discharging as illustrated. The logic at the output of this bus is connected to an inverter. This means that all the capacitors, initially charged to 'V' volts, must discharge to '0' volts through a single ground tap point.
 As a result, this discharge process can create a "bump" in the ground tap point. If this bump exceeds the noise margin level, it can push the output into an undefined region. In this undefined region, the output becomes unpredictable and unreliable for logic interpretation. Hence, careful design and placement of decoupling capacitors are crucial to prevent such issues and ensure reliable signal propagation.
-<img  width="1085" alt="" src=""> <br>
-<img  width="1085" alt="" src=""> <br>
-<img  width="1085" alt="" src=""> <br>
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.53.21.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.53.21.jpeg"> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.54.15.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.56.13.jpeg"> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.56.13.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.56.13.jpeg"> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.56.57.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.56.57.jpeg"> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.57.48.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.57.48.jpeg"> <br>
 Furthermore, when all capacitors that were initially at 0 volts need to charge to V volts, they do so through a single Vdd tap point. This situation can lead to a voltage droop, and if it exceeds the noise margin, the circuit's behavior becomes unpredictable.
 To address these issues, multiple power supply points are introduced. Each capacitor can then charge and discharge from its nearest power supply point, as illustrated. This approach mitigates voltage droops and ground bounces effectively. This power distribution network, often referred to as Powermesh, offers a precise solution to ensure stable and reliable power delivery in the presence of switching currents.
 
@@ -4278,8 +4279,8 @@ The interconnections between the gates in a digital design are described using V
 2. Two timing paths driven by two distinct interclocks (alternate flops).
 3. Preplaced cells that are interconnected in the design, as depicted.
 
-<img  width="1085" alt="" src=""> <br>
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.58.24.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.58.24.jpeg"> <br>
+<img  width="1085" alt="WhatsApp Image 2023-10-08 at 18.59.00.jpeg" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/WhatsApp%20Image%202023-10-08%20at%2018.59.00.jpeg"> <br>
 
 Typically, pins are positioned in the area between the die and the core, which is reserved for pin locations. To ensure that this region remains free for pin placement, logical cell placement blockage is employed. 
 Let's consider a scenario where input ports are connected on the left-hand side, while output ports are connected on the right-hand side. The order of the ports depends on the planned placement of cells and can vary. It's essential to avoid placing flip-flops on preplaced cells since the locations of preplaced cells are fixed.
