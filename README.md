@@ -32,6 +32,8 @@ Quick links:
 
 - [Day-14-Synopsys DC and Timing Analysis](#Day-14--Synopsys-DC-and-Timing-Analysis)
 
+- [Day-15-Inception of open-source EDA, openLANE and sky130PDK](#Day-15--Inception-of-open-source-EDA,-openLANE-and-sky130PDK).
+
 ## Day-0-Installation
 
 	
