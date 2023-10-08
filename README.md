@@ -4314,8 +4314,28 @@ Now, run_floorplan command is given and the floorplan run is fired. The PDN was 
 The metal layers are set to one more than defined value. Here VMETAL is 3 and HMETAL is 4 after the run. The core utilization is 35% in the log after run and before run is as follows:
 <img  width="1085" alt="day15_25" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_25.png"> <br>
 
+The contents of io-placer log is as follows: 
+<img  width="1085" alt="day15_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_24.png"> <br>
 
-The contents of io-placer log is as follows:
+The contents of def file after floorplan are as follows:
+<img  width="1085" alt="day15_27" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_27.png"> <br>
+
+Inorder to view the floorplan the magic command is used as follows:
+This command is executed in the results/floorplan directory after runs.
+```ruby
+magic -T /Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+
+Now, The floorplan is opened. Press S for selecting the whole design nd V to align the design to center.
+<img  width="1085" alt="day15_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_29.png"> <br>
+<img  width="1085" alt="day15_30" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_30.png"> <br>
+
+By selecting a particular object and giving what command in tkcon.tcl gives the description of the shape as follows:
+<img  width="1085" alt="day15_31" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_31.png"> <br>
+
+All the cells are not placed in the design as placement is done. All these cells are present as cluster at the origin point as follows. When a particular cell is selected, it shows a standard cell as OAI cell.
+<img  width="1085" alt="day15_33" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_33.png"> <br>
+
 
 
 
