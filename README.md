@@ -3998,7 +3998,7 @@ Now, about PVT corners:
 <details>
 	<summary>Introduction</summary>
 
-**Simpliflied RTL to GDS2 flow:**
+**Simpliflied RTL to GDS2 flow:** <br>
 <img  width="1085" alt="" src="">
 The RTL to GDS2 flow is a comprehensive process utilized in semiconductor design to transform a high-level hardware description of a digital integrated circuit into a physical layout ready for manufacturing. This intricate journey can be summarized as follows:
 
@@ -4077,6 +4077,7 @@ The die is much smaller than the final packaged IC and is mounted within the pac
 IPs (Intellectual Properties): <br>
 IPs, in the context of semiconductor design, represent pre-designed and pre-verified blocks of intellectual property. These blocks can include various functionalities such as CPU cores, memory controllers, or specialized hardware accelerators.
 Designers integrate IPs into their IC designs to save time and resources, as they provide pre-made and tested components that enhance the capabilities of the IC.
+
 In summary, a QFN-48 package is a specific type of IC package with 48 electrical pads for connecting the integrated circuit (chip) to external circuitry on a PCB. The chip contains active electronic components, while the pads enable electrical connections. The core may have mechanical or thermal significance, and the die is the semiconductor wafer containing the actual electronic components. IPs are pre-designed blocks of functionality that can be integrated into IC designs to enhance their capabilities.
 
 **RISC-V:** <br>
@@ -4129,6 +4130,63 @@ In summary, RISC-V is an open-source and modular instruction set architecture th
 6. **Testing and Manufacturing**: Fabricating and testing the chip to meet specifications.
 
 ASIC design is highly specialized and crucial for custom hardware solutions.
+
+</details>
+
+<details>
+	<summary>Labs</summary>
+
+OpenLANE is an integrated flow that leverages various open-source EDA (Electronic Design Automation) tools, including Yosys for synthesis and OpenSTA for Static Timing Analysis. What sets OpenLANE apart is its automation, requiring minimal human intervention. Given RTL (Register Transfer Level) input and foundry Process Design Kits (PDKs), OpenLANE efficiently generates the final GDSII file for chip fabrication.
+
+In the OpenLANE working directory, you'll find two main folders: "openlane" and "pdks." The "pdks" folder houses essential components such as timing libraries, LEF (Library Exchange Format) files, technology LEF, and cell LEF. Additionally, the "open_pdks" directory contains scripts designed to adapt SkyWater PDKs, originally intended for commercial EDA tools, to work seamlessly with open-source EDA tools. This ensures compatibility and flexibility in the ASIC design process.
+
+The sky130A variant has been tailored for compatibility. It consists of two main components: "libs.ref" for process-specific data and "libs.tech" for tool-specific information. In this context, "netgen" and "openlane" are the tools utilized, while "sky130_fd" represents the process variants integrated within this configuration.
+<img  width="1085" alt="day15_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_2.png">
+<img  width="1085" alt="day15_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_4.png">
+
+
+Our design employs the "sky130_fd_sc_hd" process, with "sky130" referring to the 130nm technology, "fd" signifying foundry, "sc" indicating standard cell, and "hd" representing high density.
+
+Within this "sky130_fd_sc_hd" configuration, you'll find crucial files including LEF (Library Exchange Format), tech LEF (Technology Library Exchange Format), and libs. The "libs" encompass data for various Process-Voltage-Temperature (PVT) corners, while the "lef" and "tech LEF" serve specific roles.
+
+To initiate OpenLane, we commence by initializing the Docker environment with the following command:
+```ruby
+docker run -it -v $(pwd):/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -e PDK_ROOT=$PDK_ROOT -u $(id -u $USER):$(id -g $USER) openlane:rc2
+```
+But it is aliased as docker
+<img  width="1085" alt="day15_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_9.png">
+
+
+Now, let's delve into the design aspect. Inside the "designs" directory, you'll find various design options. For this demonstration, we'll focus on "picorv32a." Within this design, the "src" directory houses essential RTL (Register Transfer Level) information, including the behavioral code (.v file) and constraints file (.sdc file).
+
+To understand the design configuration, the "config.tcl" file comes into play. It allows you to bypass any prior lane configurations. When specific attributes are undefined, the design defaults to preset values.
+
+The order of precedence for attribute settings is as follows:
+
+Attributes defined by the PVT corner in "config.tcl."
+Attributes specified in the main "config.tcl."
+Default attribute values provided by OpenLANE.
+For every PVT corner in each design, you will find both the main "config.tcl" and a "sky130" variant-specific "config.tcl," ensuring flexibility and adaptability in your design configurations.
+<img  width="1085" alt="day15_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_8.png">
+
+To prepare the design, we use the following command. This command links together all the necessary files, including LEF (Library Exchange Format) files, library files, macros, diodes, and other essential components.
+```ruby
+prep -design picorv32a
+```
+<img  width="1085" alt="day15_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_9.png"> <br>
+
+Upon the successful completion of this run, OpenLane generates a "runs" directory. Within this directory, you'll find various subdirectories where reports, logs, and results are neatly organized. These directories include:
+<img  width="1085" alt="day15_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_10.png"> <br>
+
+Next, we initiate the synthesis process with the "run_synthesis" command. I'm pleased to report that the synthesis has been executed successfully.
+<img  width="1085" alt="day15_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_11.png"> <br>
+
+The flop ratio is calculated by dividing the number of flip-flops by the total number of cells in the design. In this case, there are 1613 flip-flops (specifically dfxtp-D flip-flops with positive triggers) and 14876 cells in the design. Therefore,
+
+Flop ratio = Number of flip-flops / Number of cells in the design = 1613 / 14876 ≈ 0.108.
+
+This means that the flop count constitutes approximately 10.8% of the total cells in the design.
+<img  width="1085" alt="day15_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_16.png"> <br>
 
 
 
