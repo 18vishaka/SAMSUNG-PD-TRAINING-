@@ -32,7 +32,7 @@ Quick links:
 
 - [Day-14-Synopsys DC and Timing Analysis](#Day-14--Synopsys-DC-and-Timing-Analysis)
 
-- [Day-15-Inception of open-source EDA, openLANE and sky130PDK](#Day-15--Inception-of-open-source-EDA,-openLANE-and-sky130PDK).
+- [Day-15-Inception of open-source EDA, openLANE and sky130PDK](#Day-15--Inception-of-open-source-EDA,-openLANE-and-sky130PDK)
 
 ## Day-0-Installation
 
@@ -3988,6 +3988,148 @@ Now, about PVT corners:
 - **Worst Setup Corner**: The most critical PVT corner for setup is sky130_fd_sc_hd__ss_n40C_1v28. This means slow process (ss), low temperature (n40C), and a supply voltage of 1.28 volts. If we can ensure that our design meets timing requirements in this challenging corner, it's likely to perform well in all other corners, providing robustness across varying conditions.
 
 - **Best PVT Corner**: On the other hand, the best PVT corner is sky130_fd_sc_hd__ff_n40C_1v76. In this corner, there are no setup violations, and hold violations are minimal. It's considered the most favorable condition because it offers the best overall performance and reliability.
+
+
+</details>
+
+## Day-15-Inception of open-source EDA, openLANE and sky130PDK
+
+
+<details>
+	<summary>Introduction</summary>
+
+**Simpliflied RTL to GDS2 flow:**
+<img  width="1085" alt="" src="">
+The RTL to GDS2 flow is a comprehensive process utilized in semiconductor design to transform a high-level hardware description of a digital integrated circuit into a physical layout ready for manufacturing. This intricate journey can be summarized as follows:
+
+RTL Design: <br>
+At the outset, designers create a high-level description of the digital circuit's functionality using hardware description languages (HDL) like VHDL or Verilog. This description, known as Register Transfer Level (RTL) code, defines how data is processed and transferred within the circuit.
+
+Synthesis: <br>
+The RTL code undergoes synthesis using specialized tools like Synopsys Design Compiler or Cadence Genus. These tools convert the logical RTL description into a gate-level netlist, optimizing for area, power, and timing while adhering to performance requirements.
+
+Floor Planning: <br>
+The gate-level netlist serves as the foundation for creating a floorplan. Designers allocate space for functional blocks, standard cells, I/O pads, and establish chip dimensions within the silicon wafer.
+
+Placement: <br>
+Placement involves physically arranging the synthesized gates on the chip according to the floorplan. This step aims to minimize wire lengths and optimize signal timing.
+
+Clock Tree Synthesis (CTS): <br>
+To ensure synchronous operation, CTS creates a clock distribution network, delivering clock signals with minimal skew to all flip-flops and registers.
+
+Routing: <br>
+Routing involves the creation of metal interconnects (wires) that connect various components on the chip to establish logical connections. It must satisfy timing constraints, minimize congestion, and comply with design rules.
+
+Design for Manufacturing (DFM): <br>
+DFM checks ensure that the layout adheres to manufacturing constraints, encompassing minimum feature sizes, spacing rules, and design rule checks (DRC) to guarantee manufacturability.
+
+Design for Test (DFT): <br>
+DFT techniques are applied to enable efficient testing and debugging of the chip, including the insertion of test logic and scan chains.
+
+Sign-off: <br>
+Multiple sign-off steps are conducted, including timing analysis, power analysis, and physical verification (DRC and LVS) to validate the design's compliance with specifications and manufacturability.
+
+GDS2 Generation: <br>
+Once the design passes all sign-off checks, the final layout data is generated in GDSII format, a standard used for mask data sent to the semiconductor foundry for manufacturing.
+
+Tapeout: <br>
+The GDS2 data is prepared for tapeout, involving the packaging of necessary files and documentation for submission to the foundry, marking a crucial milestone before fabrication begins.
+
+Manufacturing: <br>
+The semiconductor foundry employs the GDS2 data to create physical masks necessary for manufacturing the integrated circuit on silicon wafers.
+
+Packaging and Testing: <br>
+Following manufacturing, chips are packaged, and rigorous testing is conducted to ensure they meet specifications and operate as intended.
+
+The RTL to GDS2 flow is a highly intricate and collaborative process, requiring expertise, state-of-the-art tools, and rigorous quality checks at each stage to produce a functional and manufacturable integrated circuit.
+
+The openLANE flow takes in the rtl from your design and the PDK's provided by the foundry; then everything else is automated.
+
+
+**openLANE Architecture:** <br>
+<img  width="1085" alt="" src="">
+<img  width="1085" alt="" src="">
+<img  width="1085" alt="" src="">
+
+OpenLANE's architecture is built upon a stack of open-source EDA (Electronic Design Automation) tools, libraries, and resources, making it accessible to a wide range of designers and researchers. It provides an efficient and automated flow for ASIC design, promoting collaboration and innovation in the field of semiconductor design.
+
+**Introduction to QFN-48 Package, chip, pads, core, die and IP's** <br>
+QFN-48 Package: <br>
+The QFN-48 package is a type of surface-mount integrated circuit (IC) package. The "48" signifies the total number of electrical connections or pins available on the package.
+These packages are widely used in electronics due to their compact size, efficient heat dissipation, and absence of traditional through-hole leads.
+
+Chip: <br>
+Within the context of a QFN-48 package, the term "chip" refers to the actual integrated circuit. It contains the functional electronic components responsible for executing specific tasks, such as logic operations or data storage.
+Fabricated on a semiconductor wafer, the chip serves as the heart of the IC package.
+
+Pads: <br>
+Pads are metallic contact points situated on the underside of the QFN-48 package. These pads facilitate electrical connections between the integrated circuit and the Printed Circuit Board (PCB) on which it is mounted.
+The number of pads corresponds to the total number of pins or connections required for the IC to interact with external circuitry.
+
+Core: <br>
+In the context of the QFN-48 package, the "core" typically refers to the central region of the package. It may not contain active electrical connections but could play a role in mechanical stability or thermal management.
+Some QFN packages use the core area for heat dissipation, especially in ICs with high power consumption.
+
+Die: <br>
+The "die" is the term for the semiconductor chip or integrated circuit in its unpackaged form. It is essentially the silicon wafer on which the functional electronic components are fabricated.
+The die is much smaller than the final packaged IC and is mounted within the package during the packaging process, connecting to the pads for external connectivity.
+
+IPs (Intellectual Properties): <br>
+IPs, in the context of semiconductor design, represent pre-designed and pre-verified blocks of intellectual property. These blocks can include various functionalities such as CPU cores, memory controllers, or specialized hardware accelerators.
+Designers integrate IPs into their IC designs to save time and resources, as they provide pre-made and tested components that enhance the capabilities of the IC.
+In summary, a QFN-48 package is a specific type of IC package with 48 electrical pads for connecting the integrated circuit (chip) to external circuitry on a PCB. The chip contains active electronic components, while the pads enable electrical connections. The core may have mechanical or thermal significance, and the die is the semiconductor wafer containing the actual electronic components. IPs are pre-designed blocks of functionality that can be integrated into IC designs to enhance their capabilities.
+
+**RISC-V:** <br>
+RISC-V is an open-source instruction set architecture (ISA) that has gained significant attention in the field of computer architecture and microprocessor design. Here's an explanation of RISC-V without plagiarism:
+
+RISC-V, often pronounced as "Risk Five," is a modern and open-source instruction set architecture (ISA) designed for a wide range of computing devices, from embedded systems to supercomputers. Unlike proprietary ISAs developed by companies like Intel or ARM, RISC-V is open and freely available for anyone to use, modify, and implement.
+
+Key features and concepts of RISC-V include:
+
+1. **Reduced Instruction Set Architecture (RISC)**:
+   - RISC-V follows the principles of RISC design, which emphasizes simplicity and efficiency. It aims to provide a small, well-defined set of instructions that are easy to decode and execute quickly.
+
+2. **Modularity**:
+   - One of RISC-V's strengths is its modularity. It offers a base ISA with a minimal set of instructions, and additional optional extensions can be added to support specific application domains (e.g., integer, floating-point, vector processing).
+   - This modular approach allows designers to tailor RISC-V implementations to their specific needs, which is particularly useful in embedded systems where resource constraints are common.
+
+3. **Open Source and Open Standard**:
+   - RISC-V's open nature means that the ISA specifications are freely available for anyone to access, study, and implement. This openness fosters innovation, collaboration, and a diverse ecosystem of RISC-V-based processors and tools.
+   - Various organizations, including universities and industry consortia, actively contribute to the development and enhancement of the RISC-V ISA.
+
+4. **Scalability**:
+   - RISC-V supports different bit-width versions (e.g., 32-bit, 64-bit, and 128-bit) to accommodate a wide range of applications. The 32-bit version is suitable for low-power embedded devices, while the 64-bit version is common in servers and workstations.
+
+5. **Compatibility**:
+   - RISC-V's compatibility is maintained through a stable base ISA, which ensures that software written for one RISC-V processor can run on another RISC-V processor with the same base ISA.
+   - This compatibility simplifies software development and portability.
+
+6. **Ecosystem**:
+   - RISC-V has fostered a growing ecosystem of hardware and software tools, including compilers, simulators, development boards, and operating systems. This ecosystem is supported by both academia and industry, making it easier for developers to work with RISC-V-based solutions.
+
+7. **Customization**:
+   - RISC-V's open nature allows designers to customize the architecture for specific use cases. This level of flexibility is particularly beneficial for emerging technologies and research projects.
+
+In summary, RISC-V is an open-source and modular instruction set architecture that adheres to RISC principles. Its openness, scalability, compatibility, and ecosystem support have made it a compelling choice for a wide range of computing applications, from small embedded systems to high-performance computing platforms. As an open standard, RISC-V encourages collaboration and innovation in the world of computer architecture.
+
+
+**Digital ASIC (Application-Specific Integrated Circuit):** <br>
+<img  width="1085" alt="" src="">
+
+1. **Specification**: Defining the chip's purpose, performance, and power requirements.
+
+2. **RTL Design**: Creating a high-level description of the chip's behavior using hardware description languages.
+
+3. **Synthesis**: Converting the description into a gate-level netlist for logic gates and flip-flops.
+
+4. **EDA Tools**: Using Electronic Design Automation tools for tasks like layout, clocking, and verification.
+
+5. **PDK Data**: Adhering to Process Design Kit data from foundries to ensure manufacturability.
+
+6. **Testing and Manufacturing**: Fabricating and testing the chip to meet specifications.
+
+ASIC design is highly specialized and crucial for custom hardware solutions.
+
 
 
 </details>
