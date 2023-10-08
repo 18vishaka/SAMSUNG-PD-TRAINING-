@@ -4286,3 +4286,37 @@ Let's consider a scenario where input ports are connected on the left-hand side,
 Furthermore, the clock port continuously drives the cells, necessitating the establishment of the path with the least resistance for the clock signal.
 
 </details>
+
+<details>
+	<summary>Labs</summary>
+
+The README file located in the "openlane/configuration" directory encompasses all the defined switches and parameters for the design flow. Here's a breakdown of the README file's contents:
+The switches for synthesis step are:
+<img  width="1085" alt="day15_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_20.png"> <br>
+
+The switches for Floorplan step are:
+<img  width="1085" alt="day15_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_21.png"> <br>
+
+
+- **FP_CORE_UTIL**: This switch is used to specify the utilization of the core area.
+- **FP_ASPECT_RATIO**: Here, you define the aspect ratio of the core, which is the ratio of its height to its width.
+- **FP_CORE_MARGIN**: This switch allows you to set an offset between the core and the die area. It's important to note that not all switches need to be configured, and the specific switches required may vary depending on the design's unique requirements.
+
+The contents pf floorplan.tcl in this folder shows the variables set to values as follows:
+<img  width="1085" alt="day15_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_22.png"> <br>
+
+The config.tcl contents inside the design are as follows:
+<img  width="1085" alt="day15_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_8.png"> <br>
+
+Now, run_floorplan command is given and the floorplan run is fired. The PDN was created successfully. 
+<img  width="1085" alt="day15_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_18.png"> <br>
+
+The metal layers are set to one more than defined value. Here VMETAL is 3 and HMETAL is 4 after the run. The core utilization is 35% in the log after run and before run is as follows:
+<img  width="1085" alt="day15_25" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_25.png"> <br>
+
+
+The contents of io-placer log is as follows:
+
+
+
+</details>
