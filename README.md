@@ -4285,6 +4285,100 @@ Typically, pins are positioned in the area between the die and the core, which i
 Let's consider a scenario where input ports are connected on the left-hand side, while output ports are connected on the right-hand side. The order of the ports depends on the planned placement of cells and can vary. It's essential to avoid placing flip-flops on preplaced cells since the locations of preplaced cells are fixed.
 Furthermore, the clock port continuously drives the cells, necessitating the establishment of the path with the least resistance for the clock signal.
 
+
+**Binding Netlist with Physical Cells:**
+
+In the process of converting functional logic (expressed in behavioral code) into a valid hardware design, a crucial step is Logic Synthesis. This involves organizing gates to replicate the original functionality described at the RTL (Register Transfer Level). To achieve this, a netlist is generated that maps logic gates to their corresponding functionality.
+
+Each cell represented in the synthesis has a specific width and height, defining its physical size and shape. This information is stored in a library file, which also contains vital details like timing characteristics and conditional rules for cells (e.g., when they should be used). Libraries often include various cell flavors, allowing designers to choose based on timing and available floorplan area.
+
+**Placement on Floorplan:**
+
+The floorplan serves as the blueprint for chip layout, featuring well-defined ports and pins. The netlist provides the physical representation of logic gates. During placement, it's essential to ensure that pre-placed cells remain untouched, preserving their fixed positions.
+
+The goal of placement is to position cells as close as possible to the ports they connect to, optimizing for signal integrity. Signal integrity refers to the reliable transmission of signals from one point to another.
+
+Achieving signal integrity often involves using repeaters, which are buffers that recondition the original signal, replicating it and passing it to the next stage. In the placement optimization phase, estimates are made regarding wire lengths and capacitance, ensuring that signal transitions fall within permissible limits.
+
+Slew, which measures how fast a signal switches, is influenced by capacitance. Higher capacitance requires more time to charge or discharge, leading to poor slew rates. To counter this, buffers are inserted when cells are placed farther apart to minimize signal deterioration.
+
+In high-frequency scenarios, minimizing delay is critical. Cells are placed close together to avoid significant delays. Buffers are added to the design under the assumption that the clock is ideal, as the clock has not been generated yet.
+
+Data paths are carefully considered, and if the length exceeds permissible values based on transition and slew rate, buffers are introduced. Timing must be met during placement since any timing violations can worsen in subsequent stages, especially during routing.
+
+**The Need for Characterization:**
+
+In the overall IC design flow:
+
+1. Logic Synthesis arranges gates to replicate functionality.
+2. Netlists are imported and core/die dimensions are defined during floorplanning.
+3. Placement ensures timing requirements are met.
+4. Clock Tree Synthesis (CTS) generates a clock distribution network to minimize skew.
+5. Routing adheres to constraints to connect cells.
+6. Static Timing Analysis (STA) is the final stage to check for timing violations.
+
+Throughout these stages, cells are a common element. They are carefully modeled to guide the tool in selecting the appropriate cell at each stage, optimizing the design for performance and functionality.
+
+Certainly, let's provide a more detailed explanation:
+
+**Standard Cells and Library**
+
+In digital ASIC design, flip-flops, buffers, and combinational gates are collectively referred to as standard cells. These standard cells are available in a library that contains various information, including timing characteristics, size, shape, functionality, and threshold voltage variations. Within the library, larger buffers typically have higher drive strengths.
+
+**Cell Design Flow**
+
+The design of individual cells, or standard cells, follows a structured flow consisting of inputs, design steps, and outputs:
+
+**Inputs**
+
+1. **Process Design Kits (PDKs)**: These kits provide essential information about the manufacturing process, including rules for Layout Versus Schematic (LVS) and Design Rule Check (DRC).
+
+2. **SPICE Models**: SPICE models include parameters provided by the foundry, which are crucial for accurate simulations.
+
+3. **Library and User-defined Specifications**: Specifications include the separation of power and ground rails, determining cell height and width, as well as timing and noise margin requirements.
+
+4. **Metal Layer Specifications**: Certain cells may need to be designed with specific metal layers.
+
+5. **Pin Locations**: The locations of pins (input and output connections) are defined.
+
+6. **Gate Length**: The drawn gate length may vary within specified limits.
+
+**Design Steps**
+
+1. **Library Cell Selection**: A library cell that matches the design specifications is chosen.
+
+2. **Circuit Design**: This step involves implementing the cell's functionality using NMOS and PMOS transistors while meeting library requirements. The output of this phase is typically a circuit description language (CDL) file.
+
+3. **Layout Design**: Layout design translates the circuit design into physical implementations using NMOS and PMOS transistors. This process combines Euler's path, a path that traverses each segment only once, and stick diagrams. Stick diagrams are derived from Euler's path and are then converted into a typical layout, ensuring compliance with input rules.
+
+4. **Characterization**: Characterization is essential for obtaining timing, noise, and power information. It involves reading SPICE models for NMOS and PMOS transistors, reading the extracted SPICE netlist, recognizing cell behaviors, applying stimuli, and running simulations to generate output files characterizing timing, power, and noise.
+
+**Outputs**
+
+1. **CDL File**: The CDL file is the output of the circuit design step and represents the circuit modeled using NMOS and PMOS transistors.
+
+2. **GDSII File**: This output is the layout design implemented with stick diagrams in GDSII format, ready for manufacturing.
+
+3. **LEF File**: LEF defines the cell's height and width.
+
+4. **CIR File**: The CIR file contains extracted parasitics for each cell, creating an extracted SPICE netlist for further characterization.
+
+**General Timing Characterization Parameters**
+
+Characterization is performed using tools like GUNA software, utilizing inputs such as timing.lib, power.lib, and noise.lib. Timing threshold definitions are crucial for this process:
+
+- **slew_low_rise_thr**: Typically set at 20%, represents points near the lower side of the power supply for rising signals.
+- **slew_high_rise_thr**: Typically set at 80%, represents points near the rising side of the power supply for rising signals.
+- **slew_low_fall_thr**: Typically set at 20%, represents points near the lower side of the power supply for falling signals.
+- **slew_high_fall_thr**: Typically set at 80%, represents points near the rising side of the power supply for falling signals.
+- **in_rise_thr**: Typically set at 50%, represents input transition slew for rising inputs.
+- **in_fall_thr**: Typically set at 50%, represents input transition slew for falling inputs.
+- **out_rise_thr**: Typically set at 50%, represents the slew in the output waveform for a rise in output.
+- **out_fall_thr**: Typically set at 50%, represents the slew in the output waveform for a fall in output.
+
+These parameters are used to calculate slew, propagation delay, currents, and more. Selecting appropriate threshold points is crucial, as errors can lead to negative cell delays. Propagation delay is defined as the difference between output and input threshold points, while transition time is the difference between high and low threshold points.
+
+In cases where a circuit is not designed correctly, with more input transitions than the slew at the input, the 50% input slew may lag behind the 50% output slew, potentially causing issues. Properly characterizing cells helps ensure correct operation in the final design.
 </details>
 
 <details>
@@ -4336,7 +4430,13 @@ By selecting a particular object and giving what command in tkcon.tcl gives the 
 All the cells are not placed in the design as placement is done. All these cells are present as cluster at the origin point as follows. When a particular cell is selected, it shows a standard cell as OAI cell.
 <img  width="1085" alt="day15_33" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_33.png"> <br>
 
+The placement being done is congestion aware, not for timing optimization.
+Global placement is an initial, coarse placement stage where fine-grained legalization has not yet occurred. Legalization involves ensuring that the cells are correctly positioned within rows, abutted against each other, and free of overlaps. Global placement aims to minimize wire length, a critical factor in chip design. In the OpenLANE flow, the Half Parameter Wirelength (HPW) metric is utilized for this purpose. You can initiate the placement stage with the "run_placement" command.
+<img  width="1085" alt="day15_35" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_35.png"> <br>
 
+The following images show that cells are placed in their rows as follows:
+<img  width="1085" alt="day15_36" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_36.png"> <br>
+<img  width="1085" alt="day15_37" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_37.png"> <br>
 
 
 </details>
