@@ -4527,8 +4527,8 @@ Vin in 0 0 pulse 0 2.5 0 10p 10p 1n 2n
 Clone the 'vsdstdcelldesign' using the 'git clone' command, as shown below:
 <img  width="1085" alt="day16_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_1.png"> <br>
 
-
-
+The 'magic' command produces the following inverter, as depicted:
+<img  width="1085" alt="" src=""> <br>
 
 <img  width="1085" alt="" src=""> <br>
 
