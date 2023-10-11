@@ -36,6 +36,9 @@ Quick links:
 
 - [Day-16-Good floorplan vs bad floorplan and introduction to library cells](#Day-16-Good-floorplan-vs-bad-floorplan-and-introduction-to-library-cells)
 
+- [Day-17- Design library cell using Magic Layout and ngspice characterization](#Day-17-Design-library-cell-using-Magic-Layout-and-ngspice-characterization)
+
+
 
 ## Day-0-Installation
 
@@ -4439,5 +4442,94 @@ The following images show that cells are placed in their rows as follows:
 <img  width="1085" alt="day15_36" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_36.png"> <br>
 <img  width="1085" alt="day15_37" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day15-16/day15_37.png"> <br>
 
+
+</details>
+
+## Day-17- Design library cell using Magic Layout and ngspice characterization
+
+<details>
+	<summary>Introduction</summary>
+
+**IO Placer:** <br>
+OpenLANE offers the flexibility to adjust various variables in real-time, including the IO placer. To modify the congestion of IO pins alignment, you can use the 'magic' command to view the floorplan definition as shown below:
+```ruby
+magic -T /Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
+```
+We can view the floorplan as follows, with pins evenly spaced:
+<img  width="1085" alt="day17_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day17_1.png"> <br>
+
+
+The IO placer is the tool used to position IO pins according to specified requirements. To increase congestion, change the variable to 2 as follows:
+<img  width="1085" alt="day17_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day17_2.png"> <br>
+
+After running the floorplan again, the pins are now placed closer together, as shown below:
+<img  width="1085" alt="day17_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day17_3.png"> <br>
+
+**SPICE:** <br>
+Before conducting SPICE simulations, it is essential to create a SPICE deck. The SPICE deck serves as a comprehensive document containing information about connectivity in the netlist, provided inputs, and designated tap points for viewing outputs. It is created by specifying component connectivity, component values, identifying nodes, and assigning them appropriate names.
+A crucial element in this process is the substrate, which acts as a significant component or pin requiring connectivity information. The substrate plays a critical role in tuning the threshold voltages of NMOS and PMOS transistors. Notably, the substrate pin direction differs between NMOS and PMOS symbols. Calculating the value of the output load capacitance involves intricate computational analysis. This parameter is vital for understanding the behavior of the circuit. Component values for both PMOS and NMOS transistors need to be defined, typically in terms of W/L values (for instance, 0.375u/0.25u). It's important to note that while these values can be assumed the same, in practice, the PMOS transistor should be approximately twice the size of the NMOS transistor for proper performance. The output capacitance, often denoted as, say, 10fF, is another critical parameter that needs to be specified.
+
+In SPICE simulations, the applied gate voltage is typically considered as a multiple of the channel length, often set at, for example, 2.5V. Finally, nodes in the circuit are defined when a component is placed between two nodes, forming the fundamental connectivity structure.
+
+The netlist is structured with components defined in the order of drain, gate, source, and substrate. The definition of a component includes the following key elements:
+<img  width="1085" alt="" src=""> <br>
+```ruby
+M1 out in vdd vdd pmos W=0.375u L=0.25u
+M2 out in 0 0 nmos W=0.375u W=0.25u
+cload out 0 10f
+Vdd vdd 0 2.5
+Vin in 0 2.5
+```
+In this context, consider 'M1' as the component name, with 'PMOS' representing the component type, and specific 'W/L' values defined. The connections are structured as follows: 'out' is connected to the drain, and 'in' is connected to the gate of 'M1.' The 'substrate' and 'source' of the PMOS component are connected to the power supply, whereas for the NMOS component, they are connected to ground. Additionally, a load capacitance of 10fF is connected between the 'out' port and ground. Furthermore, the supply voltages are established between the ground and the respective nodes, each set at a voltage level of 2.5V.
+The simulation commands:
+```ruby
+.op
+.dc Vin 0 2.5 0.05
+```
+
+This command instructs the variation of gate voltage from 0 to 2.5V in increments of 0.05V. This procedure is employed to observe the output characteristics in relation to input voltage. It is imperative to describe the model file as follows, encompassing the comprehensive model details for both NMOS and PMOS transistors, including their respective dimensions.
+```ruby
+.LIB "tsmc_025um_model.mod" CMOS_MODELS
+.end
+```
+
+The SPICE simulation process unfolds as follows:
+First, the netlist depicted above is saved in a file named 'cmos_inv.cir,' and the simulation is initiated by running the circuit.
+Upon setting up the desired plot options, such as 'op1' and 'dc1,' the 'dc1' option is selected to instruct the tool to generate the DC transfer characteristics.
+Next, the 'display' command is used to showcase the voltages present in the design.
+Following the 'plot' command, a graph representing the specified characteristics is generated.
+```ruby
+source cmos_inv.cir
+run
+setplot
+dc1
+display
+plot out vs in
+```
+Now, we will proceed with the dynamic simulation of the CMOS inverter. The following netlist illustrates the configuration:
+```ruby
+M1 out in vdd vdd pmos W=0.375u L=0.25u
+M2 out in 0 0 nmos W=0.375u W=0.25u
+
+cload out 0 10f
+
+Vdd vdd 0 2.5
+Vin in 0 0 pulse 0 2.5 0 10p 10p 1n 2n
+
+**SIMULATION Commands**
+.op
+.tran 10p 4n
+*** .include mosis_1um_model.mod ***
+.LIB "tsmc_025um_model.mod" CMOS_MODELS
+.end
+```
+
+Clone the 'vsdstdcelldesign' using the 'git clone' command, as shown below:
+<img  width="1085" alt="day16_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_1.png"> <br>
+
+
+
+
+<img  width="1085" alt="" src=""> <br>
 
 </details>
