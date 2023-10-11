@@ -4528,7 +4528,51 @@ Clone the 'vsdstdcelldesign' using the 'git clone' command, as shown below:
 <img  width="1085" alt="day16_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_1.png"> <br>
 
 The 'magic' command produces the following inverter, as depicted:
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="day16_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_4.png"> <br>
+
+**The "16-mask process" in CMOS (Complementary Metal-Oxide-Semiconductor) fabrication involves a series of steps and photolithography masks to create intricate integrated circuits. Each mask defines specific features and patterns on a silicon wafer, allowing the formation of transistors, interconnections, and various components. Below, is the explaination of the 16-mask CMOS fabrication process in detail:**
+
+1. **Wafer Selection**: The process begins with the selection of a silicon wafer. These wafers are typically made from single-crystal silicon and serve as the substrate for the integrated circuit.
+
+2. **Wafer Cleaning**: The silicon wafer undergoes a thorough cleaning process to remove impurities and contaminants, ensuring a clean starting point for the fabrication.
+
+3. **Mask 1 - Gate Oxide Formation**: The first photolithography mask is used to define the areas on the wafer where gate oxide will be formed. Gate oxide acts as an insulating layer between the gate electrode and the silicon substrate in MOSFET transistors.
+
+4. **Mask 2 - Poly-Silicon Gate Formation**: The second mask specifies where the poly-silicon gate material will be deposited. Poly-silicon is commonly used for the gate electrode of MOSFETs due to its compatibility with the process.
+
+5. **Mask 3 - Active Area Implantation**: The third mask defines the active areas of the transistors. Ion implantation is used to introduce specific dopants into the silicon, creating the source and drain regions of the transistors.
+
+6. **Mask 4 - Isolation Oxide Formation**: This mask defines the regions where isolation oxide is created. Isolation oxide is crucial for isolating individual transistors and components, preventing interference between them.
+
+7. **Mask 5 - Metal Layer 1**: The fifth mask is used to define the first metal layer, often made of materials like aluminum or copper. This layer establishes the initial interconnects between different components on the chip.
+
+8. **Mask 6 - Dielectric Layer 1**: A dielectric layer is added to insulate and protect the metal interconnects from unwanted electrical contact and interference.
+
+9. **Mask 7 - Via Holes**: This mask creates via holes, which serve as pathways for electrical signals to pass from one metal layer to another, allowing for interlayer connections.
+
+10. **Mask 8 - Metal Layer 2**: The eighth mask defines the second metal layer, expanding the complexity of interconnections between components.
+
+11. **Mask 9 - Dielectric Layer 2**: Another dielectric layer is added to isolate and protect the second metal layer from the first, reducing the risk of electrical interference.
+
+12. **Mask 10 - Via Holes**: Additional via holes are created to enable connections between the second metal layer and the layers below.
+
+13. **Mask 11 - Metal Layer 3**: The eleventh mask defines the third metal layer, enhancing the circuit's complexity by providing additional interconnectivity options.
+
+14. **Mask 12 - Dielectric Layer 3**: Another insulating layer is added to prevent interference and capacitance effects between the metal layers.
+
+15. **Mask 13 - Via Holes**: Further via holes are introduced to ensure necessary connections between the metal layers.
+
+16. **Mask 14 - Metal Layer 4**: The fourteenth mask defines the fourth metal layer, enabling intricate routing and complex interconnections.
+
+17. **Mask 15 - Dielectric Layer 4**: Another insulating layer is applied to insulate and protect the metal interconnects.
+
+18. **Mask 16 - Contact and Passivation**: The final mask defines contact points for external connections and adds a passivation layer to protect the chip and enhance its reliability.
+
+19. **Testing and Packaging**: After fabrication, the wafer is subjected to rigorous testing to verify its functionality. It is then diced into individual chips, each of which is packaged for protection and to provide electrical connections.
+
+20. **Quality Control and Final Testing**: Comprehensive quality control procedures are executed to identify and eliminate any faulty chips. The packaged chips undergo a final round of testing to confirm that they meet the specified performance and functionality requirements.
+
+The "16-mask process" in CMOS fabrication underscores the complexity and precision required to create modern integrated circuits, enabling the development of sophisticated electronic devices.
 
 <img  width="1085" alt="" src=""> <br>
 
