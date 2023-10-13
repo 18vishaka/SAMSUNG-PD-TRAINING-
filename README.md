@@ -4574,6 +4574,79 @@ The 'magic' command produces the following inverter, as depicted:
 
 The "16-mask process" in CMOS fabrication underscores the complexity and precision required to create modern integrated circuits, enabling the development of sophisticated electronic devices.
 
+
+
 <img  width="1085" alt="" src=""> <br>
 
 </details>
+
+
+<details>
+	<summary>Labs</summary>
+
+ A poly crossing an n-diffusion results in an NMOS transistor, while a polysilicon crossing a p-diffusion creates a PMOS transistor.
+ The following inverter is gained from the magic commnad:
+ <img  width="1085" alt="day16_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_4.png"> <br>
+
+
+To select the layer, press 'S,' and the 'what' command provides information about the selected shape, as follows:
+<img  width="1085" alt="day16_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_5.png"> <br>
+<img  width="1085" alt="day16_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_6.png"> <br>
+
+Triple-click 'S' with the cursor on any shape to highlight the connected objects to that shape. In this case, the output port is connected to NMOS and PMOS as shown below:
+<img  width="1085" alt="day16_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_7.png"> <br>
+
+The source of PMOS is connected to powersupply:
+<img  width="1085" alt="day16_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_8.png"> <br>
+
+
+The drain of NMOS is connected to Ground:
+<img  width="1085" alt="day16_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_9.png"> <br>
+
+To extract the Spice deck file, open the tkcon window and execute the following commands:
+```ruby
+extract all
+ext2spice cthresh 0 rthresh 0
+ext2spice
+```
+<img  width="1085" alt="day16_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_10.png"> <br>
+
+This action generates a Spice file with a .spice extension and an .ext extension file. Subsequently, the SPICE file is edited, and a netlist is written into it, as shown below:
+<img  width="1085" alt="day16_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_11.png"> <br>
+
+The met3.mag file is loaded after opening an empty magic window using command:
+```ruby
+magic -d XR
+```
+<img  width="1085" alt="day16_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_13.png"> <br>
+
+The various drc errors are present on each box. This can be viewed by selecting a box and drc why in tkcon window:
+<img  width="1085" alt="day16_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_14.png"> <br>
+<img  width="1085" alt="day16_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_15.png"> <br>
+
+Now, using the command the vias are viewed in the rule:
+```ruby
+cif see VIA2
+```
+<img  width="1085" alt="day16_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_16.png"> <br>
+<img  width="1085" alt="day16_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_17.png"> <br>
+<img  width="1085" alt="day16_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_18.png"> <br>
+
+
+
+
+
+</details>
+
+
+**Timing Models using delay tables:**
+OpenLANE is a place-and-route tool that operates without the need for mag information. It exclusively relies on essential data, including the pr boundary (inner box), power, ground, input and output ports information, which are found in the lef file.
+
+The standard cell height guidelines are as follows:
+
+Input and output ports should align with vertical and horizontal tracks.
+The width of the standard cell must be odd multiples of the track pitch.
+The cell height should be a multiple of the vertical pitch.
+During the routing stage, tracks are utilized as routes for metal traces, specifying the interconnections between various components.
+You can activate the grid mode as follows, which serves as the reference for drawing a layout:
+<img  width="1085" alt="day16_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_9.png"> <br>
