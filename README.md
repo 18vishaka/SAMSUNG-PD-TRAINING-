@@ -36,7 +36,9 @@ Quick links:
 
 - [Day-16-Good floorplan vs bad floorplan and introduction to library cells](#Day-16-Good-floorplan-vs-bad-floorplan-and-introduction-to-library-cells)
 
-- [Day-17- Design library cell using Magic Layout and ngspice characterization](#Day-17-Design-library-cell-using-Magic-Layout-and-ngspice-characterization)
+- [Day-17-Design library cell using Magic Layout and ngspice characterization](#Day-17-Design-library-cell-using-Magic-Layout-and-ngspice-characterization)
+
+- [Day-18-Pre-layout timing analysis and importance of good clock tree](#Day-18-Pre-layout-timing-analysis-and-importance-of-good-clock-tree)
 
 
 
@@ -4640,9 +4642,9 @@ Copy the 3 poly metal and paste it into 2 different places and add pmos and nmos
 <img  width="1085" alt="day16_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_20.png"> <br>
 
 
-
 </details>
 
+## Day-18- Pre-layout timing analysis and importance of good clock tree
 
 **Timing Models using delay tables:**
 OpenLANE is a place-and-route tool that operates without the need for mag information. It exclusively relies on essential data, including the pr boundary (inner box), power, ground, input and output ports information, which are found in the lef file.
@@ -4655,4 +4657,47 @@ The cell height should be a multiple of the vertical pitch.
 During the routing stage, tracks are utilized as routes for metal traces, specifying the interconnections between various components.
 You can activate the grid mode as follows, which serves as the reference for drawing a layout:
 <img  width="1085" alt="day16_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_9.png"> <br>
+
+The 'grid' command requires parameters for x spacing, y spacing, x origin, and y origin. For aligning input and output ports, 'li1' serves as the reference. 
+Ports are strategically positioned at the intersection of horizontal and vertical tracks, ensuring that routes can efficiently connect them. The PR boundary designates the layer where place and route tools position cells adjacent to one another. For standard cells, the PR boundary typically spans 3 boxes horizontally and 8 boxes vertically.
+Here's the resulting grid view:
+<img  width="1085" alt="day18_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_2.png"> <br>
+
+Save the mag file using the command:
+```ruby
+save sky130_invvishaka.mag
+```
+<img  width="1085" alt="day18_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_3.png"> <br>
+
+The lef write creates the lef file with the name same as cell name.
+
+The cofig.tcl is edited as follows: 
+<img  width="1085" alt="day18_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_5.png"> <br>
+
+The following commands are added inorder to ensure the inverter lef is included to the flow:
+```ruby
+% set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+% add_lefs -src $lefs
+```
+The synthesis run is fired using the following command:
+```ruby
+run_synthesis
+```
+<img  width="1085" alt="day18_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_6.png"> <br>
+
+The AND gate acts as clock gate that is the other input decides whether it propagates the clock to the clock tree or not. The AND gate with input connected to 1 and OR gate with input connected to 0 can act as clock gate. The advantage is that the short-circuit power is saved during the switching time.
+
+The following clock tree is usually used for splitting load at the driver. The buffer can be swapped with a gate as follows.
+
+The clock tree has levels of buffering and identical buffers(of same size) are present at same level
+The load/fanout is same at each level.
+The delay tables act as timing models of the cell. The delay table is a function of input slew and output load.
+
+These are the various switches present in the configuration/README.md file:
+<img  width="1085" alt="day18_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_7.png"> <br>
+
+
+
+
+
 
