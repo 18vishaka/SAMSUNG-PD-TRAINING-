@@ -4632,7 +4632,12 @@ cif see VIA2
 <img  width="1085" alt="day16_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_17.png"> <br>
 <img  width="1085" alt="day16_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_18.png"> <br>
 
+ Loading poly.mag:
+ <img  width="1085" alt="day18_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_7.png"> <br>
 
+The other violations are:
+Copy the 3 poly metal and paste it into 2 different places and add pmos and nmos substrate and contact. This is to fix the issue with poly resistor spacing to diff and tap lab2_1_3
+<img  width="1085" alt="day16_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_20.png"> <br>
 
 
 
@@ -4650,3 +4655,4 @@ The cell height should be a multiple of the vertical pitch.
 During the routing stage, tracks are utilized as routes for metal traces, specifying the interconnections between various components.
 You can activate the grid mode as follows, which serves as the reference for drawing a layout:
 <img  width="1085" alt="day16_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day16_9.png"> <br>
+
