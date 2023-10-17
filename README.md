@@ -4935,8 +4935,118 @@ set ::env(CTS_CLK_BUFFER_LIST) [linsert $::env(CTS_CLK_BUFFER_LIST) 0 sky130_fd_
 <img  width="1085" alt="day18_34" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_34.png"> <br>
 
 
+</details>
 
+## Day-19- Final steps for RTL2GDS using tritonRoute and openSTA
 
+<details>
+	<summary>Routing and Design Rule Check</summary>
+
+ **Maze routing - Lee algorithm:**
+Routing is the vital process of establishing physical wire connections within a design. It involves optimizing the path between two endpoints, aiming for the shortest and most efficient route with minimal twists and turns. Importantly, routes cannot traverse pre-placed cells within the design.
+
+The routing algorithm typically operates on the backside of the floorplan, beginning by labeling the grids adjacent to the points to be connected as '1', followed by their neighboring layers as '2', and so forth. This stepwise approach helps ensure an orderly and efficient connection between components.
+
+The grids beneath the blockage are not labeled, as routing cannot pass through them. Choosing the left-hand side (LHS) of the figure below is preferable, as it offers a more optimal route with fewer bends (L-shaped) compared to the right-hand side (RHS) of the figure.
+
+While routing for a single route is relatively straightforward, the complexity escalates when dealing with a multitude of start and endpoint pairs in a large design. This approach can be time and memory-intensive for substantial designs. To mitigate this, there are algorithms available that can help reduce both time and memory consumption, such as the line-search algorithm and the stanner-tree algorithm.
+
+**Design Rule Check:**
+Design Rule Checks (DRC) encompass the set of regulations that must be adhered to during the design routing process. These rules include:
+
+Minimal wire width: The width of wires must not fall below a specified threshold, determined by the constraints of the fabrication process.
+
+Wire pitch: The center-to-center spacing between two wires should not be smaller than a defined distance, ensuring appropriate separation.
+
+Wire spacing rule: The distance between any two wires should be no smaller than a certain specified value, preventing undesired proximity.
+
+These rules are vital because the creation of these wires involves a photolithographic process, where the desired width and pitch are crucial for accurate and reliable design implementation.
+
+A common type of DRC violation is a signal short, which occurs when two wires that are not meant to be connected come into contact on the same layer, potentially leading to functional failure. To resolve this issue, the solution is often as simple as relocating one of the wires to a different metal layer. The updated DRC rules, following this adjustment, typically include:
+
+Via width: Specifies a minimum width requirement for vias, ensuring they meet a specified value.
+
+Via spacing: Enforces a minimum separation distance between any two vias, ensuring that they are not placed too closely together. It's worth noting that upper metal layers in the design are typically wider than lower metal layers for various reasons, including reducing resistance and enabling more significant current-carrying capacity.
 
 
 </details>
+ <details>
+	 <summary>PDN and routing</summary>
+
+If you wish to preserve the configurations from the previous OpenLane job, you should use the following command: prep -design -tag.
+
+If you want to initiate a new run with fresh configurations while keeping the same tag name, you should use: prep -design -tag -overwrite.
+
+Here's an example of how to use these commands within the OpenLane environment:
+```ruby
+cd work/tools/openlane_working_dir/openlane
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a -tag 13-01_14-09
+```
+
+These commands will help you manage the configurations and run OpenLane with the desired settings.
+
+
+The power and ground rails need to be a part of floorplan, this is done using gen_pdn command to build the power distribution network. The standard cell height should be multiple of pitch of layers(metal1), so that cell gets power and ground rails alog its edges for proper connectivity.
+
+Inorder to generate the pdn network, the following commands are used.
+```ruby
+echo $::env(CURRENT_DEF)    \\Ensure current_def is on the CTS stage
+gen_pdn                     \\To generate power distribution network
+```
+
+This is giving an error as follows:
+<img  width="1085" alt="day19_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day19_1.png"> <br>
+
+Due to this error, the pdn def is not generated so CTS def is used for routing.
+
+The design is covered with IO pads around them. These pads contain the power and ground pads.
+
+The current def is set to the CTS def and the routing run is fired.
+```ruby
+echo $::env(CURRENT_DEF)            
+echo $::env(ROUTING_STRATEGY)
+run_routing
+```
+
+The ROUTING_STRATEGY variable implies the optimized routing in the design. The value 0 specifies the routing is not much optimized. 
+<img  width="1085" alt="day19_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day19_2.png"> <br>
+
+
+
+ </details>
+
+ <details>
+	 <summary>TritonRoute Features</summary>
+
+The routing stage can be broken down into two essential phases:
+
+1. Global Routing: This step involves generating routing guides capable of accommodating all the nets within the design. FastRoute is the tool typically employed for this task.
+
+2. Detailed Routing: Building upon the routing guides provided by the global routing phase, the detailed routing step connects the pins with minimal wire usage and bends. TritonRoute is the tool commonly utilized to achieve this detailed routing.
+
+**Triton Route:**
+TritonRoute is a crucial component in the routing process, and it operates using the following methodology:
+
+1. **Global Routing Engine**: FastRoute is employed as the global routing engine to create a preliminary routing draft. This phase divides the design region into grid cells, forming a routing guide for TritonRoute to use in detailed routing.
+
+2. **Routing Grid**: During global routing, the design area is divided into grid cells, which serve as the basis for TritonRoute's detailed routing. Algorithms are employed to find the optimal connections between points, leveraging the preprocessed route guides obtained from the fast routes. TritonRoute aims to route as much as possible within these guides, assuming that each net adheres to inter-guide connectivity requirements.
+
+3. **Routing Approach**: TritonRoute uses a proposed Mixed Integer Linear Programming (MILP) based panel routing scheme. This scheme incorporates intra-layer parallel and inter-layer sequential routing frameworks to determine the most efficient routing paths. Intra-layer routing pertains to routing within a single layer, while inter-layer routing involves connecting layers through the use of vias.
+
+4. **Preprocessed Route Guides**: The preprocessed route guides are critical to TritonRoute's operation. These guides should have unit width and align with the preferred direction of the layer. FastRoute initially generates the global route and outputs the routing guide. These initial guides are transformed into preprocessed guides through techniques like splitting, merging, and bridging.
+
+5. **Preferred Routing Direction**: TritonRoute ensures that each layer or panel has an assigned preferred routing direction. Routing in higher layers only commences once the routing in lower layers is complete. Connectivity between guides is established when they are on the same metal layer with touching edges or on neighboring metal layers with non-zero vertically overlapped areas. Additionally, each unconnected terminal, such as the pin of a standard cell instance, should have its pin shape overlapped by a route guide.
+
+6. **Inputs and Outputs**: TritonRoute takes inputs in the form of LEF (Library Exchange Format) files, DEF (Design Exchange Format) files, and the preprocessed route guides. The outputs from TritonRoute consist of a detailed routing solution that optimizes wire length and via count. It operates under various constraints, including route guide honoring, connectivity constraints, and design rules.
+
+**TritonRoute Connectivity Handling**:
+TritonRoute manages connectivity through two key methods:
+
+- **Access Point (AP)**: Access points are on-grid locations on the metal layer of the route guide and serve to connect lower-layer segments, upper-layer segments, pins, or IO ports. These are where vias can be placed to facilitate inter-layer connectivity.
+
+- **Access Point Cluster (APC)**: Access Point Clusters represent a collection of access points derived from the same lower-layer segment, upper-layer guide, pin, or IO port.
+
+The primary objective of TritonRoute's Mixed Integer Linear Programming (MILP) is to optimally connect one access point to another, determining where vias should be placed and how they will facilitate connections between these points.
+ </details>
