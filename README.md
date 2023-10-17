@@ -4651,7 +4651,8 @@ Copy the 3 poly metal and paste it into 2 different places and add pmos and nmos
 ## Day-18- Pre-layout timing analysis and importance of good clock tree
 <details>
 	<summary>Timing modelling using delay tables</summary>
-**Timing Models using delay tables:**
+
+**Timing Models using delay tables:** <br>
 OpenLANE is a place-and-route tool that operates without the need for mag information. It exclusively relies on essential data, including the pr boundary (inner box), power, ground, input and output ports information, which are found in the lef file.
 
 The standard cell height guidelines are as follows:
@@ -4701,6 +4702,75 @@ The delay tables act as timing models of the cell. The delay table is a function
 These are the various switches present in the configuration/README.md file:
 <img  width="1085" alt="day18_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_7.png"> <br>
 
+These variables are defined in the flow as follows:
+<img  width="1085" alt="day18_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_8.png"> <br>
 
- 
+
+The previously dumped netlist is removed, as it is popping a message that synthesis is skipped as the netlist exists. After the run_synthesis command, the design is much optimized such that the worst negative slack (WNS) and total negative slack (TNS) are zero as follows. 
+<img  width="1085" alt="day18_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_11.png"> <br>
+
+
+The following command is used to run the floorplan.
+```ruby
+run_floorplan
+```
+<img  width="1085" alt="day18_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_12.png"> <br>
+
+
+This error implies that run is exited while executing or_basic_map.tcl. This happened after the macros being called. So The command that calls macro_placement is commented as follows.
+<img  width="1085" alt="day18_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_13.png"> <br>
+
+Again, In the floorplan.tcl, it calls for global_placement or macro_placement. So, this is also commented as follows: 
+<img  width="1085" alt="day18_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_14.png"> <br>
+
+Now, the floorplan run is successfully done as follows: 
+<img  width="1085" alt="day18_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_15.png"> <br>
+
+The following command is used to run the placement.
+```ruby
+run_placement
+```
+
+The placement run is completed as follows: 
+<img  width="1085" alt="day18_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_16.png"> <br>
+
+The def created after the placement is as follows: 
+<img  width="1085" alt="day18_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_18.png"> <br>
+<img  width="1085" alt="day18_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_20.png"> <br>
+
+</details>
+
+<details>
+	<summary>Timing Analysis with ideal clocks using OpenSTA</summary>
+
+Ideal clock means the clock is not built (pre-cts stage). Let us consider the setup analyis with a single clock specifying theclock to be 1GHz (period=1ns). Inorder to avoid setup violation, the sum of internal delay of launch flop and combinational delay should be less than the time period of clock.
+
+Let us say that the clock at launch arrives at 0ns then the data takes a time of clock period to arrive at the capture flop. When the internal delay of a flop is considered, the capture flop also takes some time to produce output for propagated input. So, this internal delay is called setup time. The setup uncertainty is usually caused by the clock jitter, this makes the delay available for the path more stringent. The clock jitter is the uncertainty that causes delay in the clock that needs to reach at 0ns (to 0.1ns). This is usually caused due to the variations of the clock source. 
+
+The STA is usually done with PrimeTime (SYnopsys)tool. The timing analysis here is done using OpenSTA. Let us go to the openlane flow directory and create a file as follows:
+```ruby
+cd ~/Desktop/work/tools/openlane_working_dir/openlane
+gvim pre_sta.conf                               \\for pre-layout STA i.e., with ideal clock conditions
+```
+
+The contents of the pre_sta.conf are as follows:
+<img  width="1085" alt="day18_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_21.png"> <br>
+
+The netlist file is written at synthesis stage and then at CTS stage, but not at floorplan and placement stage. As the clock buffers are inserted at the CTS stage, the netlist is being changed, thus new netlist written out.
+
+The contents of my_base.sdc is as follows:
+<img  width="1085" alt="day18_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_22.png"> <br>
+
+The pre-sta is run by using the following command:
+```ruby
+cd ~/Desktop/work/tools/openlane_working_dir/openlane
+sta pre_sta.conf
+```
+The following reports are generated showing the least positive slack as follows:
+<img  width="1085" alt="day18_23" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_23.png"> <br>
+
+
+
+
+
 </details>
