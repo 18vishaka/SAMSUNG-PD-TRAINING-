@@ -40,6 +40,10 @@ Quick links:
 
 - [Day-18-Pre-layout timing analysis and importance of good clock tree](#Day-18-Pre-layout-timing-analysis-and-importance-of-good-clock-tree)
 
+- [Day-19-Final steps for RTL2GDS using tritonRoute and openSTA](#Day-19-Final-steps-for-RTL2GDS-using-tritonRoute-and-openSTA)
+
+- [Day-20-Floorplanning and Powerplanning Labs](#Day-20-Floorplanning-and-Powerplanning-Labs)
+
 
 
 ## Day-0-Installation
@@ -4646,8 +4650,7 @@ Copy the 3 poly metal and paste it into 2 different places and add pmos and nmos
 
 ## Day-18- Pre-layout timing analysis and importance of good clock tree
 <details>
-	<summary></summary>
-</details>
+	<summary>Timing modelling using delay tables</summary>
 **Timing Models using delay tables:**
 OpenLANE is a place-and-route tool that operates without the need for mag information. It exclusively relies on essential data, including the pr boundary (inner box), power, ground, input and output ports information, which are found in the lef file.
 
@@ -4699,7 +4702,5 @@ These are the various switches present in the configuration/README.md file:
 <img  width="1085" alt="day18_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_7.png"> <br>
 
 
-
-
-
-
+ 
+</details>
