@@ -5050,3 +5050,118 @@ TritonRoute manages connectivity through two key methods:
 
 The primary objective of TritonRoute's Mixed Integer Linear Programming (MILP) is to optimally connect one access point to another, determining where vias should be placed and how they will facilitate connections between these points.
  </details>
+
+
+## Day-20- Floorplanning and Powerplanning Labs
+
+<details>
+	<summary>Introduction</summary>
+
+Physical design encompasses the process of transforming a high-level logical description of a circuit into a detailed physical representation suitable for manufacturing. This stage involves creating a layout that precisely defines the positions, sizes, and interconnections of individual components like transistors, gates, and wires on the silicon wafer. Physical design is a critical phase in the chip design process, directly impacting aspects such as performance, power consumption, and manufacturability.
+
+The key steps in the Physical Design flow are as follows:
+
+1. **Technology Selection**: Choose the semiconductor process technology, which sets the manufacturing parameters, transistor sizes, and available components.
+
+2. **Floorplanning**: Define the chip's overall layout, specifying the positions of major components and areas for routing.
+
+3. **Placement**: Position standard cells and macro blocks within the floorplan to optimize for area, power, and performance.
+
+4. **Global Routing**: Create a high-level interconnection structure, connecting the blocks and ensuring power and clock signals reach all chip areas.
+
+5. **Detailed Placement**: Fine-tune the placement of standard cells to meet performance and area objectives, considering factors like signal propagation delay and wirelength.
+
+6. **Clock Tree Synthesis**: Develop a clock distribution network for synchronous operation of circuit elements.
+
+7. **Routing**: Route wires to connect all components while adhering to design rules and optimizing for minimal wirelength and congestion.
+
+8. **Design Rule Checking (DRC)**: Verify that the layout complies with manufacturing constraints and design rules.
+
+9. **Layout vs. Schematic (LVS) Verification**: Ensure that the physical layout matches the intended logical design.
+
+10. **Extraction**: Extract parasitic information from the layout, essential for precise timing analysis.
+
+11. **Static Timing Analysis (STA)**: Analyze the circuit's timing behavior to ensure it meets performance specifications.
+
+12. **Power Analysis**: Evaluate power consumption and optimize for low power, if necessary.
+
+13. **Physical Verification**: Perform additional checks such as Antenna Checks, Metal Fill, and Design for Manufacturability (DFM).
+
+14. **Tapeout**: Prepare the final design data for manufacturing.
+
+Each of these steps is critical in creating a physically realizable chip design that meets its functional and performance requirements while adhering to manufacturing constraints and design rules.
+
+**Inputs for Physical Design**:
+
+1. **Technology File (.tf or .db)**: Contains information about the semiconductor process technology, including manufacturing parameters, transistor characteristics, and available components.
+
+2. **Physical Libraries (LEF or GDS)**: These libraries provide detailed information about design elements like macros, standard cells, and IO pads, including their physical dimensions and characteristics.
+
+3. **Timing, Logical, and Power Libraries**: These libraries contain critical data regarding timing constraints, logical elements, and power requirements.
+
+4. **TDF File (.tdf or .io)**: The Technology Dependency File specifies technology-specific information and dependencies that impact the design process.
+
+5. **Constraints (.sdc)**: The Synopsys Design Constraints (SDC) file defines constraints related to timing, area, power, and other design aspects.
+
+6. **Physical Design Exchange Format (PDEF, optional)**: PDEF is an optional format used for exchanging physical design data between different tools in the design flow.
+
+7. **Design Exchange Format (DEF, optional)**: DEF files are optionally used to exchange design data with other tools or platforms.
+
+**Outputs from Physical Design**:
+
+1. **Standard Delay Format (.sdf)**: This file provides delay information for different logical paths within the design, which is crucial for timing analysis and simulation.
+
+2. **Parasitic Format (.spef, .dspf)**: These files contain parasitic information extracted from the physical layout, aiding in accurate timing analysis and simulation.
+
+3. **Post-Routed Netlist (.v)**: This file represents the logical and physical netlist after the routing phase, reflecting the actual connections between components.
+
+4. **Physical Layout (.gds)**: The Graphic Data System (GDS) file is the physical layout of the design in a format that can be used for fabrication.
+
+5. **Design Exchange Format (.def)**: The DEF file can serve as an output, providing a representation of the design for exchange with other tools or for archival purposes.
+
+These inputs and outputs are vital in the physical design process as they facilitate the exchange of critical design information and ensure that the design meets performance, power, and manufacturability goals.
+
+**Floorplan**:
+**Objectives**:
+- Minimize Area.
+- Reduce wire length.
+- Facilitate easy routing.
+- Minimize delay.
+- Reduce IR Drop.
+
+**Issues with Bad Floorplan**:
+- Congestion.
+- IR Drop.
+- Reduced lifespan of the IC.
+- Noise.
+- Increased area.
+- Routing difficulties, and more.
+
+**Types**:
+1. **Abutted**: Components are placed side by side with no space between them.
+2. **Non-Abutted**: Components have space between them.
+3. **Mixed**: A combination of both abutted and non-abutted placement.
+
+**Steps in Floor Planning**:
+1. Links Netlist with physical library.
+2. Creates the initial core area.
+3. Establishes I/O pin placement and pad rings.
+4. Positions macros and standard cells.
+5. Defines placement blockages.
+6. Specifies power and ground nets.
+7. Creates power rings and macro rings.
+8. Routes power and ground nets.
+9. Checks for violations.
+
+**Power Plan**:
+Power planning is focused on providing power to the chip while considering issues like Electro-Migration (EM) and IR Drop. Key components of power planning include:
+
+- Calculating the number of power pins required.
+- Determining the number of power rings and stripes.
+- Specifying the width of power rings and stripes.
+- Addressing IR Drop issues.
+
+These steps ensure that the chip receives adequate and stable power, minimizing potential power-related problems.
+
+
+</details>
