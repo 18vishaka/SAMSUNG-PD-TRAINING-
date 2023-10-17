@@ -4645,7 +4645,9 @@ Copy the 3 poly metal and paste it into 2 different places and add pmos and nmos
 </details>
 
 ## Day-18- Pre-layout timing analysis and importance of good clock tree
-
+<details>
+	<summary></summary>
+</details>
 **Timing Models using delay tables:**
 OpenLANE is a place-and-route tool that operates without the need for mag information. It exclusively relies on essential data, including the pr boundary (inner box), power, ground, input and output ports information, which are found in the lef file.
 
