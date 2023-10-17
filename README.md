@@ -4769,6 +4769,172 @@ sta pre_sta.conf
 The following reports are generated showing the least positive slack as follows:
 <img  width="1085" alt="day18_23" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_23.png"> <br>
 
+Now, we set the fanout to 4 using the following command.
+```ruby
+echo $::env(SYNTH_MAX_FANOUT)
+set ::env(SYNTH_MAX_FANOUT) 4
+```
+
+Now, remove the synthesis netlist again and fire the synthesis run and subsequent stages as follows:
+```ruby
+run_synthesis
+run_floorplan
+run_placement
+```
+
+Now the sta is again checked for as follows:
+```ruby
+sta pre_sta.conf
+report_net -connections _16837_
+```
+The report_net command is used to check all the connected inputs, outputs and nets as follows. 
+<img  width="1085" alt="day18_25" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_25.png"> <br>
+
+The buffers can be upsized using the replace_cell command. Upsizing the cell improves transition, thus reducing cell delay.
+
+The following command is used to check the report of timing path as follows:
+```ruby
+report_checks -fields {net cap slew input pins} -digits 4
+```
+<img  width="1085" alt="day18_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_26.png"> <br>
+
+A timing ECO is generated and fed to the PnR tools once the timming is met.
+
+</details>
+
+
+<details>
+	<summary>Clock Tree Synthesis and Signal Integrity</summary>
+
+The time difference required by clock to reach the launch and capture flops is referred as skew. Skew should be as minimal as possible. 
+
+**H-tree algorithm:** <br>
+The tool calculates the distance from the clock port to all the clock points that needs to be connected to that port. The clock is routed to the midpoint of distance and then, to the midpoint of the nearby flops and so on. This midpoint procedure makes the skew almost zero, or as minimal as possible. 
+
+**Clock Tree Buffering:** <br>
+The clock repeaters have equal rise and fall delay and the datapath buffers do not have equal rise and fall delay. The cells are connected with wires that have some resistance and capacitance. The long length wires causing more transition and more net delays. So The buffers are added inorder to break these long length nets.
+
+
+**Clock Net Shielding:** <br>
+The clock nets are encapsulated from the external world to avoid any coupling between other wires and clock net causing glitch or crosstalk. The shield can be connected to ground or to Vdd, as long as there is no switching activity occurring. Critical data nets are also necessary to be shielded. The unshielded nets can interact with other and act as capacitor causing ground bounds or voltage droop (glitch). This may impact the logical performance of the design. 
+
+When both agressor and victim are switching as follows, the agressor impacts the victim such that it charges instead of discharging for certain time, increasing the cell delay.
+
+The netlist is written out, after the STA using OpenSTA using the following command:
+```ruby
+write_verilog ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/12-10_12-49/results/synthesis/picorv32a.synthesis.v
+```
+
+So, The pre-existing netlist of the synthesis stage is usually overwritten with additional buffers to meet the timing. As there are no aditional buffers required, same netlist is being used. Now, thwe synthesis netlist is generated and timing is met. Let us continue with the consecutive steps as follows:
+```ruby
+run_floorplan
+run_placement
+run_cts
+```
+<img  width="1085" alt="day18_27" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_27.png"> <br>
+
+Each stage in PnR has the relative .tcl files in openroad. The files for CTS are or_cts.tcl and cts.tcl. The contents of cts.tcl are as follows: 
+<img  width="1085" alt="day18_28" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_28.png"> <br>
+
+
+Let us check the following variables defined in openlane.
+```ruby
+echo $::env(LIB_TYPICAL)
+echo $::env(CURRENT_DEF)
+echo $::env(CTS_MAX_CAP)
+echo $::env(CTS_CLK_BUFFER_LIST)
+echo $::env(CTS_ROOT_BUFFER)
+```
+<img  width="1085" alt="day18_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_29.png"> <br>
+
+</details>
+
+
+<details>
+	<summary>Timing Analysis with real clocks using OpenSTA</summary>
+
+Due to addition of clock buffers, clock network delay has been introduced and it will combine all the delays.With real clocks, we will need to have buffers inserted into the clock path to ensure the clock signal integrity.Because of the buffer insertion, the clock edge will reach the clock pin with consideration to the delays of the buffers inserted.
+
+The clock network delay will also need to take into consideration the delays from the buffers inserted.The window will become shifted as a result of the delays from the buffers inserted. The skew for this design will now be the difference between the deltas, and the equation for setup timing analysis will also changed based on the image shown.If the data arrival time is higher than the data required time, then we will have negative slack on the path, meaning we have violations.
+For hold timing analysis, where the capture edge is on the 0 clock rise edge, the combinational delay should be greater than the hold time of the flop. Hold time refers to the second mux delay, which is the time required for the data to be sent after the clock edge within the flop. So the data needs to be arrived after the hold time, so the new data can be captured into the flop, after existing data is launched out. 
+Jitter for the launch clock and capture flop will not need to be taken into consideration as the design is on the 0 clock edge, and the arrival difference for the capture and launch flop will be the same. So, the uncertainty should be kept low for the hold analysis.
+
+"slack = data arrival time – data required time"
+
+If data required time is higher, we will have negative slack, meaning the timing path for hold will be violated.The equations for setup time and hold time are as follows:
+
+The following steps are executed after CTS stage.
+
+In openroad, the timing analysis is done by creating db using the lef and def files. The lef and def are read and the db is written out as follows. Now, the db is read and the steps are same as in conf.
+
+```ruby
+openroad                                                                          \\Invoking openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/13-01_14-09/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-01_14-09/results/cts/picorv32a.cts.def
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-01_14-09/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty -max $::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd_slow.lib
+read_liberty -min $::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd_fast.lib
+set_propagated_clock [all_clocks]
+read_sdc designs/picorv32a/src/my_base.sdc   \\calculates actual cell delay in clockpath
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+
+<img  width="1085" alt="day18_30" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_30.png"> <br>
+
+
+The above analysis stands incorrect because the design is defined for typical corner and the libs for analysis are min and max. So, the correct way of analysis is as follows. Now, the same steps are follwed but the liberty file used is typical corner.
+
+```ruby
+exit        \\Exit openroad...Do it twice if read_sdc command doesn't work
+openroad
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-01_14-09/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -fields {slew trans net cap input pin} -format full_clock_expanded
+echo $::env(CTS_CLK_BUFFER_LIST)                              (To see the list of buffers)
+```
+<img  width="1085" alt="day18_33" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_33.png"> <br>
+
+```ruby
+exit 
+echo $::env(CTS_CLK_BUFFER_LIST)
+set ::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0]
+echo $::env(CURRENT_DEF)
+set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/13-01_14-09/results/placement/picorv32a.placement.def
+run_cts
+```
+
+```ruby
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/13-01_14-09/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-01_14-09/results/cts/picorv32a.cts.def
+write_db pico_cts1.db
+read_db pico_cts1.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-01_14-09/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -fields {slew trans net cap input pin} -format full_clock_expanded
+```
+
+After changing clock buffers, the new timing reports are generated.
+
+Let us check the clock skew of the design as follows:
+
+```ruby
+report_clock_skew -hold
+report_clock_skew -setup
+set ::env(CTS_CLK_BUFFER_LIST) [linsert $::env(CTS_CLK_BUFFER_LIST) 0 sky130_fd_sc_hd__clkbuf_1]      (Adding back clkbuf1)
+```
+<img  width="1085" alt="day18_34" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day18_34.png"> <br>
+
+
 
 
 
