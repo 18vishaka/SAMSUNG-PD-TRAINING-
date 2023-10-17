@@ -4997,7 +4997,7 @@ gen_pdn                     \\To generate power distribution network
 ```
 
 This is giving an error as follows:
-<img  width="1085" alt="day19_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day19_1.png"> <br>
+<img  width="1085" alt="day19_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day19/day19_1.png"> <br>
 
 Due to this error, the pdn def is not generated so CTS def is used for routing.
 
@@ -5011,7 +5011,7 @@ run_routing
 ```
 
 The ROUTING_STRATEGY variable implies the optimized routing in the design. The value 0 specifies the routing is not much optimized. 
-<img  width="1085" alt="day19_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day17-18/day19_2.png"> <br>
+<img  width="1085" alt="day19_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day19/day19_2.png"> <br>
 
 
 
