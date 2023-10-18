@@ -5165,3 +5165,157 @@ These steps ensure that the chip receives adequate and stable power, minimizing 
 
 
 </details>
+
+<details>
+	<summary>Labs</summary>
+
+	
+ **Clone the following repositories for the physical design flow setup:**
+```ruby
+git clone https://github.com/manili/VSDBabySoC.git
+git clone https://github.com/Devipriya1921/VSDBabySoC_ICC2.git
+git clone https://github.com/bharath19-gs/synopsys_ICC2flow_130nm.git
+git clone https://github.com/kunalg123/icc2_workshop_collaterals.git
+git clone https://github.com/google/skywater-pdk-libs-sky130_fd_sc_hd.git
+git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+```
+The contents to my path are changed to the locations where files are cloned. The changes in vsdbabysoc.tcl are as follows:
+<img  width="1085" alt="day20_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_1.png"> <br>
+
+The unwanted pins in avsdpll.lib are already commented out. 
+<img  width="1085" alt="day20_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_2.png"> <br>
+
+
+The vsdbabysoc.tcl file is sourced to generate the area, power, timing and sdc as follows:
+```ruby
+cd ~/Physical_Design/VSDBabySoC_ICC2
+csh
+dc_shell
+source vsdbabysoc.tcl
+```
+<img  width="1085" alt="day20_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_3.png"> <br>
+
+*The reports generated:*
+1. Area report:
+<img  width="1085" alt="day20_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_4.png"> <br>
+
+2. Power report:
+<img  width="1085" alt="day20_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_5.png"> <br>
+
+3. Timing report:
+<img  width="1085" alt="day20_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_6.png"> <br>
+<img  width="1085" alt="day20_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_7.png"> <br>
+The timing is met with a positive slack of 30ps. The worst slack is considered as the critical slack.
+
+4. Constraints report:
+<img  width="1085" alt="day20_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_8.png"> <br>
+
+*Gui based circuit of the design as follows:*
+<img  width="1085" alt="day20_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_9.png"> <br>
+
+*The schematic of the BabySoC is as follows:*
+<img  width="1085" alt="day20_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_10.png"> <br>
+
+*The RYMTH core schematic is as follows:*
+<img  width="1085" alt="day20_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_11.png"> <br>
+<img  width="1085" alt="day20_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_12.png"> <br>
+<img  width="1085" alt="day20_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_13.png"> <br>
+
+**Physical design:**
+Inorder to setup the flow, the following files are edited with present working constraints of design and location of files. The following files are edited:
+
+**top.tcl:**
+The floorplan switch is added for create_placement command and all linking paths are updated.
+<img  width="1085" alt="day20_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_14.png"> <br>
+
+**icc2_common_setup.tcl:**
+All the paths are updated and the metal routing layers are defined. 
+<img  width="1085" alt="day20_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_15.png"> <br>
+
+**icc2_dp_setup.tcl:**
+<img  width="1085" alt="day20_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_16.png"> <br>
+All paths are updated in the icc2_dp_setup.tcl file also.
+
+**init_design.read_parasitic_tech_example.tcl:**
+Inorder to generate tluplus file from itf file, the following command is used.
+```ruby
+grdgenxo -itf2TLUPlus -i skywater130.nominal.itf -o skywater130.nominal.tluplus
+```
+<img  width="1085" alt="day20_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_17.png"> <br>
+
+**init_design.mcmm_example.auto_expanded.tcl:**
+
+The SDC path in the file is updated to the generated SDC after the synthesis. 
+<img  width="1085" alt="day20_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_18.png"> <br>
+
+**pns_example.tcl:**
+The power grid pattern for supply and ground rails requires the definition of the layers to be used. The vertical and horizontal layers are changed as shown.
+<img  width="1085" alt="day20_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_19.png"> <br>
+
+
+Invoking the icc2_shell, inorder to run the design using following commands.
+```ruby
+cd ~/Physical_Design/icc2_workshop_collaterals/standaloneflow
+csh
+icc2_shell
+source top.tcl
+```
+<img  width="1085" alt="day20_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_20.png"> <br>
+
+The gui based design is as follows:
+<img  width="1085" alt="day20_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_21.png"> <br>
+<img  width="1085" alt="day20_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_22.png"> <br>
+
+*Check for the timing violations.:*
+```ruby
+icc2_shell> set_propagated_clock [all_clocks]             //Converting clock object from ideal clock to propagated clock
+icc2_shell> report_timing
+```
+<img  width="1085" alt="day20_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_24.png"> <br>
+
+```ruby
+icc2_shell> estimate_timing
+```
+<img  width="1085" alt="day20_25" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_25.png"> <br>
+
+```ruby
+icc2_shell> report_constraints -all_violators -nosplit -verbose -significant_digits 4 > violators.rpt
+icc2_shell> sh gvim violators.rpt &
+```
+<img  width="1085" alt="day20_28" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_28.png"> <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+remove -lib in read_lib commands
+replace MYCLK to clk since the clock used in the design is {clk}
+All the commands for synthesis are included in the tcl file such as read_lib, read_verilog as follows:
+</details>
