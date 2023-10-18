@@ -5284,6 +5284,27 @@ icc2_shell> sh gvim violators.rpt &
 ```
 <img  width="1085" alt="day20_28" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_28.png"> <br>
 
+*Changing the utilization to 0.07:*
+<img  width="1085" alt="day20_31" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_31.png"> <br>
+
+Rerunning the icc2_shell
+<img  width="1085" alt="day20_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_21.png"> <br>
+
+Now if we set the boundary using command
+```rby
+intialize_floor -boundary { from left hand side in anticlockwise direction> -core_utilization }
+```
+The one used in our case was - boundary {{0 0} (1200 0} {1200 650} {0 650}} -core_utilization 0.07
+
+ ```ruby
+set_propagated_clock [all_clocks]
+report_timing
+```
+<img  width="1085" alt="day20_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day20/day20_26.png"> <br>
+
+Again checking violators.rpt
+
+Ob
 
 
 
@@ -5313,9 +5334,4 @@ icc2_shell> sh gvim violators.rpt &
 
 
 
-
-
-remove -lib in read_lib commands
-replace MYCLK to clk since the clock used in the design is {clk}
-All the commands for synthesis are included in the tcl file such as read_lib, read_verilog as follows:
 </details>
