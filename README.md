@@ -5654,7 +5654,9 @@ report_clock_timing -type transition
 **Routing:**
 Script in routing stage
 <ul>
-	<li>P/G routing
+	<li>
+		
+*P/G routing:*
 	<img  width="1085" alt="day23_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23/day23_1.png"> <br>
  	<img  width="1085" alt="day23_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23/day23_2.png"> <br>
   	<img  width="1085" alt="day23_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23/day23_3.png"> <br>
