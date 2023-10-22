@@ -5424,10 +5424,10 @@ The SDC file does not include latency information, as it is computed in real-tim
 <img  width="1085" alt="" src=""> <br>
 
 Post-execution, reports are automatically generated in a directory named "rpts_icc2" as specified in the SDC file. Among these reports, "check_design.pre_pin_placement" is one of them. It's important to note that prior to pin placement, a check is performed using the "check_design" command, and no errors or warnings are identified in this initial assessment.
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="day21_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_1.png"> <br>
 
 The "report_port_placement.rpt" provides a detailed account of the top-level design's ports, along with the metals designated for routing and their respective offset values.
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="day21_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_2.png"> <br>
 
 The "report_placement.rpt" provides a comprehensive overview of the current design placement, with the following key details:
 
@@ -5439,7 +5439,7 @@ The "report_placement.rpt" provides a comprehensive overview of the current desi
 
 - **Voltage Areas Compliance**: It affirms that all cells have been successfully placed within their respective voltage areas. This is vital for guaranteeing the proper power distribution and electrical isolation, ensuring that cells operate under the correct voltage levels in the chip design.
 
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="day21_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_8.png"> <br>
 
 In the "vsdbabysoc.post_estimated_timing.rpt," the estimated timing report reveals that the slack is met with a comfortable margin of 860 picoseconds (ps), indicating the following:
 <img  width="1085" alt="" src=""> <br>
