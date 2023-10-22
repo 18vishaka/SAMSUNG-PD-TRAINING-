@@ -5371,47 +5371,45 @@ Switchable or Programmable Decap Cells: These offer flexibility by allowing desi
 Cell Padding: Cell padding is the practice of reserving space on the chip layout to avoid routing congestion, ensuring efficient interconnection of components.
 
 
-**Placement:**
+**Placement:** <br>
 Placement is a crucial stage in chip design where standard cells are not only arranged in the synthesized netlist but also optimized to enhance the overall design and determine its routability.
 
-Goals and Objectives:
-
+*Goals and Objectives:* <br>
 Timing, Power, and Area Optimization: Achieving the best balance among timing performance, power consumption, and chip area utilization.
 Minimum Congestion: Reducing design bottlenecks and ensuring smooth interconnection.
 Minimum Cell Density and Pin Density: Optimizing the distribution of cells and pins for efficient routing.
 Inputs for Placement: Key inputs for the placement process include technology files (.tf), netlists, SDC files (.sdc), library files (.lib and .lef), floor planning data, and power planning DEF files.
 
-Placement Methods:
-
+*Placement Methods:* <br>
 Timing Driven: Prioritizes timing constraints and requirements during placement.
 Congestion Driven: Focuses on minimizing congestion issues in the layout.
 
-*Steps:*
-Defining Design Constraints: Establishing the design parameters and requirements.
-Reading Gate-Level Netlist from Synthesis: Importing the synthesized netlist for placement.
-Global Placement: Initial placement of cells on the chip's grid.
-Detailed Placement: Fine-tuning the positions of cells to meet timing and other constraints.
-Placement Optimization: Further refinement of cell placements.
-Cell Sizing: Adjusting the sizes of cells for optimal design.
-Cloning: Creating multiple copies of the same cell.
-Buffering Outputs of Placement: Inserting buffers to improve signal quality.
-Providing Physical Layout Information: Ensuring the layout adheres to physical constraints.
-Cell Placement Location: Determining the precise positions of each cell.
-Incorporating Timing and Technology Information from Reference Libraries: Using data from reference libraries to guide placement decisions.
+*Steps:* <br>
+Defining Design Constraints: Establishing the design parameters and requirements. <br>
+Reading Gate-Level Netlist from Synthesis: Importing the synthesized netlist for placement. <br>
+Global Placement: Initial placement of cells on the chip's grid. <br>
+Detailed Placement: Fine-tuning the positions of cells to meet timing and other constraints. <br>
+Placement Optimization: Further refinement of cell placements. <br>
+Cell Sizing: Adjusting the sizes of cells for optimal design. <br>
+Cloning: Creating multiple copies of the same cell. <br>
+Buffering Outputs of Placement: Inserting buffers to improve signal quality. <br>
+Providing Physical Layout Information: Ensuring the layout adheres to physical constraints. <br>
+Cell Placement Location: Determining the precise positions of each cell. <br>
+Incorporating Timing and Technology Information from Reference Libraries: Using data from reference libraries to guide placement decisions. <br>
 
 
-**Clock Tree Synthesis (CTS):**
-Clock tree synthesis is a critical phase in chip design involving the creation of a clock distribution network.
+**Clock Tree Synthesis (CTS):** <br>
+Clock tree synthesis is a critical phase in chip design involving the creation of a clock distribution network. <br>
 
-*Key Objectives of Clock Tree Synthesis:*
-Efficient Clock Signal Distribution: Ensuring the clock signal is distributed from a single source (the clock buffer) to all flip-flops, latches, and sequential elements throughout the chip.
-Minimizing Skew: Skew, or variation in clock signal arrival times, is minimized to ensure synchronous operation.
-Balanced Load: The capacitive load on each branch of the clock tree is balanced to maintain signal integrity.
-Reducing Power Consumption: Efficient CTS reduces power consumption by optimizing the placement and number of clock buffers.
-Key Steps in Clock Tree Synthesis:
+*Key Objectives of Clock Tree Synthesis:* <br>
+Efficient Clock Signal Distribution: Ensuring the clock signal is distributed from a single source (the clock buffer) to all flip-flops, latches, and sequential elements throughout the chip. <br>
+Minimizing Skew: Skew, or variation in clock signal arrival times, is minimized to ensure synchronous operation. <br>
+Balanced Load: The capacitive load on each branch of the clock tree is balanced to maintain signal integrity. <br>
+Reducing Power Consumption: Efficient CTS reduces power consumption by optimizing the placement and number of clock buffers. <br>
 
-Clock Tree Construction: The clock tree network is built, creating a hierarchical structure of clock buffers and wires.
-Buffer Sizing and Insertion: The right type and size of clock buffers are selected and strategically placed to balance drive strength and capacitive load.
-Clock Tree Balancing: Efforts are made to distribute the clock signal uniformly to all parts of the chip, reducing skew.
-Skew Minimization: Advanced techniques are employed to further reduce clock skew, ensuring synchronous and efficient operation.
+*Key Steps in Clock Tree Synthesis:*
+Clock Tree Construction: The clock tree network is built, creating a hierarchical structure of clock buffers and wires. <br>
+Buffer Sizing and Insertion: The right type and size of clock buffers are selected and strategically placed to balance drive strength and capacitive load. <br>
+Clock Tree Balancing: Efforts are made to distribute the clock signal uniformly to all parts of the chip, reducing skew. <br>
+Skew Minimization: Advanced techniques are employed to further reduce clock skew, ensuring synchronous and efficient operation. <br>
 </details>
