@@ -5610,4 +5610,38 @@ report_clock_timing -type transition
 
 </details>
 
+## Day-23- Clock Gating techniques
+<details>
+	<summary>Introduction</summary>
 
+ <!DOCTYPE html>
+<html>
+
+<head>
+  <title>Clock Tree Synthesis (Advanced H-Tree)</title>
+</head>
+
+<body>
+
+<h1>Clock Tree Synthesis (Advanced H-Tree)</h1>
+<p>A digital circuit having a lot of clocks, so if designing a clock tree will be huge with many buffers, etc. So the whole chip will section into smaller versions, and then each section will have its own clock tree, and then finally a complete routed tree.</p>
+
+<h2>Clock Gating</h2>
+<p>Besides area and timing, there is another important factor which is power - the need for power "aware" CTS. Clock gating is one of the techniques used to save the dynamic power of clock elements in the design. The principle behind clock gating is to stop the clock of those sequential elements whose data is not toggling. Clock gating technique uses AND, OR, or Universal NAND gates.</p>
+<p>It has been found that 50% of the dynamic power originates from clock-related circuits. Clock gating is inserted during synthesis stage and optimized in the implementation stage (Physical Design stage).</p>
+<p>Example scenario why required clock gating: If there is a block that only needs a clock signal for 10 minutes but the clock signal is running for 1 hour, a lot of power is dissipating (due to switching activity), so we need clock gating which acts as a switch.</p>
+
+<h2>Routing</h2>
+<p>The last step of the physical design flow is making physical connections between signal pins using metal layers. There are mainly three types of routing:</p>
+<ul>
+  <li>P/G routing</li>
+  <li>Clock routing</li>
+  <li>Signal routing</li>
+</ul>
+<p>Routing is accomplished through a multi-step process, including global routing and detailed routing. The "route_opt" command is a key command that facilitates and optimizes these routing tasks, enabling the chip's physical connections to be efficiently established.</p>
+
+</body>
+
+</html>
+
+</details>
