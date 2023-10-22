@@ -5618,7 +5618,9 @@ report_clock_timing -type transition
 <html>
 
 <head>
-  <title>Clock Tree Synthesis (Advanced H-Tree)</title>
+
+	
+ **Clock Tree Synthesis (Advanced H-Tree):**
 </head>
 
 <body>
@@ -5644,4 +5646,30 @@ report_clock_timing -type transition
 
 </html>
 
+</details>
+
+<details>
+	<summary>Labs</summary>
+
+**Routing:**
+Script in routing stage
+<ul>
+	<li>P/G routing
+	<img  width="1085" alt="day23_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23/day23_1.png"> <br>
+ 	<img  width="1085" alt="day23_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23/day23_2.png"> <br>
+  	<img  width="1085" alt="day23_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23/day23_3.png"> <br>
+	</li>
+	<li>
+		
+*Clock and Signal Routing:*
+
+- **place_opt:** This command is employed for placing and optimizing the current design, ensuring that the design components are efficiently arranged for improved performance and adherence to design constraints.
+
+- **clock_opt:** It serves the purpose of synthesizing and routing the clock signals within the design. Additionally, it optimizes the overall design based on the clock latencies that are propagated through the design, ensuring synchronized and timely clock delivery.
+
+- **route_auto:** This command automates multiple aspects of routing, including global routing, trace assignment, and detailed routing. It streamlines and accelerates the routing process, simplifying the steps required for successful chip design.
+<img  width="1085" alt="day23_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23/day23_4.png"> <br>
+
+</li>
+</ul>
 </details>
