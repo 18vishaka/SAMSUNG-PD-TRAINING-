@@ -5407,9 +5407,74 @@ Minimizing Skew: Skew, or variation in clock signal arrival times, is minimized 
 Balanced Load: The capacitive load on each branch of the clock tree is balanced to maintain signal integrity. <br>
 Reducing Power Consumption: Efficient CTS reduces power consumption by optimizing the placement and number of clock buffers. <br>
 
-*Key Steps in Clock Tree Synthesis:*
+*Key Steps in Clock Tree Synthesis:*  <br>
 Clock Tree Construction: The clock tree network is built, creating a hierarchical structure of clock buffers and wires. <br>
 Buffer Sizing and Insertion: The right type and size of clock buffers are selected and strategically placed to balance drive strength and capacitive load. <br>
 Clock Tree Balancing: Efforts are made to distribute the clock signal uniformly to all parts of the chip, reducing skew. <br>
 Skew Minimization: Advanced techniques are employed to further reduce clock skew, ensuring synchronous and efficient operation. <br>
+</details>
+
+<details>
+	<summary>Labs</summary>
+
+The image below displays the reports generated during the place_opt, clock_opt and route_auto stages.
+<img  width="1085" alt="" src=""> <br>
+
+The SDC file does not include latency information, as it is computed in real-time during the construction of the Clock Tree Synthesis (CTS). The "create_placement" command is employed to generate the placement for the design. The "floorplan" option is chosen to align the design planning with the placement. Pin placement is accomplished by utilizing the "pns.tcl" script to synchronize with the current technology file, especially in relation to power grid creation.
+<img  width="1085" alt="" src=""> <br>
+
+Post-execution, reports are automatically generated in a directory named "rpts_icc2" as specified in the SDC file. Among these reports, "check_design.pre_pin_placement" is one of them. It's important to note that prior to pin placement, a check is performed using the "check_design" command, and no errors or warnings are identified in this initial assessment.
+<img  width="1085" alt="" src=""> <br>
+
+The "report_port_placement.rpt" provides a detailed account of the top-level design's ports, along with the metals designated for routing and their respective offset values.
+<img  width="1085" alt="" src=""> <br>
+
+The "report_placement.rpt" provides a comprehensive overview of the current design placement, with the following key details:
+
+- **Total Net Length**: The report specifies that the total net length in the design amounts to 65790 microns. This metric is crucial for evaluating the overall routing efficiency and wirelength in the design.
+
+- **Hard Macros Overlaps**: The report confirms that there are no instances of hard macros overlapping. Hard macros are pre-designed, reusable blocks of circuitry, and ensuring their non-overlapping placement is essential for correct chip functionality.
+
+- **Placement Violations**: The report indicates that no placement violations have been detected. Placement violations can encompass various issues, including cells being too close to each other or improperly positioned, which may impact signal integrity or manufacturing.
+
+- **Voltage Areas Compliance**: It affirms that all cells have been successfully placed within their respective voltage areas. This is vital for guaranteeing the proper power distribution and electrical isolation, ensuring that cells operate under the correct voltage levels in the chip design.
+
+<img  width="1085" alt="" src=""> <br>
+
+In the "vsdbabysoc.post_estimated_timing.rpt," the estimated timing report reveals that the slack is met with a comfortable margin of 860 picoseconds (ps), indicating the following:
+<img  width="1085" alt="" src=""> <br>
+
+Within the "vsdbabysoc.post_estimated_timing.qor" report, the Quality of Results (QOR) section provides a comprehensive summary of several key design attributes, including:
+
+- **Cell Count**: This section specifies the total number of cells used in the design, offering insight into the design's complexity.
+
+- **Critical Path**: It highlights the critical path within the design, which is the longest path in terms of delay and can be vital for determining overall performance.
+
+- **Critical Slack**: This report provides the critical slack value, which represents the timing margin or delay allowance on the critical path. A positive slack indicates that the timing requirements are met, and the design is operating with a margin.
+
+- **Macros Used**: This section enumerates the macros utilized within the design. Macros are pre-designed blocks that can significantly impact design efficiency and functionality.
+
+- **Area Used**: It specifies the total area occupied by the design, which is critical for understanding the chip's physical footprint and overall layout.
+
+Overall, this report offers a detailed breakdown of the cells placed in the design, providing valuable information about the design's characteristics and performance metrics.
+<img  width="1085" alt="" src=""> <br>
+
+
+The "vsdbabysoc.post_estimated_timing.qor.sum" report offers a concise summary of two important aspects:
+
+- **DRC Violations**: It presents any Design Rule Check (DRC) violations found in the design. DRCs are constraints that ensure the chip adheres to specified manufacturing rules, and violations can lead to manufacturing issues.
+
+- **Timing Violations of Estimated Corners**: This section highlights any timing violations in relation to estimated corners. Timing violations occur when the design fails to meet specified timing requirements, potentially impacting the chip's functionality and performance.
+
+<img  width="1085" alt="" src=""> <br>
+
+For clock tree analysis, when you open the graphical user interface (GUI), navigate to the "Window" section. Within this section, select the "Clock Tree Synthesis Analysis" window. 
+
+In the context of clock analysis, the provided image illustrates the connection of the PLL source to various cells in the design.
+<img  width="1085" alt="" src=""> <br>
+
+
+The image below presents a fanout view of the clock within the design. It visually displays the nets connecting all cells from the clock source to the respective clock pins.
+<img  width="1085" alt="" src=""> <br>
+
 </details>
