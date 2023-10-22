@@ -5418,10 +5418,10 @@ Skew Minimization: Advanced techniques are employed to further reduce clock skew
 	<summary>Labs</summary>
 
 The image below displays the reports generated during the place_opt, clock_opt and route_auto stages.
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="day21_01" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_01.png"> <br>
 
 The SDC file does not include latency information, as it is computed in real-time during the construction of the Clock Tree Synthesis (CTS). The "create_placement" command is employed to generate the placement for the design. The "floorplan" option is chosen to align the design planning with the placement. Pin placement is accomplished by utilizing the "pns.tcl" script to synchronize with the current technology file, especially in relation to power grid creation.
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="day21_02" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_02.png"> <br>
 
 Post-execution, reports are automatically generated in a directory named "rpts_icc2" as specified in the SDC file. Among these reports, "check_design.pre_pin_placement" is one of them. It's important to note that prior to pin placement, a check is performed using the "check_design" command, and no errors or warnings are identified in this initial assessment.
 <img  width="1085" alt="day21_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_1.png"> <br>
@@ -5439,10 +5439,11 @@ The "report_placement.rpt" provides a comprehensive overview of the current desi
 
 - **Voltage Areas Compliance**: It affirms that all cells have been successfully placed within their respective voltage areas. This is vital for guaranteeing the proper power distribution and electrical isolation, ensuring that cells operate under the correct voltage levels in the chip design.
 
-<img  width="1085" alt="day21_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_8.png"> <br>
+<img  width="1085" alt="day21_03" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_03.png"> <br>
 
-In the "vsdbabysoc.post_estimated_timing.rpt," the estimated timing report reveals that the slack is met with a comfortable margin of 860 picoseconds (ps), indicating the following:
-<img  width="1085" alt="" src=""> <br>
+"vsdbabysoc.post_estimated_timing.rpt," 
+
+<img  width="1085" alt="day21_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_8.png"> <br>
 
 Within the "vsdbabysoc.post_estimated_timing.qor" report, the Quality of Results (QOR) section provides a comprehensive summary of several key design attributes, including:
 
@@ -5457,7 +5458,7 @@ Within the "vsdbabysoc.post_estimated_timing.qor" report, the Quality of Results
 - **Area Used**: It specifies the total area occupied by the design, which is critical for understanding the chip's physical footprint and overall layout.
 
 Overall, this report offers a detailed breakdown of the cells placed in the design, providing valuable information about the design's characteristics and performance metrics.
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="day21_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_3.png"> <br>
 
 
 The "vsdbabysoc.post_estimated_timing.qor.sum" report offers a concise summary of two important aspects:
@@ -5466,15 +5467,147 @@ The "vsdbabysoc.post_estimated_timing.qor.sum" report offers a concise summary o
 
 - **Timing Violations of Estimated Corners**: This section highlights any timing violations in relation to estimated corners. Timing violations occur when the design fails to meet specified timing requirements, potentially impacting the chip's functionality and performance.
 
-<img  width="1085" alt="" src=""> <br>
 
 For clock tree analysis, when you open the graphical user interface (GUI), navigate to the "Window" section. Within this section, select the "Clock Tree Synthesis Analysis" window. 
 
 In the context of clock analysis, the provided image illustrates the connection of the PLL source to various cells in the design.
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="day21_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_9.png"> <br>
+<img  width="1085" alt="day21_10" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_10.png"> <br>
+
 
 
 The image below presents a fanout view of the clock within the design. It visually displays the nets connecting all cells from the clock source to the respective clock pins.
-<img  width="1085" alt="" src=""> <br>
+<img  width="1085" alt="day21_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_11.png"> <br>
 
 </details>
+
+
+## Day-22- CTS analysis Labs
+
+<details>
+	<summary>Introduction</summary>
+
+The primary objective of Clock Tree Synthesis (CTS) is to achieve the uniform and minimal skew distribution of the clock signal to all sequential elements (such as flip-flops and registers) within the VLSI chip. This synchronization is crucial to maintain proper timing and ensure the synchronous operation of the digital circuit. The overarching goal of CTS is to minimize both skew and insertion delay.
+
+CTS employs various algorithms to attain this synchronization and minimize delay. Some of the algorithms used for CTS include:
+<ul>
+	<li>Clock-wise conventional CTS</li>
+	<li>Clock-wise multisource CTS</li>
+	<li>Clock-wise H-tree CTS</li>
+	<li>Clock-wise mesh CTS</li>
+</ul>
+
+*H-tree algorithm:* <br>
+The H-tree algorithm is a specific approach used in Clock Tree Synthesis (CTS) to distribute the clock signal uniformly to all the flip-flops in a VLSI chip. Here's a detailed breakdown of the H-tree algorithm's steps:
+
+1. **Identification of Flip-Flops**: The first step involves identifying all the flip-flops present in the chip. These flip-flops are the sequential elements that require a synchronized clock signal.
+
+2. **Center Point Determination**: Next, the algorithm calculates the center point of all the identified flip-flops. This central location serves as the starting point for the clock signal distribution.
+
+3. **Initial Clock Signal Trace**: The clock signal is traced from the clock source to the central point calculated in the previous step. This establishes the initial connection between the clock source and the central location.
+
+4. **Core Division and Further Tracing**: The chip's core area is then divided into two parts. Clock signal traces are extended from the central point to each of these divided sections, reaching the centers of each part. This division and tracing are performed to maintain signal integrity and minimize skew.
+
+5. **Recursive Division and Tracing**: The algorithm continues to recursively divide the areas into two, effectively creating an H-tree structure. Clock signal traces extend from each new center to the centers at both ends of the divided areas. This recursive process continues until the clock signal reaches the clock pins of the flip-flops.
+
+In summary, the H-tree algorithm systematically traces and distributes the clock signal from a central point to flip-flops throughout the chip, minimizing skew and ensuring synchronous operation. This approach creates a structured, tree-like network of clock distribution, optimizing clock signal integrity and timing.
+
+
+*Clock Tree Synthesis comprises several crucial stages:* <br>
+1. **Clock Tree Generation:** This initial step establishes a hierarchical tree structure, originating from the primary clock source and extending to various regions within the chip. The purpose is to minimize clock skew and enhance signal distribution efficiency.
+
+2. **Buffer Insertion:** Buffers are strategically inserted along the clock tree. These buffers serve to maintain signal integrity and reduce clock skew, especially in cases involving long clock lines, thereby mitigating signal delay.
+
+3. **Clock Skew Optimization:** CTS algorithms prioritize the minimization of clock skew. This is essential to ensure that all flip-flops across the chip receive the clock signal simultaneously. Eliminating clock skew helps prevent setup and hold time violations, vital for maintaining proper circuit operation.
+
+4. **Clock Gating:** In some scenarios, clock gating elements are introduced into the clock tree. These elements allow the selective disabling of the clock signal for specific sections of the design when they are not in active use. Clock gating optimizes power consumption by reducing dynamic power.
+
+5. **Verification:** Following CTS implementation, the design undergoes thorough verification. This process ensures that the clock signal is distributed correctly and complies with stringent timing requirements, essential for robust and reliable chip operation.
+
+
+*The role of Clock Tree Synthesis (CTS) in Very Large-Scale Integration (VLSI) design is paramount:* <br>
+1. **Timing Closure**: CTS plays a pivotal role in achieving timing closure, assuring that the digital design functions seamlessly within specified clock frequencies, free from setup and hold time violations. This is crucial for meeting performance targets and design reliability.
+
+2. **Reducing Clock Skew**: CTS diligently minimizes clock skew, which is instrumental in enabling synchronous operation and guarding against metastability issues in sequential elements. Clock signals reaching flip-flops simultaneously are vital for stable and predictable operation.
+
+3. **Power Optimization**: The inclusion of clock gating techniques in CTS contributes to efficient power management. By disabling clock signals in inactive regions of the chip, dynamic power consumption is reduced. This not only conserves energy but also enhances the chip's overall efficiency.
+
+4. **Enhancing Chip Performance**: A well-structured and optimized clock tree, created through CTS, leads to improved chip performance. It reduces clock distribution delays and fosters effective synchronization, which is fundamental for reliable and high-performing VLSI designs.
+
+*Clock Tree Synthesis (CTS) is not without its challenges:* <br>
+1. **Skew Minimization**: Attaining minimal clock skew can prove to be a challenging task, particularly in intricate designs with numerous clock domains. Managing skew across these domains requires meticulous planning and execution.
+
+2. **Trade-offs**: CTS often involves a trade-off between power consumption and clock distribution delay. Striking the right balance between the two is a delicate task that necessitates thoughtful design decisions to optimize both parameters effectively.
+
+3. **Hierarchical Design**: In hierarchical Very Large-Scale Integration (VLSI) designs, CTS can become more intricate. Synthesizing clock trees at various hierarchical levels introduces an added layer of complexity and requires special attention to ensure seamless integration of clocks across the design hierarchy.
+
+
+*Some commands at CTS:* <br>
+Create Clock Tree: Generate the clock tree structure using CTS algorithms.
+```ruby
+create_clock_tree
+```
+
+```ruby
+check_legality
+```
+
+```ruby
+compile_clock_tree
+optimize_clock_tree
+```
+
+
+</details>
+
+<details>
+	<summary>Labs</summary>
+
+
+```ruby
+check_clock_tree
+```
+
+The report provides a comprehensive assessment of the Quality of Results (QoR) of the clock tree that has been constructed. It offers insights into various key aspects, including:
+
+- **Multi-Voltage Violations**: The report examines whether there are any violations related to multi-voltage domains. Managing voltage domains is critical for proper chip operation and avoiding voltage-related issues.
+
+- **Skew Balancing**: It assesses the skew balancing within the clock tree. Achieving balanced clock skew is essential to ensure that all sequential elements operate synchronously.
+
+- **Capacitance & Transition in Clock Network**: The report delves into the capacitance and signal transition aspects of the clock network. These are key factors in signal integrity and performance.
+
+- **Reference Cells**: It scrutinizes the reference cells defined as "don't use" or "don't touch" cells. Ensuring that these cells are not used or modified as intended is crucial for maintaining design consistency.
+
+Remarkably, the output of this command indicates that there are "None" to all the potential violations in these critical areas. This signifies that the clock tree synthesis has been executed successfully without encountering any notable issues in these aspects, demonstrating a robust and reliable clock distribution structure.
+<img  width="1085" alt="day21_12" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_12.png"> <br>
+
+
+```ruby
+check_legality
+```
+This command performs a comprehensive check of design rules, inspecting for potential issues such as overlaps in the design and improper routing on metal layers. In the assessment, all checked aspects are reported as having a value of 0, indicating that no violations or errors have been detected. This successful evaluation confirms the design's compliance with established design rules and its adherence to the required legal guidelines.
+<img  width="1085" alt="day21_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_13.png"> <br>
+<img  width="1085" alt="day21_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_14.png"> <br>
+
+```ruby
+report_clock_timing -type summary
+```
+<img  width="1085" alt="day21_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_15.png"> <br>
+
+
+```ruby
+report_clock_timing -type skew
+```
+<img  width="1085" alt="day21_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_16.png"> <br>
+
+
+```ruby
+report_clock_timing -type latency
+report_clock_timing -type transition
+```
+<img  width="1085" alt="day21_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_17.png"> <br>
+<img  width="1085" alt="day21_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_18.png"> <br>
+
+</details>
+
+
