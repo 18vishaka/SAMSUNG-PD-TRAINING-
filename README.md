@@ -5646,6 +5646,38 @@ report_clock_timing -type transition
 
 </html>
 
+**Clock gating technique** is a pivotal strategy in digital circuit design employed to address power consumption concerns, especially in circuits with numerous clocks. It involves segmenting the chip into smaller sections, each having its own clock tree, and implementing clock gating at multiple levels. This approach offers precise control over clock signals, resulting in reduced power usage in inactive parts of the circuit.
+
+In more detail, Clock Gating (CG) is a power-saving methodology widely used in digital circuit design to diminish dynamic power consumption within synchronous systems, particularly within clock trees. It functions by selectively enabling or disabling clock signals to specific sections or components of a digital circuit, depending on their operational requirements. This selective control allows for a substantial reduction in power consumption while preserving proper functionality.
+
+To elaborate on the concept of Clock Gating:
+
+1. **Dynamic Power Consumption**: In digital circuits, dynamic power consumption is a critical concern, as it occurs whenever transistors switch states, synchronized with clock cycles. The more frequent these clock toggles, the higher the power consumption becomes.
+
+2. **Clock Tree**: A clock tree is a hierarchical structure responsible for distributing clock signals from a single source, typically a Phase-Locked Loop (PLL) or oscillator, to various parts of a digital chip. It ensures that clock signals reach flip-flops, registers, and other synchronous elements while adhering to skew and delay constraints.
+
+3. **Clock Gating**: Clock Gating is a technique for selectively enabling or disabling clock signals to specific regions or components within the chip. To implement this, special logic gates, known as clock gating cells, are inserted into the clock tree. These gating cells determine whether to propagate the clock signal or block it based on predefined conditions.
+
+4. **Conditions for Gating**: Clock gating can be controlled by a range of conditions, including:
+   - **Functional Requirements**: Clock signals can be gated based on the actual need of logic within a specific block. If a module is not actively processing data, its clock can be gated off to conserve power.
+   - **Activity or Idle Status**: Clock gating can rely on the activity or idle status of a module. When a module is inactive, its clock can be disabled.
+   - **Data Dependencies**: Some clock gating may be contingent on the availability of valid data or control signals.
+   - **Power Management Modes**: In low-power modes, certain clock domains may be entirely shut down.
+
+Benefits of Clock Gating:
+
+1. **Reduced Power Consumption**: Clock gating efficiently reduces dynamic power consumption by decreasing the number of clock cycles during which circuits remain active.
+2. **Improved Timing**: Selectively gating the clock allows for better management of clock skew and enhanced timing closure in complex designs.
+3. **Heat Reduction**: Lower power consumption translates to decreased heat generation, which is particularly crucial for high-performance and high-density chips.
+
+Challenges of Clock Gating:
+
+1. **Timing Constraints**: Careful consideration of timing constraints is imperative to ensure that clock gating does not violate setup and hold times, which can affect the reliability of the circuit.
+2. **Verification and Testing**: Complex clock gating logic can introduce new challenges in the process of design verification and testing, demanding rigorous evaluation and validation procedures."
+
+This reframe offers a more detailed and comprehensive explanation of the clock gating technique, its significance, and the associated benefits and challenges.
+
+
 </details>
 
 <details>
@@ -5674,4 +5706,185 @@ Script in routing stage
 
 </li>
 </ul>
+
+
+To align with our library's 1.8-volt standard, the initial step involves adjusting the voltage level as follows:
+<img  width="1085" alt="1_voltage_change" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/1_voltage_change.png"> <br>
+
+**Clock and Signal Routing in ICC2:**
+
+1. **place_opt:**
+   - *Description*: The **place_opt** command within ICC2, part of Cadence Design Systems' suite of Electronic Design Automation (EDA) tools, is a crucial tool for optimizing the placement of components in digital integrated circuit design. This process significantly impacts various design aspects, including performance, power efficiency, and area utilization.
+   - *Usage*: **place_opt** is employed primarily in the design of Application-Specific Integrated Circuits (ASICs) and Field-Programmable Gate Arrays (FPGAs).
+
+2. **clock_opt:**
+   - *Description*: The **clock_opt** command, also found within Cadence's ICC2, plays a pivotal role in clock tree synthesis and optimization during digital integrated circuit design. Clock tree synthesis ensures efficient distribution of clock signals throughout the chip, while adhering to stringent timing, power, and skew constraints.
+   - *Usage*: It is an integral part of the design process, critical for ASICs and FPGAs, ensuring that clock signals are handled optimally.
+
+3. **route_auto:**
+   - *Description*: The **route_auto** command, integrated within Cadence's ICC2, serves the purpose of automatic routing for digital integrated circuits. It streamlines the generation of routing paths for connections between various components in your design, based on the netlist and specified constraints.
+   - *Usage*: This command simplifies and accelerates the routing process, making it an invaluable tool in digital integrated circuit design.
+
+4. **set_lib_cell_purpose:**
+   - *Description*: The **set_lib_cell_purpose** command in Cadence's ICC2 facilitates the specification of usage purposes for standard cells sourced from technology libraries in your digital integrated circuit design. By categorizing cells into specific functions, such as combinational logic, flip-flops, or latches, this command provides essential guidance to the tool.
+   - *Usage*: It aids in clearly defining the intended role of each standard cell, enhancing the tool's understanding of how to utilize them effectively in the design process. This is especially beneficial for ASIC and FPGA design projects.
+
+This detailed explanation clarifies the functions and significance of these commands in the context of digital integrated circuit design using ICC2, ensuring a comprehensive understanding of their roles and applications.
+
+The following TCL commands in the script file demonstrate these functionalities:
+<img  width="1085" alt="2_placement_tcl_change" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/2_placement_tcl_change.png"> <br>
+
+Source the top.tcl script:
+<img  width="1085" alt="3_souirce_top_tcl" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/3_souirce_top_tcl.png"> <br>
+
+
+Let's begin by running 'start_gui', and from there, we can inspect the clock buffer cells within the design:
+<img  width="1085" alt="4_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/4_gui.png"> <br>
+<img  width="1085" alt="5_gui_zoomed_standard_cells" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/5_gui_zoomed_standard_cells.png"> <br>
+<img  width="1085" alt="6_cts_buffers" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/6_cts_buffers.png"> <br>
+<img  width="1085" alt="7_cts_buffers_zoomed" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/7_cts_buffers_zoomed.png"> <br>
+
+Below, you can find the clock buffer cells and ICG cells of the design:
+```ruby
+
+Buffer/Inverter reference list for clock tree synthesis:
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_12
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_6
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__buf_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__bufbuf_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__bufbuf_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkbuf_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkbuf_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkbuf_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkbuf_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkbuf_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s15_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s15_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s18_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s18_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s25_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s25_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s50_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkdlybuf4s50_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlygate4sd1_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlygate4sd2_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlygate4sd3_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlymetal6s2s_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlymetal6s4s_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlymetal6s6s_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__probe_p_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__probec_p_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkbufkapwr_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkbufkapwr_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkbufkapwr_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkbufkapwr_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkbufkapwr_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__bufinv_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__bufinv_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinv_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinv_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinv_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinv_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinv_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinvlp_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__clkinvlp_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_12
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_6
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__inv_8
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkinvkapwr_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkinvkapwr_16
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkinvkapwr_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkinvkapwr_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__lpflow_clkinvkapwr_8
+
+ICG reference list:
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlclkp_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlclkp_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__dlclkp_4
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__sdlclkp_1
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__sdlclkp_2
+   sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__sdlclkp_4
+```
+
+Next, compare the 'report_clock_timing' summary report with the one from day 22:
+<img  width="1085" alt="8_clock_summary_report" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/8_clock_summary_report.png"> <br>
+
+Below, you'll find the timing reports:
+<img  width="1085" alt="9_timing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/9_timing_setup.png"> <br>
+<img  width="1085" alt="10_timing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/10_timing_setup.png"> <br>
+<img  width="1085" alt="11_timing_hold" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/11_timing_hold.png"> <br>
+
+It's evident that there are timing violations; in the coming days, we will work on enhancing the timing profile.
+
 </details>
+
+## Day-24- Timing violations and ECO
+
+<details>
+	<summary>Introduction and labs</summary>
+
+ Below, you'll find the setup violation report for our design:
+<img  width="1085" alt=" 9_timing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/ 9_timing_setup.png"> <br>
+<img  width="1085" alt="10_timing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/10_timing_setup.png"> <br>
+
+To view this path in the GUI, you can use the following command in the GUI console: `change_selection [get_timing_path -from <start_point> -to <end_point>]`. These start and endpoints can be found in the setup timing report of the design. The screenshot below displays the worst negative slack (WNS) path for the setup:
+<img  width="1085" alt="15_hold_path_in_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/15_hold_path_in_gui.png"> <br>
+
+
+To address the setup violations, we will increase the size of the combinational path cells to reduce data path delay. The figure below illustrates the cells that have been upsized for this purpose, then re-evaluate the setup timing report. We can observe that the setup slack now meets the requirements by 84 ps, as illustrated in the figures below:
+<img  width="1085" alt="12_fixing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/12_fixing_setup.png"> <br>
+
+Next, let's examine the hold violation in the design:
+<img  width="1085" alt="11_timing_hold" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/11_timing_hold.png"> <br>
+
+Lets see this path in the GUI:
+<img  width="1085" alt="15_hold_path_in_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/15_hold_path_in_gui.png"> <br>
+
+To address the hold violation, we can introduce a buffer into the data path. However, before proceeding, it's essential to assess the setup margin:
+<img  width="1085" alt="13_hold_path_setup_margin" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/13_hold_path_setup_margin.png"> <br>
+
+In the image above, we can observe that we have an adequate setup margin to insert a buffer. To do this, you can use the following command: 
+`insert_buffer <instance name of the pin before/after which the buffer needs to be placed> <reference name of the buffer>`
+
+Hold timing report following the buffer insertion and the global timing report for the design, there are no remaining hold or setup violations, as evidenced in the image below::
+<img  width="1085" alt="17_hold_violation_met" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/17_hold_violation_met.png"> <br>
+<img  width="1085" alt="18_hold_violation_met_global_report" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/18_hold_violation_met_global_report.png"> <br>
+
+The previously violated hold path, which has now been resolved, is displayed in the GUI:
+<img  width="1085" alt="16_hold_path_in_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/16_hold_path_in_gui.png"> <br>
+
+report_qor:
+<img  width="1085" alt="19_report_qor" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/19_report_qor.png"> <br>
+We have identified a total of 4 transition violations in the design. To address these violations, we begin by identifying the net's driving cell. This can be accomplished by running the command `report_timing -through <net_name>`. Within the timing report, you'll find a cell marked with an arrow, signifying the net's driving cell. To resolve the violation, you can use the command `size_cell <instance_name> <ref_name_upsized_cell>` to upsize this cell. This process should be repeated for all nine nets with timing violations, as illustrated in the images below:
+<img  width="1085" alt="20_fix_tran_net_one" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/20_fix_tran_net_one.png"> <br>
+<img  width="1085" alt="21_fix_tran_net_one" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/21_fix_tran_net_one.png"> <br>
+<img  width="1085" alt="22_fix_tran_net_two" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/22_fix_tran_net_two.png"> <br>
+<img  width="1085" alt="23_fix_tran_net_two" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/23_fix_tran_net_two.png"> <br>
+<img  width="1085" alt="24_fix_tran_net_three" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/24_fix_tran_net_three.png"> <br>
+<img  width="1085" alt="25_fix_tran_net_three" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/25_fix_tran_net_three.png"> <br>
+<img  width="1085" alt="26_fix_tran_net_four" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/26_fix_tran_net_four.png"> <br>
+<img  width="1085" alt="27_fix_tran_net_four" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/27_fix_tran_net_four.png"> <br>
+
+Now, after addressing all the transition violations, we can recheck using the command `report_constraints -max_transition -all-violators`. In this report, we'll notice that all the transition violations have been successfully resolved:
+QOR report of the desing is shown below:
+<img  width="1085" alt="28_report_qor" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/28_report_qor.png"> <br>
+<img  width="1085" alt="29_report_qor" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/29_report_qor.png"> <br>
+In the Quality of Results (QOR) report, it is evident that there are no:
+
+- Setup timing violations
+- Hold timing violations
+- Max Transition Violations
+- Max Capacitance Violations"
+
+
+
+</details>
+
