@@ -5568,6 +5568,14 @@ optimize_clock_tree
 check_clock_tree
 ```
 
+Usage of check_clock_tree:
+
+Analysis: The check_clock_tree command is used to analyze the quality and characteristics of the generated clock tree. It checks for issues such as skew, insertion delay, and hold time violations, which could affect the functionality and performance of the design.
+
+Optimization: After running the command, you can make adjustments to the clock tree, if necessary, to improve its quality. This might involve changing buffer placements, resizing buffers, or altering the clock tree topology.
+
+Verification: It's important to ensure that the clock tree meets the design specifications and requirements. The check_clock_tree command helps in verifying that the clock tree adheres to these specifications and constraints.
+
 The report provides a comprehensive assessment of the Quality of Results (QoR) of the clock tree that has been constructed. It offers insights into various key aspects, including:
 
 - **Multi-Voltage Violations**: The report examines whether there are any violations related to multi-voltage domains. Managing voltage domains is critical for proper chip operation and avoiding voltage-related issues.
@@ -5585,6 +5593,12 @@ Remarkably, the output of this command indicates that there are "None" to all th
 ```ruby
 check_legality
 ```
+The `check_legality` command in IC Compiler II (ICC2) is a critical tool used in the field of digital integrated circuit design. Its primary purpose is to assess the legality and compliance of your physical design with a range of design rules and constraints. This verification process is crucial to ensure that your design aligns with the necessary specifications and constraints, particularly during the placement and routing phases. This compliance is essential for creating a manufacturable and functional integrated circuit.
+
+Key functions of the `check_legality` command include:
+
+**Checking for Design Rule Violations:** A primary role of the `check_legality` command is to examine your design for compliance with design rules. These rules, typically provided by the semiconductor foundry or the design team, encompass various criteria such as minimum spacing, minimum width, metal layer usage, and more. Their purpose is to guarantee that the manufacturing process can yield a functional chip. This tool helps identify and rectify any violations of these rules to ensure manufacturability and functionality.
+
 This command performs a comprehensive check of design rules, inspecting for potential issues such as overlaps in the design and improper routing on metal layers. In the assessment, all checked aspects are reported as having a value of 0, indicating that no violations or errors have been detected. This successful evaluation confirms the design's compliance with established design rules and its adherence to the required legal guidelines.
 <img  width="1085" alt="day21_13" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_13.png"> <br>
 <img  width="1085" alt="day21_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_14.png"> <br>
@@ -5592,12 +5606,16 @@ This command performs a comprehensive check of design rules, inspecting for pote
 ```ruby
 report_clock_timing -type summary
 ```
+The `report_clock_timing` command, specifically of type "summary," within IC Compiler II (ICC2), is employed to produce a condensed summary report encompassing the clock timing details of your digital integrated circuit design. This command offers a bird's-eye view of the clock timing performance, a crucial factor in guaranteeing the correct operation of synchronous digital circuits.
+
+**Output:** Upon executing this command, it generates a summary report containing essential timing information pertaining to the clock signals within your design. This report presents an overview of the clock timing characteristics, helping designers assess and ensure the synchronicity and proper operation of their digital circuits.
 <img  width="1085" alt="day21_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_15.png"> <br>
 
 
 ```ruby
 report_clock_timing -type skew
 ```
+The `report_clock_timing` command, specifically of type "skew," within IC Compiler II (ICC2), serves the purpose of generating a report that offers insight into the skew within the clock tree of your digital integrated circuit design. Clock skew, in this context, refers to the disparity in arrival times of clock signals at various elements within the design, such as flip-flops or latches. Having a grasp of clock skew and being able to manage it effectively is crucial for guaranteeing the dependable operation of synchronous digital circuits. This report is a valuable tool for assessing and addressing skew-related issues in your design.
 <img  width="1085" alt="day21_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_16.png"> <br>
 
 
@@ -5605,6 +5623,10 @@ report_clock_timing -type skew
 report_clock_timing -type latency
 report_clock_timing -type transition
 ```
+The `report_clock_timing` command, particularly of type "latency," within IC Compiler II (ICC2), is employed to produce a report offering insights into the clock latency within your digital integrated circuit design. Clock latency signifies the duration it takes for a clock signal to traverse the clock tree and reach specific elements within the design, such as flip-flops or latches. A comprehensive understanding of clock latency and the ability to manage it effectively are paramount in ensuring the correct operation and optimal performance of synchronous digital circuits. This report assists in assessing and addressing clock latency issues in your design.
+
+The `report_clock_timing` command, specifically when using the "transition" type, within IC Compiler II (ICC2), is utilized to create a report offering details about the transition times of signals within your digital integrated circuit design. Transition time, in this context, represents the duration it takes for a signal to transition from one logic state (e.g., high or low) to another. An in-depth comprehension and effective management of signal transition times are critical for analyzing signal integrity, power consumption, and the overall performance of your design. This report is a valuable tool for assessing and optimizing signal transition characteristics in your design.
+
 <img  width="1085" alt="day21_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_17.png"> <br>
 <img  width="1085" alt="day21_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day21/day21_18.png"> <br>
 
