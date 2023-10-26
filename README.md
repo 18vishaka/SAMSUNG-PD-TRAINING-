@@ -5857,7 +5857,10 @@ It's evident that there are timing violations; in the coming days, we will work 
 <img  width="1085" alt="9_timing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/9_timing_setup.png"> <br>
 <img  width="1085" alt="10_timing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/10_timing_setup.png"> <br><br>
 
-To view this path in the GUI, you can use the following command in the GUI console: `change_selection [get_timing_path -from <start_point> -to <end_point>]`. These start and endpoints can be found in the setup timing report of the design. The screenshot below displays the worst negative slack (WNS) path for the setup:
+To view this path in the GUI, you can use the following command in the GUI console: 
+`change_selection [get_timing_path -from <start_point> -to <end_point>]`. 
+These start and endpoints can be found in the setup timing report of the design. 
+The screenshot below displays the worst negative slack (WNS) path for the setup:
 <img  width="1085" alt="15_hold_path_in_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/15_hold_path_in_gui.png"> <br><br>
 
 
