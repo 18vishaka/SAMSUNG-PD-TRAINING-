@@ -5833,36 +5833,37 @@ It's evident that there are timing violations; in the coming days, we will work 
 
  Below, you'll find the setup violation report for our design:
 <img  width="1085" alt="9_timing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/9_timing_setup.png"> <br>
-<img  width="1085" alt="10_timing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/10_timing_setup.png"> <br>
+<img  width="1085" alt="10_timing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/10_timing_setup.png"> <br><br>
 
 To view this path in the GUI, you can use the following command in the GUI console: `change_selection [get_timing_path -from <start_point> -to <end_point>]`. These start and endpoints can be found in the setup timing report of the design. The screenshot below displays the worst negative slack (WNS) path for the setup:
-<img  width="1085" alt="15_hold_path_in_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/15_hold_path_in_gui.png"> <br>
+<img  width="1085" alt="15_hold_path_in_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/15_hold_path_in_gui.png"> <br><br>
 
 
 To address the setup violations, we will increase the size of the combinational path cells to reduce data path delay. The figure below illustrates the cells that have been upsized for this purpose, then re-evaluate the setup timing report. We can observe that the setup slack now meets the requirements by 84 ps, as illustrated in the figures below:
-<img  width="1085" alt="12_fixing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/12_fixing_setup.png"> <br>
+<img  width="1085" alt="12_fixing_setup" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/12_fixing_setup.png"> <br><br>
 
 Next, let's examine the hold violation in the design:
-<img  width="1085" alt="11_timing_hold" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/11_timing_hold.png"> <br>
+<img  width="1085" alt="11_timing_hold" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/11_timing_hold.png"> <br><br>
 
 Lets see this path in the GUI:
-<img  width="1085" alt="15_hold_path_in_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/15_hold_path_in_gui.png"> <br>
+<img  width="1085" alt="15_hold_path_in_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/15_hold_path_in_gui.png"> <br><br>
 
 To address the hold violation, we can introduce a buffer into the data path. However, before proceeding, it's essential to assess the setup margin:
-<img  width="1085" alt="13_hold_path_setup_margin" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/13_hold_path_setup_margin.png"> <br>
+<img  width="1085" alt="13_hold_path_setup_margin" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/13_hold_path_setup_margin.png"> <br><br>
 
 In the image above, we can observe that we have an adequate setup margin to insert a buffer. To do this, you can use the following command: 
 `insert_buffer <instance name of the pin before/after which the buffer needs to be placed> <reference name of the buffer>`
 
 Hold timing report following the buffer insertion and the global timing report for the design, there are no remaining hold or setup violations, as evidenced in the image below::
 <img  width="1085" alt="17_hold_violation_met" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/17_hold_violation_met.png"> <br>
-<img  width="1085" alt="18_hold_violation_met_global_report" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/18_hold_violation_met_global_report.png"> <br>
+<img  width="1085" alt="18_hold_violation_met_global_report" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/18_hold_violation_met_global_report.png"> <br><br>
 
 The previously violated hold path, which has now been resolved, is displayed in the GUI:
-<img  width="1085" alt="16_hold_path_in_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/16_hold_path_in_gui.png"> <br>
+<img  width="1085" alt="16_hold_path_in_gui" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/16_hold_path_in_gui.png"> <br><br>
 
 report_qor:
-<img  width="1085" alt="19_report_qor" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/19_report_qor.png"> <br>
+<img  width="1085" alt="19_report_qor" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/19_report_qor.png"> <br><br>
+
 We have identified a total of 4 transition violations in the design. To address these violations, we begin by identifying the net's driving cell. This can be accomplished by running the command `report_timing -through <net_name>`. Within the timing report, you'll find a cell marked with an arrow, signifying the net's driving cell. To resolve the violation, you can use the command `size_cell <instance_name> <ref_name_upsized_cell>` to upsize this cell. This process should be repeated for all nine nets with timing violations, as illustrated in the images below:
 <img  width="1085" alt="20_fix_tran_net_one" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/20_fix_tran_net_one.png"> <br>
 <img  width="1085" alt="21_fix_tran_net_one" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/21_fix_tran_net_one.png"> <br>
@@ -5871,12 +5872,13 @@ We have identified a total of 4 transition violations in the design. To address 
 <img  width="1085" alt="24_fix_tran_net_three" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/24_fix_tran_net_three.png"> <br>
 <img  width="1085" alt="25_fix_tran_net_three" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/25_fix_tran_net_three.png"> <br>
 <img  width="1085" alt="26_fix_tran_net_four" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/26_fix_tran_net_four.png"> <br>
-<img  width="1085" alt="27_fix_tran_net_four" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/27_fix_tran_net_four.png"> <br>
+<img  width="1085" alt="27_fix_tran_net_four" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/27_fix_tran_net_four.png"> <br><br>
 
 Now, after addressing all the transition violations, we can recheck using the command `report_constraints -max_transition -all-violators`. In this report, we'll notice that all the transition violations have been successfully resolved:
 QOR report of the desing is shown below:
 <img  width="1085" alt="28_report_qor" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/28_report_qor.png"> <br>
-<img  width="1085" alt="29_report_qor" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/29_report_qor.png"> <br>
+<img  width="1085" alt="29_report_qor" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/29_report_qor.png"> <br><br>
+
 In the Quality of Results (QOR) report, it is evident that there are no:
 
 - Setup timing violations
