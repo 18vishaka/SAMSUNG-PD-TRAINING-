@@ -5889,7 +5889,13 @@ The previously violated hold path, which has now been resolved, is displayed in 
 report_qor:
 <img  width="1085" alt="19_report_qor" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/19_report_qor.png"> <br><br>
 
-We have identified a total of 4 transition violations in the design. To address these violations, we begin by identifying the net's driving cell. This can be accomplished by running the command `report_timing -through <net_name>`. Within the timing report, you'll find a cell marked with an arrow, signifying the net's driving cell. To resolve the violation, you can use the command `size_cell <instance_name> <ref_name_upsized_cell>` to upsize this cell. This process should be repeated for all nine nets with timing violations, as illustrated in the images below:
+We have identified a total of 4 transition violations in the design. <br>
+To address these violations, we begin by identifying the net's driving cell. This can be accomplished by running the command <br>
+`report_timing -through <net_name>`. <br>
+Within the timing report, you'll find a cell marked with an arrow, signifying the net's driving cell. <br><br>
+To resolve the violation, you can use the command <br>
+`size_cell <instance_name> <ref_name_upsized_cell>` <br>
+to upsize this cell. This process should be repeated for all nine nets with timing violations, as illustrated in the images below: <br>
 <img  width="1085" alt="20_fix_tran_net_one" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/20_fix_tran_net_one.png"> <br>
 <img  width="1085" alt="21_fix_tran_net_one" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/21_fix_tran_net_one.png"> <br>
 <img  width="1085" alt="22_fix_tran_net_two" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day23-24/22_fix_tran_net_two.png"> <br>
