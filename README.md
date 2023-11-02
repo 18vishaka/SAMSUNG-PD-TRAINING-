@@ -6112,11 +6112,11 @@ set_app_var si_enable_analysis true
 read_parasitics -keep_capacitive_coupling vsdbabysoc_spef.temp1_25.spef
 ```
 
-<img  width="1085" alt="27_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_4"> <br><br>
+<img  width="1085" alt="27_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_4.png"> <br><br>
 
 
 The following image shows the report of check_timing as follows:
-<img  width="1085" alt="27_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_5"> <br><br>
+<img  width="1085" alt="27_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_5.png"> <br><br>
 
 
 **Specific Crosstalk Analysis Checks and Reports:** <br>
@@ -6163,10 +6163,10 @@ report_si_delay_analysis
 report_si_aggressor_exclusion
 report_si_noise_analysis
 ```
-<img  width="1085" alt="27_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_6"> <br><br>
-<img  width="1085" alt="27_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_7"> <br><br>
-<img  width="1085" alt="27_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_8"> <br><br>
-<img  width="1085" alt="27_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_9"> <br><br>
+<img  width="1085" alt="27_6" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_6.png"> <br><br>
+<img  width="1085" alt="27_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_7.png"> <br><br>
+<img  width="1085" alt="27_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_8.png"> <br><br>
+<img  width="1085" alt="27_9" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day27/27_9.png"> <br><br>
 
 
 
