@@ -50,6 +50,10 @@ Quick links:
 
 - [Day-23-Clock Gating techniques](Clock-Gating-techniques)
 
+- [Day-24-Timing violations and ECO](Timing-violations-and-ECO)
+
+- [Day-26-Introduction to mixed signal flow](Introduction-to-mixed-signal-flow)
+
 
 
 
@@ -5921,3 +5925,78 @@ In the Quality of Results (QOR) report, it is evident that there are no:
 
 </details>
 
+## Day-26- Introduction to mixed signal flow
+
+<details>
+	<summary>Introduction</summary>
+
+**Mixed Signal Flow:** <br>
+Mixed signal flow is a sophisticated approach that involves the simultaneous utilization and seamless integration of both analog and digital signals within a complex system or process. This harmonious coexistence of analog and digital components enables the exploitation of the unique advantages offered by each signal type to accomplish specific functionalities with utmost efficiency.
+
+**Analog Signals:** <br>
+Analog signals, at their core, are continuous and fluid representations of data. They convey information through smooth, uninterrupted waveforms that can take on an infinite range of values within a specific range. Examples of analog signals include variations in voltage, current, and temperature. These signals are versatile and well-suited for capturing the nuances of real-world phenomena.
+
+**Digital Signals:** <br>
+In contrast, digital signals express information in a discrete, binary format, typically using 0s and 1s. Digital signals are commonly found in computing systems and exhibit distinct levels, often denoted as on/off or high/low. The discrete nature of digital signals makes them highly reliable for tasks such as storage, processing, and data transmission. They excel at precise and error-free representation of information.
+
+**Analog-to-Digital and Digital-to-Analog Converters (ADCs/DACs):** <br>
+Central to mixed signal design are Analog-to-Digital Converters (ADCs) and Digital-to-Analog Converters (DACs). ADCs play a pivotal role by transforming analog signals into a digital format. In contrast, DACs perform the reverse operation by converting digital signals back into analog form. These components act as essential intermediaries, facilitating seamless communication between the analog and digital sections of a system. ADCs and DACs demand unique design and process technology considerations, setting them apart from conventional digital circuits. Their precision and performance are critical in maintaining the fidelity and accuracy of data as it transitions between the analog and digital domains in a mixed signal environment.
+
+*In our vsdbabysoc design, we incorporate a combination of analog and digital blocks. Specifically, the PLL (Phase-Locked Loop) and DAC (Digital-to-Analog Converter) are the analog components, while the RVMYTH processor functions as a digital block within the system. This mixed configuration allows us to harness the unique strengths of both analog and digital elements to achieve the desired functionality and performance.*
+
+**Various Files Required in ASIC Design:** <br>
+1. *LEF (Library Exchange Format):*
+   - The LEF file is an essential component of ASIC design, providing physical information about standard cells.
+   - It consists of two parts: the Technology LEF, which contains information about metal interconnects, vias, design rules, and other backend-of-line (BEOL) details; and the Cell LEF, which specifies the geometry of individual cells.
+   - Technology LEF includes details like LEF version, units (for database, time, resistance, capacitance), manufacturing grids, layer names (e.g., poly, contact, via1, metal1), layer types (routing, masterslice, cut), preferred direction (horizontal or vertical), pitch, minimum width, spacing, and sheet resistance.
+   - Cell LEF provides information on cell names (e.g., AND2X2, CLKBUF1), classes (CORE or PAD), origin, size (width x height), symmetry (XY, X, Y), and pin details such as name, direction, use, shape (abutment for power pins), layer, and rectangular pin coordinates.
+
+2. *LIB (Liberty File):*
+   - The LIB file contains critical timing and power parameters associated with cells in the standard cell library of a specific technology node.
+   - It serves as a timing model file and includes data on cell delay, cell transition time, and setup and hold time requirements for the cells.
+   - The data in the LIB file is obtained through simulation of cells in various operating conditions, making it a key resource for ASIC designers.
+
+3. *GDSII File (Graphic Data System II):*
+   - GDSII is a widely used file format in the semiconductor industry for storing and transferring design data related to integrated circuits.
+   - GDSII files encapsulate geometric shapes that define the layout of an integrated circuit, including polygons, paths, and other structures representing different elements of the chip design.
+   - These files are organized into layers, each representing specific aspects of the chip design.
+   - GDSII supports hierarchical data, text labels, data compression, and technology-specific parameters.
+
+4. *OASIS File (Open Artwork System Interchange Standard):*
+   - OASIS is an alternative file format designed to address the limitations of GDSII, particularly for modern and complex chip designs.
+   - OASIS files offer more efficient data representation and handling capabilities.
+   - They allow for organized and manageable layouts with varying levels of detail and incorporate features like reusability of cell libraries.
+   - OASIS files are known for their ability to handle larger data volumes and complex geometries effectively through variable-sized elements and serialization techniques.
+
+**Physical Design Tools (PnR Tools):**
+   - The Physical Design (PnR, Place and Route) tools are essential in ASIC design for converting high-level descriptions into a physical layout.
+   - Prominent PnR tools include Innovus by Cadence Design Systems, IC Compiler II by Synopsys, and Olympus SOC by Mentor Graphics.
+   - These tools take several inputs to generate the final GDSII file, which represents the physical layout of the integrated circuit.
+
+**Additional Input Files:**
+   - In addition to the above-mentioned files, various other input files may be required for ASIC design, depending on the specific project and toolset. These may include:
+   - Block partition files (.fp) for defining block-level partitioning.
+   - I/O pin locations files (e.g., pad_placement_constraints.tcl) for specifying the placement of input/output pins.
+   - Power planning scripts or rules to determine power distribution strategies.
+   - Power intent files that describe power management requirements.
+   - SAIF files (Switching Activity Information Format) that provide information about signal switching activities, aiding in power analysis and optimization.
+
+These input files collectively form the foundation for the physical design and manufacturing process of an ASIC, enabling the transformation of a logical design into a physical, manufacturable chip.
+
+
+**IP Cores (Intellectual Property Cores):** <br>
+IP cores play a crucial role in the design and implementation of semiconductor chips, such as Field-Programmable Gate Arrays (FPGAs) or Application-Specific Integrated Circuits (ASICs). These cores consist of blocks of logic or data that are utilized as building blocks for chip design, and they are typically the intellectual property of a specific individual, company, or entity. IP cores are instrumental in accelerating the development of complex integrated circuits and can be created, customized, and integrated into various projects to enhance efficiency and reduce design complexity.
+
+There are two primary categories of IP cores:
+1. *Soft IP Cores:*
+   - Soft IP cores are characterized by their flexibility and adaptability. They can be customized during the physical design phase to match the requirements of a specific project and can be mapped to different process technologies.
+   - Designers can configure and modify the functionality of soft IP cores to suit their specific needs, making them versatile and well-suited for a wide range of applications.
+   - Soft IP cores are like a blueprint that can be tailored to different design contexts, offering adaptability in terms of logic and functionality.
+
+2. *Hard IP Cores:*
+   - Hard IP cores, in contrast, are fixed and inflexible in terms of both logic implementation and physical layout. These cores come with a predefined, unalterable physical implementation.
+   - The physical layout of a hard macro-IP core is already completed and fixed in a particular process technology, making it less adaptable and suitable for specific use cases.
+   - Hard IP cores are like pre-built, ready-to-use components that are designed for optimal performance and efficiency in a specific process technology. They are typically used in situations where strict performance and manufacturing requirements are critical.
+
+In summary, IP cores serve as valuable resources for semiconductor chip design, offering a range of pre-designed building blocks that can significantly reduce the time and effort required to develop complex integrated circuits. The choice between soft and hard IP cores depends on the specific needs of a project, with soft IP cores providing customization and adaptability and hard IP cores offering performance and manufacturing advantages but with less flexibility.
+</details>
