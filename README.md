@@ -56,6 +56,7 @@ Quick links:
 
 - [Day-27-Introduction to crosstalk - glitch and delta delay](Introduction-to-crosstalk---glitch-and-delta-delay)
 
+- [Day-28-Introduction to DRC/LVS](Introduction-to-DRC/LVS)
 
 
 
@@ -6170,4 +6171,300 @@ report_si_noise_analysis
 
 
 
+</details>
+
+## Day-28-Introduction to DRC/LVS
+
+<details>
+	<summary>Introduction</summary>
+
+ 
+The skywater 130nm PDK is like an open-source magic wand for chip design, offering everything from design rules to device models. The beauty of open PDKs is that they empower anyone to craft circuits using open source tools. Enter the caravel chip with its RISC-V processor, providing users with a canvas to bring their designs to life. PDK, short for process design kit, is the backstage pass for chip designers, guiding them through the intricacies of a specific foundry process.
+
+The 130 in sky130 symbolizes the feature size, setting the stage for the tiniest transistors at 130nm. It's like the resolution of a designer's dreams. The sky130PDK is a trio of documentation (skywater PDK), library files (GitHub repo), and a lively community (Slack group). The plot thickens when it comes to tool compatibility – the PDKs cozy up to open source EDA tools but throw a fit with commercialized ones, thanks to the intricate dance of file formats.
+
+Open source EDA tools emerge as the unsung heroes, the trusted companions in this journey of creativity and innovation.
+
+**Opensource EDA tools:**
+At opencircuitdesign.com, the open_pdks files take center stage. Crafted as a makefile-based installer, open_pdks ingeniously grabs files from the skywater PDK and transforms them into a format compatible with various open source tools. To install open_pdks, the following steps unfold like a well-choreographed dance:
+
+```ruby
+git clone https://github.com/RTimothyEdwards/open_pdks
+cd open_pdks
+configure –enable-sky130-pdk
+make 
+sudo make install
+```
+Given the universal support of open-source PDKs across various processes, the delineation of the configured process is paramount. Executed through the 'make' command, this process involves retrieving the skywater PDKs from Google, immersing them into the system, and maintaining them for subsequent installation. Subsequently, the construction of libraries from the repository transpires post-installation.
+
+**Magic:**
+Prior to executing the open_pdk file, the installation of Magic, a pivotal open-source EDA tool, is imperative. Magic exhibits versatile functionality, adept at reading and writing diverse command formats. Proficient in extraction and DRC processes, Magic seamlessly manages GDS, LEF, and DEF formats. Its capabilities extend to generating design layouts from parameterized descriptions. Crucially, Magic assumes responsibility for generating any missing files of diverse formats within the repository source files.
+
+**Klayout:**
+Klayout serves as an alternative layout editor and viewer with additional capabilities for Design Rule Checking (DRC). The installation of open-source PDKs includes a crucial step of scrutinizing the DRCs using Klayout.
+
+**Openlane:**
+This package encompasses synthesis, place, and route functionalities, built upon the foundation of OpenROAD tools. Essentially acting as a wrapper around OpenROAD, it consists of a curated set of scripts designed to seamlessly integrate and support SkyWater PDKs.
+
+**Xschem:**
+This tool functions as a schematic editing tool and is not directly integrated into open_pdks. Instead, it operates as a third-party repository that open_pdks can pull from and subsequently copy to the designated installation location.
+
+**Netgen:**
+Netgen serves as a Layout versus Schematic (LVS) tool, collaborating with an extracted netlist from layout via Magic and a netlist generated from XSCem within OpenLane.
+
+**Ngspice :**
+It serves as the analog simulation tool, grounded in SPICE. Through open_pdks, all model files are systematically installed, ensuring Ngspice can locate them seamlessly through the correct include statements.
+
+
+Various tools complement the open_pdks ecosystem, including qflow, IRSIM (a switch-level simulator and power analyzer), and xcircuit. In addition to the suite of open-source EDA tools, open_pdks installs both foundry and third-party libraries, establishing a unified directory structure across the source.
+
+Diverse digital libraries, tailored to speed and power considerations, coexist. The sky130_fd_pr stands as the standard library for analog components. Analog elements like transistors undergo extraction and don't necessitate specific libraries. Conversely, components such as RF layouts, bipolar devices, and parallel plate capacitors have validated layouts, serving as IP formats within the library.
+
+Operating within the voltage range of 1.8V to 20V, with common voltages being 1.8V and 3.3V, the sky130_fd_io library caters to IO pads and pad frame cells, encompassing power, ground pads, and general-purpose IO pads. The sky130_ml_xx_hd, a third-party library, features alpha-numeric text layouts, facilitating text integration into the layout.
+
+The sky130A encapsulates libs.tech and libs.ref directories. While libs.tech accommodates the setup for all open-source EDA tools, libs.ref houses reference libraries. Described as a hybrid 130nm-180nm standard CMOS fabrication process, the sky130 process involves five layers of aluminum metal and titanium nitride, referred to as local interconnect (li). This local interconnect serves purposes like power and ground rails in skywater standard layouts. Poly contacts necessitate a nitride polycut around them, with metal layers exhibiting progressive thickness, typically utilizing higher-order metal for routing.
+
+Metal layers in vias constitute the back-end layers, whereas the layers below are deemed front-end layers. Front-end fabrication primarily involves diffusion and ion-implantation, while backend processes include metal deposition through sputtering. Distinctions in masks accommodate higher and lower concentration areas, with diff having higher concentration for drain and source, and tap having lower concentration for substrate and wells.
+
+The HVI (high voltage layer) contributes to high voltage tolerance, enabling dual voltage design. N-wells implanted with HVI tolerate high voltages, and gate oxide withstands up to 5V, with thin oxides tolerating up to 2.2V, reflecting the dual-domain voltage methodology. Pads in the skywater library adhere to this methodology, featuring a core voltage of 1.8V and a pad voltage of 3.3V.
+
+MiM (Metal-Insulator-Metal) cap layers, a part of the back-end process, incorporate capacitors formed by adding metal plates between routing layers. The Redistribution layer, constituted by copper, is not fabricated by skywater; it is deposited on the chip, with solder bumps added. This layer, distinct from a design layer, serves as a packaging layer for the chip.
+
+In the realm of skywater PDKs, devices are not characterized by a continuous change in width and length. Instead, reference layouts, presented as GDS files, are delivered to users unaltered. This practice extends to various device types, including:
+
+**Bipolar Devices:**
+- **NPN Transistor:**
+  - Emitter: n-diffusion
+  - Base: p-well
+  - Collector: deep n-well
+- **PNP Transistor:**
+  - Emitter: p-diffusion
+  - Base: n-well
+  - Collector: p-substrate
+
+**Polysilicon Resistors:**
+- P+ Polyresistor: Poly resistance of 1Kohm/square
+- P- Polyresistor: Sheet resistance of 2Kohm/square
+
+**Diffusion Resistors:**
+- n-Diffusion Resistor on substrate
+- p-Diffusion Resistor in n-well
+
+**Hidden Mask Layers:**
+- PSDM Mask
+- RPM Mask
+- POLYRES ID layer
+
+Certain layers, such as bipolar and capacitor identifiers, need not be identified for Design Rule Checking (DRC). Three distinct library types are available in skywater PDKs:
+
+1. **Digital Standard Cells:**
+   - Includes layout and GDS formats used in the synthesis flow.
+   - Various cell flavors cover high speed, high density, high voltage, and low leakage.
+   - Follows a naming convention: `sky130_vendor_library_type[_name]`.
+   - For example, `sky130_fd_sc_hd` stands for foundry (vendor), standard cell (library type), and high density (library name).
+   - Cells must be placed to ensure abuttment bounding boxes touch each other.
+
+2. **I/O Cells:**
+   - Contains complete power and ground pads, including entire disconnected blocks.
+   - Overlay connects clamps/pads to power rails.
+
+3. **Primitive Devices and Models:**
+   - Encompasses designs like bipolar transistors, varactors, ESD devices, etc.
+
+To comprehend physical verification, a layout is crafted. A simple circuit is represented by a schematic illustrating the cells and layout hierarchy. Xschem is employed for layout creation, complemented by ngspice for analog simulation and gaw for waveform viewing. Schematics are utilized to generate netlists, which are then simulated with ngspice. The layout is generated using Magic, with device adjustments made to address DRC checks. Lastly, Layout versus Schematic (LVS) checks are conducted as the final step.
+
+</details>
+
+<details>
+	<summary>Labs</summary>
+
+ **Tool installations:**
+
+*Magic:*
+Magic unfolds its capabilities through two distinct windows: the layout window and the console window. In the console window, a command prompt operates as a Tcl interpreter, executing commands specifically related to layout operations. This design provides a seamless and interactive environment for users to navigate and manipulate the layout using intuitive Tcl commands.
+
+Magic offers flexibility in its invocation. To launch Magic without the layout window, the `-dnull` option can be employed, and similarly, the `-noconsole` option allows Magic to run without opening the console window. This versatile command-line approach caters to user preferences and specific workflow requirements.
+
+<img  width="1085" alt="" src=""> <br><br>
+
+*Netgen:*
+Netgen operates in a command-driven fashion, devoid of a graphical interface. Its functionality is initiated and controlled solely through command inputs, emphasizing a streamlined and efficient approach to layout verification.
+Netgen gui is run with the command:
+```ruby
+/usr/local/lib/netgen/python/lvs_manager.py
+```
+<img  width="1085" alt="" src=""> <br><br>
+
+
+*Xschem:*
+Xschem, unlike some tools, doesn't feature a dedicated console window; instead, the terminal serves as its console. It lacks a quick command interface, relying on a terminal-based interaction for command execution. This design underscores a straightforward and terminal-centric user experience.
+<img  width="1085" alt="" src=""> <br><br>
+
+*ngspice:*
+Ngspice simplifies its user interface by forgoing additional consoles. Executed directly on the terminal, Ngspice operates with its own interpreter, distinct from both Tcl and Python. This terminal-centric approach streamlines the user experience, making it a self-contained and efficient tool for circuit simulation.
+<img  width="1085" alt="" src=""> <br><br>
+
+These tools can also be opened in batch mode as well.
+
+
+Inorder to create a basic circuit like inverter, the tools must be linked to present working directory as shown.
+```ruby
+mkdir inverter
+cd inverter
+mkdir xschem
+mkdir mag
+mkdir netgen
+cd xschem
+ln -sf /usr/share/pdk/sky130A/libs.tech/xschem/xschemrc
+ln -sf /usr/share/pdk/sky130A/libs.tech/ngspice/spinit .spiceinit
+cd ../mag/
+ln -sf /usr/share/pdk/sky130A/libs.tech/magic/sky130A.magicrc .magicrc
+cd ../netgen/
+ln -sf /usr/share/pdk/sky130A/libs.tech/netgen/sky130A_setup.tcl setup.tcl
+```
+
+xschem has a lot of example devices as shown.
+<img  width="1085" alt="" src=""> <br><br>
+
+*Important note:* <br>
+Accessing examples is conveniently achieved by clicking the relevant rectangle and pressing the "E" key on the keyboard. To return to the menu promptly, simply press "CTRL+E". Additionally, resizing the schematic to fit the window is effortlessly accomplished by pressing the "F" key. Now, on an empty window, let's explore some magic shortcuts:
+```ruby
+magic -d XR
+```
+<img  width="1085" alt="" src=""> <br><br>
+
+Mouse Controls:
+- Left and right mouse buttons: Adjust the cursor box
+- Shift + Z: Zoom out
+- Middle mouse button/pk: Select a layer (also known as painting)
+- Key E: Erase whatever is present in the cursor box (can also be done by clicking the middle mouse button on an empty part of the layout)
+- Key V: View the entire layout
+- CTRL + P: Opens up the parameter options for the selected device
+- S key: Select layers
+- Typing "what" command in the Magic console: Provides information on the selected layer
+
+Magic Console Commands:
+- ; (semicolon) key: Type commands in the Magic console without moving between windows, until the Enter key is pressed
+- I key: Select a device
+- M key: Move the selected device
+
+Device Editing:
+To edit devices, use drop-down buttons:
+- Click on Devices 1 -> nmos (MOSFET) and select nmos (MOSFET) under "Devices 1"
+- Set the width to 2 um, length to 0.5 um, and fingers to 3 as shown.
+When applied, the NMOS viewed is as follows:
+<img  width="1085" alt="" src=""> <br><br>
+
+By removing the guard rings, the NMOS is viewed as follows:
+<img  width="1085" alt="" src=""> <br><br>
+
+Now, let's switch the device type to `sky130_fd_pr__nfet_g5v0d10v5` to observe a change in the voltage value while maintaining a similar layout view. When a specific layer is selected, the "what" command is employed to glean details about the chosen layer.
+<img  width="1085" alt="" src=""> <br><br>
+
+**Creating schematic:**
+Now, let's generate the inverter schematic using Xschem.
+```ruby
+cd ../xschem/
+xschem
+```
+
+To begin, open a new schematic window and press the "Insert" button on the keyboard. This action will prompt a window to appear, allowing you to select devices. Specify the directory path to the SkyWater library and choose the `fd_pr` library. For an inverter, both an NFET and PFET are required. Consequently, select the NFET and PFET devices from the insert window and position them anywhere in the schematic, following the provided illustration.
+<img  width="1085" alt="" src=""> <br><br>
+
+Since pins are not PDK-specific, locate them under the xschem library in the insert window, named as `ipin.sym`, `opin.sym`, and `iopin.sym`.
+
+Position the pins on the schematic and use the following keys for schematic connections:
+- Press 'M' key to move components around the schematic window.
+- 'C' key to copy components, and 'Del' key to erase components.
+- 'W' key to insert wires between components and establish connections.
+
+Rename each pin appropriately using the 'Q' key to bring up the parameter window.
+
+Select the components by clicking on them and press 'Q' to bring up the parameter windows, configuring the properties of the devices.
+
+For the NFET, adjust the length to 0.18 since the default value of 0.15 is restricted to SRAM devices only. Set the number of fingers to 3, and the width of each finger to 1.5. With 3 fingers, the total width in the parameter window should be set to 3 times the finger width, which is 4.5.
+<img  width="1085" alt="" src=""> <br><br>
+
+Likewise, for the PFET, tailor the parameters to 3 fingers, a width of 1 per finger, and a length of 0.18. It's crucial to specify that the body is connected to the Vdd pin since it's a 3-pin PFET.
+<img  width="1085" alt="" src=""> <br><br>
+
+Similarly, the pins such as in,out and vdd, vss are given names as shown.
+<img  width="1085" alt="" src=""> <br><br>
+Save the design by clicking tab File --> save as --> inverter.sch
+<img  width="1085" alt="" src=""> <br><br>
+
+**Ccreating the symbol and exporting the schematic:**
+For functional validation of the schematic, it's essential to create a separate testbench.
+
+Begin by crafting a symbol for the schematic, which will manifest as a symbol in the testbench. Navigate to the Symbol menu and opt for "Make symbol from schematic." Subsequently, generate a testbench schematic using the "New Schematic" option. Insert the previously created symbol from the local directory into the testbench schematic using the "Insert" key.
+
+Select the new schematic in the File tab, navigate to the home directory, choose "inverter.sch," and paste it onto the schematic window.
+
+The testbench will be very simple where we will generate a ramp input and observe the output response after connecting the power supplies. To do this, insert 2 voltage sources from the default xschem library, one for the input and one for the supply. Connect these and add a GND node to the supply connections. Create "ipins" and "opins" for the input and output signals to observe in Ngspice. Supply voltage is set to 1.8 V.
+
+For the input voltage, we must set the supply to a piece-wise linear function to get ramp. PWL function has voltage and time values stated that the supply will start at 0v, then start to ramp up from 20 ns till it reaches its final value at 900 ns of 1.8 V.
+
+
+Moving forward, add two more statements for Ngspice, but since these statements aren't specific to any particular component, they need to be placed in text boxes. To incorporate a text box, select the `code_shown.sym` component under the xschem library.
+
+The first text box is designed to define the location of the device models used in the schematic. It employs a `.lib` statement, selecting a top-level file that guides Ngspice to the location of all the models. This block also specifies a simulation corner for all the models, with the first block representing the typical corner using the value ".lib /usr/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt".
+
+For the second block, it specifies:
+
+```ruby
+value = ".control tran 1n 1u plot V(in) V(out) .endc"
+```
+
+This instructs Ngspice to execute a transient simulation for 1 ns, monitoring voltages for the in and out pins.
+
+While specifying same name to in and out, in the symbol and output pins, it throws a warning during simulation. SO, Use the different names.
+
+Hence, the comprehensive testbench schematic is depicted above. Save this configuration as "inverter_tb.sch". To generate the netlist, click on the Netlist button, followed by simulating it in Ngspice by clicking the Simulate button. The resulting waveform serves as confirmation that the schematic functions as an inverter, as illustrated below.
+<img  width="1085" alt="" src=""> <br><br>
+
+Once the schematic is verified, proceed to create a layout for it. Return to the inverter schematic.
+
+Firstly, navigate to the Simulation menu and choose the "LVS netlist: Top Level is a .subckt" option. Allow a few seconds and revisit the Simulation menu to ensure a tick mark appears beside the mentioned option. This confirms the proper definition of a sub-circuit, essential for creating a layout cell with pins in the layout. Lastly, generate a netlist for the schematic by clicking the Netlist button, and exit Xschem.
+
+**Importing Schematic to Layout:**
+```ruby
+cd ../mag/
+magic -d XR
+```
+
+Import the schematic to the layout in Magic by running the magic, then click on File -> Import SPICE and then select the inverter.spice file from the xschem directory. If done correctly, the following layout has been opened up in magic.
+<img  width="1085" alt="" src=""> <br><br>
+
+Regarding the generated layout above, the schematic import lacks the capability to perform intricate analog placing and routing. Consequently, manual intervention is required to position the components optimally and establish the necessary connections. 
+
+Begin by placing the PFET device above the NFET, carefully adjusting the placement of the input, output, and supply pins. Reference the figure below for guidance.
+<img  width="1085" alt="" src=""> <br><br>
+
+Now, configure specific parameters in the layout that are only adjustable in this context, enhancing the overall convenience for wiring. To access the parameter editing section, use the 'S' key. Press 'I' to select the object, and then use CTRL+P to open the parameter options for the chosen device.
+<img  width="1085" alt="" src=""> <br><br>
+
+Adjust the parameters for optimal layout by setting the "Top guard ring via coverage" to 100. This action introduces a local interconnect to metal1 via the top of the guard ring. Following that, set "Source via coverage" to +40 and "Drain via coverage" to -40. This configuration effectively splits the source and drain contacts, simplifying the connection process with a wire.
+<img  width="1085" alt="" src=""> <br><br>
+
+Start to paint the wires using metal1 layers by connecting the source of the pfet to Vdd and source of the nfet to Vss. 
+<img  width="1085" alt="" src=""> <br><br>
+
+Next, connect the drains of both mosfets to the output.
+Finally, connect the input to all the poly contacts of the gate.
+<img  width="1085" alt="" src=""> <br><br>
+
+Save the file and select the autowrite option.
+
+Run the following commands in the magic console as shown.
+```ruby
+extract do local    (Ensuring that magic writes all results to the local directory)
+extract all         (Performing the actual extraction)
+ext2spice lvs       (Simulating and setting up the netlist to hierarchical spice output in ngspice format with no parasitic components)
+ext2spice           (Generating the spice netlist)
+```
+
+
+
+ 
+ 
 </details>
