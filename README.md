@@ -6185,7 +6185,7 @@ The 130 in sky130 symbolizes the feature size, setting the stage for the tiniest
 
 Open source EDA tools emerge as the unsung heroes, the trusted companions in this journey of creativity and innovation.
 
-**Opensource EDA tools:**
+**Opensource EDA tools:** <br>
 At opencircuitdesign.com, the open_pdks files take center stage. Crafted as a makefile-based installer, open_pdks ingeniously grabs files from the skywater PDK and transforms them into a format compatible with various open source tools. To install open_pdks, the following steps unfold like a well-choreographed dance:
 
 ```ruby
@@ -6197,22 +6197,22 @@ sudo make install
 ```
 Given the universal support of open-source PDKs across various processes, the delineation of the configured process is paramount. Executed through the 'make' command, this process involves retrieving the skywater PDKs from Google, immersing them into the system, and maintaining them for subsequent installation. Subsequently, the construction of libraries from the repository transpires post-installation.
 
-**Magic:**
+**Magic:** <br>
 Prior to executing the open_pdk file, the installation of Magic, a pivotal open-source EDA tool, is imperative. Magic exhibits versatile functionality, adept at reading and writing diverse command formats. Proficient in extraction and DRC processes, Magic seamlessly manages GDS, LEF, and DEF formats. Its capabilities extend to generating design layouts from parameterized descriptions. Crucially, Magic assumes responsibility for generating any missing files of diverse formats within the repository source files.
 
-**Klayout:**
+**Klayout:** <br>
 Klayout serves as an alternative layout editor and viewer with additional capabilities for Design Rule Checking (DRC). The installation of open-source PDKs includes a crucial step of scrutinizing the DRCs using Klayout.
-
-**Openlane:**
+ 
+**Openlane:** <br>
 This package encompasses synthesis, place, and route functionalities, built upon the foundation of OpenROAD tools. Essentially acting as a wrapper around OpenROAD, it consists of a curated set of scripts designed to seamlessly integrate and support SkyWater PDKs.
 
-**Xschem:**
+**Xschem:** <br>
 This tool functions as a schematic editing tool and is not directly integrated into open_pdks. Instead, it operates as a third-party repository that open_pdks can pull from and subsequently copy to the designated installation location.
 
-**Netgen:**
+**Netgen:** <br>
 Netgen serves as a Layout versus Schematic (LVS) tool, collaborating with an extracted netlist from layout via Magic and a netlist generated from XSCem within OpenLane.
 
-**Ngspice :**
+**Ngspice :** <br>
 It serves as the analog simulation tool, grounded in SPICE. Through open_pdks, all model files are systematically installed, ensuring Ngspice can locate them seamlessly through the correct include statements.
 
 
@@ -6232,43 +6232,43 @@ MiM (Metal-Insulator-Metal) cap layers, a part of the back-end process, incorpor
 
 In the realm of skywater PDKs, devices are not characterized by a continuous change in width and length. Instead, reference layouts, presented as GDS files, are delivered to users unaltered. This practice extends to various device types, including:
 
-**Bipolar Devices:**
-- **NPN Transistor:**
+**Bipolar Devices:** <br>
+- **NPN Transistor:** <br>
   - Emitter: n-diffusion
   - Base: p-well
   - Collector: deep n-well
-- **PNP Transistor:**
+- **PNP Transistor:** <br>
   - Emitter: p-diffusion
   - Base: n-well
   - Collector: p-substrate
 
-**Polysilicon Resistors:**
+**Polysilicon Resistors:** <br>
 - P+ Polyresistor: Poly resistance of 1Kohm/square
 - P- Polyresistor: Sheet resistance of 2Kohm/square
 
-**Diffusion Resistors:**
+**Diffusion Resistors:** <br>
 - n-Diffusion Resistor on substrate
 - p-Diffusion Resistor in n-well
 
-**Hidden Mask Layers:**
+**Hidden Mask Layers:** <br>
 - PSDM Mask
 - RPM Mask
 - POLYRES ID layer
 
 Certain layers, such as bipolar and capacitor identifiers, need not be identified for Design Rule Checking (DRC). Three distinct library types are available in skywater PDKs:
 
-1. **Digital Standard Cells:**
+1. **Digital Standard Cells:** <br>
    - Includes layout and GDS formats used in the synthesis flow.
    - Various cell flavors cover high speed, high density, high voltage, and low leakage.
    - Follows a naming convention: `sky130_vendor_library_type[_name]`.
    - For example, `sky130_fd_sc_hd` stands for foundry (vendor), standard cell (library type), and high density (library name).
    - Cells must be placed to ensure abuttment bounding boxes touch each other.
 
-2. **I/O Cells:**
+2. **I/O Cells:** <br>
    - Contains complete power and ground pads, including entire disconnected blocks.
    - Overlay connects clamps/pads to power rails.
 
-3. **Primitive Devices and Models:**
+3. **Primitive Devices and Models:** <br>
    - Encompasses designs like bipolar transistors, varactors, ESD devices, etc.
 
 To comprehend physical verification, a layout is crafted. A simple circuit is represented by a schematic illustrating the cells and layout hierarchy. Xschem is employed for layout creation, complemented by ngspice for analog simulation and gaw for waveform viewing. Schematics are utilized to generate netlists, which are then simulated with ngspice. The layout is generated using Magic, with device adjustments made to address DRC checks. Lastly, Layout versus Schematic (LVS) checks are conducted as the final step.
@@ -6278,16 +6278,16 @@ To comprehend physical verification, a layout is crafted. A simple circuit is re
 <details>
 	<summary>Labs</summary>
 
- **Tool installations:**
+ **Tool installations:** <br>
 
-*Magic:*
+*Magic:* <br>
 Magic unfolds its capabilities through two distinct windows: the layout window and the console window. In the console window, a command prompt operates as a Tcl interpreter, executing commands specifically related to layout operations. This design provides a seamless and interactive environment for users to navigate and manipulate the layout using intuitive Tcl commands.
 
 Magic offers flexibility in its invocation. To launch Magic without the layout window, the `-dnull` option can be employed, and similarly, the `-noconsole` option allows Magic to run without opening the console window. This versatile command-line approach caters to user preferences and specific workflow requirements.
 
 <img  width="1085" alt="ss_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_1.png"> <br><br>
 
-*Netgen:*
+*Netgen:* <br>
 Netgen operates in a command-driven fashion, devoid of a graphical interface. Its functionality is initiated and controlled solely through command inputs, emphasizing a streamlined and efficient approach to layout verification.
 Netgen gui is run with the command:
 ```ruby
@@ -6296,11 +6296,11 @@ Netgen gui is run with the command:
 <img  width="1085" alt="ss_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_3.png"> <br><br>
 
 
-*Xschem:*
+*Xschem:* <br>
 Xschem, unlike some tools, doesn't feature a dedicated console window; instead, the terminal serves as its console. It lacks a quick command interface, relying on a terminal-based interaction for command execution. This design underscores a straightforward and terminal-centric user experience.
 <img  width="1085" alt="ss_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_2.png"> <br><br>
 
-*ngspice:*
+*ngspice:* <br>
 Ngspice simplifies its user interface by forgoing additional consoles. Executed directly on the terminal, Ngspice operates with its own interpreter, distinct from both Tcl and Python. This terminal-centric approach streamlines the user experience, making it a self-contained and efficient tool for circuit simulation.
 <img  width="1085" alt="ss_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_4.png"> <br><br>
 
@@ -6332,7 +6332,7 @@ Accessing examples is conveniently achieved by clicking the relevant rectangle a
 magic -d XR
 ```
 
-Mouse Controls:
+Mouse Controls: <br>
 - Left and right mouse buttons: Adjust the cursor box
 - Shift + Z: Zoom out
 - Middle mouse button/pk: Select a layer (also known as painting)
@@ -6342,12 +6342,12 @@ Mouse Controls:
 - S key: Select layers
 - Typing "what" command in the Magic console: Provides information on the selected layer
 
-Magic Console Commands:
+Magic Console Commands: <br>
 - ; (semicolon) key: Type commands in the Magic console without moving between windows, until the Enter key is pressed
 - I key: Select a device
 - M key: Move the selected device
 
-Device Editing:
+Device Editing: <br>
 To edit devices, use drop-down buttons:
 - Click on Devices 1 -> nmos (MOSFET) and select nmos (MOSFET) under "Devices 1"
 - Set the width to 2 um, length to 0.5 um, and fingers to 3 as shown.
@@ -6360,7 +6360,7 @@ By removing the guard rings, the NMOS is viewed as follows:
 Now, let's switch the device type to `sky130_fd_pr__nfet_g5v0d10v5` to observe a change in the voltage value while maintaining a similar layout view. When a specific layer is selected, the "what" command is employed to glean details about the chosen layer.
 <img  width="1085" alt="ss_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_11.png"> <br><br>
 
-**Creating schematic:**
+**Creating schematic:** <br>
 Now, let's generate the inverter schematic using Xschem.
 ```ruby
 cd ../xschem/
@@ -6372,7 +6372,7 @@ To begin, open a new schematic window and press the "Insert" button on the keybo
 
 Since pins are not PDK-specific, locate them under the xschem library in the insert window, named as `ipin.sym`, `opin.sym`, and `iopin.sym`.
 
-Position the pins on the schematic and use the following keys for schematic connections:
+Position the pins on the schematic and use the following keys for schematic connections: <br>
 - Press 'M' key to move components around the schematic window.
 - 'C' key to copy components, and 'Del' key to erase components.
 - 'W' key to insert wires between components and establish connections.
@@ -6391,7 +6391,7 @@ Similarly, the pins such as in,out and vdd, vss are given names.
 Save the design by clicking tab File --> save as --> inverter.sch
 <img  width="1085" alt="ss_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_17.png"> <br><br>
 
-**Ccreating the symbol and exporting the schematic:**
+**Ccreating the symbol and exporting the schematic:** <br>
 For functional validation of the schematic, it's essential to create a separate testbench.
 
 Begin by crafting a symbol for the schematic, which will manifest as a symbol in the testbench. Navigate to the Symbol menu and opt for "Make symbol from schematic." Subsequently, generate a testbench schematic using the "New Schematic" option. Insert the previously created symbol from the local directory into the testbench schematic using the "Insert" key.
@@ -6427,7 +6427,7 @@ Once the schematic is verified, proceed to create a layout for it. Return to the
 
 Firstly, navigate to the Simulation menu and choose the "LVS netlist: Top Level is a .subckt" option. Allow a few seconds and revisit the Simulation menu to ensure a tick mark appears beside the mentioned option. This confirms the proper definition of a sub-circuit, essential for creating a layout cell with pins in the layout. Lastly, generate a netlist for the schematic by clicking the Netlist button, and exit Xschem.
 
-**Importing Schematic to Layout:**
+**Importing Schematic to Layout:** <br>
 ```ruby
 cd ../mag/
 magic -d XR
