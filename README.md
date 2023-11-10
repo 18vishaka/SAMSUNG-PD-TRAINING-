@@ -6285,7 +6285,7 @@ Magic unfolds its capabilities through two distinct windows: the layout window a
 
 Magic offers flexibility in its invocation. To launch Magic without the layout window, the `-dnull` option can be employed, and similarly, the `-noconsole` option allows Magic to run without opening the console window. This versatile command-line approach caters to user preferences and specific workflow requirements.
 
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_1" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_1.png"> <br><br>
 
 *Netgen:*
 Netgen operates in a command-driven fashion, devoid of a graphical interface. Its functionality is initiated and controlled solely through command inputs, emphasizing a streamlined and efficient approach to layout verification.
@@ -6293,16 +6293,16 @@ Netgen gui is run with the command:
 ```ruby
 /usr/local/lib/netgen/python/lvs_manager.py
 ```
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_3" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_3.png"> <br><br>
 
 
 *Xschem:*
 Xschem, unlike some tools, doesn't feature a dedicated console window; instead, the terminal serves as its console. It lacks a quick command interface, relying on a terminal-based interaction for command execution. This design underscores a straightforward and terminal-centric user experience.
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_2" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_2.png"> <br><br>
 
 *ngspice:*
 Ngspice simplifies its user interface by forgoing additional consoles. Executed directly on the terminal, Ngspice operates with its own interpreter, distinct from both Tcl and Python. This terminal-centric approach streamlines the user experience, making it a self-contained and efficient tool for circuit simulation.
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_4" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_4.png"> <br><br>
 
 These tools can also be opened in batch mode as well.
 
@@ -6324,14 +6324,13 @@ ln -sf /usr/share/pdk/sky130A/libs.tech/netgen/sky130A_setup.tcl setup.tcl
 ```
 
 xschem has a lot of example devices as shown.
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_5" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_5.png"> <br><br>
 
 *Important note:* <br>
 Accessing examples is conveniently achieved by clicking the relevant rectangle and pressing the "E" key on the keyboard. To return to the menu promptly, simply press "CTRL+E". Additionally, resizing the schematic to fit the window is effortlessly accomplished by pressing the "F" key. Now, on an empty window, let's explore some magic shortcuts:
 ```ruby
 magic -d XR
 ```
-<img  width="1085" alt="" src=""> <br><br>
 
 Mouse Controls:
 - Left and right mouse buttons: Adjust the cursor box
@@ -6353,13 +6352,13 @@ To edit devices, use drop-down buttons:
 - Click on Devices 1 -> nmos (MOSFET) and select nmos (MOSFET) under "Devices 1"
 - Set the width to 2 um, length to 0.5 um, and fingers to 3 as shown.
 When applied, the NMOS viewed is as follows:
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_7" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_7.png"> <br><br>
 
 By removing the guard rings, the NMOS is viewed as follows:
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_8" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_8.png"> <br><br>
 
 Now, let's switch the device type to `sky130_fd_pr__nfet_g5v0d10v5` to observe a change in the voltage value while maintaining a similar layout view. When a specific layer is selected, the "what" command is employed to glean details about the chosen layer.
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_11" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_11.png"> <br><br>
 
 **Creating schematic:**
 Now, let's generate the inverter schematic using Xschem.
@@ -6369,7 +6368,7 @@ xschem
 ```
 
 To begin, open a new schematic window and press the "Insert" button on the keyboard. This action will prompt a window to appear, allowing you to select devices. Specify the directory path to the SkyWater library and choose the `fd_pr` library. For an inverter, both an NFET and PFET are required. Consequently, select the NFET and PFET devices from the insert window and position them anywhere in the schematic, following the provided illustration.
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_14" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_14.png"> <br><br>
 
 Since pins are not PDK-specific, locate them under the xschem library in the insert window, named as `ipin.sym`, `opin.sym`, and `iopin.sym`.
 
@@ -6383,15 +6382,14 @@ Rename each pin appropriately using the 'Q' key to bring up the parameter window
 Select the components by clicking on them and press 'Q' to bring up the parameter windows, configuring the properties of the devices.
 
 For the NFET, adjust the length to 0.18 since the default value of 0.15 is restricted to SRAM devices only. Set the number of fingers to 3, and the width of each finger to 1.5. With 3 fingers, the total width in the parameter window should be set to 3 times the finger width, which is 4.5.
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_16" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_16.png"> <br><br>
 
 Likewise, for the PFET, tailor the parameters to 3 fingers, a width of 1 per finger, and a length of 0.18. It's crucial to specify that the body is connected to the Vdd pin since it's a 3-pin PFET.
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_15" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_15.png"> <br><br>
 
-Similarly, the pins such as in,out and vdd, vss are given names as shown.
-<img  width="1085" alt="" src=""> <br><br>
+Similarly, the pins such as in,out and vdd, vss are given names.
 Save the design by clicking tab File --> save as --> inverter.sch
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_17" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_17.png"> <br><br>
 
 **Ccreating the symbol and exporting the schematic:**
 For functional validation of the schematic, it's essential to create a separate testbench.
@@ -6420,7 +6418,10 @@ This instructs Ngspice to execute a transient simulation for 1 ns, monitoring vo
 While specifying same name to in and out, in the symbol and output pins, it throws a warning during simulation. SO, Use the different names.
 
 Hence, the comprehensive testbench schematic is depicted above. Save this configuration as "inverter_tb.sch". To generate the netlist, click on the Netlist button, followed by simulating it in Ngspice by clicking the Simulate button. The resulting waveform serves as confirmation that the schematic functions as an inverter, as illustrated below.
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_18" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_18.png"> <br><br>
+<img  width="1085" alt="ss_19" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_19.png"> <br><br>
+<img  width="1085" alt="ss_20" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_20.png"> <br><br>
+
 
 Once the schematic is verified, proceed to create a layout for it. Return to the inverter schematic.
 
@@ -6433,25 +6434,24 @@ magic -d XR
 ```
 
 Import the schematic to the layout in Magic by running the magic, then click on File -> Import SPICE and then select the inverter.spice file from the xschem directory. If done correctly, the following layout has been opened up in magic.
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_21" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_21.png"> <br><br>
 
 Regarding the generated layout above, the schematic import lacks the capability to perform intricate analog placing and routing. Consequently, manual intervention is required to position the components optimally and establish the necessary connections. 
 
-Begin by placing the PFET device above the NFET, carefully adjusting the placement of the input, output, and supply pins. Reference the figure below for guidance.
-<img  width="1085" alt="" src=""> <br><br>
+Begin by placing the PFET device above the NFET, carefully adjusting the placement of the input, output, and supply pins. R
 
 Now, configure specific parameters in the layout that are only adjustable in this context, enhancing the overall convenience for wiring. To access the parameter editing section, use the 'S' key. Press 'I' to select the object, and then use CTRL+P to open the parameter options for the chosen device.
-<img  width="1085" alt="" src=""> <br><br>
+
 
 Adjust the parameters for optimal layout by setting the "Top guard ring via coverage" to 100. This action introduces a local interconnect to metal1 via the top of the guard ring. Following that, set "Source via coverage" to +40 and "Drain via coverage" to -40. This configuration effectively splits the source and drain contacts, simplifying the connection process with a wire.
-<img  width="1085" alt="" src=""> <br><br>
+
 
 Start to paint the wires using metal1 layers by connecting the source of the pfet to Vdd and source of the nfet to Vss. 
-<img  width="1085" alt="" src=""> <br><br>
+
 
 Next, connect the drains of both mosfets to the output.
 Finally, connect the input to all the poly contacts of the gate.
-<img  width="1085" alt="" src=""> <br><br>
+<img  width="1085" alt="ss_22" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_22.png"> <br><br>
 
 Save the file and select the autowrite option.
 
@@ -6463,8 +6463,54 @@ ext2spice lvs       (Simulating and setting up the netlist to hierarchical spice
 ext2spice           (Generating the spice netlist)
 ```
 
+<img  width="1085" alt="ss_23" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_23.png"> <br><br>
 
+```ruby
+rm *.ext                                          (Clear any unwanted files -> .ext files are just intermediate results from the extraction)
+/usr/share/pdk/bin/cleanup_unref.py -remove .     (Clean up extra .mag files -> files containing paramaterised cells that were created and saved but not used in the design)
+netgen -batch lvs "../mag/inverter.spice inverter" "../xschem/inverter.spice inverter"    (Run LVS by entering the netgen subdirectory)
+```
+<img  width="1085" alt="ss_24" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_24.png"> <br><br>
 
- 
- 
+When utilizing the netgen command, it is crucial to follow a specific sequence: prioritize the layout netlist first, followed by the schematic netlist. This arrangement ensures a side-by-side comparison, positioning the layout on the left and the schematic on the right for a comprehensive analysis.
+
+Each netlist is denoted by a pair of keywords enclosed in quotes. The initial keyword signifies the location of the netlist file, while the second represents the name of the subcircuit to be compared. This pairing structure facilitates an organized and systematic examination of the netlists.
+
+Upon reviewing the results, a discernible issue in the wiring becomes apparent. The netlists, when compared, exhibit disparities, indicating a mismatch between the layout and schematic. This inconsistency can be attributed to wiring errors present in the layout, emphasizing the significance of meticulous attention to wiring details to ensure accurate netlist alignment and subsequent circuit analysis.
+<img  width="1085" alt="ss_25" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_25.png"> <br><br>
+
+**Debugging errors in netlist, rerun and save layout:** <br>
+
+```ruby
+extract do local
+extract all
+ext2spice lvs
+ext2spice cthresh 0     (Tells magic to add all the parasitic capacitances to the spice netlist)
+ext2spice
+```
+ <img  width="1085" alt="ss_26" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_26.png"> <br><br>
+
+In the provided netlist file, observe several lines commencing with the letter C, delineating the various parasitic capacitances within the circuit.
+```ruby
+gvim inverter.spice
+```
+<img  width="1085" alt="ss_27" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_27.png"> <br><br>
+<img  width="1085" alt="ss_28" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_28.png"> <br><br>
+
+```ruby
+cp ../xschem/inverter_tb.spice .
+vim inverter_tb.spice
+```
+After the Modification of the test bench netlist file:
+<img  width="1085" alt="ss_29" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_29.png"> <br><br>
+
+```ruby
+/usr/share/pdk/bin/cleanup_unref.py -remove .
+cp ../xschem/.spiceinit .
+ngspice inverter_tb.spice
+```
+
+We observe that the result is nearly same as in previous simulation in xschem:
+<img  width="1085" alt="ss_30" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_30.png"> <br><br>
+
 </details>
