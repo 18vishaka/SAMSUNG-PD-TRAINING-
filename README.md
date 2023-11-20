@@ -58,6 +58,10 @@ Quick links:
 
 - [Day-28-Introduction to DRC/LVS](Introduction-to-DRC/LVS)
 
+- [Day-29- Low power design using opensource sky130](Low-power-design-using-opensource-sky130)
+
+- [Day-30- TCL Programming](TCL-Programming)
+
 
 
 ## Day-0-Installation
@@ -6513,4 +6517,135 @@ ngspice inverter_tb.spice
 We observe that the result is nearly same as in previous simulation in xschem:
 <img  width="1085" alt="ss_30" src="https://github.com/18vishaka/SAMSUNG-PD-TRAINING-/blob/master/day_28/ss_30.png"> <br><br>
 
+</details>
+
+## Day-29-Low power design using opensource sky130
+<details>
+	<summary>Introduction</summary>
+
+ 
+</details>
+
+## Day-30-TCL Programming
+
+<details>
+	<summary>Introduction to TCL and VSDSYNTH tool box usage</summary>
+TCL scripting involves several key steps:
+
+1. **Command Creation:** Develop a command to transmit a .csv file from the UNIX shell to the TCL script.
+
+2. **Input Conversion:** Transform all inputs into format[1] and SDC format, transmitting these to the 'yosys' synthesis tool.
+
+3. **Format Transformation:** Convert format[1] and SDC to format[2] and feed them into the timing tool 'Opentimer.'
+
+4. **Report Generation:** Finally, execute the TCL task to generate an output report containing WNS, TNS, runtime, and other design metrics. <br>
+
+
+ 
+**Creating a command entails handling various user scenarios:** <br>
+
+1. **No CSV File Provided:** <br>
+   ```ruby
+   if ($#argv != 1) then
+      echo "Info: Please provide the csv file"
+      exit 1
+   endif
+   ```
+
+2. **Providing a Nonexistent CSV File:** <br>
+   ```ruby
+   ./vsdflow my.csv
+   ```
+
+3. **Usage Inquiry:** <br>
+   ```ruby
+   ./vsdflow -help
+   ```
+
+These snippets effectively cover scenarios like missing CSV input, providing a non-existing file, and seeking usage information. <br>
+This is achieved with the following snip of code as follows:
+```ruby
+if (! -f $argv[1] || $argv[1] == "-help") then
+        if ($argv[1] != "-help") then
+                echo "Error:  Cannot find csv file $argv[1]. Exiting..."
+                exit 1
+        else
+                echo USAGE: ./vsdflow \<csv file\>
+                echo
+                echo         where \<csv file\> consists of 2 columns, below keyword being in 1st column and is Case Sensitive. Please request VSD team for sample csv file
+                echo
+                echo         \<Design Name\> is the name of top level module
+                echo
+                echo         \<Output Directory\> is the name of output directory where you want to dump synthesis script, synthesized netlist and timing reports
+                echo
+                echo         \<Netlist Directory\> is the name of directory where all RTL netlist are present
+                echo
+                echo         \<Early Library Path\> is the file path of the early cell library to be used for STA
+                echo
+                echo         \<Late Library Path\> is file path of the late cell library to be used for STA
+                echo
+                echo         \<Constraints file\> is csv file path of constraints to be used for STA
+                echo
+                exit 1
+        endif
+else
+		tclsh vsdflow.tcl $argv[1]
+endif
+```
+
+</details>
+
+<details>
+	<summary>Variable creation and processing constraints from CSV</summary>
+
+
+Let's break down the detailed process of converting inputs into format[1] and SDC, passing them to the 'yosys' synthesis tool, and creating variables: <br>
+
+1. **Variable Creation:** <br>
+   - Accessing inputs in the .csv file and assigning file names to variables: <br>
+     ```ruby
+     set filename [lindex $argv 0]
+     ```
+
+   - Reading values from the .csv file and creating a matrix using packages csv and struct::matrix: <br>
+     ```ruby
+     package require csv
+     package require struct::matrix
+     struct::matrix m
+     ```
+
+   - Opening the .csv file in read mode: <br>
+     ```ruby
+     set f [open $filename]
+     ```
+
+   - Mapping the opened file to the matrix using csv::read2matrix: <br>
+     ```ruby
+     csv::read2matrix $f m , auto
+     ```
+
+   - Closing the file: <br>
+     ```ruby
+     close $f
+     ```
+
+   - Identifying the size of the matrix: <br>
+     ```ruby
+     set columns [m columns]
+     m link arr
+     set rows [m rows]
+     ```
+
+2. **Matrix and Array Linking:** <br>
+   - Linking the matrix to an array for convenient access: <br>
+     ```ruby
+     m link arr
+     ```
+
+   - Accessing values using array indices: <br>
+     ```ruby
+     arr($row, $column)
+     ```
+
+These steps demonstrate the meticulous process of handling CSV file inputs, creating variables, and establishing connections between matrices and arrays for effective data access in Tcl scripting.
 </details>
