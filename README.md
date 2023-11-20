@@ -6745,7 +6745,7 @@ Creating low-power designs involves a combination of strategies, methodologies, 
 </details>
 
 <details>
-	<summary>More about low power/summary>
+	<summary>More about low power</summary>
 
  ### Power State Space
 
